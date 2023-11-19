@@ -21,7 +21,14 @@ public class SelfDestroyer : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
+           
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
             Destroy(gameObject);
         }
     }
-    }
+}

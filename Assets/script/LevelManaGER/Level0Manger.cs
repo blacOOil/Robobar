@@ -29,6 +29,13 @@ public class Level0Manger : MonoBehaviour
     {
         if (collision.collider.CompareTag("TargetTag"))
         {
+           
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("TargetTag"))
+        {
             Dropped--;
             RemainingOBJ.text = Dropped.ToString();
         }
