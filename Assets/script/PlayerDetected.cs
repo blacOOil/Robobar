@@ -9,7 +9,7 @@ public class PlayerDetected : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("got u");
+           
         }
     }
 }

@@ -5,14 +5,15 @@ using TMPro;
 
 public class Level0Manger : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject Player,EndScreen,MissionFail;
     [SerializeField] TextMeshProUGUI RemainingOBJ,Timetext;
     [SerializeField] public float remainingTime;
-    public float Dropped = 0f;
+    private float Dropped = 3f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        EndScreen.SetActive(false);
+        MissionFail.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,6 +24,11 @@ public class Level0Manger : MonoBehaviour
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int second = Mathf.FloorToInt(remainingTime % 60);
         Timetext.text = string.Format("{0:00}:{1:00}", minutes, second);
+
+        if (Dropped < 2)
+        {
+            EndLevel();
+        }
 
     }
     public void OnCollisionEnter(Collision collision)
@@ -39,5 +45,29 @@ public class Level0Manger : MonoBehaviour
             Dropped--;
             RemainingOBJ.text = Dropped.ToString();
         }
+        if (other.CompareTag("InstanceSpotlightTag"))
+        {
+            Fail();
+        }
+    }
+    void EndLevel()
+    {
+        EndScreen.SetActive(true);
+        pause();
+    }
+    void pause()
+    {
+        Time.timeScale = 0;
+    }
+    void Fail()
+    {
+        WaitForProgress();
+        MissionFail.SetActive(true);
+        Time.timeScale = 0;
+    }
+    IEnumerator WaitForProgress()
+    {
+        yield return new WaitForSeconds(10000f);
+
     }
 }
