@@ -51,10 +51,10 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 5.64
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.5
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
@@ -626,10 +626,10 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 5.64
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.5
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
@@ -693,8 +693,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6082083573738164432}
   serializedVersion: 4
-  m_Mass: 1200
-  m_Drag: 0.22
+  m_Mass: 9000
+  m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -724,8 +724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a872b2c697abd4abfdaf49b59c1262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorForce: 80000
-  BreakForce: 70000
+  motorForce: 14000
+  BreakForce: 13000
   maxSteerAngle: 10
   frontLeftWheelTransform: {fileID: 6685914780851487741}
   frontRightWheelTransform: {fileID: 6427497232006278638}
@@ -1021,10 +1021,10 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 5.64
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.5
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
@@ -1092,10 +1092,10 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 5.64
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.5
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
