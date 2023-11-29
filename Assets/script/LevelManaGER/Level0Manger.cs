@@ -63,7 +63,7 @@ public class Level0Manger : MonoBehaviour
     {
         WaitForProgress();
         MissionFail.SetActive(true);
-        Time.timeScale = 0;
+        pause();
     }
     IEnumerator WaitForProgress()
     {
