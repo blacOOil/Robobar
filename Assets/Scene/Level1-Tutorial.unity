@@ -1585,7 +1585,7 @@ Transform:
   m_GameObject: {fileID: 1060738027}
   serializedVersion: 2
   m_LocalRotation: {x: -0.39171705, y: -0.20704797, z: -0.0037721898, w: -0.8964791}
-  m_LocalPosition: {x: -75.8, y: 28.14, z: -72.56}
+  m_LocalPosition: {x: -96.36, y: 26.02, z: -52.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1608,7 +1608,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 0
+  m_Priority: -2
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -4850,6 +4850,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectivePoint
       objectReference: {fileID: 0}
+    - target: {fileID: 6114191980699601470, guid: ada8453c1bad539458751eb4f5591e65,
+        type: 3}
+      propertyPath: m_TagString
+      value: CutSceneTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 6600130801821304972, guid: ada8453c1bad539458751eb4f5591e65,
         type: 3}
       propertyPath: m_Size.y
@@ -4920,7 +4925,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5242695923472785875, guid: ada8453c1bad539458751eb4f5591e65, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -4942,14 +4948,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2693492193105831276}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95c804878cfa8e744b1484487206f5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 6389381448637690418}
-  CutSceneCam: {fileID: 1060738029}
-  cutscenduration: 1
+  CutSceneCam: {fileID: 1060738027}
+  PlaerCam: {fileID: 1037536351}
+  cutscenduration: 0
 --- !u!4 &3367848673216230577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4606166623247523157, guid: 21f2ccd4406d2ef41b3928bd0205f348,
