@@ -1951,6 +1951,7 @@ GameObject:
   - component: {fileID: 829948589}
   - component: {fileID: 829948588}
   - component: {fileID: 829948587}
+  - component: {fileID: 829948590}
   m_Layer: 0
   m_Name: Cube (20)
   m_TagString: Untagged
@@ -1967,7 +1968,7 @@ Transform:
   m_GameObject: {fileID: 829948585}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99999624, z: -0, w: -0.0027489641}
-  m_LocalPosition: {x: -136.75998, y: 7.5, z: 49.200005}
+  m_LocalPosition: {x: -2.6, y: 7.5, z: 46.7}
   m_LocalScale: {x: 3.5924137, y: 0.41125345, z: 22.572277}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2044,6 +2045,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829948585}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &829948590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829948585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c921d7472b574aa39925bbe7f7b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstCame: {fileID: 72290351}
+  SecondCam: {fileID: 1037536351}
 --- !u!1 &837083784
 GameObject:
   m_ObjectHideFlags: 3
@@ -2950,7 +2965,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060738027}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0786175, y: -0.46703088, z: 0.04173551, w: 0.8797498}
+  m_LocalRotation: {x: 0.0786175, y: -0.46703088, z: 0.041735508, w: 0.8797497}
   m_LocalPosition: {x: -76.588, y: 16.57, z: -39.201}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4159,7 +4174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0.081, y: 94.481, z: 3.994}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -149.5, y: 30.81}
+  m_AnchoredPosition: {x: -145.86, y: 30.81}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424909757
