@@ -8,7 +8,7 @@ public class CameraChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SecondCam.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -18,7 +18,14 @@ public class CameraChanger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        firstCame.gameObject.SetActive(true);
-        SecondCam.gameObject.SetActive(false);
+        if (other.CompareTag("Player"))
+        { 
+        SecondCam.gameObject.SetActive(true);
+        firstCame.gameObject.SetActive(false);
+           
+            
+        }
+        
+        
     }
 }
