@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class HitThisThenWhat : MonoBehaviour
 {
-    public GameObject Hitthis, Then;
+    public GameObject Hitthis, Then,Then2;
     // Start is called before the first frame update
     void Start()
     {
         Then.SetActive(false);
+        Then2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class HitThisThenWhat : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Then.SetActive(true);
+            Then2.SetActive(true);
             Destroy(gameObject);
         }
     }

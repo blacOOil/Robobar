@@ -28,4 +28,15 @@ public class CameraChanger : MonoBehaviour
         
         
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            SecondCam.gameObject.SetActive(true);
+            firstCame.gameObject.SetActive(false);
+            Destroy(gameObject);
+
+        }
+
+    }
 }

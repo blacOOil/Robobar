@@ -8,7 +8,9 @@ public class Level0Manger : MonoBehaviour
     public GameObject Player,EndScreen,MissionFail;
     [SerializeField] TextMeshProUGUI RemainingOBJ,Timetext;
     [SerializeField] public float remainingTime;
-    private float Dropped = 3f;
+    public float Dropped ;
+    public int TargetPoint;
+     
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,7 @@ public class Level0Manger : MonoBehaviour
         int second = Mathf.FloorToInt(remainingTime % 60);
         Timetext.text = string.Format("{0:00}:{1:00}", minutes, second);
 
-        if (Dropped < 2)
+        if (Dropped < TargetPoint)
         {
             EndLevel();
         }
