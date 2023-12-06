@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using TMPro;
 
 public class Level1StartCutScene : MonoBehaviour
 {
+    [SerializeField] public GameObject PopupText;
+    public Animator animator;
+    public TMP_Text Tmpop;
+
     public GameObject StartingText;
     public float Sceneduration;
     public bool IsCutSceneEnd = false;
@@ -31,5 +37,10 @@ public class Level1StartCutScene : MonoBehaviour
     {
         yield return new WaitForSeconds(Sceneduration);
         IsCutSceneEnd = true;
+    }
+
+    public void popupChat(string text)
+    {
+        PopupText.SetActive(true);
     }
 }
