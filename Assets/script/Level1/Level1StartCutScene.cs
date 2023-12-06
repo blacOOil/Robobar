@@ -6,9 +6,9 @@ using TMPro;
 
 public class Level1StartCutScene : MonoBehaviour
 {
-    [SerializeField] public GameObject PopupText;
+   
     public Animator animator;
-    public TMP_Text Tmpop;
+    
 
     public GameObject StartingText;
     public float Sceneduration;
@@ -41,6 +41,6 @@ public class Level1StartCutScene : MonoBehaviour
 
     public void popupChat(string text)
     {
-        PopupText.SetActive(true);
+        animator.SetTrigger("pop");
     }
 }
