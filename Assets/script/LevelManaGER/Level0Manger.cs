@@ -9,7 +9,7 @@ public class Level0Manger : MonoBehaviour
     [SerializeField] TextMeshProUGUI RemainingOBJ,Timetext;
     [SerializeField] public float remainingTime;
     public float Dropped ;
-    public int TargetPoint;
+    public float TargetPoint;
      
     // Start is called before the first frame update
     void Start()
