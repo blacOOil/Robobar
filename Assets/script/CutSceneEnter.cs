@@ -9,6 +9,8 @@ public class CutSceneEnter : MonoBehaviour
     public float cutscenduration = 0f;
     private Rigidbody playerRigidbody;
 
+    [SerializeField] public Animator SecondCutScene;
+
     void Start()
     {
         playerRigidbody = Player.GetComponent<Rigidbody>();
@@ -29,10 +31,13 @@ public class CutSceneEnter : MonoBehaviour
         Debug.Log("startScene");
         PlaerCam.gameObject.SetActive(false);
         CutSceneCam.gameObject.SetActive(true);
+
         Debug.Log("changeCam");
+        SecondCutScene.SetBool("IsCutSceneStart", true);
         yield return new WaitForSeconds(4);
         Debug.Log("EndScene");
         PlaerCam.gameObject.SetActive(true);
+
         playerRigidbody.constraints = RigidbodyConstraints.None;
         CutSceneCam.gameObject.SetActive(false);
         Destroy(gameObject);
