@@ -6,7 +6,7 @@ public class CutSceneEnter : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Player, CutSceneCam, PlaerCam;
-    public float cutscenduration = 0f;
+    public float cutscenduration ;
     private Rigidbody playerRigidbody;
 
     [SerializeField] public Animator SecondCutScene;
@@ -34,9 +34,11 @@ public class CutSceneEnter : MonoBehaviour
 
         Debug.Log("changeCam");
         SecondCutScene.SetBool("IsCutSceneStart", true);
-        yield return new WaitForSeconds(4);
-        Debug.Log("EndScene");
+        yield return new WaitForSeconds(cutscenduration);
         PlaerCam.gameObject.SetActive(true);
+        SecondCutScene.SetBool("IsCutSceneStart", false);
+        Debug.Log("EndScene");
+       
 
         playerRigidbody.constraints = RigidbodyConstraints.None;
         CutSceneCam.gameObject.SetActive(false);
