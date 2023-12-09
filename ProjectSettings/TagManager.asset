@@ -8,6 +8,7 @@ TagManager:
   - PlayerSearching
   - InstanceSpotlightTag
   - CutSceneTrigger
+  - Road
   layers:
   - Default
   - TransparentFX

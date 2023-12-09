@@ -10,24 +10,43 @@ public class Level0Manger : MonoBehaviour
     [SerializeField] public float remainingTime;
     public float Dropped ;
     public float TargetPoint;
+    private bool IsFlip = false;
      
     // Start is called before the first frame update
     void Start()
     {
         EndScreen.SetActive(false);
         MissionFail.SetActive(false);
+  
     }
 
     // Update is called once per frame
     void Update()
     {
-        RemainingOBJ.text = string.Format("{0}", Dropped);
+        //RemainingOBJ.text = string.Format("{0}", Dropped);
         remainingTime -= Time.deltaTime;
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int second = Mathf.FloorToInt(remainingTime % 60);
         Timetext.text = string.Format("{0:00}:{1:00}", minutes, second);
 
-        if (Dropped < TargetPoint)
+        if(IsFlip == true)
+        {
+            RemainingOBJ.text = "Hold R to Restart";
+        }
+        else if(Dropped == 0)
+        {
+            RemainingOBJ.text = "Pick Up a Client";
+        }
+        else if (Dropped == 1)
+        {
+            RemainingOBJ.text = "Avoid The Spottlight";
+        }
+        else if (Dropped == 2)
+        {
+            RemainingOBJ.text = "Escape The Snipper";
+        }
+
+        else if (Dropped >= TargetPoint)
         {
             EndLevel();
         }
@@ -44,12 +63,16 @@ public class Level0Manger : MonoBehaviour
     {
         if (other.CompareTag("TargetTag"))
         {
-            Dropped--;
+            Dropped++;
             RemainingOBJ.text = Dropped.ToString();
         }
         if (other.CompareTag("InstanceSpotlightTag"))
         {
             Fail();
+        }
+        if (other.CompareTag("Road"))
+        {
+            IsFlip = true;
         }
     }
     void EndLevel()

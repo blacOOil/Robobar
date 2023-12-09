@@ -9,10 +9,11 @@ public class CutSceneEnter : MonoBehaviour
     public float cutscenduration ;
     private Rigidbody playerRigidbody;
 
-    [SerializeField] public Animator SecondCutScene;
+   // [SerializeField] public Animator SecondCutScene;
 
     void Start()
     {
+        CutSceneCam.gameObject.SetActive(false);
         playerRigidbody = Player.GetComponent<Rigidbody>();
        
     }
@@ -33,10 +34,10 @@ public class CutSceneEnter : MonoBehaviour
         CutSceneCam.gameObject.SetActive(true);
 
         Debug.Log("changeCam");
-        SecondCutScene.SetBool("IsCutSceneStart", true);
+      //  SecondCutScene.SetBool("IsCutSceneStart", true);
         yield return new WaitForSeconds(cutscenduration);
         PlaerCam.gameObject.SetActive(true);
-        SecondCutScene.SetBool("IsCutSceneStart", false);
+      //  SecondCutScene.SetBool("IsCutSceneStart", false);
         Debug.Log("EndScene");
        
 
