@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SnipperPoint : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SnipperPoint : MonoBehaviour
     public Transform Wheel;
     private Rigidbody playerRigidbody;
     public float speed;
+    public TextMeshProUGUI count1, count2, count3;
     // Start is called before the first frame update
     void Start()
     {
