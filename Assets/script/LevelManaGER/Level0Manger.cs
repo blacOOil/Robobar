@@ -11,6 +11,7 @@ public class Level0Manger : MonoBehaviour
     public float Dropped ;
     public float TargetPoint;
     private bool IsFlip = false;
+    public BoxCollider Carcollider;
      
     // Start is called before the first frame update
     void Start()
@@ -70,7 +71,8 @@ public class Level0Manger : MonoBehaviour
         {
             Fail();
         }
-        if (other.CompareTag("Road"))
+       
+        if (Carcollider.CompareTag("Road"))
         {
             IsFlip = true;
         }
