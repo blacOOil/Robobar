@@ -5,20 +5,27 @@ using TMPro;
 
 public class Level0Manger : MonoBehaviour
 {
-    public GameObject Player,EndScreen,MissionFail;
-    [SerializeField] TextMeshProUGUI RemainingOBJ,Timetext;
+    public GameObject Player,EndScreen,MissionFail,Timer;
+    [SerializeField] TextMeshProUGUI RemainingOBJ,Timetext,TimeScore,Score;
     [SerializeField] public float remainingTime;
+    private float StartingTime, TimeTaken;
     public float Dropped ;
     public float TargetPoint;
     private bool IsFlip = false;
     public BoxCollider Carcollider;
-     
+    private Rigidbody playerRigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
+        StartingTime = remainingTime;
+        Time.timeScale = 1f;
+        Timer.SetActive(false);
+        playerRigidbody = Player.GetComponent<Rigidbody>();
         EndScreen.SetActive(false);
         MissionFail.SetActive(false);
-  
+        ResetPlayerConstraints();
+
     }
 
     // Update is called once per frame
@@ -44,7 +51,11 @@ public class Level0Manger : MonoBehaviour
         }
         else if (Dropped == 2)
         {
-            RemainingOBJ.text = "Escape The Snipper";
+            RemainingOBJ.text = " Find other Way";
+        }
+        else if(Dropped == 3)
+        {
+            RemainingOBJ.text = "Helicopter Run!";
         }
 
         else if (Dropped >= TargetPoint)
@@ -57,7 +68,7 @@ public class Level0Manger : MonoBehaviour
     {
         if (collision.collider.CompareTag("TargetTag"))
         {
-           
+            Timer.SetActive(true);
         }
     }
     void OnTriggerEnter(Collider other)
@@ -70,16 +81,23 @@ public class Level0Manger : MonoBehaviour
         if (other.CompareTag("InstanceSpotlightTag"))
         {
             Fail();
+            RemainingOBJ.text = "You Got Spotted Hold R to Restart";
         }
        
-        if (Carcollider.CompareTag("Road"))
+        if (other.CompareTag("Road"))
         {
             IsFlip = true;
         }
+        if (other.CompareTag("CutSceneTrigger"))
+        {
+            Timer.SetActive(true);
+        }
     }
     void EndLevel()
-    {
+    { 
+        ScoreCalculatiom();
         EndScreen.SetActive(true);
+       
         pause();
     }
     void pause()
@@ -88,13 +106,28 @@ public class Level0Manger : MonoBehaviour
     }
     void Fail()
     {
-        WaitForProgress();
+        playerRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+        //   WaitForProgress();
         MissionFail.SetActive(true);
-        pause();
+        //pause();
     }
     IEnumerator WaitForProgress()
     {
         yield return new WaitForSeconds(10000f);
+
+    }
+    void ResetPlayerConstraints()
+    {
+        playerRigidbody.constraints = RigidbodyConstraints.None;
+    }
+    public void ScoreCalculatiom()
+    {
+
+        TimeTaken = StartingTime - remainingTime;
+        int minutes = Mathf.FloorToInt(TimeTaken / 60);
+        int second = Mathf.FloorToInt(TimeTaken % 60);
+        TimeScore.text = string.Format("{0:00}:{1:00}", minutes, second);
+
 
     }
 }

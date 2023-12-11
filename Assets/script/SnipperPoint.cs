@@ -9,10 +9,13 @@ public class SnipperPoint : MonoBehaviour
     public Transform Wheel;
     private Rigidbody playerRigidbody;
     public float speed;
-    public TextMeshProUGUI count1, count2, count3;
+    public GameObject count1, count2, count3;
     // Start is called before the first frame update
     void Start()
     {
+        count1.SetActive(false);
+        count2.SetActive(false);
+        count3.SetActive(false);
         wheelCollider = GetComponent<WheelCollider>();
         playerRigidbody = Wheel.GetComponent<Rigidbody>();
     }
@@ -36,7 +39,16 @@ public class SnipperPoint : MonoBehaviour
 
     IEnumerator Scoping()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+        count3.SetActive(true);
+        yield return new WaitForSeconds(1);
+        count3.SetActive(false);
+        count2.SetActive(true);
+        yield return new WaitForSeconds(1);
+        count2.SetActive(false);
+        count1.SetActive(true);
+        yield return new WaitForSeconds(1);
+        count1.SetActive(false);
     }
     void FreezeWheel()
     {
