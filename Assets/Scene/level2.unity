@@ -14858,6 +14858,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553850437}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &979945374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4673048572544504527, guid: 3ac728bbad74f764d9a7644503a2787a,
+    type: 3}
+  m_PrefabInstance: {fileID: 791446028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &982076238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29892,6 +29898,7 @@ MonoBehaviour:
   Player: {fileID: 2056518517}
   EndScreen: {fileID: 612881080}
   MissionFail: {fileID: 1949038500}
+  StartBeefing: {fileID: 979945374}
   RemainingOBJ: {fileID: 1626300076}
   Timetext: {fileID: 2061980191}
   TimeScore: {fileID: 640448733}

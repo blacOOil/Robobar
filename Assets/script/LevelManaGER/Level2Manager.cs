@@ -5,19 +5,21 @@ using TMPro;
 
 public class Level2Manager : MonoBehaviour
 {
-    public GameObject Player, EndScreen, MissionFail;
+    public GameObject Player, EndScreen, MissionFail,StartBeefing;
     [SerializeField] TextMeshProUGUI RemainingOBJ, Timetext, TimeScore, Score;
     [SerializeField] public float remaingTime;
     private float StartingTime, TimeTaken;
     public float Dropped;
     public float TargetPoint;
+    private Rigidbody playerRigidbody;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         StartingTime = remaingTime;
         Time.timeScale = 1f;
-
+        playerRigidbody = Player.GetComponent<Rigidbody>();
         EndScreen.SetActive(false);
         MissionFail.SetActive(false);
 
@@ -26,6 +28,7 @@ public class Level2Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        StartCoroutine(StartBeefingCat());
         RemainingOBJ.text = string.Format("Deliver {0} out of 10", Dropped);
         remaingTime -= Time.deltaTime;
         int minutes = Mathf.FloorToInt(remaingTime / 60);
@@ -48,6 +51,11 @@ public class Level2Manager : MonoBehaviour
             Dropped++;
             RemainingOBJ.text = Dropped.ToString();
         }
+        if (other.CompareTag("InstanceSpotlightTag"))
+        {
+            Fail();
+           
+        }
     }
     void EndLevel()
     {
@@ -57,7 +65,7 @@ public class Level2Manager : MonoBehaviour
     void Fail()
     {
 
-
+        playerRigidbody.constraints = RigidbodyConstraints.FreezePosition;
         MissionFail.SetActive(true);
 
     }
@@ -88,6 +96,12 @@ public class Level2Manager : MonoBehaviour
         {
             Score.text = "D";
         }
+
+    }
+    IEnumerator StartBeefingCat()
+    {
+        yield return new WaitForSeconds(5);
+        StartBeefing.SetActive(false);
 
     }
 }
