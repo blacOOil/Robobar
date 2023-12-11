@@ -177,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 1859490601427524113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7, y: 0, z: -0.42}
+  m_LocalPosition: {x: -0.7, y: 0, z: -1.421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 3652810509644964726}
   m_Layer: 0
   m_Name: Helicoter
-  m_TagString: Untagged
+  m_TagString: InstanceSpotlightTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,6 +268,7 @@ MonoBehaviour:
   - {fileID: 124744200255257550}
   target: 3
   Speed: 4
+  Player: {fileID: 0}
 --- !u!1 &4458372512976959935
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +327,7 @@ Transform:
   m_GameObject: {fileID: 7087562846261119146}
   serializedVersion: 2
   m_LocalRotation: {x: 0.68365073, y: 0.023098947, z: -0.033015247, w: 0.7286962}
-  m_LocalPosition: {x: 0.02, y: 36.7, z: -0.153}
+  m_LocalPosition: {x: 0.125, y: 36.6, z: -0.161}
   m_LocalScale: {x: 1.6759987, y: 1.7196057, z: 30.478577}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,8 +344,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.9455494, b: 0.57924527, a: 1}
-  m_Intensity: 645473.9
+  m_Color: {r: 1, g: 0, b: 0.11226702, a: 1}
+  m_Intensity: 58421628
   m_Range: 5.158556
   m_SpotAngle: 104.14607
   m_InnerSpotAngle: 21.80208
@@ -406,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 22.3
+  m_Intensity: 28.8
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 81.26301
