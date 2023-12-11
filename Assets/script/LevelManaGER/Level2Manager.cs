@@ -71,9 +71,9 @@ public class Level2Manager : MonoBehaviour
     }
     public void ScoreCalculatiom()
     {
-        float a = 60
-            , b = 70
-            , c = 80
+        float a = 160
+            , b = 170
+            , c = 280
             , d = 90
             ;
         TimeTaken = StartingTime - remaingTime;
