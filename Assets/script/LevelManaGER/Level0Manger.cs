@@ -36,7 +36,11 @@ public class Level0Manger : MonoBehaviour
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int second = Mathf.FloorToInt(remainingTime % 60);
         Timetext.text = string.Format("{0:00}:{1:00}", minutes, second);
-
+        if(remainingTime == 0)
+        {
+            Timetext.text = "00:00";
+            Fail();
+        }
         if(IsFlip == true)
         {
             RemainingOBJ.text = "Hold R to Restart";
@@ -122,12 +126,28 @@ public class Level0Manger : MonoBehaviour
     }
     public void ScoreCalculatiom()
     {
-
+        float a = 60
+            , b = 70
+            , c = 80
+            , d = 90
+            ;
         TimeTaken = StartingTime - remainingTime;
         int minutes = Mathf.FloorToInt(TimeTaken / 60);
         int second = Mathf.FloorToInt(TimeTaken % 60);
         TimeScore.text = string.Format("{0:00}:{1:00}", minutes, second);
-
+        if(TimeTaken <= a)
+        {
+            Score.text = "A";
+        }else if(TimeTaken <= b)
+        {
+            Score.text = "B";
+        }else if(TimeTaken <= c)
+        {
+            Score.text = "C";
+        }else if(TimeTaken <= d)
+        {
+            Score.text = "D";
+        }
 
     }
 }
