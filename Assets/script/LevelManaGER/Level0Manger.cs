@@ -135,10 +135,10 @@ public class Level0Manger : MonoBehaviour
         int minutes = Mathf.FloorToInt(TimeTaken / 60);
         int second = Mathf.FloorToInt(TimeTaken % 60);
         TimeScore.text = string.Format("{0:00}:{1:00}", minutes, second);
-        if(TimeTaken <= a)
+        if(TimeTaken >= a )
         {
             Score.text = "A";
-        }else if(TimeTaken <= b)
+        }else if(TimeTaken >= b && TimeTaken >= a)
         {
             Score.text = "B";
         }else if(TimeTaken <= c)
