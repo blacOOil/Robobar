@@ -126,10 +126,10 @@ public class Level0Manger : MonoBehaviour
     }
     public void ScoreCalculatiom()
     {
-        float a = 60
-            , b = 70
-            , c = 80
-            , d = 90
+        float a = 160
+            , b = 170
+            , c = 280
+            , d = 290
             ;
         TimeTaken = StartingTime - remainingTime;
         int minutes = Mathf.FloorToInt(TimeTaken / 60);
@@ -138,13 +138,13 @@ public class Level0Manger : MonoBehaviour
         if(TimeTaken >= a )
         {
             Score.text = "A";
-        }else if(TimeTaken >= b && TimeTaken >= a)
+        }else if(TimeTaken >= b && TimeTaken > a)
         {
             Score.text = "B";
-        }else if(TimeTaken <= c)
+        }else if(TimeTaken <= c && TimeTaken >b)
         {
             Score.text = "C";
-        }else if(TimeTaken <= d)
+        }else if(TimeTaken <= d && TimeTaken >b)
         {
             Score.text = "D";
         }
