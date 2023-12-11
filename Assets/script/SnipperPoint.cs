@@ -6,6 +6,7 @@ using TMPro;
 public class SnipperPoint : MonoBehaviour
 {
     public WheelCollider wheelCollider;
+    public Transform Player;
     public Transform Wheel;
     private Rigidbody playerRigidbody;
     public float speed;
@@ -23,7 +24,7 @@ public class SnipperPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position == Wheel.position)
+        if(transform.position == Player.position)
         {
             Shooting();
         }
