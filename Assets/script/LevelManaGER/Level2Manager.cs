@@ -34,13 +34,15 @@ public class Level2Manager : MonoBehaviour
         int minutes = Mathf.FloorToInt(remaingTime / 60);
         int second = Mathf.FloorToInt(remaingTime % 60);
         Timetext.text = string.Format("{0:00}:{1:00}", minutes, second);
-        if (remaingTime == 0)
+        if (remaingTime < 0)
         {
-            Timetext.text = "00:00";
             Fail();
+            Timetext.text = "00:00";
+            
         }
-        else if (Dropped >= TargetPoint)
+        if (Dropped == TargetPoint)
         {
+            playerRigidbody.constraints = RigidbodyConstraints.FreezePosition;
             EndLevel();
         }
     }
