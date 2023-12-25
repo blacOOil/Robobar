@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
-    public float Speed;
+    public float Speed; 
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class TankController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
-        transform.Translate(movement * Speed * Time.deltaTime);
+        //transform.Translate(movement * Speed * Time.deltaTime);
+        rb.AddForce(movement * Speed);
     }
 }

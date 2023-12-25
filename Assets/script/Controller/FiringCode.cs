@@ -7,7 +7,7 @@ public class FiringCode : MonoBehaviour
     public Transform Barel;
     public float fireForce;
     public float FireRate;
-    private bool isFiring;
+    private bool isFiring = false;
 
     // Start is called before the first frame update
     void Start()
