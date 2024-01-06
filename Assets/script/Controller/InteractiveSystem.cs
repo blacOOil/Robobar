@@ -10,7 +10,7 @@ public class InteractiveSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-             float interactRang = 2f ;
+             float interactRang = 10f ;
             Collider[] coliderArray = Physics.OverlapSphere(transform.position, interactRang);
             foreach(Collider collider in coliderArray)
             {
@@ -18,23 +18,45 @@ public class InteractiveSystem : MonoBehaviour
                 {
                     InteractableObj.Interacting();
                 }
+                TurretInteractable closestTurret = GetTurretInteractable();
+                if (collider.TryGetComponent(out TurretInteractable turretInteractable))
+                {
+                    turretInteractable.Interacting();
+                }
+
             }
         }
        
     }
     public TurretInteractable GetTurretInteractable()
     {
+        List<TurretInteractable> turretInteractablesList = new List<TurretInteractable>();
         float interactRang = 10f;
         Collider[] coliderArray = Physics.OverlapSphere(transform.position, interactRang);
         foreach (Collider collider in coliderArray)
         {
             if (collider.TryGetComponent(out TurretInteractable turretInteractable))
             {
-                Debug.Log("Too Close");
-                return turretInteractable;
+                turretInteractablesList.Add(turretInteractable);
             }
-            
         }
-        return null;
+        TurretInteractable cloestTurrentInteract = null;
+       foreach(TurretInteractable turretInteractable1 in turretInteractablesList)
+        {
+            if(cloestTurrentInteract == null)
+            {
+                cloestTurrentInteract = turretInteractable1;
+            }
+            else
+            {
+                if(Vector3.Distance(transform.position, turretInteractable1.transform.position)<
+                  Vector3.Distance(transform.position, cloestTurrentInteract.transform.position))
+                {
+                    cloestTurrentInteract = turretInteractable1;
+               
+                }
+            }
+        }
+        return cloestTurrentInteract;
     }
 }

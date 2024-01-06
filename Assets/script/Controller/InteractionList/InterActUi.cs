@@ -7,6 +7,7 @@ public class InterActUi : MonoBehaviour
     [SerializeField] private GameObject containerGameObj;
     [SerializeField] private InteractiveSystem interactiveSystem;
 
+    private bool IsClosest = false;
     private void Update()
     {
         if (interactiveSystem.GetTurretInteractable() != null)
