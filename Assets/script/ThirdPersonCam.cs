@@ -13,11 +13,7 @@ public class ThirdPersonCam : MonoBehaviour
     public float rotationSpeed = 5.0f;
 
     private float currentRotation = 0.0f;
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void LateUpdate()
     {

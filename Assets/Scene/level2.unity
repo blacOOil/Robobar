@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -13267,6 +13267,7 @@ GameObject:
   - component: {fileID: 871737610}
   - component: {fileID: 871737613}
   - component: {fileID: 871737614}
+  - component: {fileID: 871737615}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13511,6 +13512,23 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &871737615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871737609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6943c912da9eb6c4da1dcdf1fff8b860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1205667739}
+  offset: {x: 0, y: 0, z: 0}
+  distance: 5
+  height: 2
+  rotationSpeed: 5
 --- !u!1001 &873768235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18703,6 +18721,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCar
       objectReference: {fileID: 0}
+    - target: {fileID: 8789073481253631276, guid: eaf89366a503a624793854b9d3e86ff1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 270335610456210272, guid: eaf89366a503a624793854b9d3e86ff1, type: 3}
     m_RemovedGameObjects: []
@@ -18712,6 +18735,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2056518523}
+    - targetCorrespondingSourceObject: {fileID: 5172684310551333685, guid: eaf89366a503a624793854b9d3e86ff1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2056518524}
   m_SourcePrefab: {fileID: 100100000, guid: eaf89366a503a624793854b9d3e86ff1, type: 3}
 --- !u!4 &1205667739 stripped
 Transform:
@@ -30034,6 +30061,23 @@ MonoBehaviour:
   remaingTime: 300
   Dropped: 0
   TargetPoint: 10
+--- !u!114 &2056518524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056518517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e8962597b92ea4c9d6d67d440090cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 50
+  MaxSpeed: 15
+  Drag: 0.98
+  SteerAngle: 20
+  Traction: 1
 --- !u!1 &2059903841
 GameObject:
   m_ObjectHideFlags: 0
