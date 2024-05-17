@@ -21,6 +21,7 @@ public class CheckpointSingle : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             TrackCheckPoint.CarThroungCheckPoint(this);
+            Hide();
         }
     }
 

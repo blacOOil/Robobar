@@ -12,6 +12,7 @@ public class HologrameLevel : MonoBehaviour
     public float Dropped;
     public float TargetPoint;
     private Rigidbody playerRigidbody;
+    public Transform Spawnpoint;
 
 
     // Start is called before the first frame update
@@ -56,7 +57,8 @@ public class HologrameLevel : MonoBehaviour
         }
         if (other.CompareTag("InstanceSpotlightTag"))
         {
-            Fail();
+            transform.position = Spawnpoint.position;
+            // Fail();
 
         }
     }
