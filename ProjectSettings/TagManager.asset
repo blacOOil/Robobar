@@ -9,6 +9,9 @@ TagManager:
   - InstanceSpotlightTag
   - CutSceneTrigger
   - Road
+  - Ground
+  - Food
+  - drink
   layers:
   - Default
   - TransparentFX
