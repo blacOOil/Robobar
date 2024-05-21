@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class HologrameLevel : MonoBehaviour
 {
-    public GameObject Player, EndScreen, MissionFail, StartBeefing;
+    public GameObject Player, MissionText, MissionComplete, MissionFail, StartBeefing;
     [SerializeField] TextMeshProUGUI RemainingOBJ, Timetext, TimeScore, Score;
     [SerializeField] public float remaingTime;
     private float StartingTime, TimeTaken;
@@ -22,8 +23,9 @@ public class HologrameLevel : MonoBehaviour
         StartingTime = remaingTime;
         Time.timeScale = 1f;
         playerRigidbody = Player.GetComponent<Rigidbody>();
-        EndScreen.SetActive(false);
+        MissionComplete.SetActive(false);
         MissionFail.SetActive(false);
+        MissionText.SetActive(true);
 
     }
 
@@ -31,7 +33,7 @@ public class HologrameLevel : MonoBehaviour
     void Update()
     {
         StartCoroutine(StartBeefingCat());
-        RemainingOBJ.text = string.Format("Deliver {0} out of 10", Dropped);
+        RemainingOBJ.text = string.Format("{0}", Dropped);
         remaingTime -= Time.deltaTime;
         int minutes = Mathf.FloorToInt(remaingTime / 60);
         int second = Mathf.FloorToInt(remaingTime % 60);
@@ -64,23 +66,24 @@ public class HologrameLevel : MonoBehaviour
     }
     void EndLevel()
     {
-        ScoreCalculatiom();
-        EndScreen.SetActive(true);
+        ScoreCalculation();
+        MissionComplete.SetActive(true);
+        MissionText.SetActive(false);
     }
     void Fail()
     {
 
         playerRigidbody.constraints = RigidbodyConstraints.FreezePosition;
         MissionFail.SetActive(true);
+        MissionText.SetActive(false);
 
     }
-    public void ScoreCalculatiom()
+    public void ScoreCalculation()
     {
-        float a = 160
-            , b = 170
-            , c = 280
-            , d = 90
-            ;
+        float a = StartingTime / 4
+            , b = StartingTime / 3
+            , c = StartingTime - (StartingTime / 4)
+            , d = StartingTime;
         TimeTaken = StartingTime - remaingTime;
         int minutes = Mathf.FloorToInt(TimeTaken / 60);
         int second = Mathf.FloorToInt(TimeTaken % 60);
@@ -108,6 +111,14 @@ public class HologrameLevel : MonoBehaviour
         yield return new WaitForSeconds(5);
         StartBeefing.SetActive(false);
 
+    }
+
+    public void RestartGame() {
+        // Get the active scene
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Reload the current scene
+        SceneManager.LoadScene(currentScene.name);
     }
 
 }
