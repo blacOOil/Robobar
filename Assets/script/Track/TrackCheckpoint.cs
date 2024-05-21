@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class TrackCheckpoint : MonoBehaviour
 {
+    public GameObject FinishLine;
+
     public event EventHandler OnPlayerCorrectCheckpoint;
     public event EventHandler OnPlayerWrongCheckpoint;
+
 
     
     private List<CheckpointSingle> CheckPointsList;
@@ -14,7 +17,7 @@ public class TrackCheckpoint : MonoBehaviour
     private int nextCheckpointIndex;
     private void Awake()
     {
-
+        FinishLine.SetActive(false);
         Transform checkPointsTransform = CheckPoints;
 
        CheckPointsList = new List<CheckpointSingle>();
@@ -43,13 +46,15 @@ public class TrackCheckpoint : MonoBehaviour
             CheckpointSingle correctCheckpointSingle = CheckPointsList[nextCheckpointIndex];
             correctCheckpointSingle.Hide();
             Debug.Log("Corret");
+            FinishLine.SetActive(true);
         }
         else
         {
             Debug.Log("Wrong");
             OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
+            FinishLine.SetActive(false);
 
-            
+
         }
     }
 }

@@ -19,7 +19,8 @@ public class HologrameLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         StartingTime = remaingTime;
         Time.timeScale = 1f;
         playerRigidbody = Player.GetComponent<Rigidbody>();
@@ -60,19 +61,23 @@ public class HologrameLevel : MonoBehaviour
         if (other.CompareTag("InstanceSpotlightTag"))
         {
             transform.position = Spawnpoint.position;
+            transform.rotation = Quaternion.Euler(0, 90, 0);
             // Fail();
 
         }
     }
     void EndLevel()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         ScoreCalculation();
         MissionComplete.SetActive(true);
         MissionText.SetActive(false);
     }
     void Fail()
     {
-
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         playerRigidbody.constraints = RigidbodyConstraints.FreezePosition;
         MissionFail.SetActive(true);
         MissionText.SetActive(false);
