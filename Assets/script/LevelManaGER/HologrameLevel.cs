@@ -14,6 +14,7 @@ public class HologrameLevel : MonoBehaviour
     public float TargetPoint;
     private Rigidbody playerRigidbody;
     public Transform Spawnpoint;
+    public bool iscounted = false;
 
 
     // Start is called before the first frame update
@@ -85,6 +86,9 @@ public class HologrameLevel : MonoBehaviour
     }
     public void ScoreCalculation()
     {
+      
+        if(iscounted == false)
+        {
         float a = StartingTime / 4
             , b = StartingTime / 3
             , c = StartingTime - (StartingTime / 4)
@@ -109,7 +113,10 @@ public class HologrameLevel : MonoBehaviour
         {
             Score.text = "D";
         }
+            
+        }
 
+        iscounted = true;
     }
     IEnumerator StartBeefingCat()
     {

@@ -10132,7 +10132,7 @@ PrefabInstance:
     - target: {fileID: 7372025005131294513, guid: ada8453c1bad539458751eb4f5591e65,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.601
+      value: -49.8
       objectReference: {fileID: 0}
     - target: {fileID: 7372025005131294513, guid: ada8453c1bad539458751eb4f5591e65,
         type: 3}
@@ -10142,7 +10142,7 @@ PrefabInstance:
     - target: {fileID: 7372025005131294513, guid: ada8453c1bad539458751eb4f5591e65,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -90.7425
+      value: -90.8
       objectReference: {fileID: 0}
     - target: {fileID: 7372025005131294513, guid: ada8453c1bad539458751eb4f5591e65,
         type: 3}
@@ -19025,6 +19025,7 @@ MonoBehaviour:
   Dropped: 0
   TargetPoint: 1
   Spawnpoint: {fileID: 1479777231}
+  iscounted: 0
 --- !u!4 &2092167548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8894177487688180440, guid: 43b532c5daa0926469539e39f33a2fbe,
