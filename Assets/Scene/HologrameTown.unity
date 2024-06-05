@@ -1823,16 +1823,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3797323836233566012, guid: dce245a7d8862404d9ff2a8a115ea8b0,
-        type: 3}
-      propertyPath: holdDuration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5817205011461355995, guid: dce245a7d8862404d9ff2a8a115ea8b0,
-        type: 3}
-      propertyPath: SteerAngle
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6059182495524947567, guid: dce245a7d8862404d9ff2a8a115ea8b0,
         type: 3}
       propertyPath: m_Mass
@@ -19021,7 +19011,7 @@ MonoBehaviour:
   Timetext: {fileID: 1438412118}
   TimeScore: {fileID: 2072593405}
   Score: {fileID: 1616227774}
-  remaingTime: 180
+  remaingTime: 240
   Dropped: 0
   TargetPoint: 1
   Spawnpoint: {fileID: 1479777231}

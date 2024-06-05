@@ -32,11 +32,11 @@ public class HologrameLevel : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         StartCoroutine(StartBeefingCat());
         RemainingOBJ.text = string.Format("{0}", Dropped);
-        remaingTime -= Time.deltaTime;
+        remaingTime = remaingTime - Time.deltaTime;
         int minutes = Mathf.FloorToInt(remaingTime / 60);
         int second = Mathf.FloorToInt(remaingTime % 60);
         Timetext.text = string.Format("{0:00}:{1:00}", minutes, second);

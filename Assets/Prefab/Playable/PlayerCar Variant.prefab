@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e8962597b92ea4c9d6d67d440090cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 70
-  MaxSpeed: 70
+  MoveSpeed: 60
+  MaxSpeed: 100
   Drag: 0.98
-  SteerAngle: 20
+  SteerAngle: 10
   Traction: 1
