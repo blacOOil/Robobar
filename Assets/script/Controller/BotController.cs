@@ -6,21 +6,25 @@ public class BotController : MonoBehaviour
 {
     public float Speed;
     public float JumpForce;
-    private Camera mainCamera;
+    public float GroundCheckDistance = 0.1f;
+    public LayerMask GroundLayer;
 
+    private Camera mainCamera;
     private Rigidbody rb;
     private bool isGrounded;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        MovementInput();
+        JumpInput();
+        CheckGroundStatus();
+    }
+
+    void MovementInput() {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -36,31 +40,30 @@ public class BotController : MonoBehaviour
         Vector3 movementDirection = cameraForward * verticalInput + cameraRight * horizontalInput;
 
         // Apply movement using Rigidbody
-        rb.velocity = new Vector3(movementDirection.x * Speed, rb.velocity.y, movementDirection.z * Speed);
+        Vector3 newVelocity = new Vector3(movementDirection.x * Speed, rb.velocity.y, movementDirection.z * Speed);
+        rb.velocity = Vector3.Lerp(rb.velocity, newVelocity, Time.deltaTime * 10f); // Smooth interpolation
 
         // Handle jump input
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) {
             rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-            isGrounded = false;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Check if the bot is grounded
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
+    void JumpInput() {
+        // Handle jump input
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+            rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        // Check if the bot is no longer grounded
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
+    void CheckGroundStatus() {
+        // Perform a raycast downwards to check if the bot is grounded
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, GroundCheckDistance, GroundLayer);
+    }
+
+    private void OnDrawGizmos() {
+        // Draw a ray in the editor to visualize the ground check
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector3.down * GroundCheckDistance);
     }
 }

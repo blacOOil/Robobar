@@ -182,7 +182,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  JumpForce: 10
+  JumpForce: 2.5
+  GroundCheckDistance: 1
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &6876872586241568919
 PrefabInstance:
   m_ObjectHideFlags: 0
