@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scene/level2.unity
     guid: 676159a55e7fcab4eaa71e121e15659d
   - enabled: 0
-    path: Assets/Scene/HologrameTown.unity
+    path: Assets/Scene/FinalProject/HologrameTown/HologrameTown.unity
     guid: 1af5e2e724607a04da3675fd84f17939
   - enabled: 1
     path: Assets/Scene/FinalProject/MainMenu.unity
