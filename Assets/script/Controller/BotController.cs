@@ -24,7 +24,8 @@ public class BotController : MonoBehaviour
         CheckGroundStatus();
     }
 
-    void MovementInput() {
+    void MovementInput()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -39,13 +40,21 @@ public class BotController : MonoBehaviour
         // Calculate the movement direction in world space
         Vector3 movementDirection = cameraForward * verticalInput + cameraRight * horizontalInput;
 
-        // Apply movement using Rigidbody
-        Vector3 newVelocity = new Vector3(movementDirection.x * Speed, rb.velocity.y, movementDirection.z * Speed);
-        rb.velocity = Vector3.Lerp(rb.velocity, newVelocity, Time.deltaTime * 10f); // Smooth interpolation
+        if (movementDirection.magnitude >= 0.1f)
+        {
+            // Apply movement using Rigidbody
+            Vector3 newVelocity = new Vector3(movementDirection.x * Speed, rb.velocity.y, movementDirection.z * Speed);
+            rb.velocity = Vector3.Lerp(rb.velocity, newVelocity, Time.deltaTime * 10f); // Smooth interpolation
 
-        // Handle jump input
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) {
-            rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            // Calculate the rotation to face the movement direction
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10f); // Smooth rotation
+
+            // Handle jump input
+            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            }
         }
     }
 
