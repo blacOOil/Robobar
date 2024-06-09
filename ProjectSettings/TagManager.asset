@@ -12,6 +12,8 @@ TagManager:
   - Ground
   - Food
   - drink
+  - Customer
+  - Chairs
   layers:
   - Default
   - TransparentFX
