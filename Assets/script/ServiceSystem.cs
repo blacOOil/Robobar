@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ServiceSystem : MonoBehaviour
 {
+   
     public Transform Hand;
     public bool ishandholded;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -47,4 +49,5 @@ public class ServiceSystem : MonoBehaviour
             collider.isTrigger = true;
         }
     }
+   
 }
