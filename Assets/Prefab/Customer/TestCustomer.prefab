@@ -283,15 +283,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6162576104635231622}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.026697077, z: -0, w: 0.99964356}
-  m_LocalPosition: {x: 43.409687, y: 3.4, z: -50.16631}
-  m_LocalScale: {x: 3.7487633, y: 8.642868, z: 6.2673845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6894226244399056948}
   - {fileID: 6306501766046185627}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -3.06, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3089696999506082826
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -377,8 +377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Self: {fileID: 6162576104635231622}
   Table: {fileID: 0}
-  Speed: 1
-  searchRadius: 100
+  Speed: 100
+  searchRadius: 999
 --- !u!114 &5989789123077395522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e976be26275610a4aa2efd1cc5dbc155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCheckerRadius: 10
+  PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0
   Requested: {fileID: 5963467119257699457}
