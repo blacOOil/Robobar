@@ -453,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Self: {fileID: 6162576104635231622}
   Table: {fileID: 0}
-  Speed: 0
+  Speed: 1
   searchRadius: 100
 --- !u!114 &5989789123077395522
 MonoBehaviour:
