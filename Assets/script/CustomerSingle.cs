@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomerSingle : MonoBehaviour
 {
+    [Header("OrderSession")]
+    public float Randomdrinkfloat;
+    public List<Sprite> OrderMenu;
+    public Image OrderImage;
+    public bool Isordered;
+
+    [Header("OrderSession")]
     public float PlayerCheckerRadius = 100f;
     public bool Issited,Isfull;
     public GameObject Requested,PlayerInteractMenu,exitdoor;
     public LayerMask Player;
     public CustomertoTable customertoTable;
+    public GameObject[] drinkorder;
 
     private bool IsplayerClose()
     {
@@ -34,11 +43,12 @@ public class CustomerSingle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+        
         PlayerInteractMenu.SetActive(false);
         Requested.SetActive(false);
         Issited = false;
         Isfull = false;
+        Isordered = false;
         
     }
 
@@ -49,26 +59,41 @@ public class CustomerSingle : MonoBehaviour
         {
             if (Issited)
             {
+                PlayerInteractMenu.SetActive(false);
+                Requested.SetActive(true);
+                if(Isordered == false)
+                {
+                Orderthedrink();
+                }
+                else
+                {
 
-               Requested.SetActive(true);
-            
+                }
+
+              
+               
+                
+               
+
             }
             else
             {
                   if(IsplayerClose() == true)
-            {
+                    {
                      PlayerInteractMenu.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         Debug.Log("Go to table Ok");
                         customertoTable.movetotable();
+                        Issited = true;
                     }
-            }
-            else
-            {
-                PlayerInteractMenu.SetActive(false);
-            }
-            Requested.SetActive(false);
+                    }
+                  else
+                    {
+                         PlayerInteractMenu.SetActive(false);
+                    }
+            
+                Requested.SetActive(false);
             }
            
          }
@@ -77,24 +102,19 @@ public class CustomerSingle : MonoBehaviour
             exitStore();
         }
     }
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Chairs"))
-        {
-            Issited = true;
-        }
-    }
-    public void OnTriggerExit(Collider other)
-    {
-
-        if (other.CompareTag("Chairs")) 
-        {
-            Issited = false;
-        }
-    }
+   
     public void exitStore()
     {
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
+    }
+    public void Orderthedrink()
+    {
+        
+        int RandomIndex = Random.Range(0,OrderMenu.Count);
+        Debug.Log(RandomIndex);
+        Randomdrinkfloat = RandomIndex;
+        OrderImage.sprite = OrderMenu[RandomIndex];
+        Isordered = true;
     }
 
 }

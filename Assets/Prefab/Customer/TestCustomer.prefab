@@ -101,7 +101,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076637631741222074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 240}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -110,7 +110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -786, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4173831434807038744
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -208,7 +208,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -391,6 +391,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e976be26275610a4aa2efd1cc5dbc155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Randomdrinkfloat: 0
+  OrderMenu:
+  - {fileID: 21300000, guid: e28ede0157814af4087f597889d5a9f3, type: 3}
+  - {fileID: 21300000, guid: a1c037d802028ab47b5688213bb412f7, type: 3}
+  - {fileID: 21300000, guid: c1e8e1e0e01f1af48a13133a7ceff266, type: 3}
+  OrderImage: {fileID: 1318268750588463684}
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0
@@ -401,6 +407,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   customertoTable: {fileID: 2760927162402751719}
+  drinkorder: []
 --- !u!54 &3253510056640008684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -633,7 +640,7 @@ RectTransform:
   m_GameObject: {fileID: 8416555317003256165}
   m_LocalRotation: {x: -0, y: -0.00849685, z: -0, w: 0.99996394}
   m_LocalPosition: {x: 0, y: 0, z: -179}
-  m_LocalScale: {x: 7.9919715, y: 5.6825542, z: 3.7510934}
+  m_LocalScale: {x: 22.854641, y: 16.2504, z: 10.727001}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2507599775221962377}
