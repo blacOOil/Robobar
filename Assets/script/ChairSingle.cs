@@ -24,11 +24,11 @@ public class ChairSingle : MonoBehaviour
 
     //     }
     // }
-    // public void OnTriggerExit(Collider other)
-    // {
-    //     if (other.CompareTag("Customer"))
-    //     {
-    //         isSited = true;
-    //     }
-    // }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Customer"))
+        {
+            isSited = false;
+        }
+    }
 }

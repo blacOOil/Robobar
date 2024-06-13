@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class CustomerSingle : MonoBehaviour
 {
     [Header("OrderSession")]
-    public float Randomdrinkfloat;
+    public int Randomdrinkfloat,ServedDrink;
     public List<Sprite> OrderMenu;
     public Image OrderImage;
     public bool Isordered;
     public GameObject DrinkReceived;
     public LayerMask DrinkLayer;
+    public Transform DrinkPlacement;
+    public List<GameObject> DrinkPrefab;
 
     [Header("SittingSession")]
     public float PlayerCheckerRadius = 100f;
@@ -91,7 +93,16 @@ public class CustomerSingle : MonoBehaviour
                             if (Input.GetKeyDown(KeyCode.E))
                             {
                                 ReceiveOrder();
-                                Debug.Log("Thank");
+                                if(Randomdrinkfloat == ServedDrink)
+                                {
+                                    SpawnDrinkThatRecived();
+                                    Debug.Log("Thank");
+                                }
+                                else
+                                {
+                                    Debug.Log("Wrong");
+                                }
+                                
                             }
                         }
 
@@ -128,6 +139,7 @@ public class CustomerSingle : MonoBehaviour
     public void exitStore()
     {
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
+
     }
     public void Orderthedrink()
     {
@@ -155,11 +167,18 @@ public class CustomerSingle : MonoBehaviour
                  
                     closestDistance = distance;
                     ClosestDrinks = drink;
+                    ServedDrink = drink.GetComponent<DrinkSingle>().DrinkId;
                 }
 
             }
         }
         DrinkReceived = ClosestDrinks;
+
+    }
+    public void SpawnDrinkThatRecived()
+    {
+        
+        Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
     }
 
 }

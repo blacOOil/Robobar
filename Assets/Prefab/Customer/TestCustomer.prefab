@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 2760927162402751719}
   - component: {fileID: 5989789123077395522}
   - component: {fileID: 3253510056640008684}
+  - component: {fileID: 6640471250208950944}
   m_Layer: 0
   m_Name: TestCustomer
   m_TagString: Customer
@@ -290,6 +291,7 @@ Transform:
   m_Children:
   - {fileID: 6894226244399056948}
   - {fileID: 6306501766046185627}
+  - {fileID: 5937335525431509809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3089696999506082826
@@ -392,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Randomdrinkfloat: 0
+  ServedDrink: 0
   OrderMenu:
   - {fileID: 21300000, guid: e28ede0157814af4087f597889d5a9f3, type: 3}
   - {fileID: 21300000, guid: a1c037d802028ab47b5688213bb412f7, type: 3}
@@ -402,6 +405,11 @@ MonoBehaviour:
   DrinkLayer:
     serializedVersion: 2
     m_Bits: 2048
+  DrinkPlacement: {fileID: 5937335525431509809}
+  DrinkPrefab:
+  - {fileID: 4240728967509717970, guid: 365a487231846ba4b8e105f653883252, type: 3}
+  - {fileID: 4240728967509717970, guid: 8db72590bb4f38a458179d27fa8b871c, type: 3}
+  - {fileID: 4240728967509717970, guid: 42b48ab8c6afda14d9312b23a9d889fe, type: 3}
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0
@@ -439,6 +447,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &6640471250208950944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162576104635231622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ac5d6b24d55114a812b4c087523a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7760499371338721347
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,3 +814,34 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &9133036664619379439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5937335525431509809}
+  m_Layer: 0
+  m_Name: DrinkPlaceMentTranformed
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5937335525431509809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133036664619379439}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.481, y: 0.203, z: 0.138}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1275473351177724967}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

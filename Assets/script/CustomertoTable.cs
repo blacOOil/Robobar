@@ -37,10 +37,10 @@ public class CustomertoTable : MonoBehaviour
             {
                 float distance = Vector3.Distance(transform.position, chair.transform.position);
                 if (distance < closestDistance && distance <= searchRadius)
-                {
-                    chair.GetComponent<ChairSingle>().isSited = true;
+                { 
                     closestDistance = distance;
                     ClosestChairs = chair;
+                    chair.GetComponent<ChairSingle>().isSited = true;
                 }
 
             }
