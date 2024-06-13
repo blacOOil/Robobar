@@ -397,6 +397,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a1c037d802028ab47b5688213bb412f7, type: 3}
   - {fileID: 21300000, guid: c1e8e1e0e01f1af48a13133a7ceff266, type: 3}
   OrderImage: {fileID: 1318268750588463684}
+  Isordered: 0
+  DrinkReceived: {fileID: 0}
+  DrinkLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0
@@ -407,7 +412,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   customertoTable: {fileID: 2760927162402751719}
-  drinkorder: []
 --- !u!54 &3253510056640008684
 Rigidbody:
   m_ObjectHideFlags: 0

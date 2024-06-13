@@ -10,14 +10,17 @@ public class CustomerSingle : MonoBehaviour
     public List<Sprite> OrderMenu;
     public Image OrderImage;
     public bool Isordered;
+    public GameObject DrinkReceived;
+    public LayerMask DrinkLayer;
 
-    [Header("OrderSession")]
+    [Header("SittingSession")]
     public float PlayerCheckerRadius = 100f;
     public bool Issited,Isfull;
     public GameObject Requested,PlayerInteractMenu,exitdoor;
     public LayerMask Player;
     public CustomertoTable customertoTable;
-    public GameObject[] drinkorder;
+
+   
 
     private bool IsplayerClose()
     {
@@ -31,6 +34,19 @@ public class CustomerSingle : MonoBehaviour
         }
         return false;
     }
+    private bool IsDrinkClose()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius, DrinkLayer);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("drink"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position to visualize the PlayerCheckerRadius
@@ -64,17 +80,23 @@ public class CustomerSingle : MonoBehaviour
                 if(Isordered == false)
                 {
                 Orderthedrink();
+                   
                 }
-                else
+                else if (Isordered == true)
                 {
+                    if (IsplayerClose() == true)
+                    {
+                        if (IsDrinkClose() == true)
+                        {
+                            if (Input.GetKeyDown(KeyCode.E))
+                            {
+                                ReceiveOrder();
+                                Debug.Log("Thank");
+                            }
+                        }
 
+                    }
                 }
-
-              
-               
-                
-               
-
             }
             else
             {
@@ -115,6 +137,29 @@ public class CustomerSingle : MonoBehaviour
         Randomdrinkfloat = RandomIndex;
         OrderImage.sprite = OrderMenu[RandomIndex];
         Isordered = true;
+    }
+    public void ReceiveOrder()
+    {
+        float closestDistance = Mathf.Infinity;
+        GameObject ClosestDrinks = null;
+
+        GameObject[] drinkes = GameObject.FindGameObjectsWithTag("drink");
+        foreach (GameObject drink in drinkes)
+        {
+            DrinkSingle drinkSingle = drink.GetComponent<DrinkSingle>();
+            if (drinkSingle != null )
+            {
+                float distance = Vector3.Distance(transform.position, drink.transform.position);
+                if (distance < closestDistance && distance <= PlayerCheckerRadius)
+                {
+                 
+                    closestDistance = distance;
+                    ClosestDrinks = drink;
+                }
+
+            }
+        }
+        DrinkReceived = ClosestDrinks;
     }
 
 }
