@@ -67,7 +67,7 @@ public class CustomerSingle : MonoBehaviour
         Issited = false;
         Isfull = false;
         Isordered = false;
-        
+        exitdoor = GameObject.FindGameObjectWithTag("exitdoor");
     }
 
     // Update is called once per frame
@@ -96,7 +96,9 @@ public class CustomerSingle : MonoBehaviour
                                 if(Randomdrinkfloat == ServedDrink)
                                 {
                                     SpawnDrinkThatRecived();
+                                    StartCoroutine(drinking());
                                     Debug.Log("Thank");
+                                   
                                 }
                                 else
                                 {
@@ -138,6 +140,7 @@ public class CustomerSingle : MonoBehaviour
    
     public void exitStore()
     {
+
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
 
     }
@@ -179,6 +182,11 @@ public class CustomerSingle : MonoBehaviour
     {
         
         Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
+    }
+    IEnumerator drinking()
+    {
+        yield return new WaitForSeconds(10f);
+        Isfull = true;
     }
 
 }
