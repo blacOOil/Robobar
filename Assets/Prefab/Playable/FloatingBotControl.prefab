@@ -204,6 +204,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hand: {fileID: 6244769114226725332}
   ishandholded: 0
+  CustomerCheckerRadius: 100
+  CustomerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  ClosestCustomer: {fileID: 0}
+  drinkholding: {fileID: 0}
 --- !u!136 &1655093341224942099
 CapsuleCollider:
   m_ObjectHideFlags: 0

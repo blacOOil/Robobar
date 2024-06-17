@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3156070845890273445}
   - component: {fileID: 7505337020299854453}
   - component: {fileID: 712068191930485550}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 2507599775221962377}
   - component: {fileID: 4173831434807038744}
   - component: {fileID: 4379106101247339715}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 4321904630475428206}
   - component: {fileID: 6534808952322517012}
   - component: {fileID: 7944759941425305685}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: OrderCanva
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 5989789123077395522}
   - component: {fileID: 3253510056640008684}
   - component: {fileID: 6640471250208950944}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TestCustomerBlue
   m_TagString: Customer
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 4421288308567053280}
   - component: {fileID: 6115238985832452317}
   - component: {fileID: 5332787734532452739}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 6908552351437254566}
   - component: {fileID: 2064348794019247166}
   - component: {fileID: 3451111877582152690}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PlayerInteractMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 6853676746600691812}
   - component: {fileID: 6254158444481602797}
   - component: {fileID: 1318268750588463684}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 7982304865954200506}
   - component: {fileID: 3956080151979834647}
   - component: {fileID: 8726375002662647014}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PlayerInterAct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,7 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5937335525431509809}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DrinkPlaceMentTranformed
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}

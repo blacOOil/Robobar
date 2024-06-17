@@ -16,4 +16,8 @@ public class DrinkSingle : MonoBehaviour
     {
         
     }
+    public void selfDestruct()
+    {
+        Destroy(gameObject);
+    }
 }
