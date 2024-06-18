@@ -10,6 +10,7 @@ public class ServiceSystem : MonoBehaviour
     public float CustomerCheckerRadius = 100f;
     public LayerMask CustomerLayer;
     public GameObject ClosestCustomer,drinkholding;
+    
     private bool IscustomerClose()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, CustomerCheckerRadius, CustomerLayer);
