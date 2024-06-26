@@ -420,6 +420,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   customertoTable: {fileID: 2760927162402751719}
+  CustomerManager: {fileID: 0}
 --- !u!54 &3253510056640008684
 Rigidbody:
   m_ObjectHideFlags: 0

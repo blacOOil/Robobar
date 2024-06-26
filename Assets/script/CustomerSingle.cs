@@ -22,7 +22,8 @@ public class CustomerSingle : MonoBehaviour
     public LayerMask Player;
     public CustomertoTable customertoTable;
 
-   
+    [Header("QueueSession")]
+    public CustomerManager CustomerManager;
 
     private bool IsplayerClose()
     {
@@ -68,6 +69,8 @@ public class CustomerSingle : MonoBehaviour
         Isfull = false;
         Isordered = false;
         exitdoor = GameObject.FindGameObjectWithTag("exitdoor");
+        GameObject CustomerManagerObj = GameObject.Find("CustomerManager");
+        CustomerManager = CustomerManagerObj.GetComponent<CustomerManager>();
     }
 
     // Update is called once per frame
@@ -119,8 +122,11 @@ public class CustomerSingle : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         Debug.Log("Go to table Ok");
+                         
                         customertoTable.movetotable();
                         Issited = true;
+                        CustomerManager.RemoveSpawnedList();
+                       
                     }
                     }
                   else
