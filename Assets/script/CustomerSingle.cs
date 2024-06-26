@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CustomerSingle : MonoBehaviour
 {
     [Header("OrderSession")]
-    public int Randomdrinkfloat,ServedDrink;
+    public int Randomdrinkfloat, ServedDrink;
     public List<Sprite> OrderMenu;
     public Image OrderImage;
     public bool Isordered;
@@ -17,18 +17,18 @@ public class CustomerSingle : MonoBehaviour
 
     [Header("SittingSession")]
     public float PlayerCheckerRadius = 100f;
-    public bool Issited,Isfull;
-    public GameObject Requested,PlayerInteractMenu,exitdoor;
+    public bool Issited, Isfull;
+    public GameObject Requested, PlayerInteractMenu, exitdoor;
     public LayerMask Player;
     public CustomertoTable customertoTable;
 
-    [Header("QueueSession")]
-    public CustomerManager CustomerManager;
+    
+
 
     private bool IsplayerClose()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius, Player);
-        foreach(var hitCollider in hitColliders)
+        foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Player"))
             {
@@ -62,30 +62,29 @@ public class CustomerSingle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
         PlayerInteractMenu.SetActive(false);
         Requested.SetActive(false);
         Issited = false;
         Isfull = false;
         Isordered = false;
         exitdoor = GameObject.FindGameObjectWithTag("exitdoor");
-        GameObject CustomerManagerObj = GameObject.Find("CustomerManager");
-        CustomerManager = CustomerManagerObj.GetComponent<CustomerManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Isfull == false)
+        if (Isfull == false)
         {
             if (Issited)
             {
+                
                 PlayerInteractMenu.SetActive(false);
                 Requested.SetActive(true);
-                if(Isordered == false)
+                if (Isordered == false)
                 {
-                Orderthedrink();
-                   
+                    Orderthedrink();
+
                 }
                 else if (Isordered == true)
                 {
@@ -96,18 +95,18 @@ public class CustomerSingle : MonoBehaviour
                             if (Input.GetKeyDown(KeyCode.E))
                             {
                                 ReceiveOrder();
-                                if(Randomdrinkfloat == ServedDrink)
+                                if (Randomdrinkfloat == ServedDrink)
                                 {
                                     SpawnDrinkThatRecived();
                                     StartCoroutine(drinking());
                                     Debug.Log("Thank");
-                                   
+
                                 }
                                 else
                                 {
                                     Debug.Log("Wrong");
                                 }
-                                
+
                             }
                         }
 
@@ -116,34 +115,31 @@ public class CustomerSingle : MonoBehaviour
             }
             else
             {
-                  if(IsplayerClose() == true)
-                    {
-                     PlayerInteractMenu.SetActive(true);
+                if (IsplayerClose() == true)
+                {
+                    PlayerInteractMenu.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         Debug.Log("Go to table Ok");
-                         
                         customertoTable.movetotable();
                         Issited = true;
-                        CustomerManager.RemoveSpawnedList();
-                       
                     }
-                    }
-                  else
-                    {
-                         PlayerInteractMenu.SetActive(false);
-                    }
-            
+                }
+                else
+                {
+                    PlayerInteractMenu.SetActive(false);
+                }
+
                 Requested.SetActive(false);
             }
-           
-         }
+
+        }
         else
         {
             exitStore();
         }
     }
-   
+
     public void exitStore()
     {
 
@@ -152,8 +148,8 @@ public class CustomerSingle : MonoBehaviour
     }
     public void Orderthedrink()
     {
-        
-        int RandomIndex = Random.Range(0,OrderMenu.Count);
+     
+        int RandomIndex = Random.Range(0, OrderMenu.Count);
         Debug.Log(RandomIndex);
         Randomdrinkfloat = RandomIndex;
         OrderImage.sprite = OrderMenu[RandomIndex];
@@ -168,12 +164,12 @@ public class CustomerSingle : MonoBehaviour
         foreach (GameObject drink in drinkes)
         {
             DrinkSingle drinkSingle = drink.GetComponent<DrinkSingle>();
-            if (drinkSingle != null )
+            if (drinkSingle != null)
             {
                 float distance = Vector3.Distance(transform.position, drink.transform.position);
                 if (distance < closestDistance && distance <= PlayerCheckerRadius)
                 {
-                 
+
                     closestDistance = distance;
                     ClosestDrinks = drink;
                     ServedDrink = drink.GetComponent<DrinkSingle>().DrinkId;
@@ -186,7 +182,7 @@ public class CustomerSingle : MonoBehaviour
     }
     public void SpawnDrinkThatRecived()
     {
-        
+
         Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
     }
     IEnumerator drinking()

@@ -35,9 +35,6 @@ public class CustomerManager : MonoBehaviour
             {
                 IScustomerSpawned = true;
             }
-            
-
-
         }
         else if(IScustomerorgnized == false)
         {
@@ -64,7 +61,7 @@ public class CustomerManager : MonoBehaviour
         Transform spawnLocation = WaitingPlace[WaitingPlace.Count-1];
         GameObject customerPrefab = Customer[Random.Range(0, (Customer.Count))];
         GameObject SpawnedCustomer = Instantiate(customerPrefab, spawnLocation.position, spawnLocation.rotation);
-        AddtoSpawnedlist(SpawnedCustomer);
+        //AddtoSpawnedlist(SpawnedCustomer);
     }
   
     public void AddtoSpawnedlist(GameObject customer)
