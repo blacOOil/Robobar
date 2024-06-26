@@ -97,12 +97,16 @@ public class ServiceSystem : MonoBehaviour
         {
             if (ishandholded == false)
             {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
                 TransformDrinkToHand(collision.gameObject);
                 ishandholded = true;
+                }
+               
             }
             else
             {
-
+               
             }
             
         }

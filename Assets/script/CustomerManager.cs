@@ -27,7 +27,7 @@ public class CustomerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CustomerCount <= (WaitingPlace.Count - 1)&& (IScustomerSpawned == false))
+        if (CustomerCount < (WaitingPlace.Count - 1)&& (IScustomerSpawned == false))
         {
             SpawnCustomer();
             QueuePlace++;

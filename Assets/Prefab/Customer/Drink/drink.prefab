@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrinkId: 0
+  Self: {fileID: 1766725694417179271}
 --- !u!136 &938323529866076783
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -221,10 +222,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7054063
-  m_Height: 1.4108126
+  m_Radius: 0.8572736
+  m_Height: 1.7145472
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.031362176}
+  m_Center: {x: 0, y: 0, z: 0.09666455}
 --- !u!1 &1950441508867379725
 GameObject:
   m_ObjectHideFlags: 0

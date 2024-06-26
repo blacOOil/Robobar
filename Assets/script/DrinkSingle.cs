@@ -5,6 +5,7 @@ using UnityEngine;
 public class DrinkSingle : MonoBehaviour
 {
     public int DrinkId;
+    public GameObject Self;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,6 @@ public class DrinkSingle : MonoBehaviour
     }
     public void selfDestruct()
     {
-        Destroy(gameObject);
+        Destroy(Self);
     }
 }
