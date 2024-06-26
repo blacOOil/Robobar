@@ -18,6 +18,7 @@ public class ServiceSystem : MonoBehaviour
         {
             if (hitCollider.CompareTag("Customer"))
             {   
+                ClosestCustomer = hitCollider.gameObject;
                 return true;
             }
         }
@@ -35,73 +36,46 @@ public class ServiceSystem : MonoBehaviour
     {
         if(ishandholded == true && IscustomerClose() )
         {
-            findClosestCustomer();
             IsreadytoServered = true;
         }
         else
         {
             IsreadytoServered = false;
         }
-        if (IsreadytoServered == true)
+        if (IsreadytoServered == true && ClosestCustomer == null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == drinkholding.GetComponent<DrinkSingle>().DrinkId)
         {
-            if (Input.GetKeyDown(KeyCode.E)){
-            
-            ServiceProceed();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ServiceProceed();
             }
             
-        }
-    }
-    public void ServiceProceed()
-    {
-        if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == drinkholding.GetComponent<DrinkSingle>().DrinkId)
-        {
-            drinkholding.GetComponent<DrinkSingle>().selfDestruct();
-            ishandholded = false;
-            drinkholding = null;
+            
         }
         else
         {
 
         }
     }
-    public void findClosestCustomer()
+    public void ServiceProceed()
     {
-        float closestDistance = Mathf.Infinity;
-        GameObject ClosestCus= null;
-
-        GameObject[] Customers = GameObject.FindGameObjectsWithTag("Customer");
-        foreach (GameObject Customer in Customers)
-        {
-            CustomerSingle customerSingle = Customer.GetComponent<CustomerSingle>();
-            if (customerSingle != null && customerSingle.Isordered)
-            {
-                float distance = Vector3.Distance(transform.position, Customer.transform.position);
-                if (distance < closestDistance && distance <= CustomerCheckerRadius)
-                {
-                    closestDistance = distance;
-                    ClosestCus = Customer;
-                   ClosestCustomer = ClosestCus;
-                }
-
-            }
-            else
-            {
-                ClosestCustomer = null;
-            }
-        }
+       
+            Debug.Log("Id Match");
+            drinkholding.GetComponent<DrinkSingle>().selfDestruct();
+            ishandholded = false;
+            drinkholding = null;
         
     }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("drink"))
         {
             if (ishandholded == false)
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
+                
                 TransformDrinkToHand(collision.gameObject);
                 ishandholded = true;
-                }
+                
                
             }
             else
