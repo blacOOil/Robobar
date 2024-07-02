@@ -33,6 +33,15 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ishandholded == true )
+        {
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ReleaseDrink();
+
+            }
+        }
         if (ishandholded == true && IscustomerClose())
         {
             findClosestCustomer();
@@ -130,6 +139,12 @@ public class ServiceSystem : MonoBehaviour
         {
             collider.isTrigger = true;
         }
+    }
+    public void ReleaseDrink()
+    {
+        drinkholding.transform.SetParent(null);
+        drinkholding.GetComponent<Rigidbody>().isKinematic = false;
+        drinkholding.GetComponent<Collider>().isTrigger = false;
     }
 
 }
