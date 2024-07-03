@@ -10,9 +10,5 @@ public class CustomerDrinkSpawnSystem : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
