@@ -10,7 +10,7 @@ public class CustomerSingle : MonoBehaviour
     public List<Sprite> OrderMenu;
     public Image OrderImage;
     public bool Isordered;
-    public GameObject DrinkReceived;
+    public GameObject DrinkReceived,DrinktoDrinked;
     public LayerMask DrinkLayer;
     public Transform DrinkPlacement;
     public List<GameObject> DrinkPrefab;
@@ -136,7 +136,9 @@ public class CustomerSingle : MonoBehaviour
         }
         else
         {
+            Destroy(DrinktoDrinked);
             exitStore();
+            Destroy(gameObject);
         }
     }
 
@@ -183,7 +185,7 @@ public class CustomerSingle : MonoBehaviour
     public void SpawnDrinkThatRecived()
     {
 
-        Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
+        DrinktoDrinked = Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
     }
     IEnumerator drinking()
     {

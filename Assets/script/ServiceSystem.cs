@@ -39,7 +39,7 @@ public class ServiceSystem : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 ReleaseDrink();
-
+                
             }
         }
         if (ishandholded == true && IscustomerClose())
@@ -145,6 +145,13 @@ public class ServiceSystem : MonoBehaviour
         drinkholding.transform.SetParent(null);
         drinkholding.GetComponent<Rigidbody>().isKinematic = false;
         drinkholding.GetComponent<Collider>().isTrigger = false;
+        StartCoroutine(DropDelay());
+        
+    }
+    IEnumerator DropDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        ishandholded = false;
     }
 
-}
+    }
