@@ -7,7 +7,7 @@ public class ServiceSystem : MonoBehaviour
 
     public Transform Hand;
     public bool ishandholded, IsreadytoServered;
-    public float CustomerCheckerRadius = 100f;
+    public float CustomerCheckerRadius = 1f;
     public LayerMask CustomerLayer;
     public GameObject ClosestCustomer, drinkholding;
 
@@ -19,6 +19,7 @@ public class ServiceSystem : MonoBehaviour
             if (hitCollider.CompareTag("Customer"))
             {
                 return true;
+                
             }
         }
         return false;
@@ -33,41 +34,43 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ishandholded == true )
+        if (ishandholded && !IscustomerClose())
         {
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 ReleaseDrink();
-                
             }
         }
-        if (ishandholded == true && IscustomerClose())
+
+        if (ishandholded && IscustomerClose())
         {
-            findClosestCustomer();
             IsreadytoServered = true;
         }
         else
         {
             IsreadytoServered = false;
         }
-        if (IsreadytoServered == true)
+
+        if (IsreadytoServered)
         {
+            findClosestCustomer(); // Ensure this is called to find the closest customer
+
             if (Input.GetKeyDown(KeyCode.E))
             {
-
                 ServiceProceed();
             }
-
         }
     }
     public void ServiceProceed()
     {
+        findClosestCustomer();
         if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == drinkholding.GetComponent<DrinkSingle>().DrinkId)
         {
-            drinkholding.GetComponent<DrinkSingle>().selfDestruct();
+            Debug.Log("ServiceProceed");
+           drinkholding.GetComponent<DrinkSingle>().selfDestruct();
             ishandholded = false;
             drinkholding = null;
+           // Destroy(drinkholding);
         }
         else
         {
@@ -77,30 +80,35 @@ public class ServiceSystem : MonoBehaviour
     public void findClosestCustomer()
     {
         float closestDistance = Mathf.Infinity;
-        GameObject ClosestCus = null;
+        GameObject closestCus = null;
 
-        GameObject[] Customers = GameObject.FindGameObjectsWithTag("Customer");
-        foreach (GameObject Customer in Customers)
+        GameObject[] customers = GameObject.FindGameObjectsWithTag("Customer");
+        foreach (GameObject customer in customers)
         {
-            CustomerSingle customerSingle = Customer.GetComponent<CustomerSingle>();
+            CustomerSingle customerSingle = customer.GetComponent<CustomerSingle>();
             if (customerSingle != null && customerSingle.Isordered)
             {
-                float distance = Vector3.Distance(transform.position, Customer.transform.position);
+                float distance = Vector3.Distance(transform.position, customer.transform.position);
                 if (distance < closestDistance && distance <= CustomerCheckerRadius)
                 {
                     closestDistance = distance;
-                    ClosestCus = Customer;
-                    ClosestCustomer = ClosestCus;
+                    closestCus = customer;
                 }
-
-            }
-            else
-            {
-                ClosestCustomer = null;
             }
         }
 
+        ClosestCustomer = closestCus;
+
+        if (ClosestCustomer != null)
+        {
+            Debug.Log("Closest customer found: " + ClosestCustomer.name);
+        }
+        else
+        {
+            Debug.Log("No close customer found.");
+        }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("drink"))

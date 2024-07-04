@@ -403,6 +403,7 @@ MonoBehaviour:
   OrderImage: {fileID: 1318268750588463684}
   Isordered: 0
   DrinkReceived: {fileID: 0}
+  DrinktoDrinked: {fileID: 0}
   DrinkLayer:
     serializedVersion: 2
     m_Bits: 2048
