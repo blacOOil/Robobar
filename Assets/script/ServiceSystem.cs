@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ServiceSystem : MonoBehaviour
 {
-
+    public MonneyLevelCode monneyLevelCode;
     public Transform Hand;
     public bool ishandholded, IsreadytoServered;
     public float CustomerCheckerRadius = 1f;
@@ -63,6 +63,7 @@ public class ServiceSystem : MonoBehaviour
     }
     public void ServiceProceed()
     {
+        monneyLevelCode.moneyAdd();
         findClosestCustomer();
         if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == drinkholding.GetComponent<DrinkSingle>().DrinkId)
         {
