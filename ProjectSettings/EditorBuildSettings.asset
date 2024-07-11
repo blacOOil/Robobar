@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/FinalProject/BotController.unity
     guid: fedc6128984ed3042b960319b193a59d
+  - enabled: 1
+    path: Assets/Scene/FinalProject/FinalProjectDemo.unity
+    guid: a9b07a7ec7e272a499f9ff6f570b2ce4
   m_configObjects: {}

@@ -25,5 +25,9 @@ public class ScneChanger : MonoBehaviour
     {
         Application.Quit();
     }
+    public void PlayGame(string FinalProjectDemo)
+    {
+        SceneManager.LoadScene(FinalProjectDemo);
+    }
 
 }

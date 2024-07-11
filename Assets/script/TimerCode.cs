@@ -30,7 +30,7 @@ public class TimerCode : MonoBehaviour
         {
             TimeText.text = string.Format("{0:00}:{1:00}", 0, 0);
                 GameOverUI.SetActive(true);
-            Pause();
+           
            
         }
       
