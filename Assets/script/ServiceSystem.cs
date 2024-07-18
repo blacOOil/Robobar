@@ -6,10 +6,10 @@ public class ServiceSystem : MonoBehaviour
 {
     public MonneyLevelCode monneyLevelCode;
     public Transform Hand;
-    public bool ishandholded, IsreadytoServered;
+    public bool ishandholdedrink, IsreadytoServered,Ishandholdetable;
     public float CustomerCheckerRadius = 1f;
     public LayerMask CustomerLayer;
-    public GameObject ClosestCustomer, drinkholding;
+    public GameObject ClosestCustomer, drinkholding,Tagholding;
 
     private bool IscustomerClose()
     {
@@ -27,14 +27,16 @@ public class ServiceSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ishandholded = false;
+        Tagholding = null;
+        ishandholdedrink = false;
         IsreadytoServered = false;
+        Ishandholdetable = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ishandholded && !IscustomerClose())
+        if (ishandholdedrink && !IscustomerClose())
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -42,7 +44,7 @@ public class ServiceSystem : MonoBehaviour
             }
         }
 
-        if (ishandholded && IscustomerClose())
+        if (ishandholdedrink && IscustomerClose())
         {
             IsreadytoServered = true;
         }
@@ -69,7 +71,7 @@ public class ServiceSystem : MonoBehaviour
         {
             Debug.Log("ServiceProceed");
            drinkholding.GetComponent<DrinkSingle>().selfDestruct();
-            ishandholded = false;
+            ishandholdedrink = false;
             drinkholding = null;
            // Destroy(drinkholding);
         }
@@ -114,10 +116,10 @@ public class ServiceSystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("drink"))
         {
-            if (ishandholded == false)
+            if (ishandholdedrink == false)
             {
-                TransformDrinkToHand(collision.gameObject);
-                ishandholded = true;
+                TransformObjToHand(collision.gameObject);
+                ishandholdedrink = true;
             }
             else
             {
@@ -125,25 +127,54 @@ public class ServiceSystem : MonoBehaviour
             }
 
         }
+       
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("tableTag"))
+        {
+            if (ishandholdedrink == false && Ishandholdetable == false)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    TransformObjToHand(other.gameObject);
+                    Ishandholdetable = true;
+                }
+
+
+            }
+            else
+            {
+
+            }
+        }
     }
 
-    private void TransformDrinkToHand(GameObject drink)
+    private void TransformObjToHand(GameObject Obj)
     {
         // Set the drink's position and parent to the hand
-        drink.transform.SetParent(Hand);
-        drink.transform.localPosition = Vector3.zero;
-        drink.transform.localRotation = Quaternion.identity;
-        drinkholding = drink;
+        Obj.transform.SetParent(Hand);
+        Obj.transform.localPosition = Vector3.zero;
+        Obj.transform.localRotation = Quaternion.identity;
+        if (Obj.CompareTag("drink"))
+        {
+            drinkholding = Obj;
+        }
+        else if (Obj.CompareTag("tableTag"))
+        {
+            Tagholding = Obj;
+        }
+        
 
         // Freeze the drink's position by setting its Rigidbody to kinematic
-        Rigidbody rb = drink.GetComponent<Rigidbody>();
+        Rigidbody rb = Obj.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.isKinematic = true;
         }
 
         // Set the drink's collider to trigger
-        Collider collider = drink.GetComponent<Collider>();
+        Collider collider = Obj.GetComponent<Collider>();
         if (collider != null)
         {
             collider.isTrigger = true;
@@ -160,7 +191,7 @@ public class ServiceSystem : MonoBehaviour
     IEnumerator DropDelay()
     {
         yield return new WaitForSeconds(1f);
-        ishandholded = false;
+        ishandholdedrink = false;
     }
 
     }

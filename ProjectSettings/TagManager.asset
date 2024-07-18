@@ -15,6 +15,7 @@ TagManager:
   - Customer
   - Chairs
   - exitdoor
+  - tableTag
   layers:
   - Default
   - TransparentFX
