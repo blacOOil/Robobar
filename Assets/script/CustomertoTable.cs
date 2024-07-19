@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class CustomertoTable : MonoBehaviour
 {
+    public SeatSetSingle seatSetSingle;
+    public bool IstableTagnear;
     public GameObject Self;
-    public GameObject Table;
+    public GameObject Table,TableTag,nearTabletag;
     public float Speed;
     public float searchRadius = 900000f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        IstableTagnear = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void movetotable()
     {
-        findClosestTable();
+        GettableId();
+       // findClosestTable();
         Self.transform.position = Vector3.MoveTowards(Self.transform.position, Table.transform.position, Speed);
     }
     public void findClosestTable()
@@ -48,5 +51,38 @@ public class CustomertoTable : MonoBehaviour
         Table = ClosestChairs;
 
        
+    }
+    public void GettableId()
+    {
+        if(IstableTagnear == true)
+        {
+            seatSetSingle = nearTabletag.GetComponent<SeatSetSingle>();
+            List<GameObject> seatList = seatSetSingle.seat;
+            Table = seatList[0];
+            ChairSingle chairSingle = Table.GetComponent<ChairSingle>();
+            chairSingle.isSited = true;
+           
+
+        }
+        else
+        {
+            Debug.Log("No tabletag");
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("tableTag"))
+        {
+            IstableTagnear = true;
+            nearTabletag = other.gameObject;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("tableTag"))
+        {
+            IstableTagnear = false;
+           // nearTabletag = null;
+        }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SeatSetSingle : MonoBehaviour
 {
+    public GameObject TableTagTranform;
     public List<GameObject> seat;
     // Start is called before the first frame update
     void Start()

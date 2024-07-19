@@ -378,8 +378,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d2b3d18427afa4fac132e2dde0cad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seatSetSingle: {fileID: 0}
+  IstableTagnear: 0
   Self: {fileID: 6162576104635231622}
   Table: {fileID: 0}
+  TableTag: {fileID: 0}
+  nearTabletag: {fileID: 0}
   Speed: 100
   searchRadius: 999
 --- !u!114 &5989789123077395522

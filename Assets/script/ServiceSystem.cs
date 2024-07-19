@@ -6,10 +6,10 @@ public class ServiceSystem : MonoBehaviour
 {
     public MonneyLevelCode monneyLevelCode;
     public Transform Hand;
-    public bool ishandholdedrink, IsreadytoServered,Ishandholdetable;
+    public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
     public float CustomerCheckerRadius = 1f;
     public LayerMask CustomerLayer;
-    public GameObject ClosestCustomer, drinkholding,Tagholding;
+    public GameObject ClosestCustomer, Objholding,ReadytoPickObj;
 
     private bool IscustomerClose()
     {
@@ -27,16 +27,26 @@ public class ServiceSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Tagholding = null;
-        ishandholdedrink = false;
+        Objholding = null;
+        holdedrink = false;
         IsreadytoServered = false;
-        Ishandholdetable = false;
+        holdetable = false;
+        IsTableTagnear = false;
+        Ishandholded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ishandholdedrink && !IscustomerClose())
+
+        if ((holdedrink) && !IscustomerClose())
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ReleaseDrink();
+            }
+        }
+        if(holdetable)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -44,7 +54,7 @@ public class ServiceSystem : MonoBehaviour
             }
         }
 
-        if (ishandholdedrink && IscustomerClose())
+        if (holdedrink && IscustomerClose())
         {
             IsreadytoServered = true;
         }
@@ -62,19 +72,39 @@ public class ServiceSystem : MonoBehaviour
                 ServiceProceed();
             }
         }
+        if (holdedrink == false && IsTableTagnear)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+            TransformObjToHand(ReadytoPickObj);
+            }
+            
+        }
+        
+        if(Ishandholded == false)
+        {
+            holdedrink = false;
+            holdetable = false;
+        }
     }
     public void ServiceProceed()
     {
         monneyLevelCode.moneyAdd();
         findClosestCustomer();
-        if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == drinkholding.GetComponent<DrinkSingle>().DrinkId)
+        if(holdedrink == true)
+        {
+            if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == Objholding.GetComponent<DrinkSingle>().DrinkId)
         {
             Debug.Log("ServiceProceed");
-           drinkholding.GetComponent<DrinkSingle>().selfDestruct();
-            ishandholdedrink = false;
-            drinkholding = null;
+            Objholding.GetComponent<DrinkSingle>().selfDestruct();
+            holdedrink = false;
+            Ishandholded = false;
+            Objholding = null;
            // Destroy(drinkholding);
         }
+
+        }
+        
         else
         {
 
@@ -116,10 +146,9 @@ public class ServiceSystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("drink"))
         {
-            if (ishandholdedrink == false)
+            if (Ishandholded == false)
             {
                 TransformObjToHand(collision.gameObject);
-                ishandholdedrink = true;
             }
             else
             {
@@ -133,20 +162,20 @@ public class ServiceSystem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("tableTag"))
         {
-            if (ishandholdedrink == false && Ishandholdetable == false)
+            if (Ishandholded == false)
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    TransformObjToHand(other.gameObject);
-                    Ishandholdetable = true;
-                }
-
-
+                IsTableTagnear = true;
+                ReadytoPickObj = other.gameObject;
             }
-            else
-            {
-
-            }
+           
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("tableTag"))
+        {
+              IsTableTagnear = false;
+            
         }
     }
 
@@ -156,15 +185,15 @@ public class ServiceSystem : MonoBehaviour
         Obj.transform.SetParent(Hand);
         Obj.transform.localPosition = Vector3.zero;
         Obj.transform.localRotation = Quaternion.identity;
+        Objholding = Obj;
+        if (Obj.CompareTag("tableTag"))
+        {
+            holdetable = true;
+        }
         if (Obj.CompareTag("drink"))
         {
-            drinkholding = Obj;
+            holdedrink = true;
         }
-        else if (Obj.CompareTag("tableTag"))
-        {
-            Tagholding = Obj;
-        }
-        
 
         // Freeze the drink's position by setting its Rigidbody to kinematic
         Rigidbody rb = Obj.GetComponent<Rigidbody>();
@@ -179,19 +208,31 @@ public class ServiceSystem : MonoBehaviour
         {
             collider.isTrigger = true;
         }
+        Ishandholded = true;
     }
     public void ReleaseDrink()
     {
-        drinkholding.transform.SetParent(null);
-        drinkholding.GetComponent<Rigidbody>().isKinematic = false;
-        drinkholding.GetComponent<Collider>().isTrigger = false;
+        Objholding.GetComponent<Rigidbody>().isKinematic = false;
+        if (Objholding.CompareTag("drink"))
+        {
+            Objholding.transform.SetParent(null);
+            Objholding.GetComponent<Collider>().isTrigger = false;
+        }
+        else if(Objholding.CompareTag("tableTag"))
+        {
+            GameObject tabletagPlace = Objholding.GetComponent<SeatSetSingle>().TableTagTranform;
+            Objholding.transform.position = tabletagPlace.transform.position;
+            Objholding.transform.SetParent(tabletagPlace.transform);
+            Objholding.GetComponent<Collider>().isTrigger = true;
+        }
         StartCoroutine(DropDelay());
         
     }
     IEnumerator DropDelay()
     {
         yield return new WaitForSeconds(1f);
-        ishandholdedrink = false;
+        Ishandholded = false;
+        Objholding = null;
     }
 
     }
