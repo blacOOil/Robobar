@@ -289,6 +289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seat_2x
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a9dc88e5759df6041b5c59528dacb08f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -304,7 +309,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2478024805158952532}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a9dc88e5759df6041b5c59528dacb08f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5535854391265968892}
   m_SourcePrefab: {fileID: 100100000, guid: a9dc88e5759df6041b5c59528dacb08f, type: 3}
 --- !u!4 &96370159206745377 stripped
 Transform:
@@ -312,6 +321,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 494509045257478858}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &728932824287485851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a9dc88e5759df6041b5c59528dacb08f,
+    type: 3}
+  m_PrefabInstance: {fileID: 494509045257478858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5535854391265968892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728932824287485851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3193e971c60491044ae476fc46f4475d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tableTag: {fileID: 8269261330191001007}
+  Seat:
+  - {fileID: 6172619734171068787}
+  - {fileID: 3780361079455026992}
 --- !u!1001 &7571169273619133863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -442,6 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cc74943c9e1c64eac0851497ea9f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chairSingles: {fileID: 0}
   TableTagTranform: {fileID: 8826322129185798224}
   seat:
   - {fileID: 6172619734171068787}

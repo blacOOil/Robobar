@@ -84,7 +84,6 @@ public class CustomerSingle : MonoBehaviour
                 if (Isordered == false)
                 {
                     Orderthedrink();
-
                 }
                 else if (Isordered == true)
                 {
@@ -136,6 +135,7 @@ public class CustomerSingle : MonoBehaviour
         }
         else
         {
+            customertoTable.GetUp();
             Destroy(DrinktoDrinked);
             exitStore();
             Destroy(gameObject);
@@ -144,7 +144,7 @@ public class CustomerSingle : MonoBehaviour
 
     public void exitStore()
     {
-
+        
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
 
     }

@@ -85,4 +85,9 @@ public class CustomertoTable : MonoBehaviour
            // nearTabletag = null;
         }
     }
+    public void GetUp()
+    {
+        ChairSingle chairSingle = Table.GetComponent<ChairSingle>();
+        chairSingle.isSited = false;
+    }
 }
