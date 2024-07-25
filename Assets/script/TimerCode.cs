@@ -8,8 +8,8 @@ public class TimerCode : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI TimeText;
     [SerializeField] public float remainingTime;
-        // Start is called before the first frame update
-        [SerializeField] public GameObject GameOverUI;
+    [SerializeField] public GameObject GameOverUI;
+
     void Start()
     {
             GameOverUI.SetActive(false);
