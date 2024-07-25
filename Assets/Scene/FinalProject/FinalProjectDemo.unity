@@ -4848,7 +4848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96eda04ac0abf648b4fac8e64768949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Local_CoopSelecterPrefab: {fileID: 2395345087244228428, guid: df6ad632d2091f44da22de5ca2e291b5,
+  Local_CoopSelecterPrefab: {fileID: 2395345087244228428, guid: 258755026bf77104b9b4f4f52aad1cf7,
     type: 3}
   Local_CoopSelecter: {fileID: 0}
   IslocalCoopGame: 0
@@ -4867,6 +4867,9 @@ MonoBehaviour:
   CharacterSelector: {fileID: 1259675805}
   CharacterList:
   - {fileID: 35184560}
+  - {fileID: 686508278}
+  - {fileID: 462397111}
+  - {fileID: 1574874988}
   PlayerSpawnPoint: {fileID: 1017865871}
   CharacterTranformList: []
   selectorNumber: 0
@@ -5975,33 +5978,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2395957347716993576}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1259675810
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259675805}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1268765916
 GameObject:
   m_ObjectHideFlags: 0
@@ -9351,11 +9327,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2395345087244228428, guid: df6ad632d2091f44da22de5ca2e291b5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1259675810}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df6ad632d2091f44da22de5ca2e291b5, type: 3}
 --- !u!1001 &3345348751102768308
 PrefabInstance:

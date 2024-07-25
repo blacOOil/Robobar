@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class cookingSystem : MonoBehaviour
 {
-    public GameObject cookingCanvas,MenuCanvas;
-    bool IsPlayerClose = false,IsCooking = false;
+    public GameObject cookingCanvas, MenuCanvas;
+    bool IsPlayerClose = false, IsCooking = false;
     public Transform ServiceSpawner;
     public List<GameObject> ListDrink;
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +19,15 @@ public class cookingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsPlayerClose == true)
+        if (IsPlayerClose == true)
         {
             PlayerISClose();
         }
         else
         {
-            
+
         }
-        if(IsCooking )
+        if (IsCooking)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -41,6 +41,7 @@ public class cookingSystem : MonoBehaviour
             {
                 SpawnDrink(2);
             }
+            
         }
     }
     public void SpawnDrink(int index)
@@ -49,18 +50,19 @@ public class cookingSystem : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-       if( other.CompareTag("Player")){
-        IsPlayerClose = true;
+        if (other.CompareTag("Player"))
+        {
+            IsPlayerClose = true;
         }
-        
+
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-        IsPlayerClose = false;
+            IsPlayerClose = false;
         }
-        
+
     }
     public void PlayerISClose()
     {
@@ -75,7 +77,7 @@ public class cookingSystem : MonoBehaviour
             MenuCanvas.SetActive(false);
             IsCooking = false;
         }
-        
-    }
 
+    }
+   
 }

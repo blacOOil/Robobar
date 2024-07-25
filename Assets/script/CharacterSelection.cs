@@ -7,7 +7,7 @@ public class CharacterSelection : MonoBehaviour
 {
     [Header("Local-Coop Logic")]
     public GameObject Local_CoopSelecterPrefab, Local_CoopSelecter;
-    public bool IslocalCoopGame,Isplayer2Selected,Isselector2Spawned;
+    public bool IslocalCoopGame,Isplayer2Selected,Isselector2Spawned,IsPlayer2Spawned;
     public Transform Player2SpawnerTranform;
     public int Player2SelectedNumber = 0;
     [Header("Gameplay")]
@@ -25,8 +25,11 @@ public class CharacterSelection : MonoBehaviour
     void Start()
     {
         Isselector2Spawned = false;
-        IslocalCoopGame = false;
+        Isplayer2Selected = false;
+        IslocalCoopGame = true;
+        IsPlayer2Spawned = false;
         IsplayerSpawned = false;
+        
         isCharacterSelected = false;
         timerCode.enabled = false;
         monneyLevelCode.enabled = false;
@@ -55,12 +58,12 @@ public class CharacterSelection : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.D) && (selectorNumber < CharacterTranformList.Count))
             {
-             //   selectorNumber++;
+                selectorNumber++;
                 SelectorMove();
             }
             if (selectorNumber > 0 && (Input.GetKeyDown(KeyCode.A)))
             {
-            //    selectorNumber--;
+                selectorNumber--;
                 SelectorMove();
             }
             if (Input.GetKeyDown(KeyCode.E))
@@ -79,15 +82,32 @@ public class CharacterSelection : MonoBehaviour
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.K) && (Player2SelectedNumber < CharacterTranformList.Count))
+                if (!Isplayer2Selected)
                 {
-                    Player2SelectedNumber++;
-                    Local_CoopSelecter.transform.position = CharacterTranformList[selectorNumber].position;
+                    if (Input.GetKeyDown(KeyCode.K) && (Player2SelectedNumber < CharacterTranformList.Count - 1))
+                    {
+                        Player2SelectedNumber++;
+                        Local_CoopSelecter.transform.position = CharacterTranformList[Player2SelectedNumber].position;
+                    }
+                    if (Input.GetKeyDown(KeyCode.H) && (Player2SelectedNumber > 0))
+                    {
+                        Player2SelectedNumber--;
+                        Local_CoopSelecter.transform.position = CharacterTranformList[Player2SelectedNumber].position;
+                    }
+                    if (Input.GetKeyDown(KeyCode.I) && (Player2SelectedNumber != selectorNumber))
+                    {
+                        Isplayer2Selected = true;
+
+                    }
                 }
-                if(Input.GetKeyDown(KeyCode.H) && (Player2SelectedNumber > 0))
+            }
+            if (Isplayer2Selected)
+            {
+                if (!IsPlayer2Spawned)
                 {
-                    Player2SelectedNumber--;
-                    Local_CoopSelecter.transform.position = CharacterTranformList[selectorNumber].position;
+                    CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
+                    Destroy(Local_CoopSelecter);
+                    IsPlayer2Spawned = true;
                 }
             }
         }
@@ -95,8 +115,6 @@ public class CharacterSelection : MonoBehaviour
     }
     public void SelectorMove()
     {
-       
-       
         if(selectorNumber >= 0 && (selectorNumber < CharacterTranformList.Count))
         {
             CharacterSelector.transform.position = CharacterTranformList[selectorNumber].position;
