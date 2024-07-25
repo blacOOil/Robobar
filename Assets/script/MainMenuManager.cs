@@ -2,42 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuManager : MonoBehaviour
-{
-    public GameObject playcam, Settingcam, StartCam, PlayPanel;
-    // Start is called before the first frame update
-    void Start()
-    {
+public class MainMenuManager : MonoBehaviour {
+
+    [Header("Camera")]
+    public GameObject StartCam;
+    public GameObject PlayCam, SettingCam, MultiSelectedCamPos;
+
+    [Header("UI-Canvas")]
+    public GameObject PlaySelection;
+    public GameObject MultiSelected;
+
+    void Start() {
         StartCam.SetActive(false);
-        backbut();
-        PlayPanel.SetActive(false);
+        
+        WhenPressBack();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
     }
-    public void backbut()
-    {
-        playcam.SetActive(false);
-        Settingcam.SetActive(false);
-        PlayPanel.SetActive(false);
+
+    public void WhenPressBack() {
+        PlayCam.SetActive(false);
+        PlaySelection.SetActive(false);
+
+        SettingCam.SetActive(false);
+
+        MultiSelectedCamPos.SetActive(false);
+        MultiSelected.SetActive(false);
     }
-    public void playbutt()
-    {
-        playcam.SetActive(true);
+
+    public void WhenPressPlay() {
+        PlayCam.SetActive(true);
+        PlaySelection.SetActive(true);
+
+        MultiSelectedCamPos.SetActive(false);
     }
-    public void Setbutt()
-    {
-        Settingcam.SetActive(true);
+
+    public void WhenPressSetting() {
+        SettingCam.SetActive(true);
     }
-    public void PlaybuttonPress()
-    {
-        PlayPanel.SetActive(true);
-    }
-    public void PlaybackbuttonPress()
-    {
-        PlayPanel.SetActive(false);
+
+    public void WhenPressMulti() {
+        MultiSelectedCamPos.SetActive(true);
+        MultiSelected.SetActive(true);
     }
 }
