@@ -55,12 +55,12 @@ public class CharacterSelection : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.D) && (selectorNumber < CharacterTranformList.Count))
             {
-                selectorNumber++;
+             //   selectorNumber++;
                 SelectorMove();
             }
             if (selectorNumber > 0 && (Input.GetKeyDown(KeyCode.A)))
             {
-                selectorNumber--;
+            //    selectorNumber--;
                 SelectorMove();
             }
             if (Input.GetKeyDown(KeyCode.E))
