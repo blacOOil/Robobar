@@ -26,7 +26,7 @@ public class CharacterSelection : MonoBehaviour
     {
         Isselector2Spawned = false;
         Isplayer2Selected = false;
-        IslocalCoopGame = true;
+        IslocalCoopGame = false;
         IsPlayer2Spawned = false;
         IsplayerSpawned = false;
         
