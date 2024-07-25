@@ -5,8 +5,15 @@ using Timemanager;
 
 public class CharacterSelection : MonoBehaviour
 {
+    [Header("Local-Coop Logic")]
+    public GameObject Local_CoopSelecterPrefab, Local_CoopSelecter;
+    public bool IslocalCoopGame,Isplayer2Selected,Isselector2Spawned;
+    public Transform Player2SpawnerTranform;
+    public int Player2SelectedNumber = 0;
+    [Header("Gameplay")]
     public TimerCode timerCode;
     public MonneyLevelCode monneyLevelCode;
+    [Header("SpawningLogic")]
     public bool isCharacterSelected,IsReadyToPlay,IsplayerSpawned;
     public GameObject CharSelectedZone,MainGameUi,SelectingUi,CharacterSelector;
     public List<GameObject> CharacterList;
@@ -17,6 +24,8 @@ public class CharacterSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Isselector2Spawned = false;
+        IslocalCoopGame = false;
         IsplayerSpawned = false;
         isCharacterSelected = false;
         timerCode.enabled = false;
@@ -40,6 +49,7 @@ public class CharacterSelection : MonoBehaviour
             MainGameUi.SetActive(true);
             CharSelectedZone.SetActive(false);
             SpawnPlayer();
+
         }
         else
         {
@@ -60,6 +70,28 @@ public class CharacterSelection : MonoBehaviour
 
             }   
         }
+        if (IslocalCoopGame)
+        {
+            if (!Isselector2Spawned)
+            {
+                Local_CoopSelecter =  Instantiate(Local_CoopSelecterPrefab, CharacterTranformList[0].position, CharacterTranformList[0].rotation);
+                Isselector2Spawned = true;
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.K) && (Player2SelectedNumber < CharacterTranformList.Count))
+                {
+                    Player2SelectedNumber++;
+                    Local_CoopSelecter.transform.position = CharacterTranformList[selectorNumber].position;
+                }
+                if(Input.GetKeyDown(KeyCode.H) && (Player2SelectedNumber > 0))
+                {
+                    Player2SelectedNumber--;
+                    Local_CoopSelecter.transform.position = CharacterTranformList[selectorNumber].position;
+                }
+            }
+        }
+
     }
     public void SelectorMove()
     {
