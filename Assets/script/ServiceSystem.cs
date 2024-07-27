@@ -100,7 +100,7 @@ public class ServiceSystem : MonoBehaviour
             holdedrink = false;
             Ishandholded = false;
             Objholding = null;
-           // Destroy(drinkholding);
+           // Destroy(Objholding);
         }
 
         }

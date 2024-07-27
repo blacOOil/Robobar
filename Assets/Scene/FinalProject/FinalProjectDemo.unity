@@ -2267,12 +2267,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae753921a3bc4b4985be5381b483798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1.07
+  Speed: 10
   JumpForce: 1.65
   GroundCheckDistance: 0.1
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
+  inputNameHorizontal: Horizontal1
+  inputNameVertical: Vertical1
 --- !u!54 &462397118
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3841,12 +3843,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae753921a3bc4b4985be5381b483798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 8.2
+  Speed: 10
   JumpForce: 1.4
-  GroundCheckDistance: 0.1
+  GroundCheckDistance: 1
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
+  inputNameHorizontal: Horizontal1
+  inputNameVertical: Vertical1
 --- !u!54 &686508285
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6760,6 +6764,8 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
+  inputNameHorizontal: Horizontal1
+  inputNameVertical: Vertical1
 --- !u!54 &1574874995
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8873,16 +8879,6 @@ PrefabInstance:
       propertyPath: monneyLevelCode
       value: 
       objectReference: {fileID: 936674143}
-    - target: {fileID: 7409638701694022140, guid: eadcb09830a72dd4495da4a7613328b3,
-        type: 3}
-      propertyPath: CustomerLayer.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409638701694022140, guid: eadcb09830a72dd4495da4a7613328b3,
-        type: 3}
-      propertyPath: CustomerCheckerRadius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7914878588241645171, guid: eadcb09830a72dd4495da4a7613328b3,
         type: 3}
       propertyPath: PlayerCam

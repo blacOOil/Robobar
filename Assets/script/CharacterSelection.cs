@@ -105,10 +105,20 @@ public class CharacterSelection : MonoBehaviour
             {
                 if (!IsPlayer2Spawned)
                 {
-                    CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
+                   CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
+                    BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
+                    botController.inputNameHorizontal = "Horizontal2";
+                    botController.inputNameVertical = "Vertical2";
                     Destroy(Local_CoopSelecter);
                     IsPlayer2Spawned = true;
                 }
+            }
+        }
+        else
+        {
+            if ((Input.GetKeyDown(KeyCode.H))|| (Input.GetKeyDown(KeyCode.K)))
+            {
+                IslocalCoopGame = true;
             }
         }
 

@@ -13,6 +13,10 @@ public class BotController : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
 
+    [SerializeField] public string inputNameHorizontal;
+    [SerializeField] public string inputNameVertical;
+
+
     void Start() {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
@@ -26,8 +30,8 @@ public class BotController : MonoBehaviour
 
     void MovementInput()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis(inputNameHorizontal);
+        float verticalInput = Input.GetAxis(inputNameVertical);
 
         Vector3 cameraForward = mainCamera.transform.forward;
         Vector3 cameraRight = mainCamera.transform.right;

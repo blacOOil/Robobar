@@ -84,6 +84,8 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
+  inputNameHorizontal: Horizontal1
+  inputNameVertical: Vertical1
 --- !u!114 &7409638701694022140
 MonoBehaviour:
   m_ObjectHideFlags: 0
