@@ -15,6 +15,9 @@ public class CustomerSingle : MonoBehaviour
     public Transform DrinkPlacement;
     public List<GameObject> DrinkPrefab;
 
+    [Header("Satisfaction")]
+    public float RemainmingTime;
+
     [Header("SittingSession")]
     public float PlayerCheckerRadius = 100f;
     public bool Issited, Isfull;
@@ -69,6 +72,9 @@ public class CustomerSingle : MonoBehaviour
         Isfull = false;
         Isordered = false;
         exitdoor = GameObject.FindGameObjectWithTag("exitdoor");
+
+        RemainmingTime = 200;
+
     }
 
     // Update is called once per frame
@@ -87,6 +93,7 @@ public class CustomerSingle : MonoBehaviour
                 }
                 else if (Isordered == true)
                 {
+                    RemainmingTime -= Time.deltaTime;
                     if (IsplayerClose() == true)
                     {
                         if (IsDrinkClose() == true)
@@ -150,12 +157,14 @@ public class CustomerSingle : MonoBehaviour
     }
     public void Orderthedrink()
     {
-     
+        
         int RandomIndex = Random.Range(0, OrderMenu.Count);
         Debug.Log(RandomIndex);
         Randomdrinkfloat = RandomIndex;
         OrderImage.sprite = OrderMenu[RandomIndex];
         Isordered = true;
+
+
     }
     public void ReceiveOrder()
     {
