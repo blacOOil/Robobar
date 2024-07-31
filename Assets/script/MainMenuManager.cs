@@ -10,10 +10,11 @@ public class MainMenuManager : MonoBehaviour {
 
     [Header("UI-Canvas")]
     public GameObject PlaySelection;
-    public GameObject MultiSelected;
+    public GameObject SingleSelected, MultiSelected;
 
     void Start() {
         StartCam.SetActive(false);
+        SettingCam.SetActive(false);
         
         WhenPressBack();
     }
@@ -29,23 +30,35 @@ public class MainMenuManager : MonoBehaviour {
 
         SettingCam.SetActive(false);
 
-        MultiSelectedCamPos.SetActive(false);
-        MultiSelected.SetActive(false);
+        GameModeSettings(false);
     }
 
     public void WhenPressPlay() {
         PlayCam.SetActive(true);
         PlaySelection.SetActive(true);
 
-        MultiSelectedCamPos.SetActive(false);
+        GameModeSettings(false);
     }
 
     public void WhenPressSetting() {
         SettingCam.SetActive(true);
     }
 
+    public void WhenPressSingle() {
+        MultiSelectedCamPos.SetActive(true);
+        SingleSelected.SetActive(true);
+    }
+
     public void WhenPressMulti() {
         MultiSelectedCamPos.SetActive(true);
         MultiSelected.SetActive(true);
+    }
+
+    public bool GameModeSettings(bool value) {
+        MultiSelectedCamPos.SetActive(value);
+        MultiSelected.SetActive(value);
+        SingleSelected.SetActive(value);
+
+        return value;
     }
 }
