@@ -7,21 +7,21 @@ public class CharacterSelection : MonoBehaviour
 {
     [Header("Local-Coop Logic")]
     public GameObject Local_CoopSelecterPrefab, Local_CoopSelecter;
-    public bool IslocalCoopGame,Isplayer2Selected,Isselector2Spawned,IsPlayer2Spawned;
+    public bool IslocalCoopGame, Isplayer2Selected, Isselector2Spawned, IsPlayer2Spawned;
     public Transform Player2SpawnerTranform;
     public int Player2SelectedNumber = 0;
     [Header("Gameplay")]
     public TimerCode timerCode;
     public MonneyLevelCode monneyLevelCode;
     [Header("SpawningLogic")]
-    public bool isCharacterSelected,IsReadyToPlay,IsplayerSpawned;
-    public GameObject CharSelectedZone,MainGameUi,SelectingUi,CharacterSelector;
+    public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned, IsCharExamSpawn = false;
+    public GameObject CharSelectedZone, MainGameUi, SelectingUi;
     public List<GameObject> CharacterList;
     public Transform PlayerSpawnPoint;
     [Header("UiSesssion")]
     public List<GameObject> MultiplayerUIList;
     public int numberofPlayer;
-    public bool IsGamealreadyPlay,IsPlayer2active,IsPlayer3active,IsPlayer4active;
+    public bool IsGamealreadyPlay, IsPlayer2active, IsPlayer3active, IsPlayer4active;
     [Header("Character List")]
     public List<Transform> CharacterTranformList;
     public int selectorNumber = 0;
@@ -37,140 +37,78 @@ public class CharacterSelection : MonoBehaviour
 
         Isselector2Spawned = false;
         Isplayer2Selected = false;
-        //IslocalCoopGame = false;
+
         IsPlayer2Spawned = false;
         IsplayerSpawned = false;
-        
+
         isCharacterSelected = false;
         timerCode.enabled = false;
         monneyLevelCode.enabled = false;
         MainGameUi.SetActive(false);
         IsReadyToPlay = false;
 
-        foreach(GameObject character in CharacterList)
-        {
-            CharacterTranformList.Add(character.transform);
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isCharacterSelected)
+        {
+            CharacterSelecting();
+        }
         if (IsPlayer2active)
         {
             MultiplayerUIList[1].SetActive(true);
-            
-                if (!Isselector2Spawned)
-                {
-                    Local_CoopSelecter = Instantiate(Local_CoopSelecterPrefab, CharacterTranformList[0].position, CharacterTranformList[0].rotation);
-                    Isselector2Spawned = true;
-                }
-                else
-                {
-                    if (!Isplayer2Selected)
-                    {
-                        if (Input.GetKeyDown(KeyCode.K) && (Player2SelectedNumber < CharacterTranformList.Count - 1))
-                        {
-                            Player2SelectedNumber++;
-                            Local_CoopSelecter.transform.position = CharacterTranformList[Player2SelectedNumber].position;
-                        }
-                        if (Input.GetKeyDown(KeyCode.H) && (Player2SelectedNumber > 0))
-                        {
-                            Player2SelectedNumber--;
-                            Local_CoopSelecter.transform.position = CharacterTranformList[Player2SelectedNumber].position;
-                        }
-                        if (Input.GetKeyDown(KeyCode.I) && (Player2SelectedNumber != selectorNumber))
-                        {
-                            Isplayer2Selected = true;
 
-                        }
-                    }
-                }
-                if (Isplayer2Selected)
+            if (!Isselector2Spawned)
+            {
+
+            }
+            else
+            {
+
+            }
+            if (Isplayer2Selected)
+            {
+                if (!IsPlayer2Spawned)
                 {
-                    if (!IsPlayer2Spawned)
-                    {
-                        CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
-                        BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
-                        botController.inputNameHorizontal = "Horizontal2";
-                        botController.inputNameVertical = "Vertical2";
-                        Destroy(Local_CoopSelecter);
-                        IsPlayer2Spawned = true;
-                    }
+                    Spawnplayer2();
                 }
-            
+            }
         }
         else
         {
 
-            MultiplayerUIList[1].SetActive(false);
-            if ((Input.GetKeyDown(KeyCode.H)) || (Input.GetKeyDown(KeyCode.K)))
-            {
-                {
-                    numberofPlayer++;
-                    IsPlayer2active = true;
-                }
-            }
         }
-       
-            if (Input.GetKeyDown(KeyCode.D) && (selectorNumber < CharacterTranformList.Count))
-            {
-                selectorNumber++;
-                SelectorMove();
-            }
-            if (selectorNumber > 0 && (Input.GetKeyDown(KeyCode.A)))
-            {
-                selectorNumber--;
-                SelectorMove();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                
-                isCharacterSelected = true;
-                IsReadyToPlay = true;
-                StartGameNow();
-
-
-            }
-        
-        if (IsPlayer3active)
-        {
-            MultiplayerUIList[2].SetActive(true);
-        }
-        else 
-        {
-            MultiplayerUIList[2].SetActive(false);
-        }
-
-
-        if (IsPlayer4active)
-        {
-            MultiplayerUIList[3].SetActive(true);
-        }
-        else
-        {
-            MultiplayerUIList[3].SetActive(false);
-        }
-        if (IsGamealreadyPlay)
-        {
-            CloseallCharacterSelectionUi();
-        }
+        MultiplayerUIList[2].SetActive(IsPlayer3active);
+        MultiplayerUIList[3].SetActive(IsPlayer4active);
     }
-    public void SelectorMove()
+    public void SelectorMoveLeft()
     {
-        if(selectorNumber >= 0 && (selectorNumber < CharacterTranformList.Count))
+        if (selectorNumber > 0)
         {
-            CharacterSelector.transform.position = CharacterTranformList[selectorNumber].position;
+            IsCharExamSpawn = false;
+            selectorNumber--;
+            CharacterSelecting();
         }
     }
-    public void SpawnPlayer() 
+    public void SelectorMoveRight()
+    {
+        if (selectorNumber < CharacterList.Count - 1)
+        {
+            IsCharExamSpawn = false;
+            selectorNumber++;
+            CharacterSelecting();
+        }
+    }
+    public void SpawnPlayer()
     {
         if (!IsplayerSpawned)
         {
             CharacterList[selectorNumber].transform.position = PlayerSpawnPoint.position;
             IsplayerSpawned = true;
         }
-       
+
         foreach (GameObject character in CharacterList)
         {
             BotController botController = character.GetComponent<BotController>();
@@ -181,7 +119,7 @@ public class CharacterSelection : MonoBehaviour
         }
     }
 
-    public void StartGameNow() 
+    public void StartGameNow()
     {
         timerCode.enabled = true;
         monneyLevelCode.enabled = true;
@@ -190,11 +128,40 @@ public class CharacterSelection : MonoBehaviour
         SpawnPlayer();
         IsGamealreadyPlay = true;
     }
-    public void CloseallCharacterSelectionUi()
+    public void ReadytoPlay()
     {
-        MultiplayerUIList[0].SetActive(false);
-        MultiplayerUIList[1].SetActive(false);
-        MultiplayerUIList[2].SetActive(false);
-        MultiplayerUIList[3].SetActive(false);
+        isCharacterSelected = true;
+        IsReadyToPlay = true;
+        StartGameNow();
+    }
+    public void Spawnplayer2()
+    {
+        CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
+        BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
+        botController.inputNameHorizontal = "Horizontal2";
+        botController.inputNameVertical = "Vertical2";
+        Destroy(Local_CoopSelecter);
+        IsPlayer2Spawned = true;
+    }
+    public void CharacterSelecting()
+    {
+        for (int i = 0; i < CharacterList.Count; i++)
+        {
+            if (i == selectorNumber)
+            {
+                // Set the selected character's position
+                CharacterList[i].transform.position = CharacterTranformList[0].transform.position;
+                CharacterList[i].transform.rotation = CharacterTranformList[0].transform.rotation;
+                // Activate the selected character
+                CharacterList[i].SetActive(true);
+            }
+            else
+            {
+                // Deactivate the other characters
+                CharacterList[i].SetActive(false);
+            }
+
+        }
+
     }
 }

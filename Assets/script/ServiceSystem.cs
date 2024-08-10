@@ -33,6 +33,7 @@ public class ServiceSystem : MonoBehaviour
         holdetable = false;
         IsTableTagnear = false;
         Ishandholded = false;
+        monneyLevelCode = FindObjectOfType<MonneyLevelCode>();
     }
 
     // Update is called once per frame
