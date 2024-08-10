@@ -1107,6 +1107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1165238742}
   - {fileID: 1877379083}
   - {fileID: 941145569}
   m_Father: {fileID: 0}
@@ -1146,11 +1147,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookingCanvas: {fileID: 1877379079}
   MenuCanvas: {fileID: 376919965}
+  ClosestPlayer: {fileID: 0}
+  botController: {fileID: 0}
   ServiceSpawner: {fileID: 941145569}
   ListDrink:
   - {fileID: 1766725694417179271, guid: bab0e7ed33d84664aae91cc9c628a4dc, type: 3}
   - {fileID: 1766725694417179271, guid: b96aa395ee042134696e531d6f1b297e, type: 3}
   - {fileID: 1766725694417179271, guid: ca9ef0f43475b2b4a9a7b05a5654e85b, type: 3}
+  MinigameList:
+  - {fileID: 8797349512093893477, guid: 8223d49815724af449ee1faa0fbf9ef6, type: 3}
+  ListMinigameTranformList:
+  - {fileID: 1165238742}
 --- !u!1 &185356524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,6 +5584,11 @@ MonoBehaviour:
   - {fileID: 1260023585}
   - {fileID: 1533338222}
   - {fileID: 3939294}
+  numberofPlayer: 0
+  IsGamealreadyPlay: 0
+  IsPlayer2active: 0
+  IsPlayer3active: 0
+  IsPlayer4active: 0
   CharacterTranformList: []
   selectorNumber: 0
 --- !u!1 &941145568
@@ -6330,6 +6342,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8949678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1165238741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1165238742}
+  m_Layer: 0
+  m_Name: CookingMinigameSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1165238742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165238741}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.9214087, y: 4.07, z: 1.1899996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1364043457}
+  m_Father: {fileID: 183570440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1191398086
 GameObject:
   m_ObjectHideFlags: 0
@@ -7080,6 +7124,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7334506508427415472}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1364043456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1364043457}
+  m_Layer: 0
+  m_Name: MinigameDrinking1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1364043457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364043456}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1165238742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1426821347
 GameObject:
   m_ObjectHideFlags: 0
@@ -7331,7 +7406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -752, y: -486}
+  m_AnchoredPosition: {x: -752, y: -359}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533338224

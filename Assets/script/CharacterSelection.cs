@@ -112,13 +112,7 @@ public class CharacterSelection : MonoBehaviour
                 }
             }
         }
-        if (isCharacterSelected)
-        {
-            IsReadyToPlay = true;
-            StartGameNow();
-        }
-        else
-        {
+       
             if (Input.GetKeyDown(KeyCode.D) && (selectorNumber < CharacterTranformList.Count))
             {
                 selectorNumber++;
@@ -133,9 +127,12 @@ public class CharacterSelection : MonoBehaviour
             {
                 
                 isCharacterSelected = true;
+                IsReadyToPlay = true;
+                StartGameNow();
+
 
             }
-        }
+        
         if (IsPlayer3active)
         {
             MultiplayerUIList[2].SetActive(true);

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class cookingSystem : MonoBehaviour
 {
-    public GameObject cookingCanvas, MenuCanvas;
+    public GameObject cookingCanvas, MenuCanvas,ClosestPlayer;
     bool IsPlayerClose = false, IsCooking = false;
+    public BotController botController;
     public Transform ServiceSpawner;
-    public List<GameObject> ListDrink;
+    public List<GameObject> ListDrink,MinigameList;
+    public List<Transform> ListMinigameTranformList;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,15 +35,15 @@ public class cookingSystem : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                SpawnDrink(0);
+                PlayMinigameDrinkmaking(0);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                SpawnDrink(1);
+                PlayMinigameDrinkmaking(1);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                SpawnDrink(2);
+                PlayMinigameDrinkmaking(2);
             }
             
         }
@@ -53,6 +57,8 @@ public class cookingSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             IsPlayerClose = true;
+            ClosestPlayer = other.gameObject;
+            botController = ClosestPlayer.GetComponent<BotController>();
         }
 
     }
@@ -61,6 +67,8 @@ public class cookingSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             IsPlayerClose = false;
+            ClosestPlayer = null;
+            botController = null;
         }
 
     }
@@ -79,5 +87,35 @@ public class cookingSystem : MonoBehaviour
         }
 
     }
-   
+   public void PlayMinigameDrinkmaking(int minigamenum)
+    {
+        GameObject minigametoSpawned;
+         bool IsMakingadrinkfin = false;
+        if (!IsMakingadrinkfin)
+        {
+            minigametoSpawned = Instantiate(MinigameList[0], ListMinigameTranformList[0].position, ListMinigameTranformList[0].rotation);
+            botController.enabled = false;
+            StartCoroutine(MonitorMinigame(minigametoSpawned, minigamenum,IsMakingadrinkfin));
+
+        }
+       
+    }
+    private IEnumerator MonitorMinigame(GameObject minigame, int drinkIndex,bool IsMakingadrinkfin)
+    {
+        // Get the DrinkmakingMinigame component
+        DrinkmakingMinigame minigameScript = minigame.GetComponent<DrinkmakingMinigame>();
+
+        // Wait until the minigame is finished
+        while (!minigameScript.Isgamefin)
+        {
+            yield return null; // Wait until the next frame
+
+        }
+
+        // Once the minigame is finished, spawn the drink
+       
+        SpawnDrink(drinkIndex);
+        botController.enabled = true;
+        Destroy(minigame);
+    }
 }
