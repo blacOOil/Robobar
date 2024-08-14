@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/level2.unity
     guid: 676159a55e7fcab4eaa71e121e15659d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/FinalProject/HologrameTown/HologrameTown.unity
     guid: 1af5e2e724607a04da3675fd84f17939
   - enabled: 1
@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/FinalProject/FinalProjectDemo.unity
     guid: a9b07a7ec7e272a499f9ff6f570b2ce4
+  - enabled: 1
+    path: Assets/Scene/FinalProject/FinalProjectOnlineDemo.unity
+    guid: 734aae620b903b542bc62434c6a0974e
+  - enabled: 1
+    path: Assets/Scene/FinalProject/SceneLobby.unity
+    guid: 75533c4b2e94cc0419e59fc585380ac2
   m_configObjects: {}
