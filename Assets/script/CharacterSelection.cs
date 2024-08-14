@@ -6,18 +6,18 @@ using Timemanager;
 public class CharacterSelection : MonoBehaviour
 {
     [Header("Local-Coop Logic")]
-    public GameObject Local_CoopSelecterPrefab, Local_CoopSelecter;
-    public bool IslocalCoopGame, Isplayer2Selected, Isselector2Spawned, IsPlayer2Spawned;
+    public GameObject Local_CoopSelecterPrefab, PlayerTwoSelecting = null;
+    public bool IslocalCoopGame, Isplayer2Selected, Isselector2Spawned, IsPlayer2Spawned, Is2pawned = false;
     public Transform Player2SpawnerTranform;
     public int Player2SelectedNumber = 0;
     [Header("Gameplay")]
     public TimerCode timerCode;
     public MonneyLevelCode monneyLevelCode;
     [Header("SpawningLogic")]
-    public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned, IsCharExamSpawn = false;
+    public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned;
     public GameObject CharSelectedZone, MainGameUi, SelectingUi;
     public List<GameObject> CharacterList;
-    public Transform PlayerSpawnPoint;
+    public Transform PlayerSpawnPoint,HidePlace;
     [Header("UiSesssion")]
     public List<GameObject> MultiplayerUIList;
     public int numberofPlayer;
@@ -31,9 +31,8 @@ public class CharacterSelection : MonoBehaviour
         IsGamealreadyPlay = false;
         numberofPlayer = 1;
 
-        IsPlayer2active = false;
-        IsPlayer3active = false;
-        IsPlayer4active = false;
+        IsPlayer2active = true;
+       
 
         Isselector2Spawned = false;
         Isplayer2Selected = false;
@@ -54,51 +53,55 @@ public class CharacterSelection : MonoBehaviour
     {
         if (!isCharacterSelected)
         {
-            CharacterSelecting();
+            CharacterSelecting(0);
         }
-        if (IsPlayer2active)
+        if (!Isplayer2Selected)
         {
-            MultiplayerUIList[1].SetActive(true);
-
-            if (!Isselector2Spawned)
-            {
-
-            }
-            else
-            {
-
-            }
-            if (Isplayer2Selected)
-            {
-                if (!IsPlayer2Spawned)
-                {
-                    Spawnplayer2();
-                }
-            }
-        }
-        else
-        {
-
-        }
-        MultiplayerUIList[2].SetActive(IsPlayer3active);
-        MultiplayerUIList[3].SetActive(IsPlayer4active);
-    }
-    public void SelectorMoveLeft()
-    {
-        if (selectorNumber > 0)
-        {
-            IsCharExamSpawn = false;
-            selectorNumber--;
-            CharacterSelecting();
+          CharacterSelecting(1);
         }
     }
-    public void SelectorMoveRight()
+    public void SelectorMoveLeft(int playernum)
     {
-        if (selectorNumber < CharacterList.Count - 1)
+        if(playernum == 0)
         {
-            IsCharExamSpawn = false;
-            selectorNumber++;
-            CharacterSelecting();
+            if (selectorNumber > 0)
+            {
+                selectorNumber--;
+                CharacterSelecting(playernum);
+            }
+        }
+        if(playernum == 1)
+        {
+            if (Player2SelectedNumber > 0)
+            {
+                Destroy(PlayerTwoSelecting);
+                Is2pawned = false;
+                Player2SelectedNumber--;
+                CharacterSelecting(playernum);
+            }
+        }
+       
+    }
+    public void SelectorMoveRight(int playernum)
+    {
+        if(playernum == 0)
+        {
+            if (selectorNumber < CharacterList.Count - 1)
+            {
+                selectorNumber++;
+                CharacterSelecting(playernum);
+            }
+        }
+       if(playernum == 1)
+        {
+          
+            if (Player2SelectedNumber < CharacterList.Count - 1)
+            {
+                Destroy(PlayerTwoSelecting);
+                Is2pawned = false;
+                Player2SelectedNumber++;
+                CharacterSelecting(playernum);
+            }
         }
     }
     public void SpawnPlayer()
@@ -140,10 +143,22 @@ public class CharacterSelection : MonoBehaviour
         BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
         botController.inputNameHorizontal = "Horizontal2";
         botController.inputNameVertical = "Vertical2";
-        Destroy(Local_CoopSelecter);
         IsPlayer2Spawned = true;
     }
-    public void CharacterSelecting()
+    public void CharacterSelecting(int PlayerNum)
+    {
+        if(PlayerNum == 0)
+        {
+            Character1Selecting();
+        }
+        if(PlayerNum == 1)
+        {
+            Character2Selecting(PlayerNum);
+        }
+     
+
+    }
+    public void Character1Selecting()
     {
         for (int i = 0; i < CharacterList.Count; i++)
         {
@@ -152,16 +167,33 @@ public class CharacterSelection : MonoBehaviour
                 // Set the selected character's position
                 CharacterList[i].transform.position = CharacterTranformList[0].transform.position;
                 CharacterList[i].transform.rotation = CharacterTranformList[0].transform.rotation;
-                // Activate the selected character
-                CharacterList[i].SetActive(true);
+               
             }
             else
             {
                 // Deactivate the other characters
-                CharacterList[i].SetActive(false);
+                CharacterList[i].transform.position = HidePlace.position;
             }
 
         }
+    }
+    public void Character2Selecting(int playernum)
+    {
+      ;
+        for (int i = 0; i < CharacterList.Count; i++)
+        {
+            if (i == Player2SelectedNumber)
+            {
+                if (!Is2pawned)
+                {
+                    PlayerTwoSelecting = Instantiate(CharacterList[i], CharacterTranformList[playernum].transform.position, CharacterTranformList[playernum].transform.rotation);
+                    Is2pawned = true;
+                    
+                }
+               
+            }
+         
 
+        }
     }
 }

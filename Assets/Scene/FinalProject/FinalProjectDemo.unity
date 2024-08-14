@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1806,12 +1806,12 @@ PrefabInstance:
     - target: {fileID: 2803266771643647463, guid: eadcb09830a72dd4495da4a7613328b3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 2803266771643647463, guid: eadcb09830a72dd4495da4a7613328b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.2
+      value: -27.1
       objectReference: {fileID: 0}
     - target: {fileID: 2803266771643647463, guid: eadcb09830a72dd4495da4a7613328b3,
         type: 3}
@@ -2760,6 +2760,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 431786055}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &441962760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 441962761}
+  m_Layer: 0
+  m_Name: HideUnreadyHere
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441962761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441962760}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -290.07, y: -2.8625343, z: -25.240679}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &488722988
 GameObject:
   m_ObjectHideFlags: 0
@@ -4035,11 +4066,11 @@ MonoBehaviour:
       - m_Target: {fileID: 936674144}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: SelectorMoveRight
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4720,6 +4751,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &675573130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -292.86127
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 217354357825974951, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6257610536009053648, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_Name
+      value: SpiderVar1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304528994183409189, guid: b34a03c65c2a56b419036d124fa5cc9e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b34a03c65c2a56b419036d124fa5cc9e, type: 3}
+--- !u!1 &675573131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6257610536009053648, guid: b34a03c65c2a56b419036d124fa5cc9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 675573130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &690708374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5981,11 +6091,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Local_CoopSelecterPrefab: {fileID: 2395345087244228428, guid: 258755026bf77104b9b4f4f52aad1cf7,
     type: 3}
-  Local_CoopSelecter: {fileID: 0}
   IslocalCoopGame: 0
   Isplayer2Selected: 0
   Isselector2Spawned: 0
   IsPlayer2Spawned: 0
+  Is2pawned: 0
   Player2SpawnerTranform: {fileID: 1028824584}
   Player2SelectedNumber: 0
   timerCode: {fileID: 936674142}
@@ -5993,13 +6103,14 @@ MonoBehaviour:
   isCharacterSelected: 0
   IsReadyToPlay: 0
   IsplayerSpawned: 0
-  IsCharExamSpawn: 0
   CharSelectedZone: {fileID: 1721555967}
   MainGameUi: {fileID: 1052294}
   SelectingUi: {fileID: 584058286}
   CharacterList:
   - {fileID: 236881696}
+  - {fileID: 675573131}
   PlayerSpawnPoint: {fileID: 1017865871}
+  HidePlace: {fileID: 441962761}
   MultiplayerUIList:
   - {fileID: 290538960}
   - {fileID: 1260023585}
@@ -8518,7 +8629,7 @@ MonoBehaviour:
       - m_Target: {fileID: 936674144}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: SelectorMoveLeft
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9975,7 +10086,7 @@ MonoBehaviour:
       - m_Target: {fileID: 936674144}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: SelectorMoveRight
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10560,11 +10671,11 @@ MonoBehaviour:
       - m_Target: {fileID: 936674144}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: SelectorMoveLeft
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12085,3 +12196,5 @@ SceneRoots:
   - {fileID: 936674141}
   - {fileID: 566573098}
   - {fileID: 236881695}
+  - {fileID: 675573130}
+  - {fileID: 441962761}
