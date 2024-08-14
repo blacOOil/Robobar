@@ -17,7 +17,7 @@ public class CharacterSelection : MonoBehaviour
     public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned;
     public GameObject CharSelectedZone, MainGameUi, SelectingUi;
     public List<GameObject> CharacterList;
-    public Transform PlayerSpawnPoint,HidePlace;
+    public Transform PlayerSpawnPoint, HidePlace;
     [Header("UiSesssion")]
     public List<GameObject> MultiplayerUIList;
     public int numberofPlayer;
@@ -32,7 +32,7 @@ public class CharacterSelection : MonoBehaviour
         numberofPlayer = 1;
 
         IsPlayer2active = true;
-       
+
 
         Isselector2Spawned = false;
         Isplayer2Selected = false;
@@ -57,12 +57,12 @@ public class CharacterSelection : MonoBehaviour
         }
         if (!Isplayer2Selected)
         {
-          CharacterSelecting(1);
+            CharacterSelecting(1);
         }
     }
     public void SelectorMoveLeft(int playernum)
     {
-        if(playernum == 0)
+        if (playernum == 0)
         {
             if (selectorNumber > 0)
             {
@@ -70,7 +70,7 @@ public class CharacterSelection : MonoBehaviour
                 CharacterSelecting(playernum);
             }
         }
-        if(playernum == 1)
+        if (playernum == 1)
         {
             if (Player2SelectedNumber > 0)
             {
@@ -80,11 +80,11 @@ public class CharacterSelection : MonoBehaviour
                 CharacterSelecting(playernum);
             }
         }
-       
+
     }
     public void SelectorMoveRight(int playernum)
     {
-        if(playernum == 0)
+        if (playernum == 0)
         {
             if (selectorNumber < CharacterList.Count - 1)
             {
@@ -92,9 +92,9 @@ public class CharacterSelection : MonoBehaviour
                 CharacterSelecting(playernum);
             }
         }
-       if(playernum == 1)
+        if (playernum == 1)
         {
-          
+
             if (Player2SelectedNumber < CharacterList.Count - 1)
             {
                 Destroy(PlayerTwoSelecting);
@@ -120,6 +120,7 @@ public class CharacterSelection : MonoBehaviour
             service.enabled = true;
 
         }
+
     }
 
     public void StartGameNow()
@@ -147,15 +148,15 @@ public class CharacterSelection : MonoBehaviour
     }
     public void CharacterSelecting(int PlayerNum)
     {
-        if(PlayerNum == 0)
+        if (PlayerNum == 0)
         {
             Character1Selecting();
         }
-        if(PlayerNum == 1)
+        if (PlayerNum == 1)
         {
             Character2Selecting(PlayerNum);
         }
-     
+
 
     }
     public void Character1Selecting()
@@ -167,7 +168,7 @@ public class CharacterSelection : MonoBehaviour
                 // Set the selected character's position
                 CharacterList[i].transform.position = CharacterTranformList[0].transform.position;
                 CharacterList[i].transform.rotation = CharacterTranformList[0].transform.rotation;
-               
+
             }
             else
             {
@@ -179,7 +180,7 @@ public class CharacterSelection : MonoBehaviour
     }
     public void Character2Selecting(int playernum)
     {
-      ;
+        ;
         for (int i = 0; i < CharacterList.Count; i++)
         {
             if (i == Player2SelectedNumber)
@@ -188,11 +189,11 @@ public class CharacterSelection : MonoBehaviour
                 {
                     PlayerTwoSelecting = Instantiate(CharacterList[i], CharacterTranformList[playernum].transform.position, CharacterTranformList[playernum].transform.rotation);
                     Is2pawned = true;
-                    
+
                 }
-               
+
             }
-         
+
 
         }
     }
