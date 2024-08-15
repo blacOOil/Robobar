@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class OnlinefloatingBotController : MonoBehaviour
 {
+    public PhotonView view;
+
     public float Speed;
     public float JumpForce;
     public float GroundCheckDistance = 0.1f;
@@ -25,9 +28,13 @@ public class OnlinefloatingBotController : MonoBehaviour
 
     void Update()
     {
-        MovementInput();
+        if (view.IsMine)
+        {
+         MovementInput();
         JumpInput();
         CheckGroundStatus();
+        }
+      
     }
 
     void MovementInput()
