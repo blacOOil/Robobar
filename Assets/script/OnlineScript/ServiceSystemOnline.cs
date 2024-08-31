@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;  // Include Photon PUN namespace
+using Photon.Realtime;
 
 public class ServiceSystemOnline : MonoBehaviour
 {

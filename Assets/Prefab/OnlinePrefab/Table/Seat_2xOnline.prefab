@@ -343,6 +343,18 @@ MonoBehaviour:
   Seat:
   - {fileID: 6172619734171068787}
   - {fileID: 3780361079455026992}
+--- !u!1 &4733592025928729810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4076389308614793704, guid: a9dc88e5759df6041b5c59528dacb08f,
+    type: 3}
+  m_PrefabInstance: {fileID: 494509045257478858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5464210955087505079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3672650642611780483, guid: a9dc88e5759df6041b5c59528dacb08f,
+    type: 3}
+  m_PrefabInstance: {fileID: 494509045257478858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6908587185344386603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -419,7 +431,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 8641b667952bb144cba73873799e441a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3967713291247194987}
   m_SourcePrefab: {fileID: 100100000, guid: 8641b667952bb144cba73873799e441a, type: 3}
 --- !u!4 &2541887021334554085 stripped
 Transform:
@@ -433,3 +449,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6908587185344386603}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3967713291247194987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913524466531141155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2cc74943c9e1c64eac0851497ea9f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chairSingles: {fileID: 0}
+  TableTagTranform: {fileID: 8826322129185798224}
+  seat:
+  - {fileID: 4733592025928729810}
+  - {fileID: 5464210955087505079}
