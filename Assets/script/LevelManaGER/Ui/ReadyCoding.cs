@@ -5,6 +5,7 @@ using UnityEngine;
 public class ReadyCoding : MonoBehaviour
 {
    public List<GameObject> ReadyButton,Readyindicator;
+    public int readyIndicatorCount;
     private int ReadyNum;
     public GameObject PlayButton;
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class ReadyCoding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ReadyNum == ReadyButton.Count)
+        if(ReadyNum == readyIndicatorCount)
         {
             PlayButton.SetActive(true);
         }

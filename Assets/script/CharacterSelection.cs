@@ -7,7 +7,7 @@ public class CharacterSelection : MonoBehaviour
 {
     [Header("Local-Coop Logic")]
     public GameObject Local_CoopSelecterPrefab, PlayerTwoSelecting = null;
-    public bool IslocalCoopGame, Isplayer2Selected, Isselector2Spawned, IsPlayer2Spawned, Is2pawned = false;
+    public bool IsntlocalCoopGame, Isplayer2Selected, Isselector2Spawned, IsPlayer2Spawned, Is2pawned = false;
     public Transform Player2SpawnerTranform;
     public int Player2SelectedNumber = 0;
     [Header("Gameplay")]
@@ -55,10 +55,19 @@ public class CharacterSelection : MonoBehaviour
         {
             CharacterSelecting(0);
         }
-        if (!Isplayer2Selected)
+        if(IsntlocalCoopGame == false)
         {
-            CharacterSelecting(1);
+            if (!Isplayer2Selected)
+            {
+                CharacterSelecting(1);
+            }
+
         }
+        else
+        {
+
+        }
+        
     }
     public void SelectorMoveLeft(int playernum)
     {
