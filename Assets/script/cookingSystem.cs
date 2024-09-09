@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cookingSystem : MonoBehaviour
 {
-    public GameObject cookingCanvas, MenuCanvas,ClosestPlayer;
+    public GameObject cookingCanvas, MenuCanvas,ClosestPlayer,Holdindicator;
     bool IsPlayerClose = false, IsCooking = false;
     public BotController botController;
     public Transform ServiceSpawner;
@@ -18,6 +18,7 @@ public class cookingSystem : MonoBehaviour
     {
         cookingCanvas.SetActive(false);
         MenuCanvas.SetActive(false);
+    
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class cookingSystem : MonoBehaviour
         }
         else
         {
-
+            cookingCanvas.SetActive(false);
         }
         if (IsCooking)
         {
@@ -75,13 +76,16 @@ public class cookingSystem : MonoBehaviour
     public void PlayerISClose()
     {
         cookingCanvas.SetActive(true);
+        Holdindicator.SetActive(true);
         if (Input.GetKey(KeyCode.E))
         {
+            Holdindicator.SetActive(false);
             MenuCanvas.SetActive(true);
             IsCooking = true;
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
+            Holdindicator.SetActive(true);
             MenuCanvas.SetActive(false);
             IsCooking = false;
         }
@@ -89,6 +93,7 @@ public class cookingSystem : MonoBehaviour
     }
    public void PlayMinigameDrinkmaking(int minigamenum)
     {
+        
         GameObject minigametoSpawned;
          bool IsMakingadrinkfin = false;
         if (!IsMakingadrinkfin)
@@ -108,6 +113,7 @@ public class cookingSystem : MonoBehaviour
         // Wait until the minigame is finished
         while (!minigameScript.Isgamefin)
         {
+            Holdindicator.SetActive(false);
             yield return null; // Wait until the next frame
 
         }
