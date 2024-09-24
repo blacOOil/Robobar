@@ -14,16 +14,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/level2.unity
     guid: 676159a55e7fcab4eaa71e121e15659d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/FinalProject/MainMenu.unity
     guid: d69224922dbf11946bb565c379131e79
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/FinalProject/SceneLobby.unity
     guid: 75533c4b2e94cc0419e59fc585380ac2
   - enabled: 1
     path: Assets/Scene/FinalProject/FinalProjectDemo.unity
     guid: a9b07a7ec7e272a499f9ff6f570b2ce4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/FinalProject/FinalProjectOnlineDemo.unity
     guid: 734aae620b903b542bc62434c6a0974e
   m_configObjects: {}

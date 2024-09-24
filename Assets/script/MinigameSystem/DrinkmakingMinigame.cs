@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrinkmakingMinigame : MonoBehaviour
 {
     public float Alimit, Dlitmit,PassCenterAmount,speed = 10f;
-    public GameObject drink,shakingGroup,Player;
+    public GameObject drink,shakingGroup,ClosetPlayer;
     public Transform CentPivot;
     public bool IsShakingfin, Isgamefin;
    public int ShakingCoustiing = 0;
@@ -18,6 +18,7 @@ public class DrinkmakingMinigame : MonoBehaviour
         PassCenterAmount = 0;
         IsShakingfin = false;
         Isgamefin = false;
+        FindClosestPlayerWithTag();
     }
 
     // Update is called once per frame
@@ -25,6 +26,8 @@ public class DrinkmakingMinigame : MonoBehaviour
     {
         if (!Isgamefin)
         {
+            
+
             if (!IsShakingfin)
             {
                 shakingGroup.SetActive(true);
@@ -54,19 +57,41 @@ public class DrinkmakingMinigame : MonoBehaviour
         }
         else
         {
-
-            if (!isapressing)
+            if(ClosetPlayer.tag == "Player1")
             {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (!isapressing)
+                {
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        ShakingCoustiing++;
+                        isapressing = true;
+                        isdpressing = false;
+                    }
+                }
+                if (!isdpressing)
+                {
+                    if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        ShakingCoustiing++;
+                        isapressing = false;
+                        isdpressing = true;
+                    }
+                }
+            }
+            if (ClosetPlayer.tag == "Player2")
+            {
+                if (!isapressing)
+                {
+                if (Input.GetKeyDown(KeyCode.H))
                 {
                     ShakingCoustiing++;
                     isapressing = true;
                     isdpressing = false;
                 }
-            }
+                 }  
             if (!isdpressing)
             {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.K))
                 {
                     ShakingCoustiing++;
                     isapressing = false;
@@ -74,6 +99,8 @@ public class DrinkmakingMinigame : MonoBehaviour
                 }
             }
            
+            }
+               
         }
        
     }
@@ -88,44 +115,39 @@ public class DrinkmakingMinigame : MonoBehaviour
         }
         ShakingCouting();
     }
-    public void findClosestPlayer()
+    void FindClosestPlayerWithTag()
     {
+        GameObject[] player1Objects = GameObject.FindGameObjectsWithTag("Player1");
+        GameObject[] player2Objects = GameObject.FindGameObjectsWithTag("Player2");
+
         float closestDistance = Mathf.Infinity;
-        GameObject ClosestPlayer = null;
+        GameObject tempClosest = null;
 
-        // Find all objects tagged with Player1 and Player2
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player1");
-        GameObject[] players2 = GameObject.FindGameObjectsWithTag("Player2");
-
-        // Combine both Player1 and Player2 into one array for easier processing
-        List<GameObject> allPlayers = new List<GameObject>();
-        allPlayers.AddRange(players);
-        allPlayers.AddRange(players2);
-
-        // Loop through all players
-        foreach (GameObject player in allPlayers)
+        // Check player1 objects
+        foreach (GameObject player1 in player1Objects)
         {
-            ChairSingle chairSingle = player.GetComponent<ChairSingle>();
-            if (chairSingle != null && !chairSingle.isSited)
+            float distance = Vector3.Distance(transform.position, player1.transform.position);
+            if (distance < closestDistance)
             {
-                float distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance < closestDistance && distance <= searchRadius)
-                {
-                    closestDistance = distance;
-                    ClosestPlayer = player;
-                }
+                closestDistance = distance;
+                tempClosest = player1;
             }
         }
 
-        if (ClosestPlayer != null)
+        // Check player2 objects
+        foreach (GameObject player2 in player2Objects)
         {
-            ChairSingle closestChairSingle = ClosestPlayer.GetComponent<ChairSingle>();
-            if (closestChairSingle != null)
+            float distance = Vector3.Distance(transform.position, player2.transform.position);
+            if (distance < closestDistance)
             {
-                closestChairSingle.isSited = true; // Mark the player as seated
+                closestDistance = distance;
+                tempClosest = player2;
             }
-            Player = ClosestPlayer; // Assign the closest player
         }
+
+        // Set the closest player
+        ClosetPlayer = tempClosest;
     }
-
 }
+
+

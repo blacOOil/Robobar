@@ -23,10 +23,29 @@ public class CustomertoTable : MonoBehaviour
     }
     public void movetotable()
     {
-         findClosestTable();
-        GettableId();
+        if (fixedTableset())
+        {
+            Self.transform.position = Vector3.MoveTowards(Self.transform.position, Table.transform.position, Speed);
+        }
+        else
+        {
+            Debug.Log("No table nearby.");
+        }
        
-        Self.transform.position = Vector3.MoveTowards(Self.transform.position, Table.transform.position, Speed);
+        
+    }
+    public bool fixedTableset()
+    {
+        findClosestTable();
+        GettableId();
+        if (Table == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     public void findClosestTable()
     {

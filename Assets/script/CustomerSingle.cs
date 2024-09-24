@@ -115,36 +115,42 @@ public class CustomerSingle : MonoBehaviour
             PlayerInteractMenu.SetActive(true);
             if (IsplayerClose())
             {
-                if (!Issited) 
-                {
+                
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         Debug.Log("Go to table Ok");
                         customertoTable.movetotable();
+                    if (!customertoTable.fixedTableset())
+                    {
+                        ExitStore();
+                    }
+                    else
+                    {
                         Issited = true;
                     }
-                }
-                else
-                {
-
-                }
+                        Issited = true;
+                    }
+                
 
             }
             if (Isplayer2Close())
             {
-                if (!Issited)
-                {
                     if (Input.GetKeyDown(KeyCode.I))
                     {
                         Debug.Log("Go to table Ok");
                         customertoTable.movetotable();
+                    if (!customertoTable.fixedTableset())
+                    {
+                        ExitStore();
+                    }
+                    else
+                    {
                         Issited = true;
                     }
-                }
-                else
-                {
+                    Issited = true;
 
-                }
+                    }
+                
             }
 
 
@@ -181,9 +187,12 @@ public class CustomerSingle : MonoBehaviour
         return CheckProximity("drink");
     }
 
+   
+
     private bool CheckProximity(string tag)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius, tag == "drink" ? DrinkLayer : Player);
+        // Check all layers to capture all objects tagged with the given tag
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius);
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag(tag))
@@ -193,6 +202,7 @@ public class CustomerSingle : MonoBehaviour
         }
         return false;
     }
+
 
     public void OrderTheDrink()
     {

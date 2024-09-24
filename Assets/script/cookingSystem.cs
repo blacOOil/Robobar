@@ -10,7 +10,7 @@ public class cookingSystem : MonoBehaviour
     public Transform ServiceSpawner;
     public List<GameObject> ListDrink, MinigameList;
     public List<Transform> ListMinigameTranformList;
-
+    public bool IsCookingStarted;
     void Start()
     {
         InitializeSystem();
@@ -27,6 +27,7 @@ public class cookingSystem : MonoBehaviour
     {
         cookingCanvas.SetActive(false);
         MenuCanvas.SetActive(false);
+        IsCookingStarted = false;
     }
 
     // Handle logic when player is near or far
@@ -49,37 +50,46 @@ public class cookingSystem : MonoBehaviour
         {
             if (ClosestPlayer.tag == "Player1")
             {
-               
+                if (!IsCookingStarted)
+                {
                     if (Input.GetKeyDown(KeyCode.Alpha1))
                     {
+                        IsCookingStarted = true;
                         PlayMinigameDrinkmaking(0);
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha2))
                     {
+                        IsCookingStarted = true;
                         PlayMinigameDrinkmaking(1);
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha3))
                     {
+                        IsCookingStarted = true;
                         PlayMinigameDrinkmaking(2);
                     }
+                }
                 
             }
             if (ClosestPlayer.tag == "Player2")
             {
-                
+                if (!IsCookingStarted)
+                {
                     if (Input.GetKeyDown(KeyCode.Alpha6))
                     {
+                        IsCookingStarted = true;
                         PlayMinigameDrinkmaking(0);
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha7))
                     {
+                        IsCookingStarted = true;
                         PlayMinigameDrinkmaking(1);
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha8))
                     {
+                        IsCookingStarted = true;
                         PlayMinigameDrinkmaking(2);
                     }
-                
+                }
             }
         }
        
@@ -189,6 +199,7 @@ public class cookingSystem : MonoBehaviour
 
             StartCoroutine(MonitorMinigame(minigametoSpawned, minigamenum, IsMakingadrinkfin));
         }
+        
     }
 
     // Monitor the mini-game and spawn the drink upon completion
@@ -205,5 +216,6 @@ public class cookingSystem : MonoBehaviour
         SpawnDrink(drinkIndex);
         botController.enabled = true;
         Destroy(minigame);
+        IsCookingStarted = false;
     }
 }
