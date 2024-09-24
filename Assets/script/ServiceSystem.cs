@@ -8,6 +8,7 @@ public class ServiceSystem : MonoBehaviour
     public Transform Hand;
     public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
     public float CustomerCheckerRadius = 1f;
+    private int playernumber = 0;
     public LayerMask CustomerLayer;
     public GameObject ClosestCustomer, Objholding,ReadytoPickObj;
 
@@ -34,6 +35,11 @@ public class ServiceSystem : MonoBehaviour
         IsTableTagnear = false;
         Ishandholded = false;
         monneyLevelCode = FindObjectOfType<MonneyLevelCode>();
+
+        if(gameObject.tag == "Player2")
+        {
+            playernumber = 1;
+        }
     }
 
     // Update is called once per frame
@@ -42,14 +48,14 @@ public class ServiceSystem : MonoBehaviour
 
         if ((holdedrink) && !IscustomerClose())
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (PlayerInput(playernumber))
             {
                 ReleaseDrink();
             }
         }
         if(holdetable)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (PlayerInput(playernumber))
             {
                 ReleaseDrink();
             }
@@ -68,14 +74,14 @@ public class ServiceSystem : MonoBehaviour
         {
             findClosestCustomer(); // Ensure this is called to find the closest customer
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (PlayerInput(playernumber))
             {
                 ServiceProceed();
             }
         }
         if (holdedrink == false && IsTableTagnear)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (PlayerInput(playernumber))
             {
             TransformObjToHand(ReadytoPickObj);
             }
@@ -235,5 +241,23 @@ public class ServiceSystem : MonoBehaviour
         Ishandholded = false;
         Objholding = null;
     }
-
+    public bool PlayerInput(int playernum)
+    {
+        if(playernum == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                return true;
+            }
+        }
+        if(playernum == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                return true;
+            }
+        }
+        return false;
     }
+}
+   

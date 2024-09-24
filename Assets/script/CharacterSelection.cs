@@ -117,7 +117,8 @@ public class CharacterSelection : MonoBehaviour
     {
         if (!IsplayerSpawned)
         {
-            CharacterList[selectorNumber].transform.position = PlayerSpawnPoint.position;
+            CharacterList[selectorNumber].tag = "Player1";
+            CharacterList[selectorNumber].transform.position = PlayerSpawnPoint.position; 
             IsplayerSpawned = true;
         }
 
@@ -140,6 +141,10 @@ public class CharacterSelection : MonoBehaviour
         CharSelectedZone.SetActive(false);
         SpawnPlayer();
         IsGamealreadyPlay = true;
+        if(IsPlayer2active == true)
+        {
+            Spawnplayer2();
+        }
     }
     public void ReadytoPlay()
     {
@@ -153,6 +158,7 @@ public class CharacterSelection : MonoBehaviour
         BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
         botController.inputNameHorizontal = "Horizontal2";
         botController.inputNameVertical = "Vertical2";
+        CharacterList[Player2SelectedNumber].tag = "Player2";
         IsPlayer2Spawned = true;
     }
     public void CharacterSelecting(int PlayerNum)
@@ -176,7 +182,7 @@ public class CharacterSelection : MonoBehaviour
             {
                 // Set the selected character's position
                 CharacterList[i].transform.position = CharacterTranformList[0].transform.position;
-                CharacterList[i].transform.rotation = CharacterTranformList[0].transform.rotation;
+            //    CharacterList[i].transform.rotation = CharacterTranformList[0].transform.rotation;
 
             }
             else
@@ -196,7 +202,9 @@ public class CharacterSelection : MonoBehaviour
             {
                 if (!Is2pawned)
                 {
+
                     PlayerTwoSelecting = Instantiate(CharacterList[i], CharacterTranformList[playernum].transform.position, CharacterTranformList[playernum].transform.rotation);
+                    PlayerTwoSelecting.transform.position = CharacterTranformList[1].transform.position;
                     Is2pawned = true;
 
                 }

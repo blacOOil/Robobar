@@ -416,6 +416,7 @@ MonoBehaviour:
   - {fileID: 4240728967509717970, guid: 365a487231846ba4b8e105f653883252, type: 3}
   - {fileID: 4240728967509717970, guid: 8db72590bb4f38a458179d27fa8b871c, type: 3}
   - {fileID: 4240728967509717970, guid: 42b48ab8c6afda14d9312b23a9d889fe, type: 3}
+  RemainmingTime: 0
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0

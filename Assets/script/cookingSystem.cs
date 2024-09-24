@@ -4,122 +4,204 @@ using UnityEngine;
 
 public class cookingSystem : MonoBehaviour
 {
-    public GameObject cookingCanvas, MenuCanvas,ClosestPlayer,Holdindicator;
+    public GameObject cookingCanvas, MenuCanvas, ClosestPlayer, Holdindicator;
     bool IsPlayerClose = false, IsCooking = false;
     public BotController botController;
     public Transform ServiceSpawner;
-    public List<GameObject> ListDrink,MinigameList;
+    public List<GameObject> ListDrink, MinigameList;
     public List<Transform> ListMinigameTranformList;
 
-    
-
-    // Start is called before the first frame update
     void Start()
+    {
+        InitializeSystem();
+    }
+
+    void Update()
+    {
+        HandlePlayerProximity();
+        HandleCookingProcess();
+    }
+
+    // Initialize system by disabling UI elements
+    private void InitializeSystem()
     {
         cookingCanvas.SetActive(false);
         MenuCanvas.SetActive(false);
-    
     }
 
-    // Update is called once per frame
-    void Update()
+    // Handle logic when player is near or far
+    private void HandlePlayerProximity()
     {
-        if (IsPlayerClose == true)
+        if (IsPlayerClose)
         {
-            PlayerISClose();
+            ShowCookingCanvas();
         }
         else
         {
             cookingCanvas.SetActive(false);
         }
+    }
+
+    // Handle cooking process (i.e., mini-game controls)
+    private void HandleCookingProcess()
+    {
         if (IsCooking)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (ClosestPlayer.tag == "Player1")
             {
-                PlayMinigameDrinkmaking(0);
+               
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {
+                        PlayMinigameDrinkmaking(0);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha2))
+                    {
+                        PlayMinigameDrinkmaking(1);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha3))
+                    {
+                        PlayMinigameDrinkmaking(2);
+                    }
+                
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (ClosestPlayer.tag == "Player2")
             {
-                PlayMinigameDrinkmaking(1);
+                
+                    if (Input.GetKeyDown(KeyCode.Alpha6))
+                    {
+                        PlayMinigameDrinkmaking(0);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha7))
+                    {
+                        PlayMinigameDrinkmaking(1);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha8))
+                    {
+                        PlayMinigameDrinkmaking(2);
+                    }
+                
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                PlayMinigameDrinkmaking(2);
-            }
-            
         }
+       
+
     }
+
     public void SpawnDrink(int index)
     {
         Instantiate(ListDrink[index], ServiceSpawner.position, Quaternion.identity);
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (IsPlayer(other))
         {
-            IsPlayerClose = true;
-            ClosestPlayer = other.gameObject;
-            botController = ClosestPlayer.GetComponent<BotController>();
+            HandlePlayerEnter(other);
         }
-
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (IsPlayer(other))
         {
-            IsPlayerClose = false;
-            ClosestPlayer = null;
-            botController = null;
+            HandlePlayerExit();
         }
-
     }
-    public void PlayerISClose()
+
+    // Check if the collider belongs to a player
+    private bool IsPlayer(Collider other)
+    {
+        return other.CompareTag("Player1") || other.CompareTag("Player2");
+    }
+
+    // Handle logic when a player enters the trigger area
+    private void HandlePlayerEnter(Collider other)
+    {
+        IsPlayerClose = true;
+        ClosestPlayer = other.gameObject;
+        botController = ClosestPlayer.GetComponent<BotController>();
+    }
+
+    // Handle logic when a player exits the trigger area
+    private void HandlePlayerExit()
+    {
+        IsPlayerClose = false;
+        ClosestPlayer = null;
+        botController = null;
+    }
+
+    // Display the cooking UI when the player is near
+    private void ShowCookingCanvas()
     {
         cookingCanvas.SetActive(true);
         Holdindicator.SetActive(true);
-        if (Input.GetKey(KeyCode.E))
+       if(ClosestPlayer.tag == "Player1")
         {
-            Holdindicator.SetActive(false);
-            MenuCanvas.SetActive(true);
-            IsCooking = true;
+            if (Input.GetKey(KeyCode.E))
+            {
+                StartCooking();
+            }
+
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                StopCooking();
+            }
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (ClosestPlayer.tag == "Player2")
         {
-            Holdindicator.SetActive(true);
-            MenuCanvas.SetActive(false);
-            IsCooking = false;
+            if (Input.GetKey(KeyCode.I))
+            {
+                StartCooking();
+            }
+
+            if (Input.GetKeyUp(KeyCode.I))
+            {
+                StopCooking();
+            }
         }
 
     }
-   public void PlayMinigameDrinkmaking(int minigamenum)
+
+    // Start the cooking process
+    private void StartCooking()
     {
-        
-        GameObject minigametoSpawned;
-         bool IsMakingadrinkfin = false;
+        Holdindicator.SetActive(false);
+        MenuCanvas.SetActive(true);
+        IsCooking = true;
+    }
+
+    // Stop the cooking process
+    private void StopCooking()
+    {
+        Holdindicator.SetActive(true);
+        MenuCanvas.SetActive(false);
+        IsCooking = false;
+    }
+
+    // Play the drink-making mini-game
+    public void PlayMinigameDrinkmaking(int minigamenum)
+    {
+        bool IsMakingadrinkfin = false;
+
         if (!IsMakingadrinkfin)
         {
-            minigametoSpawned = Instantiate(MinigameList[0], ListMinigameTranformList[0].position, ListMinigameTranformList[0].rotation);
+            GameObject minigametoSpawned = Instantiate(MinigameList[0], ListMinigameTranformList[0].position, ListMinigameTranformList[0].rotation);
             botController.enabled = false;
-            StartCoroutine(MonitorMinigame(minigametoSpawned, minigamenum,IsMakingadrinkfin));
 
+            StartCoroutine(MonitorMinigame(minigametoSpawned, minigamenum, IsMakingadrinkfin));
         }
-       
     }
-    private IEnumerator MonitorMinigame(GameObject minigame, int drinkIndex,bool IsMakingadrinkfin)
+
+    // Monitor the mini-game and spawn the drink upon completion
+    private IEnumerator MonitorMinigame(GameObject minigame, int drinkIndex, bool IsMakingadrinkfin)
     {
-        // Get the DrinkmakingMinigame component
         DrinkmakingMinigame minigameScript = minigame.GetComponent<DrinkmakingMinigame>();
 
-        // Wait until the minigame is finished
         while (!minigameScript.Isgamefin)
         {
             Holdindicator.SetActive(false);
-            yield return null; // Wait until the next frame
-
+            yield return null;
         }
 
-        // Once the minigame is finished, spawn the drink
-       
         SpawnDrink(drinkIndex);
         botController.enabled = true;
         Destroy(minigame);

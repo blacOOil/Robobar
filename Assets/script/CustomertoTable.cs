@@ -23,8 +23,9 @@ public class CustomertoTable : MonoBehaviour
     }
     public void movetotable()
     {
+         findClosestTable();
         GettableId();
-       // findClosestTable();
+       
         Self.transform.position = Vector3.MoveTowards(Self.transform.position, Table.transform.position, Speed);
     }
     public void findClosestTable()

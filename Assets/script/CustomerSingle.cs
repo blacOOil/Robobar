@@ -10,7 +10,7 @@ public class CustomerSingle : MonoBehaviour
     public List<Sprite> OrderMenu;
     public Image OrderImage;
     public bool Isordered;
-    public GameObject DrinkReceived,DrinktoDrinked;
+    public GameObject DrinkReceived, DrinktoDrinked;
     public LayerMask DrinkLayer;
     public Transform DrinkPlacement;
     public List<GameObject> DrinkPrefab;
@@ -25,105 +25,98 @@ public class CustomerSingle : MonoBehaviour
     public LayerMask Player;
     public CustomertoTable customertoTable;
 
-    
-
-
-    private bool IsplayerClose()
+    private void Start()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius, Player);
-        foreach (var hitCollider in hitColliders)
+        InitializeSession();
+    }
+
+    private void Update()
+    {
+        if (Isfull == false)
         {
-            if (hitCollider.CompareTag("Player"))
-            {
-                return true;
-            }
+            ManageSittingAndOrders();
         }
-        return false;
-    }
-    private bool IsDrinkClose()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius, DrinkLayer);
-        foreach (var hitCollider in hitColliders)
+        else
         {
-            if (hitCollider.CompareTag("drink"))
-            {
-                return true;
-            }
+            EndSession();
         }
-        return false;
     }
 
-    private void OnDrawGizmosSelected()
+    // Separate into methods
+
+    // Initialization method for starting the session
+    private void InitializeSession()
     {
-        // Draw a yellow sphere at the transform's position to visualize the PlayerCheckerRadius
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, PlayerCheckerRadius);
-    }
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       
         PlayerInteractMenu.SetActive(false);
         Requested.SetActive(false);
         Issited = false;
         Isfull = false;
         Isordered = false;
         exitdoor = GameObject.FindGameObjectWithTag("exitdoor");
-
         RemainmingTime = 200;
-
     }
 
-    // Update is called once per frame
-    void Update()
+    // Handle sitting session and managing orders
+    private void ManageSittingAndOrders()
     {
-        if (Isfull == false)
+        if (Issited)
         {
-            if (Issited)
+            ManageOrderProcess();
+        }
+        else
+        {
+            HandlePlayerInteraction();
+        }
+    }
+
+    // Manage the drink order process when the customer is seated
+    private void ManageOrderProcess()
+    {
+        PlayerInteractMenu.SetActive(false);
+        Requested.SetActive(true);
+
+        if (Isordered == false)
+        {
+            OrderTheDrink();
+        }
+        else
+        {
+            HandleOrderReceived();
+        }
+    }
+
+    // Handle receiving the drink order and player interaction
+    private void HandleOrderReceived()
+    {
+        RemainmingTime -= Time.deltaTime;
+
+        if (IsplayerClose() && IsDrinkClose() && Input.GetKeyDown(KeyCode.E))
+        {
+            ReceiveOrder();
+            if (Randomdrinkfloat == ServedDrink)
             {
-                
-                PlayerInteractMenu.SetActive(false);
-                Requested.SetActive(true);
-                if (Isordered == false)
-                {
-                    Orderthedrink();
-                }
-                else if (Isordered == true)
-                {
-                    RemainmingTime -= Time.deltaTime;
-                    if (IsplayerClose() == true)
-                    {
-                        if (IsDrinkClose() == true)
-                        {
-                            if (Input.GetKeyDown(KeyCode.E))
-                            {
-                                ReceiveOrder();
-                                if (Randomdrinkfloat == ServedDrink)
-                                {
-                                    SpawnDrinkThatRecived();
-                                    StartCoroutine(drinking());
-                                    Debug.Log("Thank");
-
-                                }
-                                else
-                                {
-                                    Debug.Log("Wrong");
-                                }
-
-                            }
-                        }
-
-                    }
-                }
+                SpawnDrinkThatRecived();
+                StartCoroutine(DrinkingRoutine());
+                Debug.Log("Thank");
             }
             else
             {
-                if (IsplayerClose() == true)
+                Debug.Log("Wrong");
+            }
+        }
+    }
+
+    // Handle player interaction when the customer is not yet seated
+    private void HandlePlayerInteraction()
+    {
+        
+        if (IsplayerClose() || Isplayer2Close())
+        {
+            PlayerInteractMenu.SetActive(true);
+            if (IsplayerClose())
+            {
+                if (!Issited) 
                 {
-                    PlayerInteractMenu.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         Debug.Log("Go to table Ok");
@@ -133,39 +126,83 @@ public class CustomerSingle : MonoBehaviour
                 }
                 else
                 {
-                    PlayerInteractMenu.SetActive(false);
+
                 }
 
-                Requested.SetActive(false);
             }
+            if (Isplayer2Close())
+            {
+                if (!Issited)
+                {
+                    if (Input.GetKeyDown(KeyCode.I))
+                    {
+                        Debug.Log("Go to table Ok");
+                        customertoTable.movetotable();
+                        Issited = true;
+                    }
+                }
+                else
+                {
+
+                }
+            }
+
 
         }
         else
         {
-            customertoTable.GetUp();
-            Destroy(DrinktoDrinked);
-            exitStore();
-            Destroy(gameObject);
+            PlayerInteractMenu.SetActive(false);
         }
+
+        Requested.SetActive(false);
     }
 
-    public void exitStore()
+    // End the session when the customer is full
+    private void EndSession()
     {
-        
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
-
+        customertoTable.GetUp();
+        Destroy(DrinktoDrinked);
+        ExitStore();
+        Destroy(gameObject);
     }
-    public void Orderthedrink()
+
+    private bool IsplayerClose()
     {
-        
+        return CheckProximity("Player1");
+    }
+
+    private bool Isplayer2Close()
+    {
+        return CheckProximity("Player2");
+    }
+
+    private bool IsDrinkClose()
+    {
+        return CheckProximity("drink");
+    }
+
+    private bool CheckProximity(string tag)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius, tag == "drink" ? DrinkLayer : Player);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag(tag))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void OrderTheDrink()
+    {
         int RandomIndex = Random.Range(0, OrderMenu.Count);
         Debug.Log(RandomIndex);
         Randomdrinkfloat = RandomIndex;
         OrderImage.sprite = OrderMenu[RandomIndex];
         Isordered = true;
-
-
     }
+
     public void ReceiveOrder()
     {
         float closestDistance = Mathf.Infinity;
@@ -180,26 +217,34 @@ public class CustomerSingle : MonoBehaviour
                 float distance = Vector3.Distance(transform.position, drink.transform.position);
                 if (distance < closestDistance && distance <= PlayerCheckerRadius)
                 {
-
                     closestDistance = distance;
                     ClosestDrinks = drink;
                     ServedDrink = drink.GetComponent<DrinkSingle>().DrinkId;
                 }
-
             }
         }
         DrinkReceived = ClosestDrinks;
-
     }
+
     public void SpawnDrinkThatRecived()
     {
-
         DrinktoDrinked = Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
     }
-    IEnumerator drinking()
+
+    public void ExitStore()
+    {
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
+    }
+
+    IEnumerator DrinkingRoutine()
     {
         yield return new WaitForSeconds(10f);
         Isfull = true;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, PlayerCheckerRadius);
+    }
 }

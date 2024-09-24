@@ -5,12 +5,13 @@ using UnityEngine;
 public class DrinkmakingMinigame : MonoBehaviour
 {
     public float Alimit, Dlitmit,PassCenterAmount,speed = 10f;
-    public GameObject drink,shakingGroup;
+    public GameObject drink,shakingGroup,Player;
     public Transform CentPivot;
     public bool IsShakingfin, Isgamefin;
    public int ShakingCoustiing = 0;
     public bool isapressing = false;
    public bool isdpressing = false;
+    public float searchRadius = 900000f;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,4 +88,44 @@ public class DrinkmakingMinigame : MonoBehaviour
         }
         ShakingCouting();
     }
+    public void findClosestPlayer()
+    {
+        float closestDistance = Mathf.Infinity;
+        GameObject ClosestPlayer = null;
+
+        // Find all objects tagged with Player1 and Player2
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player1");
+        GameObject[] players2 = GameObject.FindGameObjectsWithTag("Player2");
+
+        // Combine both Player1 and Player2 into one array for easier processing
+        List<GameObject> allPlayers = new List<GameObject>();
+        allPlayers.AddRange(players);
+        allPlayers.AddRange(players2);
+
+        // Loop through all players
+        foreach (GameObject player in allPlayers)
+        {
+            ChairSingle chairSingle = player.GetComponent<ChairSingle>();
+            if (chairSingle != null && !chairSingle.isSited)
+            {
+                float distance = Vector3.Distance(transform.position, player.transform.position);
+                if (distance < closestDistance && distance <= searchRadius)
+                {
+                    closestDistance = distance;
+                    ClosestPlayer = player;
+                }
+            }
+        }
+
+        if (ClosestPlayer != null)
+        {
+            ChairSingle closestChairSingle = ClosestPlayer.GetComponent<ChairSingle>();
+            if (closestChairSingle != null)
+            {
+                closestChairSingle.isSited = true; // Mark the player as seated
+            }
+            Player = ClosestPlayer; // Assign the closest player
+        }
+    }
+
 }
