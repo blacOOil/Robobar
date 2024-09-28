@@ -40,5 +40,9 @@ public class TimerCode : MonoBehaviour
             Time.timeScale = 0;
 
         }
+    void resettimer()
+        {
+            GameOverUI.SetActive(false);
+        }
 }
 }

@@ -630,7 +630,7 @@ MonoBehaviour:
   speed: 10
   drink: {fileID: 523202022059573893}
   shakingGroup: {fileID: 2253099088908737943}
-  Player: {fileID: 0}
+  ClosetPlayer: {fileID: 0}
   CentPivot: {fileID: 6753966744430949026}
   IsShakingfin: 0
   Isgamefin: 0

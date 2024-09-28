@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ReadyCoding : MonoBehaviour
 {
-   public List<GameObject> ReadyButton,Readyindicator;
+   public List<GameObject> ReadyButton,Readyindicator,selectorbutt;
     public int readyIndicatorCount;
     private int ReadyNum;
     public GameObject PlayButton;
+    public bool isreadytoplay;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +21,27 @@ public class ReadyCoding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ReadyNum == readyIndicatorCount)
+        if(ReadyNum == Readyindicator.Count)
         {
             PlayButton.SetActive(true);
+            isreadytoplay = true;
+        }
+        if(isreadytoplay == true)
+        {
+            Handlereadytoplay();
         }
     }
     public void ReadyButt(int Num)
     {
         ReadyNum++;
         Readyindicator[Num].SetActive(true);
+    }
+
+    public void Handlereadytoplay()
+    {
+        foreach (GameObject obj in selectorbutt)
+        {
+            obj.SetActive(false);
+        }
     }
 }
