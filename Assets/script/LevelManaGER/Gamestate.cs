@@ -6,14 +6,14 @@ public class Gamestate : MonoBehaviour
 {
     public List<GameObject> PlayerList;
     public bool IsplayerinList;
-    public int gamestate_Number, numbertorandom;
+    public int gamestate_Number = 0, numbertorandom;
     public GameObject Player1, Player2;
 
     // Start is called before the first frame update
     void Start()
     {
         IsplayerinList = false;
-        gamestate_Number = 0;
+       
     }
 
     // Update is called once per frame
@@ -48,14 +48,7 @@ public class Gamestate : MonoBehaviour
     // Move to the next game state
     public void please_next()
     {
-        if (gamestate_Number >= 4)
-        {
-            gamestate_Number = 1;
-        }
-        else
-        {
-            gamestate_Number++;
-        }
+        gamestate_Number++;
     }
 
     // Placeholder for cleaning session logic

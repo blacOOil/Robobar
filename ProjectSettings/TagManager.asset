@@ -18,6 +18,7 @@ TagManager:
   - tableTag
   - Player2
   - Player1
+  - TrashTag
   layers:
   - Default
   - TransparentFX

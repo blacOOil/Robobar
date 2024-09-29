@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CleaningState : MonoBehaviour
 {
-    public List<GameObject> alltabletag;
+    public List<GameObject> alltabletag,TrashPosition,TrashGameObj;
     public bool Iscleaningstarted;
-    private int gamestatenumber;
+    public int gamestatenumber;
     public Gamestate gamestate;
+    public Qsingle qsingle;
+    public GameObject Trashbin;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +29,25 @@ public class CleaningState : MonoBehaviour
         if(Iscleaningstarted == true)
         {
             clearalltabletag();
+            ClearCustomer();
+            SpawningTrash();
         }
+        else
+        {
+            ClearTrash();
+        }
+    }
+    public void ClearTrash()
+    {
+        Trashbin.SetActive(false);
+    }
+    public void SpawningTrash()
+    {
+        Trashbin.SetActive(true);
     }
     public void UpdateGamestate()
     {
-        gamestate.gamestate_Number = gamestatenumber;
+        gamestatenumber = gamestate.gamestate_Number;
     }
     public void clearalltabletag()
     {
@@ -46,6 +62,16 @@ public class CleaningState : MonoBehaviour
         foreach (GameObject tag in tabletag) 
         {
             alltabletag.Add(tag);
+        }
+    }
+    public void ClearCustomer()
+    {
+        bool Iscustomerblocked = true;
+        qsingle.isCustomerhere = Iscustomerblocked;
+        GameObject[] Allcustomer = GameObject.FindGameObjectsWithTag("Customer");
+        foreach(GameObject customer in Allcustomer)
+        {
+            Destroy(customer);
         }
     }
 }

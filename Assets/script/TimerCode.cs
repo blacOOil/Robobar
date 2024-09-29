@@ -7,11 +7,14 @@ using TMPro;
 public class TimerCode : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI TimeText;
-    [SerializeField] public float remainingTime;
+    [SerializeField] public float remainingTime,startedRemainingtime;
     [SerializeField] public GameObject GameOverUI;
+        public bool IstimeCounting;
 
     void Start()
     {
+            startedRemainingtime = remainingTime;
+            IstimeCounting = true;
             GameOverUI.SetActive(false);
        // elapsedTime += Time.deltaTime;
       //  TimeText.text = elapsedTime.ToString();
@@ -21,28 +24,41 @@ public class TimerCode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        remainingTime -= Time.deltaTime;
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int second = Mathf.FloorToInt(remainingTime % 60);
-        TimeText.text = string.Format("{0:00}:{1:00}", minutes, second);
+        if(IstimeCounting == true)
+            {
+                CountingDown();
+            }
+            else
+            {
+
+            }
 
         if (remainingTime <= 0)
         {
             TimeText.text = string.Format("{0:00}:{1:00}", 0, 0);
                 GameOverUI.SetActive(true);
-           
-           
+                IstimeCounting = false;
         }
       
     }  
-    void Pause()
+    public void Pause()
         {
             Time.timeScale = 0;
 
         }
-    void resettimer()
+    public void resettimer()
         {
+            IstimeCounting = false;
+            remainingTime = startedRemainingtime;
             GameOverUI.SetActive(false);
+            
+        }
+    public void CountingDown()
+        {
+            remainingTime -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int second = Mathf.FloorToInt(remainingTime % 60);
+            TimeText.text = string.Format("{0:00}:{1:00}", minutes, second);
         }
 }
 }
