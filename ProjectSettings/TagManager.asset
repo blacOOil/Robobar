@@ -19,6 +19,7 @@ TagManager:
   - Player2
   - Player1
   - TrashTag
+  - TrashBin
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Post Processing
   - drinks
   - Customer
-  - 
+  - TrashBin
   - 
   - 
   - 

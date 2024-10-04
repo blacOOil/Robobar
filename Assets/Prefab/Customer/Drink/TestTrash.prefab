@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 938323529866076783}
   m_Layer: 11
   m_Name: TestTrash
-  m_TagString: drink
+  m_TagString: TrashTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
