@@ -69,8 +69,9 @@ public class Gamestate : MonoBehaviour
         // Placeholder for minigame session logic
         public void StartminigameSession()
         {
-            Debug.Log("Minigame session started");
-            // Implement minigame session logic here
+
+
+        Debug.Log("Minigame session started");
         }
 
         // Placeholder for upgrading session logic

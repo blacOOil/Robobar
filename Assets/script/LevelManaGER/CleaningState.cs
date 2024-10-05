@@ -45,7 +45,10 @@ public class CleaningState : MonoBehaviour
         else
         {
             ClearTrash();
+            
         }
+
+        
     }
     public void ClearTrash()
     {
@@ -88,6 +91,13 @@ public class CleaningState : MonoBehaviour
             tag.GetComponent<MeshRenderer>().enabled = false;
         }
     }
+    public void Setbackalltabletag()
+    {
+        foreach (GameObject tag in alltabletag)
+        {
+            tag.GetComponent<MeshRenderer>().enabled = true;
+        }
+    }
     public void addtabletaggameobj()
     {
         GameObject[] tabletag = GameObject.FindGameObjectsWithTag("tableTag");
@@ -122,6 +132,7 @@ public class CleaningState : MonoBehaviour
     }
     public void EndCleaningSession()
     {
+        Setbackalltabletag();
         Iscleaningstarted = true;
         gamestate.gamestate_Number = 2;
         }
