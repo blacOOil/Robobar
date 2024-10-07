@@ -20,6 +20,13 @@ TagManager:
   - Player1
   - TrashTag
   - TrashBin
+  - Collector1
+  - Collector2
+  - Collector3
+  - Box1
+  - Box2
+  - Box3
+  - OpenShopBox
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class CleaningState : MonoBehaviour
     public Qsingle qsingle;
     public GameObject Trashbin;
     public float maxOffset = 2.0f;
+    public bool Iscustomerblocked;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class CleaningState : MonoBehaviour
         UpdateGamestate();
         if (gamestatenumber == 1)
         {
+            Iscustomerblocked = true;
             Iscleaningstarted = true;
         } else
         { Iscleaningstarted = false; }
@@ -47,8 +49,29 @@ public class CleaningState : MonoBehaviour
             ClearTrash();
             
         }
+        if(gamestatenumber == 4)
+        {
+            foreach (GameObject tag in alltabletag)
+            {
+                tag.GetComponent<MeshRenderer>().enabled = true;
+            }
+            UnblockCustomer();
+         
+        }
 
         
+    }
+    public void UnblockCustomer()
+    {
+        if(Iscustomerblocked == true)
+        {
+            qsingle.isCustomerhere = false;
+            Iscustomerblocked = false;
+        }
+        else
+        {
+
+        }
     }
     public void ClearTrash()
     {
@@ -108,7 +131,7 @@ public class CleaningState : MonoBehaviour
     }
     public void ClearCustomer()
     {
-        bool Iscustomerblocked = true;
+        
         qsingle.isCustomerhere = Iscustomerblocked;
         GameObject[] Allcustomer = GameObject.FindGameObjectsWithTag("Customer");
         foreach (GameObject customer in Allcustomer)

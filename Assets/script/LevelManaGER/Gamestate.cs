@@ -1,27 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Timemanager;
 
 public class Gamestate : MonoBehaviour
 {
     public List<GameObject> PlayerList;
-    public bool IsplayerinList;
+    public List<Transform> PlayerServiceSpawnList;
+    public bool IsplayerinList,IsplayerPositionseted,IstimerSeted;
     public int gamestate_Number = 0, numbertorandom;
     public GameObject Player1, Player2;
+    public TimerCode timerCode;
 
     // Start is called before the first frame update
     void Start()
     {
         IsplayerinList = false;
-       
+        IsplayerPositionseted = true;
+        IstimerSeted = false;
     }
 
     // Update is called once per frame
     void Update()
+      
     {
+        HandleGameLoop();
         HandleGameState();
     }
-
+    private void HandleGameLoop()
+    {
+        if(gamestate_Number >= 5)
+        {
+            gamestate_Number = 1;
+        }
+    }
     // Handle the game state based on gamestate_Number
     private void HandleGameState()
     {
@@ -49,6 +61,7 @@ public class Gamestate : MonoBehaviour
     public void please_next()
     {
         gamestate_Number++;
+        IstimerSeted = false;
     }
 
     // Placeholder for cleaning session logic
@@ -69,7 +82,7 @@ public class Gamestate : MonoBehaviour
         // Placeholder for minigame session logic
         public void StartminigameSession()
         {
-
+        IsplayerPositionseted = false;
 
         Debug.Log("Minigame session started");
         }
@@ -77,6 +90,15 @@ public class Gamestate : MonoBehaviour
         // Placeholder for upgrading session logic
         public void UpgradingSession()
         {
+            if(IsplayerPositionseted == false)
+        {
+            SetPlayerPosition();
+        }
+        else
+        {
+
+        }
+            
             Debug.Log("Upgrading session started");
             // Implement upgrading session logic here
         }
@@ -84,7 +106,11 @@ public class Gamestate : MonoBehaviour
         // Placeholder for resume session logic
         public void ResumeSession()
         {
-            Debug.Log("Resume session started");
+        Player1.GetComponent<ServiceSystem>().enabled = true;
+        Player2.GetComponent<ServiceSystem>().enabled = true;
+        Retiming();
+
+        Debug.Log("Resume session started");
             // Implement resume session logic here
         }
         public void AddPlayerToPlayerList()
@@ -101,5 +127,24 @@ public class Gamestate : MonoBehaviour
             }
             IsplayerinList = true;
         }
-    } 
+    public void SetPlayerPosition()
+        {
+        Player1.transform.position = PlayerServiceSpawnList[0].position;
+        Player2.transform.position = PlayerServiceSpawnList[1].position;
+        IsplayerPositionseted = true;
+    }
+    public void Retiming()
+    {
+        if(IstimerSeted == false)
+        {
+            timerCode.remainingTime = timerCode.startedRemainingtime;
+            timerCode.IstimeCounting = true;
+            IstimerSeted = true;
+        }
+        else
+        {
+
+        }
+    }
+} 
 

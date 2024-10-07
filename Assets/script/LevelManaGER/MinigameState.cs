@@ -39,7 +39,7 @@ public class MinigameState : MonoBehaviour
     }
     public void ClearMinigame()
     {
-
+        SetMinigamesInactive();
     }
     public void UpdateGamestate()
     {
