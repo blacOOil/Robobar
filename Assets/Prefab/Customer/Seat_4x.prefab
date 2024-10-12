@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  CustomerCheckerRadius: 1
+  CustomerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!136 &5000204733840413306
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -144,6 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  CustomerCheckerRadius: 1
+  CustomerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!136 &7422575866854301147
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -241,6 +249,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  CustomerCheckerRadius: 1
+  CustomerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!136 &2275941525106712321
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -338,6 +350,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  CustomerCheckerRadius: 1
+  CustomerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!136 &8319810014143452098
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -483,6 +499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seat_4x
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6f08a1154b979ba498fce83337be7e34,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -506,7 +527,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7987774889697223946}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6f08a1154b979ba498fce83337be7e34,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8731255149825560033}
   m_SourcePrefab: {fileID: 100100000, guid: 6f08a1154b979ba498fce83337be7e34, type: 3}
 --- !u!4 &3862161915387464654 stripped
 Transform:
@@ -514,6 +539,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3608402213141687333}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4526952568173498740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6f08a1154b979ba498fce83337be7e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 3608402213141687333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8731255149825560033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526952568173498740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3193e971c60491044ae476fc46f4475d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tableTag: {fileID: 6506055931790499175}
+  Seat:
+  - {fileID: 835636090505667004}
+  - {fileID: 4969893545490111038}
+  - {fileID: 3135815187838533117}
+  - {fileID: 4658746189841559344}
+  ChairPlacement: 0
+  IsAllnotfull: 0
 --- !u!1001 &4727166002472750447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,15 +662,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3170061848012370248}
-    - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4799312900326809739}
     - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8419878286112048274}
+    - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7395749542339989226}
   m_SourcePrefab: {fileID: 100100000, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20, type: 3}
 --- !u!4 &4412656655656287905 stripped
 Transform:
@@ -633,25 +684,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4727166002472750447}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3170061848012370248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506055931790499175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2cc74943c9e1c64eac0851497ea9f4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chairSingles: {fileID: 0}
-  TableTagTranform: {fileID: 5530747280691478101}
-  seat:
-  - {fileID: 835636090505667004}
-  - {fileID: 4969893545490111038}
-  - {fileID: 3135815187838533117}
-  - {fileID: 4658746189841559344}
 --- !u!54 &4799312900326809739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -702,3 +734,22 @@ CapsuleCollider:
   m_Height: 25
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7395749542339989226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506055931790499175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2cc74943c9e1c64eac0851497ea9f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chairSingles: {fileID: 0}
+  TableTagTranform: {fileID: 5530747280691478101}
+  seat:
+  - {fileID: 835636090505667004}
+  - {fileID: 4969893545490111038}
+  - {fileID: 3135815187838533117}
+  - {fileID: 4658746189841559344}

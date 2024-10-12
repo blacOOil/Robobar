@@ -417,6 +417,11 @@ MonoBehaviour:
   - {fileID: 4240728967509717970, guid: 8db72590bb4f38a458179d27fa8b871c, type: 3}
   - {fileID: 4240728967509717970, guid: 42b48ab8c6afda14d9312b23a9d889fe, type: 3}
   RemainmingTime: 0
+  SatificationState: 0
+  IsGreen: 0
+  IsYellow: 0
+  IsRed: 0
+  IsBlack: 0
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0
@@ -435,7 +440,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6162576104635231622}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

@@ -96,7 +96,6 @@ public class Gamestate : MonoBehaviour
         }
         else
         {
-
         }
             
             Debug.Log("Upgrading session started");

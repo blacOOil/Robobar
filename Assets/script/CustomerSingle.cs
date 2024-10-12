@@ -16,10 +16,12 @@ public class CustomerSingle : MonoBehaviour
     public List<GameObject> DrinkPrefab;
 
     [Header("Satisfaction")]
-    public float RemainmingTime;
+    public float RemainmingTime, SatificationState;
+    public bool IsGreen, IsYellow, IsRed, IsBlack;
+
 
     [Header("SittingSession")]
-    public float PlayerCheckerRadius = 100f;
+    public float PlayerCheckerRadius = 500f;
     public bool Issited, Isfull;
     public GameObject Requested, PlayerInteractMenu, exitdoor;
     public LayerMask Player;
@@ -28,10 +30,13 @@ public class CustomerSingle : MonoBehaviour
     private void Start()
     {
         InitializeSession();
+        IntiallizeSatificacian();
     }
 
     private void Update()
     {
+        SatificationDecressing();
+        HandleCustomerSatification();
         if (Isfull == false)
         {
             ManageSittingAndOrders();
@@ -53,7 +58,6 @@ public class CustomerSingle : MonoBehaviour
         Isfull = false;
         Isordered = false;
         exitdoor = GameObject.FindGameObjectWithTag("exitdoor");
-        RemainmingTime = 200;
     }
 
     // Handle sitting session and managing orders
@@ -88,8 +92,6 @@ public class CustomerSingle : MonoBehaviour
     // Handle receiving the drink order and player interaction
     private void HandleOrderReceived()
     {
-        RemainmingTime -= Time.deltaTime;
-
         if (IsplayerClose() && IsDrinkClose() && Input.GetKeyDown(KeyCode.E))
         {
             ReceiveOrder();
@@ -97,6 +99,7 @@ public class CustomerSingle : MonoBehaviour
             {
                 SpawnDrinkThatRecived();
                 StartCoroutine(DrinkingRoutine());
+                SatificationIncrease();
                 Debug.Log("Thank");
             }
             else
@@ -109,17 +112,17 @@ public class CustomerSingle : MonoBehaviour
     // Handle player interaction when the customer is not yet seated
     private void HandlePlayerInteraction()
     {
-        
+
         if (IsplayerClose() || Isplayer2Close())
         {
             PlayerInteractMenu.SetActive(true);
             if (IsplayerClose())
             {
-                
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        Debug.Log("Go to table Ok");
-                        customertoTable.movetotable();
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Go to table Ok");
+                    customertoTable.movetotable();
                     if (!customertoTable.fixedTableset())
                     {
                         ExitStore();
@@ -128,17 +131,17 @@ public class CustomerSingle : MonoBehaviour
                     {
                         Issited = true;
                     }
-                        Issited = true;
-                    }
-                
+                    Issited = true;
+                }
+
 
             }
             if (Isplayer2Close())
             {
-                    if (Input.GetKeyDown(KeyCode.I))
-                    {
-                        Debug.Log("Go to table Ok");
-                        customertoTable.movetotable();
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    Debug.Log("Go to table Ok");
+                    customertoTable.movetotable();
                     if (!customertoTable.fixedTableset())
                     {
                         ExitStore();
@@ -149,11 +152,8 @@ public class CustomerSingle : MonoBehaviour
                     }
                     Issited = true;
 
-                    }
-                
+                }
             }
-
-
         }
         else
         {
@@ -166,8 +166,14 @@ public class CustomerSingle : MonoBehaviour
     // End the session when the customer is full
     private void EndSession()
     {
+        if(Isordered == true)
+        {
         customertoTable.GetUp();
+        }
+        if (DrinktoDrinked != null)
+        {
         Destroy(DrinktoDrinked);
+        }
         ExitStore();
         Destroy(gameObject);
     }
@@ -187,7 +193,7 @@ public class CustomerSingle : MonoBehaviour
         return CheckProximity("drink");
     }
 
-   
+
 
     private bool CheckProximity(string tag)
     {
@@ -206,6 +212,7 @@ public class CustomerSingle : MonoBehaviour
 
     public void OrderTheDrink()
     {
+        SatificationIncrease();
         int RandomIndex = Random.Range(0, OrderMenu.Count);
         Debug.Log(RandomIndex);
         Randomdrinkfloat = RandomIndex;
@@ -239,6 +246,7 @@ public class CustomerSingle : MonoBehaviour
     public void SpawnDrinkThatRecived()
     {
         DrinktoDrinked = Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
+        SatificationIncrease();
     }
 
     public void ExitStore()
@@ -256,5 +264,67 @@ public class CustomerSingle : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, PlayerCheckerRadius);
+    }
+    public void IntiallizeSatificacian()
+    {
+        RemainmingTime = 60;
+        IsGreen = true;
+        IsYellow = false;
+        IsRed = false;
+        IsBlack = false;
+    }
+    public void SatificationDecressing()
+    {
+        RemainmingTime -= Time.deltaTime;
+    }
+    public void SatificationIncrease()
+    {
+        RemainmingTime += 10;
+    }
+    public void HandleCustomerSatification()
+    {
+        if (RemainmingTime > 40) // High satisfaction (Green)
+        {
+            IsGreen = true;
+            IsYellow = false;
+            IsRed = false;
+            IsBlack = false;
+        }
+        else if (RemainmingTime > 20 && RemainmingTime <= 40) // Moderate satisfaction (Yellow)
+        {
+            IsGreen = false;
+            IsYellow = true;
+            IsRed = false;
+            IsBlack = false;
+        }
+        else if (RemainmingTime > 0 && RemainmingTime <= 20) // Low satisfaction (Red)
+        {
+            IsGreen = false;
+            IsYellow = false;
+            IsRed = true;
+            IsBlack = false;
+        }
+        else if (RemainmingTime <= 0) // Very low satisfaction (Black)
+        {
+            IsGreen = false;
+            IsYellow = false;
+            IsRed = false;
+            IsBlack = true;
+        }
+        if (IsGreen)
+        {
+            
+        }
+        else if (IsYellow)
+        {
+
+        }
+        else if (IsRed)
+        {
+
+        }else if (IsBlack)
+        {
+            EndSession();
+        }
     }
 }

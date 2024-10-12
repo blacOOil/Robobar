@@ -522,8 +522,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d2b3d18427afa4fac132e2dde0cad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seatSetSingle: {fileID: 0}
+  IstableTagnear: 0
   Self: {fileID: 6162576104635231622}
   Table: {fileID: 0}
+  TableTag: {fileID: 0}
+  nearTabletag: {fileID: 0}
   Speed: 100
   searchRadius: 999
 --- !u!114 &5989789123077395522
@@ -556,6 +560,12 @@ MonoBehaviour:
   - {fileID: 4240728967509717970, guid: 365a487231846ba4b8e105f653883252, type: 3}
   - {fileID: 4240728967509717970, guid: 8db72590bb4f38a458179d27fa8b871c, type: 3}
   - {fileID: 4240728967509717970, guid: 42b48ab8c6afda14d9312b23a9d889fe, type: 3}
+  RemainmingTime: 0
+  SatificationState: 0
+  IsGreen: 0
+  IsYellow: 0
+  IsRed: 0
+  IsBlack: 0
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0
@@ -574,7 +584,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6162576104635231622}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

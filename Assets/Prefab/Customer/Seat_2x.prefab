@@ -79,6 +79,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  CustomerCheckerRadius: 1
+  CustomerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!136 &1572058557009871955
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -176,6 +180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  CustomerCheckerRadius: 1
+  CustomerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!136 &484797084647434490
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -523,3 +531,5 @@ MonoBehaviour:
   Seat:
   - {fileID: 7527387729747077955}
   - {fileID: 1843730884341787189}
+  ChairPlacement: 0
+  IsAllSited: 0

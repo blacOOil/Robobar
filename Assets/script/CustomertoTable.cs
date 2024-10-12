@@ -25,7 +25,7 @@ public class CustomertoTable : MonoBehaviour
     {
         if (fixedTableset())
         {
-            Self.transform.position = Vector3.MoveTowards(Self.transform.position, Table.transform.position, Speed);
+            Self.transform.position = Table.transform.position;
         }
         else
         {
@@ -36,7 +36,7 @@ public class CustomertoTable : MonoBehaviour
     }
     public bool fixedTableset()
     {
-        findClosestTable();
+        //findClosestTable();
         GettableId();
         if (Table == null)
         {
@@ -74,20 +74,36 @@ public class CustomertoTable : MonoBehaviour
     }
     public void GettableId()
     {
-        if(IstableTagnear == true)
+        if (IstableTagnear == true)
         {
             seatSetSingle = nearTabletag.GetComponent<SeatSetSingle>();
             List<GameObject> seatList = seatSetSingle.seat;
-            Table = seatList[0];
-            ChairSingle chairSingle = Table.GetComponent<ChairSingle>();
-            chairSingle.isSited = true;
-           
 
+            // Loop through all seats to find the first available (not occupied) seat
+           
+            foreach (GameObject seat in seatList)
+            {
+                ChairSingle chairSingle = seat.GetComponent<ChairSingle>();
+
+                // If the seat is not occupied, set it as the table and mark it as occupied
+                if (!chairSingle.isSited)
+                {
+                    Table = seat;
+                    chairSingle.isSited = true;
+                    break; // Exit the loop once a seat is found
+                }
+            }
+
+            if (Table == null)
+            {
+                Debug.Log("All seats are occupied.");
+            }
         }
         else
         {
             Debug.Log("No tabletag");
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {

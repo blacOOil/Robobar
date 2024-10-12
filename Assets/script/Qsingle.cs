@@ -9,6 +9,8 @@ public class Qsingle : MonoBehaviour
     public Transform spawnPoint;
     public float waitTime = 1f;
     private bool isSpawning = false; // Flag to check if the coroutine is running
+    public float CustomerCheckerRadius = 1f;
+    public LayerMask CustomerLayer;
 
     IEnumerator StartCustomerSpawning()
     {
@@ -27,10 +29,19 @@ public class Qsingle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IscustomerClose())
+        {
+            isCustomerhere = true;
+        }
+        else
+        {
+            isCustomerhere = false;
+        }
         if (!isCustomerhere && !isSpawning)
         {
             StartCoroutine(StartCustomerSpawning());
         }
+        
     }
 
     public void SpawnedSingleCustomer()
@@ -58,5 +69,20 @@ public class Qsingle : MonoBehaviour
         {
             isCustomerhere = false;
         }
+    }
+    private bool IscustomerClose()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, CustomerCheckerRadius, CustomerLayer);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Customer"))
+            {
+               
+                return true;
+
+            }
+        }
+        return false;
+        
     }
 }
