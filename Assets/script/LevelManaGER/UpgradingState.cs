@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UpgradingState : MonoBehaviour
 {
-    public GameObject UpgradingSessionGameObj;
+    public List<GameObject> UpgradingSessionGameObj;
+    public GameObject OpeningShopBox;
     public Gamestate gamestate;
     public bool IsupgradingStarted;
     public int gamestatenumber;
@@ -12,20 +13,26 @@ public class UpgradingState : MonoBehaviour
     void Start()
     {
         IsupgradingStarted = false;
-        UpgradingSessionGameObj.SetActive(false);
+        AddUpgradingGameObj();
+        OpeningShopBox.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateGamestate();
-        if(IsupgradingStarted == true)
+        foreach (GameObject obj in UpgradingSessionGameObj)
         {
-            UpgradingSessionGameObj.SetActive(true);
-        }
-        else
-        {
-            UpgradingSessionGameObj.SetActive(false);
+            if (IsupgradingStarted == true)
+            {
+                obj.SetActive(true);
+                OpeningShopBox.SetActive(true);
+            }
+            else
+            {
+                obj.SetActive(false);
+                OpeningShopBox.SetActive(false);
+            }
         }
     }
     public void UpdateGamestate()
@@ -39,5 +46,10 @@ public class UpgradingState : MonoBehaviour
         {
             IsupgradingStarted = false;
         }
+    }
+    public void AddUpgradingGameObj()
+    {
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("UpgradTag");
+        UpgradingSessionGameObj = new List<GameObject>(objectsWithTag);
     }
 }

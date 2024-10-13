@@ -109,6 +109,9 @@ MonoBehaviour:
   CustomerLayer:
     serializedVersion: 2
     m_Bits: 4096
+  TagLayer:
+    serializedVersion: 2
+    m_Bits: 16384
   ClosestCustomer: {fileID: 0}
   Objholding: {fileID: 0}
   ReadytoPickObj: {fileID: 0}

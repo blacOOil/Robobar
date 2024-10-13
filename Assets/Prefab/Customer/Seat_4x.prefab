@@ -580,6 +580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
         type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
+        type: 3}
       propertyPath: m_TagString
       value: tableTag
       objectReference: {fileID: 0}

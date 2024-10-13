@@ -27,6 +27,7 @@ TagManager:
   - Box2
   - Box3
   - OpenShopBox
+  - UpgradTag
   layers:
   - Default
   - TransparentFX
@@ -42,8 +43,8 @@ TagManager:
   - drinks
   - Customer
   - TrashBin
-  - 
-  - 
+  - TableTag
+  - UpgradeTag
   - 
   - 
   - 

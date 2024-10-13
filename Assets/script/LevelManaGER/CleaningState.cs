@@ -12,6 +12,7 @@ public class CleaningState : MonoBehaviour
     public GameObject Trashbin;
     public float maxOffset = 2.0f;
     public bool Iscustomerblocked;
+    public cookingSystem cookingSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +31,18 @@ public class CleaningState : MonoBehaviour
         {
             Iscustomerblocked = true;
             Iscleaningstarted = true;
+            cookingSystem.enabled = false;
+
         } else
-        { Iscleaningstarted = false; }
+        { Iscleaningstarted = false;
+            trashAmount = 0;
+           // cookingSystem.enabled = true;
+
+        }
+        if (gamestatenumber == 4)
+        {
+            cookingSystem.enabled = true;
+        }
         if (Iscleaningstarted == true)
         {
             clearalltabletag();

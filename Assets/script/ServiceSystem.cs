@@ -9,7 +9,7 @@ public class ServiceSystem : MonoBehaviour
     public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
     public float CustomerCheckerRadius = 1f;
     private int playernumber = 0;
-    public LayerMask CustomerLayer;
+    public LayerMask CustomerLayer,TagLayer;
     public GameObject ClosestCustomer, Objholding,ReadytoPickObj;
 
     private bool IscustomerClose()
@@ -21,6 +21,19 @@ public class ServiceSystem : MonoBehaviour
             {
                 return true;
                 
+            }
+        }
+        return false;
+    }
+    private bool IsTageClose()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, CustomerCheckerRadius, TagLayer);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("tableTag"))
+            {
+                return true;
+
             }
         }
         return false;
@@ -45,7 +58,14 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (IsTageClose() && Ishandholded == false)
+        {
+            IsTableTagnear = true;
+        }
+        else
+        {
+            IsTableTagnear = false;
+        }
         if ((holdedrink) && !IscustomerClose())
         {
             if (PlayerInput(playernumber))
@@ -177,7 +197,9 @@ public class ServiceSystem : MonoBehaviour
            
         }
     }
-    private void OnTriggerExit(Collider other)
+ 
+
+        private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("tableTag"))
         {

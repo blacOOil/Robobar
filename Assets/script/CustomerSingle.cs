@@ -18,6 +18,10 @@ public class CustomerSingle : MonoBehaviour
     [Header("Satisfaction")]
     public float RemainmingTime, SatificationState;
     public bool IsGreen, IsYellow, IsRed, IsBlack;
+    public Slider SatificationSlider;
+    public Color newColor;
+    public float changeTime = 2.98f;
+    public Image SliderImage;
 
 
     [Header("SittingSession")]
@@ -166,13 +170,13 @@ public class CustomerSingle : MonoBehaviour
     // End the session when the customer is full
     private void EndSession()
     {
-        if(Isordered == true)
+        if (Isordered == true)
         {
-        customertoTable.GetUp();
+            customertoTable.GetUp();
         }
         if (DrinktoDrinked != null)
         {
-        Destroy(DrinktoDrinked);
+            Destroy(DrinktoDrinked);
         }
         ExitStore();
         Destroy(gameObject);
@@ -283,6 +287,7 @@ public class CustomerSingle : MonoBehaviour
     }
     public void HandleCustomerSatification()
     {
+        SatificationSlider.value = RemainmingTime;
         if (RemainmingTime > 40) // High satisfaction (Green)
         {
             IsGreen = true;
@@ -313,18 +318,28 @@ public class CustomerSingle : MonoBehaviour
         }
         if (IsGreen)
         {
-            
+            newColor = Color.green;
+            ColorChangeLoop();
         }
         else if (IsYellow)
         {
-
+            newColor = Color.yellow;
+            ColorChangeLoop();
         }
         else if (IsRed)
         {
-
-        }else if (IsBlack)
+            newColor = Color.red;
+           ColorChangeLoop();
+        }
+        else if (IsBlack)
         {
             EndSession();
         }
     }
+    public void ColorChangeLoop()
+    {
+        Color currentColor = SliderImage.color;
+        SliderImage.color = Color.Lerp(currentColor, newColor, changeTime);
+    }
 }
+    
