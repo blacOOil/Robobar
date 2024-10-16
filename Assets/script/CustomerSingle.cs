@@ -22,6 +22,7 @@ public class CustomerSingle : MonoBehaviour
     public Color newColor;
     public float changeTime = 2.98f;
     public Image SliderImage;
+    public GameObject SatifactorCanvas;
 
 
     [Header("SittingSession")]
@@ -98,6 +99,7 @@ public class CustomerSingle : MonoBehaviour
     {
         if (IsplayerClose() && IsDrinkClose() && Input.GetKeyDown(KeyCode.E))
         {
+            SatifactorCanvas.SetActive(false);
             ReceiveOrder();
             if (Randomdrinkfloat == ServedDrink)
             {

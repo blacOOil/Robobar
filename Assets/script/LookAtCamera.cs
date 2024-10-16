@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    public GameObject[] Ui;
+
     private Camera mainCamera;
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class LookAtCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ui[0].transform.LookAt(mainCamera.transform);
-        Ui[1].transform.LookAt(mainCamera.transform);
+        gameObject.transform.LookAt(mainCamera.transform);
+      
     }
 }

@@ -179,6 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2781932987508922098}
+  - component: {fileID: 662905069236894623}
   m_Layer: 0
   m_Name: Player1SpawedPoint
   m_TagString: Untagged
@@ -201,6 +202,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8237354152856092873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &662905069236894623
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920773852613505469}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1908115650685225360
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6807799501834796184}
+  - component: {fileID: 8597004624175974409}
   m_Layer: 0
   m_Name: 'Player3SpawedPoint '
   m_TagString: Untagged
@@ -832,6 +857,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8237354152856092873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8597004624175974409
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4991628263003700370}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5123855739669618931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1372430860230103167}
+  - component: {fileID: 1282021804292427662}
   m_Layer: 0
   m_Name: 'Player2SpawedPoint '
   m_TagString: Untagged
@@ -1107,6 +1156,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8237354152856092873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1282021804292427662
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5517302228698519998}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5519483891176320766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1268,9 @@ MonoBehaviour:
   - {fileID: 6748801936366830592}
   - {fileID: 7936125956909148756}
   SpawnDuration: 0
+  CarLifetime: 100
+  timerCode: {fileID: 0}
+  remainingTime: 10
 --- !u!1 &5640773638811378699
 GameObject:
   m_ObjectHideFlags: 0

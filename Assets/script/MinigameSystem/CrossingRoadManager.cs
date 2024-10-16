@@ -14,8 +14,10 @@ public class CrossingRoadManager : MonoBehaviour
     [Header("SetGameProperty")]
     public List<GameObject> CarsObjList;
     public List<Transform> CarSpawnpoint,CarDestinationPoint;
-    public float SpawnDuration = 3f;
+    public float SpawnDuration = 0.5f;
     public float CarLifetime = 100f;
+    private float spawnTimer = 0f;
+
 
     [Header("SetManager")]
     public TimerCode timerCode;
@@ -43,6 +45,18 @@ public class CrossingRoadManager : MonoBehaviour
         else
         {
            
+        }
+       if(IscrossingRoadStarted = true)
+        {
+          
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer >= SpawnDuration) // Check if enough time has passed
+            {
+                SpawnCar(); // Spawn the car
+                spawnTimer = 0f; // Reset the timer
+            }
+
+
         }
     }
     public void FindPlayer()
@@ -74,22 +88,13 @@ public class CrossingRoadManager : MonoBehaviour
             IsPlayerReady = true;
         }    
     }
-    public IEnumerator CarSpawningSystem()
-    {
-        while (true)
-        {
-            if (IscrossingRoadStarted) // Only spawn cars when the crossing has started
-            {
-                SpawnCar();
-            }
-            yield return new WaitForSeconds(SpawnDuration);
-        }
-    }
+  
 
     public void SpawnCar()
     {
         if (CarsObjList.Count > 0 && CarSpawnpoint.Count > 0 && CarDestinationPoint.Count > 0)
         {
+
             // Select a random car and spawn point
             int randomCarIndex = Random.Range(0, CarsObjList.Count);
             int randomSpawnIndex = Random.Range(0, CarSpawnpoint.Count);
@@ -98,22 +103,35 @@ public class CrossingRoadManager : MonoBehaviour
             GameObject car = Instantiate(CarsObjList[randomCarIndex], CarSpawnpoint[randomSpawnIndex].position, Quaternion.identity);
 
             // Move the car to the destination
-            StartCoroutine(MoveCarToDestination(car));
+            StartCoroutine(MoveCarToDestination(car, randomSpawnIndex));
 
             // Destroy the car after some time
             Destroy(car, CarLifetime);
         }
     }
 
-    private IEnumerator MoveCarToDestination(GameObject car)
+    private IEnumerator MoveCarToDestination(GameObject car,int randomSpawnIndex)
     {
-        int randomDestinationIndex = Random.Range(0, CarDestinationPoint.Count);
+        int randomDestinationIndex = randomSpawnIndex;
         Transform destination = CarDestinationPoint[randomDestinationIndex];
+
+        // Set the speed of the car
+        float moveSpeed = 5f; // Adjust speed here
+        float rotationSpeed = 1000f; // Adjust rotation speed here
 
         while (car != null && Vector3.Distance(car.transform.position, destination.position) > 0.1f)
         {
-            car.transform.position = Vector3.MoveTowards(car.transform.position, destination.position, Time.deltaTime * 5f);  // Adjust speed here
-            yield return null;
+            // Move the car towards the destination
+            car.transform.position = Vector3.MoveTowards(car.transform.position, destination.position, moveSpeed * Time.deltaTime);
+
+            // Calculate the rotation step
+            Vector3 direction = (destination.position - car.transform.position).normalized; // Get the direction to the destination
+            Quaternion lookRotation = Quaternion.LookRotation(direction); // Create a rotation that points in that direction
+
+            // Rotate the car smoothly towards the destination
+            car.transform.rotation = Quaternion.RotateTowards(car.transform.rotation, lookRotation, rotationSpeed );
+
+            yield return null; // Wait for the next frame
         }
     }
     public void StartTimeCouting()

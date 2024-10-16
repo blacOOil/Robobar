@@ -28,6 +28,8 @@ TagManager:
   - Box3
   - OpenShopBox
   - UpgradTag
+  - Car
+  - CrossRoadSpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -45,7 +47,7 @@ TagManager:
   - TrashBin
   - TableTag
   - UpgradeTag
-  - 
+  - CrossRoadSpawner
   - 
   - 
   - 

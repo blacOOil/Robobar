@@ -7,10 +7,10 @@ public class ServiceSystem : MonoBehaviour
     public MonneyLevelCode monneyLevelCode;
     public Transform Hand;
     public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
-    public float CustomerCheckerRadius = 1f;
+    private float CustomerCheckerRadius = 2f;
     private int playernumber = 0;
     public LayerMask CustomerLayer,TagLayer;
-    public GameObject ClosestCustomer, Objholding,ReadytoPickObj;
+    public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage;
 
     private bool IscustomerClose()
     {
@@ -32,8 +32,11 @@ public class ServiceSystem : MonoBehaviour
         {
             if (hitCollider.CompareTag("tableTag"))
             {
+                if (!Ishandholded)
+                {
+                    ReadytoPickObj = hitCollider.gameObject; // Store the table tag object
+                }
                 return true;
-
             }
         }
         return false;
@@ -58,9 +61,9 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsTageClose() && Ishandholded == false)
-        {
-            IsTableTagnear = true;
+        if (IsTageClose()&& Ishandholded == false)
+        {  
+                IsTableTagnear = true;
         }
         else
         {
@@ -105,8 +108,10 @@ public class ServiceSystem : MonoBehaviour
             {
             TransformObjToHand(ReadytoPickObj);
             }
-            
+
         }
+       
+       
         
         if(Ishandholded == false)
         {
@@ -185,18 +190,7 @@ public class ServiceSystem : MonoBehaviour
         }
        
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("tableTag"))
-        {
-            if (Ishandholded == false)
-            {
-                IsTableTagnear = true;
-                ReadytoPickObj = other.gameObject;
-            }
-           
-        }
-    }
+   
  
 
         private void OnTriggerExit(Collider other)
@@ -222,6 +216,13 @@ public class ServiceSystem : MonoBehaviour
         if (Obj.CompareTag("drink"))
         {
             holdedrink = true;
+        }
+        if (Obj == null)
+        {
+
+        }
+        {
+
         }
 
         // Freeze the drink's position by setting its Rigidbody to kinematic

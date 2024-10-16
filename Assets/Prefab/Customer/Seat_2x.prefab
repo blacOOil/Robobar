@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 6401107714219833736}
   - component: {fileID: 75741537287667512}
   - component: {fileID: 1301117564688731640}
+  - component: {fileID: 3170144056043950149}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -236,6 +237,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3170144056043950149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2656143855741525147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baf2b49d695f384bae90c6eda6eb3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7429694261943635061
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,15 +540,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1876967796630963548}
-    - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2928532127496639531}
     - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5482930799685388280}
+    - targetCorrespondingSourceObject: {fileID: 2004210725500948488, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8781759397585610123}
   m_SourcePrefab: {fileID: 100100000, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20, type: 3}
 --- !u!1 &4118870027054946224 stripped
 GameObject:
@@ -543,23 +556,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2520126275127740344}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1876967796630963548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4118870027054946224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2cc74943c9e1c64eac0851497ea9f4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chairSingles: {fileID: 0}
-  TableTagTranform: {fileID: 799327785216501762}
-  seat:
-  - {fileID: 7527387729747077955}
-  - {fileID: 1843730884341787189}
 --- !u!54 &2928532127496639531
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -610,6 +606,20 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8781759397585610123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4118870027054946224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babe8912cdd3d274eb6754515b2411b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasUpgrade: {fileID: 2656143855741525147}
+  IsPlayerClose: 0
 --- !u!4 &6800412110918055030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8982046510520136654, guid: 04c7d3a3a5d6a1a49adc1a1e5ee9bb20,

@@ -4,28 +4,42 @@ using UnityEngine;
 
 public class CustomertoTable : MonoBehaviour
 {
+    [Header("CustomerSetting")]
     public SeatSetSingle seatSetSingle;
     public bool IstableTagnear;
     public GameObject Self;
     public GameObject Table,TableTag,nearTabletag;
     public float Speed;
     public float searchRadius = 900000f;
+
+    [Header("CustomerSpawning")]
+    private int Chairnum;
+    public List<GameObject> ExtraChair;
+    private bool IsselfSitted;
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        IsselfSitted = false;
         IstableTagnear = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(IsselfSitted == true)
+        {
+            SpawnedExtraCustomer();
+        }
     }
     public void movetotable()
     {
         if (fixedTableset())
         {
             Self.transform.position = Table.transform.position;
+            IsselfSitted = true;
+
         }
         else
         {
@@ -78,6 +92,7 @@ public class CustomertoTable : MonoBehaviour
         {
             seatSetSingle = nearTabletag.GetComponent<SeatSetSingle>();
             List<GameObject> seatList = seatSetSingle.seat;
+            Chairnum = seatList.Count;
 
             // Loop through all seats to find the first available (not occupied) seat
            
@@ -89,7 +104,7 @@ public class CustomertoTable : MonoBehaviour
                 if (!chairSingle.isSited)
                 {
                     Table = seat;
-                    chairSingle.isSited = true;
+                 
                     break; // Exit the loop once a seat is found
                 }
             }
@@ -125,5 +140,9 @@ public class CustomertoTable : MonoBehaviour
     {
         ChairSingle chairSingle = Table.GetComponent<ChairSingle>();
         chairSingle.isSited = false;
+    }
+    public void SpawnedExtraCustomer()
+    {
+
     }
 }
