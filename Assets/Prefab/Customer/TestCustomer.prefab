@@ -590,6 +590,11 @@ MonoBehaviour:
   nearTabletag: {fileID: 0}
   Speed: 100
   searchRadius: 999
+  ExtraChair: []
+  ExtraCustomer:
+  - {fileID: 6162576104635231622}
+  - {fileID: 6162576104635231622, guid: 94dce3552eb89784299b8e782387a8d1, type: 3}
+  - {fileID: 6162576104635231622, guid: bf5f89180af656142a1b5ecc6631b611, type: 3}
 --- !u!114 &5989789123077395522
 MonoBehaviour:
   m_ObjectHideFlags: 0

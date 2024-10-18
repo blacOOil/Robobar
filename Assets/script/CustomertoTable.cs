@@ -14,7 +14,7 @@ public class CustomertoTable : MonoBehaviour
 
     [Header("CustomerSpawning")]
     private int Chairnum;
-    public List<GameObject> ExtraChair;
+    public List<GameObject> ExtraChair,ExtraCustomer;
     private bool IsselfSitted;
     
 
@@ -143,6 +143,14 @@ public class CustomertoTable : MonoBehaviour
     }
     public void SpawnedExtraCustomer()
     {
+        List<GameObject> SeatList = seatSetSingle.seat;
+        foreach (GameObject Seat in SeatList)
+        {
+            ChairSingle chairSingle = Seat.GetComponent<ChairSingle>();
+            if (!chairSingle.isSited)
+            {
 
+            }
+        }
     }
 }
