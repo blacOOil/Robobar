@@ -6,7 +6,8 @@ public class CleaningState : MonoBehaviour
 {
     public List<GameObject> alltabletag, TrashPosition, TrashGameObj;
     public bool Iscleaningstarted, IsTrashCounted;
-    public int gamestatenumber, trashAmount, TrashCount;
+    public int gamestatenumber;
+    private int trashAmount, TrashCount;
     public Gamestate gamestate;
     public Qsingle qsingle;
     public GameObject Trashbin;

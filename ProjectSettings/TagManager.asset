@@ -30,6 +30,7 @@ TagManager:
   - UpgradTag
   - Car
   - CrossRoadSpawnPoint
+  - PlayerNull
   layers:
   - Default
   - TransparentFX

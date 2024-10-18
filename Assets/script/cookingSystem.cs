@@ -168,7 +168,7 @@ public class cookingSystem : MonoBehaviour
                 StopCooking();
             }
         }
-
+        
     }
 
     // Start the cooking process
