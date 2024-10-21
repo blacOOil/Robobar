@@ -8,15 +8,15 @@ public class CustomertoTable : MonoBehaviour
     public SeatSetSingle seatSetSingle;
     public bool IstableTagnear;
     public GameObject Self;
-    public GameObject Table,TableTag,nearTabletag;
+    public GameObject Table, TableTag, nearTabletag;
     public float Speed;
     public float searchRadius = 900000f;
 
     [Header("CustomerSpawning")]
     private int Chairnum;
-    public List<GameObject> ExtraChair,ExtraCustomer;
+    public List<GameObject> ExtraChair, ExtraCustomer;
     private bool IsselfSitted;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class CustomertoTable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsselfSitted == true)
+        if (IsselfSitted == true)
         {
             SpawnedExtraCustomer();
         }
@@ -45,8 +45,8 @@ public class CustomertoTable : MonoBehaviour
         {
             Debug.Log("No table nearby.");
         }
-       
-        
+
+
     }
     public bool fixedTableset()
     {
@@ -74,7 +74,7 @@ public class CustomertoTable : MonoBehaviour
             {
                 float distance = Vector3.Distance(transform.position, chair.transform.position);
                 if (distance < closestDistance && distance <= searchRadius)
-                { 
+                {
                     closestDistance = distance;
                     ClosestChairs = chair;
                     chair.GetComponent<ChairSingle>().isSited = true;
@@ -84,7 +84,7 @@ public class CustomertoTable : MonoBehaviour
         }
         Table = ClosestChairs;
 
-       
+
     }
     public void GettableId()
     {
@@ -95,7 +95,7 @@ public class CustomertoTable : MonoBehaviour
             Chairnum = seatList.Count;
 
             // Loop through all seats to find the first available (not occupied) seat
-           
+
             foreach (GameObject seat in seatList)
             {
                 ChairSingle chairSingle = seat.GetComponent<ChairSingle>();
@@ -104,7 +104,7 @@ public class CustomertoTable : MonoBehaviour
                 if (!chairSingle.isSited)
                 {
                     Table = seat;
-                 
+
                     break; // Exit the loop once a seat is found
                 }
             }
@@ -133,23 +133,46 @@ public class CustomertoTable : MonoBehaviour
         if (other.gameObject.CompareTag("tableTag"))
         {
             IstableTagnear = false;
-           // nearTabletag = null;
+            // nearTabletag = null;
         }
     }
     public void GetUp()
     {
-        ChairSingle chairSingle = Table.GetComponent<ChairSingle>();
-        chairSingle.isSited = false;
+      
     }
     public void SpawnedExtraCustomer()
     {
         List<GameObject> SeatList = seatSetSingle.seat;
+
+        // Determine the random number of customers to spawn (you can set a min and max value)
+        int randomCustomerCount = Random.Range(1, SeatList.Count); // Adjust range as needed
+
+        int customersSpawned = 0; // Keep track of how many customers have been spawned
+
         foreach (GameObject Seat in SeatList)
         {
             ChairSingle chairSingle = Seat.GetComponent<ChairSingle>();
-            if (!chairSingle.isSited)
-            {
 
+            // Check if the seat is free and if we still need to spawn more customers
+            if (!chairSingle.isSited && customersSpawned < randomCustomerCount)
+            {
+                // Instantiate a new customer at the seat's position
+                GameObject newCustomer = Instantiate(ExtraCustomer[Random.Range(0, ExtraCustomer.Count)], Seat.transform.position, Quaternion.identity);
+
+                // Set the customer as seated
+                newCustomer.GetComponent<CustomerSingle>().Issited = true;
+
+                // Mark the chair as occupied
+                chairSingle.isSited = true;
+
+                // Increment the count of spawned customers
+                customersSpawned++;
+            }
+
+            // If we have spawned the required number of customers, break the loop
+            if (customersSpawned >= randomCustomerCount)
+            {
+                break;
             }
         }
     }

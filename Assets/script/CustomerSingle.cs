@@ -44,12 +44,17 @@ public class CustomerSingle : MonoBehaviour
         HandleCustomerSatification();
         if (Isfull == false)
         {
+            if (IsChairClose())
+            {
+                Issited = true;
+            }
             ManageSittingAndOrders();
         }
         else
         {
             EndSession();
         }
+      
     }
 
     // Separate into methods
@@ -198,7 +203,10 @@ public class CustomerSingle : MonoBehaviour
     {
         return CheckProximity("drink");
     }
-
+    private bool IsChairClose()
+    {
+        return CheckProximity("Chairs");
+    }
 
 
     private bool CheckProximity(string tag)
