@@ -18,10 +18,24 @@ public class cookingSystem : MonoBehaviour
 
     void Update()
     {
+        if (ClosestPlayer == null)
+        {
+            StopCookingDueToPlayerExit();
+            return;  // Exit the Update loop early to prevent errors
+        }
         HandlePlayerProximity();
         HandleCookingProcess();
     }
-
+    private void StopCookingDueToPlayerExit()
+    {
+        Debug.Log("Closest player is null, stopping cooking.");
+        IsCooking = false;
+        IsCookingStarted = false;
+        MenuCanvas.SetActive(false);
+        Holdindicator.SetActive(true);
+        cookingCanvas.SetActive(false);
+        botController = null; // Ensure the bot controller is reset
+    }
     // Initialize system by disabling UI elements
     private void InitializeSystem()
     {

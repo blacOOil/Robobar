@@ -32,6 +32,8 @@ public class CharacterSelection : MonoBehaviour
 
     [Header("button")]
     public List<GameObject> readybutton;
+    public Transform UiTranformHide;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +62,7 @@ public class CharacterSelection : MonoBehaviour
         monneyLevelCode.enabled = false;
         MainGameUi.SetActive(false);
         IsReadyToPlay = false;
+       
     }
 
     // Handles character selection based on game type
@@ -220,18 +223,29 @@ public class CharacterSelection : MonoBehaviour
             if (i == Player2SelectedNumber && !Is2pawned)
             {
                 PlayerTwoSelecting = Instantiate(CharacterList[i], CharacterTranformList[1].transform.position, CharacterTranformList[1].transform.rotation);
+                PlayerTwoSelecting.transform.position = CharacterTranformList[1].transform.position;
                 Is2pawned = true;
             }
         }
     }
     public void HandleSelectedSameCharacter()
     {
-        readybutton[0].SetActive(false);
-        readybutton[1].SetActive(false);
+        
+            readybutton[0].SetActive(false);
+            readybutton[1].SetActive(false);
+        
+
     }
     public void HandleSelecteddifCharacter()
     {
-        readybutton[0].SetActive(true);
-        readybutton[1].SetActive(true);
+        
+            readybutton[0].SetActive(true);
+            readybutton[1].SetActive(true);
+       
+    }
+    public void HandleBootlePress(int Num)
+    {
+        readybutton[Num].transform.position = UiTranformHide.position;
+       
     }
 }

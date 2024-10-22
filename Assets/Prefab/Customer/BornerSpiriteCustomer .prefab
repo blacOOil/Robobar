@@ -677,9 +677,9 @@ MonoBehaviour:
     m_Bits: 2048
   DrinkPlacement: {fileID: 5937335525431509809}
   DrinkPrefab:
-  - {fileID: 4240728967509717970, guid: 365a487231846ba4b8e105f653883252, type: 3}
-  - {fileID: 4240728967509717970, guid: 8db72590bb4f38a458179d27fa8b871c, type: 3}
-  - {fileID: 4240728967509717970, guid: 42b48ab8c6afda14d9312b23a9d889fe, type: 3}
+  - {fileID: 1766725694417179271, guid: bab0e7ed33d84664aae91cc9c628a4dc, type: 3}
+  - {fileID: 1766725694417179271, guid: b96aa395ee042134696e531d6f1b297e, type: 3}
+  - {fileID: 1766725694417179271, guid: ca9ef0f43475b2b4a9a7b05a5654e85b, type: 3}
   RemainmingTime: 0
   SatificationState: 0
   IsGreen: 0

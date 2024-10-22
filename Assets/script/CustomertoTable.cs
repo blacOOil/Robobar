@@ -43,7 +43,9 @@ public class CustomertoTable : MonoBehaviour
         }
         else
         {
+
             Debug.Log("No table nearby.");
+            Destroy(gameObject);
         }
 
 
@@ -138,18 +140,31 @@ public class CustomertoTable : MonoBehaviour
     }
     public void GetUp()
     {
-      
+
     }
     public void SpawnedExtraCustomer()
     {
         List<GameObject> SeatList = seatSetSingle.seat;
 
-        // Determine the random number of customers to spawn (you can set a min and max value)
-        int randomCustomerCount = Random.Range(1, SeatList.Count); // Adjust range as needed
+        // Create a list of free seats starting from seatList[1]
+        List<GameObject> freeSeats = new List<GameObject>();
+
+        // Start from seatList[1] to avoid seatList[0]
+        for (int i = 1; i < SeatList.Count; i++)
+        {
+            ChairSingle chairSingle = SeatList[i].GetComponent<ChairSingle>();
+            if (!chairSingle.isSited)
+            {
+                freeSeats.Add(SeatList[i]);  // Add the seat to the freeSeats list if it's not occupied
+            }
+        }
+
+        // Determine the random number of customers to spawn based on the available free seats
+        int randomCustomerCount = Random.Range(0, freeSeats.Count); // Adjust range as needed
 
         int customersSpawned = 0; // Keep track of how many customers have been spawned
 
-        foreach (GameObject Seat in SeatList)
+        foreach (GameObject Seat in freeSeats)
         {
             ChairSingle chairSingle = Seat.GetComponent<ChairSingle>();
 
@@ -161,9 +176,7 @@ public class CustomertoTable : MonoBehaviour
 
                 // Set the customer as seated
                 newCustomer.GetComponent<CustomerSingle>().Issited = true;
-
-                // Mark the chair as occupied
-                chairSingle.isSited = true;
+                chairSingle.isSited = true;  // Mark the seat as occupied
 
                 // Increment the count of spawned customers
                 customersSpawned++;
@@ -176,4 +189,5 @@ public class CustomertoTable : MonoBehaviour
             }
         }
     }
+
 }

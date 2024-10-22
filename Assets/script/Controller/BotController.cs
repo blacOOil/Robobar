@@ -13,6 +13,8 @@ public class BotController : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
 
+    public Light Playerlight;
+
     [SerializeField] public string inputNameHorizontal;
     [SerializeField] public string inputNameVertical;
 
@@ -26,6 +28,7 @@ public class BotController : MonoBehaviour
         MovementInput();
         JumpInput();
         CheckGroundStatus();
+        PlayerIndicator();
     }
 
     void MovementInput()
@@ -78,5 +81,18 @@ public class BotController : MonoBehaviour
         // Draw a ray in the editor to visualize the ground check
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.down * GroundCheckDistance);
+    }
+    public void PlayerIndicator()
+    {
+        if(inputNameHorizontal == null)
+        {
+            Playerlight.color = Color.white;
+        }else if(inputNameHorizontal == "Horizontal2")
+        {
+            Playerlight.color = Color.blue;
+        }else
+        {
+            Playerlight.color = Color.red;
+        }
     }
 }

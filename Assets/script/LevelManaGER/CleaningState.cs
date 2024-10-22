@@ -47,7 +47,7 @@ public class CleaningState : MonoBehaviour
         if (Iscleaningstarted == true)
         {
             clearalltabletag();
-            ClearCustomer();
+            ClearThing();
             if (trashAmount <= 5)
             {
                 SpawningTrash();
@@ -141,7 +141,7 @@ public class CleaningState : MonoBehaviour
             alltabletag.Add(tag);
         }
     }
-    public void ClearCustomer()
+    public void ClearThing()
     {
         
         qsingle.isCustomerhere = Iscustomerblocked;
@@ -150,6 +150,12 @@ public class CleaningState : MonoBehaviour
         {
             Destroy(customer);
         }
+        GameObject[] Alldrink = GameObject.FindGameObjectsWithTag("drink");
+        foreach (GameObject drink in Alldrink)
+        {
+            Destroy(drink);
+        }
+
     }
     public void TrashCounting()
     {

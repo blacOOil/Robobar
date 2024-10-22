@@ -20,27 +20,26 @@ public class TableSingle : MonoBehaviour
     {
         CheckSeat();
 
-        // Show the tableTag if not all seats are full, otherwise hide it
         if (IsAllnotfull)
         {
-            tableTag.SetActive(true); // Show the tag if not all seats are full
+            tableTag.SetActive(true); 
         }
         else
         {
-            tableTag.SetActive(false); // Hide the tag if all seats are full
+            tableTag.SetActive(false); 
         }
     }
 
     public void CheckSeat()
     {
-        // Assume all seats are full initially
-        IsAllnotfull = false;
+        // Reset IsAllnotfull to true before checking all seats
+        IsAllnotfull = true;
 
         foreach (GameObject chair in Seat)
         {
-            if (!chair.GetComponent<ChairSingle>().isSited)
+            if (chair.GetComponent<ChairSingle>().isSited)
             {
-                IsAllnotfull = true; // Set to true if any seat is not occupied
+                IsAllnotfull = false; // If any seat is occupied, set to false
                 break;
             }
         }

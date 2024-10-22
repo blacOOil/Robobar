@@ -125,21 +125,25 @@ public class ServiceSystem : MonoBehaviour
         findClosestCustomer();
         if(holdedrink == true)
         {
-            if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == Objholding.GetComponent<DrinkSingle>().DrinkId)
+            if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == Objholding.GetComponent<DrinkSingle>().DrinkId && ClosestCustomer.GetComponent<CustomerSingle>().IsorderRevied == false)
         {
             Debug.Log("ServiceProceed");
             Objholding.GetComponent<DrinkSingle>().selfDestruct();
             holdedrink = false;
             Ishandholded = false;
             Objholding = null;
-           // Destroy(Objholding);
-        }
+                // Destroy(Objholding);
+            }
+            else
+            {
+                ReleaseDrink();
+            }
 
         }
         
         else
         {
-
+           
         }
     }
     public void findClosestCustomer()

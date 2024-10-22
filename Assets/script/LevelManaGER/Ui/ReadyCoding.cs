@@ -35,6 +35,7 @@ public class ReadyCoding : MonoBehaviour
     {
         ReadyNum++;
         Readyindicator[Num].SetActive(true);
+        ReadyButton[Num].SetActive(false);
     }
 
     public void Handlereadytoplay()
@@ -43,5 +44,10 @@ public class ReadyCoding : MonoBehaviour
         {
             obj.SetActive(false);
         }
+    }
+    public void HidSelector(int num)
+    {      
+      selectorbutt[num].SetActive(false);
+      selectorbutt[num+1].SetActive(false);
     }
 }

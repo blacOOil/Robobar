@@ -9,7 +9,7 @@ public class CustomerSingle : MonoBehaviour
     public int Randomdrinkfloat, ServedDrink;
     public List<Sprite> OrderMenu;
     public Image OrderImage;
-    public bool Isordered;
+    public bool Isordered,IsorderRevied;
     public GameObject DrinkReceived, DrinktoDrinked;
     public LayerMask DrinkLayer;
     public Transform DrinkPlacement;
@@ -62,6 +62,7 @@ public class CustomerSingle : MonoBehaviour
     // Initialization method for starting the session
     private void InitializeSession()
     {
+        IsorderRevied = false;
         PlayerInteractMenu.SetActive(false);
         Requested.SetActive(false);
         Issited = false;
@@ -106,10 +107,13 @@ public class CustomerSingle : MonoBehaviour
         {
             SatifactorCanvas.SetActive(false);
             ReceiveOrder();
-            if (Randomdrinkfloat == ServedDrink)
+            if (Randomdrinkfloat == ServedDrink && IsorderRevied == false)
             {
+                IsorderRevied = true;
+                Destroy(OrderImage);
                 SpawnDrinkThatRecived();
                 StartCoroutine(DrinkingRoutine());
+
                 SatificationIncrease();
                 Debug.Log("Thank");
             }
@@ -127,7 +131,7 @@ public class CustomerSingle : MonoBehaviour
         if (IsplayerClose() || Isplayer2Close())
         {
             PlayerInteractMenu.SetActive(true);
-            if (IsplayerClose())
+            if (IsplayerClose() && !IsTagClose())
             {
 
                 if (Input.GetKeyDown(KeyCode.E))
@@ -207,6 +211,10 @@ public class CustomerSingle : MonoBehaviour
     {
         return CheckProximity("Chairs");
     }
+    private bool IsTagClose()
+    {
+        return CheckProximity("tableTag");
+    }
 
 
     private bool CheckProximity(string tag)
@@ -260,6 +268,23 @@ public class CustomerSingle : MonoBehaviour
     public void SpawnDrinkThatRecived()
     {
         DrinktoDrinked = Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
+        Rigidbody drinkRigidbody = DrinktoDrinked.GetComponent<Rigidbody>();
+        if (drinkRigidbody != null)
+        {
+            // Freeze position on all axes
+            drinkRigidbody.constraints = RigidbodyConstraints.FreezePositionX |
+                                         RigidbodyConstraints.FreezePositionY |
+                                         RigidbodyConstraints.FreezePositionZ;
+            // Optionally freeze rotation as well
+            drinkRigidbody.constraints |= RigidbodyConstraints.FreezeRotation;
+        }
+
+        // Set the collider to trigger
+        Collider drinkCollider = DrinktoDrinked.GetComponent<Collider>();
+        if (drinkCollider != null)
+        {
+            drinkCollider.isTrigger = true;
+        }
         SatificationIncrease();
     }
 
