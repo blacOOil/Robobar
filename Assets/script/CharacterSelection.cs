@@ -173,6 +173,15 @@ public class CharacterSelection : MonoBehaviour
         isCharacterSelected = true;
         IsReadyToPlay = true;
         StartGameNow();
+        ClearUnuse();
+    }
+    public void ClearUnuse()
+    {
+        GameObject[] clearPlayer = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject bot in clearPlayer)
+        {
+            bot.SetActive(false);
+        }
     }
 
     // Spawn player 2

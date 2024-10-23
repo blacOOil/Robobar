@@ -7,7 +7,7 @@ public class ServiceSystem : MonoBehaviour
     public MonneyLevelCode monneyLevelCode;
     public Transform Hand;
     public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
-    private float CustomerCheckerRadius = 2f,SpawnerRadius = 1f;
+    private float CustomerCheckerRadius = 2f,SpawnerRadius = 100f;
     private int playernumber = 0;
     public LayerMask CustomerLayer,TagLayer,SpawnerLayer;
     public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage,Spawner;
@@ -19,11 +19,11 @@ public class ServiceSystem : MonoBehaviour
         {
             if (hitCollider.CompareTag("ServiceSpawner"))
             {
-                return false;
+                return true;
 
             }
         }
-        return true;
+        return false;
     }
     private bool IscustomerClose()
     {
@@ -32,11 +32,11 @@ public class ServiceSystem : MonoBehaviour
         {
             if (hitCollider.CompareTag("Customer"))
             {
-                return false;
+                return true;
                 
             }
         }
-        return true;
+        return false;
     }
     private bool IsTageClose()
     {
@@ -75,13 +75,14 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsSpawnerClose())
+        
+        if (IsSpawnerClose())
         {
-            gameObject.transform.position = Spawner.transform.position;
+          
         }
         else
         {
-
+            gameObject.transform.position = Spawner.transform.position;
         }
         if (IsTageClose()&& Ishandholded == false)
         {  
@@ -151,10 +152,11 @@ public class ServiceSystem : MonoBehaviour
         {
             Debug.Log("ServiceProceed");
             Objholding.GetComponent<DrinkSingle>().selfDestruct();
+           // Destroy(Objholding);
             holdedrink = false;
             Ishandholded = false;
             Objholding = null;
-                // Destroy(Objholding);
+           
             }
             else
             {

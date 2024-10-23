@@ -109,12 +109,12 @@ public class CustomerSingle : MonoBehaviour
             ReceiveOrder();
             if (Randomdrinkfloat == ServedDrink && IsorderRevied == false)
             {
-                IsorderRevied = true;
+                
                 Destroy(OrderImage);
                 SpawnDrinkThatRecived();
                 StartCoroutine(DrinkingRoutine());
-
                 SatificationIncrease();
+                IsorderRevied = true;
                 Debug.Log("Thank");
             }
             else
