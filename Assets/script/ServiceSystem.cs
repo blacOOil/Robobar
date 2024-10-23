@@ -7,11 +7,24 @@ public class ServiceSystem : MonoBehaviour
     public MonneyLevelCode monneyLevelCode;
     public Transform Hand;
     public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
-    private float CustomerCheckerRadius = 2f;
+    private float CustomerCheckerRadius = 2f,SpawnerRadius = 1f;
     private int playernumber = 0;
-    public LayerMask CustomerLayer,TagLayer;
-    public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage;
+    public LayerMask CustomerLayer,TagLayer,SpawnerLayer;
+    public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage,Spawner;
 
+   public bool IsSpawnerClose()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, SpawnerRadius, SpawnerLayer);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("ServiceSpawner"))
+            {
+                return false;
+
+            }
+        }
+        return true;
+    }
     private bool IscustomerClose()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, CustomerCheckerRadius, CustomerLayer);
@@ -19,11 +32,11 @@ public class ServiceSystem : MonoBehaviour
         {
             if (hitCollider.CompareTag("Customer"))
             {
-                return true;
+                return false;
                 
             }
         }
-        return false;
+        return true;
     }
     private bool IsTageClose()
     {
@@ -44,6 +57,7 @@ public class ServiceSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Spawner = GameObject.FindGameObjectWithTag("ServiceSpawner");
         Objholding = null;
         holdedrink = false;
         IsreadytoServered = false;
@@ -61,6 +75,14 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsSpawnerClose())
+        {
+            gameObject.transform.position = Spawner.transform.position;
+        }
+        else
+        {
+
+        }
         if (IsTageClose()&& Ishandholded == false)
         {  
                 IsTableTagnear = true;

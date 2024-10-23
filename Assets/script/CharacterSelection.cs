@@ -226,7 +226,12 @@ public class CharacterSelection : MonoBehaviour
                 PlayerTwoSelecting.transform.position = CharacterTranformList[1].transform.position;
                 Is2pawned = true;
             }
+            else if (i == Player2SelectedNumber && Is2pawned)
+            {
+                PlayerTwoSelecting.transform.position = CharacterTranformList[1].transform.position;
+            }
         }
+    
     }
     public void HandleSelectedSameCharacter()
     {

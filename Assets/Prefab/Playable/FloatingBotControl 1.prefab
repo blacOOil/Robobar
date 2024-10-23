@@ -114,6 +114,9 @@ MonoBehaviour:
   TagLayer:
     serializedVersion: 2
     m_Bits: 16384
+  SpawnerLayer:
+    serializedVersion: 2
+    m_Bits: 64
   ClosestCustomer: {fileID: 0}
   Objholding: {fileID: 0}
   ReadytoPickObj: {fileID: 0}
@@ -175,10 +178,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawnpoint: {fileID: 0}
   TempSpawner: {fileID: 0}
+  Hand: {fileID: 6244769114226725332}
   Ispawnset: 0
+  Isholded: 0
   SpawnedLayer:
     serializedVersion: 2
     m_Bits: 65536
+  Objholding: {fileID: 0}
 --- !u!1 &4290710782118637022
 GameObject:
   m_ObjectHideFlags: 0
