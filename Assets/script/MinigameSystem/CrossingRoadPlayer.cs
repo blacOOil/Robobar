@@ -8,8 +8,10 @@ public class CrossingRoadPlayer : MonoBehaviour
     public Transform Spawnpoint, TempSpawner, Hand;
     public bool Ispawnset,Isholded;
     private float SpawnerCheckerRadius = 1f;
-    public LayerMask SpawnedLayer;
+    private int Playernum = 0;
+    public LayerMask SpawnedLayer,Boxlayer;
     public GameObject Objholding;
+    public BoxSingle boxSingle;
 
     public bool IspawnChecked()
     {
@@ -24,11 +26,28 @@ public class CrossingRoadPlayer : MonoBehaviour
         }
         return false;
     }
+    public bool IspBoxCloseChecked()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, SpawnerCheckerRadius, SpawnedLayer);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Collector1"))
+            {
+               
+                return true;
+            }
+        }
+        return false;
+    }
     // Start is called before the first frame update
     void Start()
     {
         Ispawnset = false;
         Isholded = false;
+        if (gameObject.tag == "Player2")
+        {
+            Playernum = 1;
+        }
     }
 
     // Update is called once per frame
@@ -43,18 +62,29 @@ public class CrossingRoadPlayer : MonoBehaviour
         {
 
         }
+        if(Isholded && PlayerInput(Playernum))
+        {
+            if (IspBoxCloseChecked())
+            {
+                boxSingle = Objholding.GetComponent<BoxSingle>();
+                boxSingle.ReturntoSpawnPoint();
+                IncreaseeScore();
+            }
+            ReleaseDrink();
+           
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Car"))
         {
-            gameObject.transform.position = Spawnpoint.transform.position;
             if (Isholded)
             {
                 ReleaseDrink();
             }
-
+            gameObject.transform.position = Spawnpoint.transform.position;
+          
         }
         if (other.CompareTag("Box1"))
         {
@@ -75,7 +105,29 @@ public class CrossingRoadPlayer : MonoBehaviour
         Isholded = false;
         Objholding.GetComponent<Rigidbody>().isKinematic = false;
         Objholding.transform.SetParent(null);
-        Objholding.GetComponent<Collider>().isTrigger = false;
+        Objholding.GetComponent<Collider>().isTrigger = true;
+
+    }
+    public bool PlayerInput(int playernum)
+    {
+        if (playernum == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                return true;
+            }
+        }
+        if (playernum == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void IncreaseeScore()
+    {
 
     }
 }

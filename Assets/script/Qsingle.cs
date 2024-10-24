@@ -5,7 +5,7 @@ using UnityEngine;
 public class Qsingle : MonoBehaviour
 {
     public List<GameObject> Customer;
-    public bool isCustomerhere;
+    public bool isCustomerhere,IsgameStarted = false;
     public Transform spawnPoint;
     public float waitTime = 1f;
     private bool isSpawning = false; // Flag to check if the coroutine is running
@@ -29,18 +29,22 @@ public class Qsingle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IscustomerClose())
+        if (IsgameStarted)
         {
-            isCustomerhere = true;
+            if (IscustomerClose())
+            {
+                isCustomerhere = true;
+            }
+            else
+            {
+                isCustomerhere = false;
+            }
+            if (!isCustomerhere && !isSpawning)
+            {
+                StartCoroutine(StartCustomerSpawning());
+            }
         }
-        else
-        {
-            isCustomerhere = false;
-        }
-        if (!isCustomerhere && !isSpawning)
-        {
-            StartCoroutine(StartCustomerSpawning());
-        }
+        
         
     }
 
@@ -84,5 +88,9 @@ public class Qsingle : MonoBehaviour
         }
         return false;
         
+    }
+    public void StartGame()
+    {
+        IsgameStarted = true;
     }
 }
