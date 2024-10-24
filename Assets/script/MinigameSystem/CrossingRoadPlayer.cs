@@ -12,7 +12,7 @@ public class CrossingRoadPlayer : MonoBehaviour
     public LayerMask SpawnedLayer,Boxlayer;
     public GameObject Objholding;
     public BoxSingle boxSingle;
-
+    public MonneyLevelCode monneyLevelCode;
     public bool IspawnChecked()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, SpawnerCheckerRadius, SpawnedLayer);
@@ -42,6 +42,7 @@ public class CrossingRoadPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        monneyLevelCode = GameObject.Find("LevelManager").GetComponent<MonneyLevelCode>();
         Ispawnset = false;
         Isholded = false;
         if (gameObject.tag == "Player2")
@@ -128,6 +129,6 @@ public class CrossingRoadPlayer : MonoBehaviour
     }
     public void IncreaseeScore()
     {
-
+        monneyLevelCode.moneyAdd();
     }
 }
