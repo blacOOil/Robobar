@@ -184,7 +184,12 @@ MonoBehaviour:
   SpawnedLayer:
     serializedVersion: 2
     m_Bits: 65536
+  Boxlayer:
+    serializedVersion: 2
+    m_Bits: 0
   Objholding: {fileID: 0}
+  boxSingle: {fileID: 0}
+  monneyLevelCode: {fileID: 0}
 --- !u!1 &5803333516237270316
 GameObject:
   m_ObjectHideFlags: 0
