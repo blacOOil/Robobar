@@ -61,52 +61,30 @@ public class cookingSystem : MonoBehaviour
     // Handle cooking process (i.e., mini-game controls)
     private void HandleCookingProcess()
     {
-        if (IsCooking)
+        if (IsCooking && IsCookingStartSelecting == false)
         {
-
-            if (ClosestPlayer.tag == "Player1")
-            {
                 if (!IsCookingStarted)
                 {
-                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    if (DrinkIndex == 1)
                     {
                         IsCookingStarted = true;
                         PlayMinigameDrinkmaking(0);
                     }
-                    else if (Input.GetKeyDown(KeyCode.Alpha2))
+                    else if (DrinkIndex == 2)
                     {
                         IsCookingStarted = true;
                         PlayMinigameDrinkmaking(1);
                     }
-                    else if (Input.GetKeyDown(KeyCode.Alpha3))
+                    else if (DrinkIndex == 3)
                     {
                         IsCookingStarted = true;
                         PlayMinigameDrinkmaking(2);
                     }
-                }
-                
-            }
-            if (ClosestPlayer.tag == "Player2")
-            {
-                if (!IsCookingStarted)
-                {
-                    if (Input.GetKeyDown(KeyCode.Alpha6))
+                    else
                     {
-                        IsCookingStarted = true;
-                        PlayMinigameDrinkmaking(0);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha7))
-                    {
-                        IsCookingStarted = true;
-                        PlayMinigameDrinkmaking(1);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha8))
-                    {
-                        IsCookingStarted = true;
-                        PlayMinigameDrinkmaking(2);
+                    StopCooking();
                     }
                 }
-            }
             if(IsCookingStartSelecting == true)
             {
                 HandleCookingSelection();
@@ -178,16 +156,10 @@ public class cookingSystem : MonoBehaviour
                 {
                     StartCooking();
                     IsCookingStartSelecting = true;
+                    DrinkIndex = 1;
                 }
             }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    StopCooking();
-                    IsCookingStartSelecting = false;
-                }
-            }
+            
         }
         if (ClosestPlayer.tag == "Player2")
         {
@@ -224,6 +196,26 @@ public class cookingSystem : MonoBehaviour
     public void HandleCookingSelection()
     {
         botController.enabled = false;
+        if (ClosestPlayer.tag == "Player1")
+        {
+            if (Input.GetKeyDown(KeyCode.A)&& DrinkIndex > 0)
+            {
+                DrinkIndex--;
+            }
+            if (Input.GetKeyDown(KeyCode.D)&& DrinkIndex <= ListDrink.Count)
+            {
+                DrinkIndex++;
+            }
+            if (Input.GetKeyDown(KeyCode.E)&& IsCookingStartSelecting == true)
+            {
+                if (!IsCooking)
+                {
+                    IsCookingStartSelecting = false;
+                    MenuCanvas.SetActive(false);
+                    IsCooking = true;
+                }
+            }
+        }
     }
 
     // Play the drink-making mini-game
