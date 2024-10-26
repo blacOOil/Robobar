@@ -10,7 +10,8 @@ public class cookingSystem : MonoBehaviour
     public Transform ServiceSpawner;
     public List<GameObject> ListDrink, MinigameList;
     public List<Transform> ListMinigameTranformList;
-    public bool IsCookingStarted;
+    public bool IsCookingStarted,IsCookingStartSelecting = false;
+    public int DrinkIndex = 0;
     void Start()
     {
         InitializeSystem();
@@ -62,6 +63,7 @@ public class cookingSystem : MonoBehaviour
     {
         if (IsCooking)
         {
+
             if (ClosestPlayer.tag == "Player1")
             {
                 if (!IsCookingStarted)
@@ -105,6 +107,10 @@ public class cookingSystem : MonoBehaviour
                     }
                 }
             }
+            if(IsCookingStartSelecting == true)
+            {
+                HandleCookingSelection();
+            }
         }
        
 
@@ -117,7 +123,7 @@ public class cookingSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (IsPlayer(other))
+        if (IsPlayer(other) && (ClosestPlayer == null))
         {
             HandlePlayerEnter(other);
         }
@@ -125,7 +131,7 @@ public class cookingSystem : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (IsPlayer(other))
+        if (IsPlayer(other) && (ClosestPlayer != null))
         {
             HandlePlayerExit();
         }
@@ -143,13 +149,19 @@ public class cookingSystem : MonoBehaviour
         IsPlayerClose = true;
         ClosestPlayer = other.gameObject;
         botController = ClosestPlayer.GetComponent<BotController>();
+       
     }
+   
 
     // Handle logic when a player exits the trigger area
     private void HandlePlayerExit()
     {
         IsPlayerClose = false;
         ClosestPlayer = null;
+        if(botController != null)
+        {
+            botController.enabled = true;
+        }
         botController = null;
     }
 
@@ -159,15 +171,22 @@ public class cookingSystem : MonoBehaviour
         cookingCanvas.SetActive(true);
         Holdindicator.SetActive(true);
        if(ClosestPlayer.tag == "Player1")
-        {
-            if (Input.GetKey(KeyCode.E))
+        {  
+            if(IsCookingStartSelecting == false)
             {
-                StartCooking();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    StartCooking();
+                    IsCookingStartSelecting = true;
+                }
             }
-
-            if (Input.GetKeyUp(KeyCode.E))
+            else
             {
-                StopCooking();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    StopCooking();
+                    IsCookingStartSelecting = false;
+                }
             }
         }
         if (ClosestPlayer.tag == "Player2")
@@ -196,9 +215,15 @@ public class cookingSystem : MonoBehaviour
     // Stop the cooking process
     private void StopCooking()
     {
+        botController.enabled = true;
         Holdindicator.SetActive(true);
         MenuCanvas.SetActive(false);
         IsCooking = false;
+        IsCookingStartSelecting = false;
+    }
+    public void HandleCookingSelection()
+    {
+        botController.enabled = false;
     }
 
     // Play the drink-making mini-game

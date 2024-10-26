@@ -7,6 +7,7 @@ public class MonneyLevelCode : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI MoneyText;
     public float MonneyAmount;
+  
    
 
     // Start is called before the first frame update

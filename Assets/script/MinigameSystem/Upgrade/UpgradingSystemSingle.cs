@@ -5,11 +5,13 @@ using UnityEngine;
 public class UpgradingSystemSingle : MonoBehaviour
 {
     public GameObject CanvasUpgrade, CloestPlayer;
+    public BotController botController;
     public List<GameObject> SeatInSider;
     public List<Material> ChairMaterial;
     public List<Material> TableMaterial;
     private float PlayerCheckerRadius = 3f;
     private int MaterialIndex = 0;
+
     private bool CheckPlayer()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius);
@@ -17,45 +19,35 @@ public class UpgradingSystemSingle : MonoBehaviour
         {
             if (hitCollider.CompareTag("Player1") || hitCollider.CompareTag("Player2"))
             {
-
                 return true;
             }
         }
         return false;
     }
+
     public bool PlayerInputCheck()
     {
         CheckClosetPlayer();
 
-        // Check if CloestPlayer exists before accessing its tag
         if (CloestPlayer != null)
         {
-            if (CloestPlayer.tag == "Player1")
+            if (CloestPlayer.tag == "Player1" && Input.GetKey(KeyCode.E))
             {
-                if (Input.GetKey(KeyCode.E))  // Use Input.GetKeyDown for KeyCode
-                {
-                    return true;
-                }
+                return true;
             }
-            else if (CloestPlayer.tag == "Player2")
+            else if (CloestPlayer.tag == "Player2" && Input.GetKey(KeyCode.U))
             {
-                if (Input.GetKey(KeyCode.U))  // Use Input.GetKeyDown for KeyCode
-                {
-                    return true;
-                }
+                return true;
             }
         }
 
         return false;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (CheckPlayer())
@@ -63,8 +55,14 @@ public class UpgradingSystemSingle : MonoBehaviour
             CanvasUpgrade.SetActive(true);
             if (PlayerInputCheck())
             {
+      
                 UpgradingProcess();
+            }else if(botController != null) 
+            {
+                botController.enabled = true;
+                botController = null;
             }
+            
         }
         else
         {
@@ -72,6 +70,7 @@ public class UpgradingSystemSingle : MonoBehaviour
             CloestPlayer = null;
         }
     }
+
     public void CheckClosetPlayer()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius);
@@ -91,48 +90,42 @@ public class UpgradingSystemSingle : MonoBehaviour
             }
         }
 
-        // Set the closest player
         CloestPlayer = closestPlayer;
     }
+
     public void UpgradingProcess()
     {
+        botController = CloestPlayer.GetComponent<BotController>();
+        botController.enabled = false;
+
         if (CloestPlayer.tag == "Player1")
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A) && MaterialIndex > 0)
             {
-                if (MaterialIndex !<= 0)
-                {
-                    MaterialIndex--;
-                }
+                MaterialIndex--;
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D) && MaterialIndex < ChairMaterial.Count - 1)
             {
-                if(MaterialIndex! >= ChairMaterial.Count)
-                {
-                    MaterialIndex++;
-                }
+                MaterialIndex++;
             }
-            ApplyMaterialToSeats();
+            botController = CloestPlayer.GetComponent<BotController>();
         }
-        if (CloestPlayer.tag == "Player2")
+        else if (CloestPlayer.tag == "Player2")
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.H) && MaterialIndex > 0)
             {
-                if (MaterialIndex! <= 0)
-                {
-                    MaterialIndex--;
-                }
+                MaterialIndex--;
             }
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K) && MaterialIndex < ChairMaterial.Count - 1)
             {
-                if (MaterialIndex! >= ChairMaterial.Count)
-                {
-                    MaterialIndex++;
-                }
+                MaterialIndex++;
             }
         }
 
+        // Apply material after updating the MaterialIndex
+        ApplyMaterialToSeats();
     }
+
     private void ApplyMaterialToSeats()
     {
         foreach (var seat in SeatInSider)
