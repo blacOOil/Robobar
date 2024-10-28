@@ -9,7 +9,7 @@ public class Gamestate : MonoBehaviour
     public List<Transform> PlayerServiceSpawnList;
     public bool IsplayerinList,IsplayerPositionseted,IstimerSeted;
     public int gamestate_Number = 0, numbertorandom;
-    public GameObject Player1, Player2;
+    public GameObject Player1, Player2,Player3;
     public TimerCode timerCode;
 
     // Start is called before the first frame update
@@ -72,6 +72,7 @@ public class Gamestate : MonoBehaviour
             AddPlayerToPlayerList();
             Player1 = PlayerList[0];
             Player2 = PlayerList[1];
+            Player3 = PlayerList[2];
 
             Player1.GetComponent<ServiceSystem>().enabled = false;
             Player2.GetComponent<ServiceSystem>().enabled = false;

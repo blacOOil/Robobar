@@ -90,7 +90,11 @@ public class BotController : MonoBehaviour
         }else if(inputNameHorizontal == "Horizontal2")
         {
             Playerlight.color = Color.blue;
-        }else
+        }else if(inputNameHorizontal == "Horizontal3")
+        {
+            Playerlight.color = Color.green;
+        }
+        else
         {
             Playerlight.color = Color.red;
         }

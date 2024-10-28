@@ -6,10 +6,11 @@ using Timemanager;
 public class CharacterSelection : MonoBehaviour
 {
     [Header("Local-Coop Logic")]
-    public GameObject Local_CoopSelecterPrefab, PlayerTwoSelecting = null;
+    public GameObject Local_CoopSelecterPrefab, PlayerTwoSelecting = null,PlayerThreeSelecting = null;
     public bool IsntlocalCoopGame, Isplayer2Selected, Isselector2Spawned, IsPlayer2Spawned, Is2pawned = false;
-    public Transform Player2SpawnerTranform;
-    public int Player2SelectedNumber = 0;
+    public bool Isplayer3Selected, Isselector3Spawned, IsPlayer3Spawned, Is3pawned = false;
+    public Transform Player2SpawnerTranform,Player3SpawnerTranform;
+    public int Player2SelectedNumber = 0,Player3SelectedNumber = 0;
 
     [Header("Gameplay")]
     public TimerCode timerCode;
@@ -52,12 +53,20 @@ public class CharacterSelection : MonoBehaviour
     {
         IsGamealreadyPlay = false;
         numberofPlayer = 1;
+
         IsPlayer2active = true;
         Isselector2Spawned = false;
         Isplayer2Selected = false;
         IsPlayer2Spawned = false;
+
         IsplayerSpawned = false;
         isCharacterSelected = false;
+
+        IsPlayer3active = true;
+        Isselector3Spawned = false;
+        Isplayer3Selected = false;
+        IsPlayer3Spawned = false;
+
         timerCode.enabled = false;
         monneyLevelCode.enabled = false;
         MainGameUi.SetActive(false);
@@ -79,9 +88,14 @@ public class CharacterSelection : MonoBehaviour
             {
                 CharacterSelecting(1);
             }
+            if (!Isplayer3Selected)
+            {
+                CharacterSelecting(2);
+            }
         }
-        if (selectorNumber == Player2SelectedNumber)
+        if ((selectorNumber == Player2SelectedNumber)  || (Player2SelectedNumber == Player3SelectedNumber) || (selectorNumber == Player3SelectedNumber))
         {
+          
             HandleSelectedSameCharacter();
         }
         else
@@ -106,6 +120,13 @@ public class CharacterSelection : MonoBehaviour
             Player2SelectedNumber--;
             CharacterSelecting(playernum);
         }
+        if (playernum == 2 && Player3SelectedNumber > 0)
+        {
+            Destroy(PlayerThreeSelecting);
+            Is3pawned = false;
+            Player3SelectedNumber--;
+            CharacterSelecting(playernum);
+        }
     }
 
     // Move selector right for a given player number
@@ -122,6 +143,13 @@ public class CharacterSelection : MonoBehaviour
             Destroy(PlayerTwoSelecting);
             Is2pawned = false;
             Player2SelectedNumber++;
+            CharacterSelecting(playernum);
+        }
+        if (playernum == 2 && Player3SelectedNumber < CharacterList.Count - 1)
+        {
+            Destroy(PlayerThreeSelecting);
+            Is3pawned = false;
+            Player3SelectedNumber++;
             CharacterSelecting(playernum);
         }
     }
@@ -163,7 +191,11 @@ public class CharacterSelection : MonoBehaviour
 
         if (IsPlayer2active)
         {
-            Spawnplayer2();
+            Spawnplayer2(2);
+        }
+        if (IsPlayer3active)
+        {
+            Spawnplayer2(3);
         }
     }
 
@@ -185,14 +217,27 @@ public class CharacterSelection : MonoBehaviour
     }
 
     // Spawn player 2
-    public void Spawnplayer2()
+    public void Spawnplayer2(int PlayerNum)
     {
-        CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
-        BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
-        botController.inputNameHorizontal = "Horizontal2";
-        botController.inputNameVertical = "Vertical2";
-        CharacterList[Player2SelectedNumber].tag = "Player2";
-        IsPlayer2Spawned = true;
+        if(PlayerNum == 2)
+        {
+            CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
+            BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
+            botController.inputNameHorizontal = "Horizontal2";
+            botController.inputNameVertical = "Vertical2";
+            CharacterList[Player2SelectedNumber].tag = "Player2";
+            IsPlayer2Spawned = true;
+        }
+        if(PlayerNum == 3)
+        {
+            CharacterList[Player3SelectedNumber].transform.position = Player3SpawnerTranform.position;
+            BotController botController = CharacterList[Player3SelectedNumber].GetComponent<BotController>();
+            botController.inputNameHorizontal = "Horizontal3";
+            botController.inputNameVertical = "Vertical3";
+            CharacterList[Player3SelectedNumber].tag = "Player3";
+            IsPlayer3Spawned = true;
+        }
+        
     }
 
     // Character selection for either player 1 or player 2
@@ -205,6 +250,10 @@ public class CharacterSelection : MonoBehaviour
         else if (PlayerNum == 1)
         {
             Character2Selecting();
+        }
+        else if (PlayerNum == 2)
+        {
+            Character3Selecting();
         }
     }
 
@@ -242,12 +291,29 @@ public class CharacterSelection : MonoBehaviour
         }
     
     }
+    public void Character3Selecting()
+    {
+        for (int i = 0; i < CharacterList.Count; i++)
+        {
+            if (i == Player3SelectedNumber && !Is3pawned)
+            {
+                PlayerThreeSelecting = Instantiate(CharacterList[i], CharacterTranformList[2].transform.position, CharacterTranformList[2].transform.rotation);
+                PlayerThreeSelecting.transform.position = CharacterTranformList[2].transform.position;
+                Is3pawned = true;
+            }
+            else if (i == Player3SelectedNumber && Is3pawned)
+            {
+                PlayerThreeSelecting.transform.position = CharacterTranformList[2].transform.position;
+            }
+        }
+    }
     public void HandleSelectedSameCharacter()
     {
         
             readybutton[0].SetActive(false);
             readybutton[1].SetActive(false);
-        
+            readybutton[2].SetActive(false);
+
 
     }
     public void HandleSelecteddifCharacter()
@@ -255,7 +321,7 @@ public class CharacterSelection : MonoBehaviour
         
             readybutton[0].SetActive(true);
             readybutton[1].SetActive(true);
-       
+            readybutton[2].SetActive(true);
     }
     public void HandleBootlePress(int Num)
     {

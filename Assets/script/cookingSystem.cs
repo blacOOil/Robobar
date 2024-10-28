@@ -96,7 +96,7 @@ public class cookingSystem : MonoBehaviour
     // Check if the collider belongs to a player
     private bool IsPlayer(Collider other)
     {
-        return other.CompareTag("Player1") || other.CompareTag("Player2");
+        return other.CompareTag("Player1") || other.CompareTag("Player2") || other.CompareTag("Player3");
     }
 
     // Handle logic when a player enters the trigger area
@@ -143,17 +143,33 @@ public class cookingSystem : MonoBehaviour
         }
         if (ClosestPlayer.tag == "Player2")
         {
-            if (Input.GetKey(KeyCode.I))
+            if (IsCookingStartSelecting == false)
             {
-                StartCooking();
-            }
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    StartCooking();
+                    IsCookingStartSelecting = true;
+                    DrinkIndex = 1;
+                    CookingState = 1;
 
-            if (Input.GetKeyUp(KeyCode.I))
-            {
-                StopCooking();
+                }
             }
         }
-        
+        if (ClosestPlayer.tag == "Player3")
+        {
+            if (IsCookingStartSelecting == false)
+            {
+                if (Input.GetKeyDown(KeyCode.Keypad9))
+                {
+                    StartCooking();
+                    IsCookingStartSelecting = true;
+                    DrinkIndex = 1;
+                    CookingState = 1;
+
+                }
+            }
+        }
+
     }
 
     // Start the cooking process
@@ -205,6 +221,57 @@ public class cookingSystem : MonoBehaviour
                 CookingState = 2;
             }
 
+        }
+        if(ClosestPlayer.tag == "Player2")
+        {
+            if (Input.GetKeyDown(KeyCode.H) && DrinkIndex > 1)
+            {
+                DrinkIndex--;
+                CookingState = 2;
+            }
+            if (Input.GetKeyDown(KeyCode.K) && DrinkIndex < ListDrink.Count)
+            {
+                DrinkIndex++;
+                CookingState = 2;
+            }
+            if (Input.GetKeyDown(KeyCode.I) && CookingState > 1)
+            {
+
+                IsCookingStartSelecting = false;
+                IsCooking = true;
+                MenuCanvas.SetActive(false);
+                HandleSelected();
+
+
+            }
+            else if (CookingState <= 1)
+            {
+                CookingState = 2;
+            }
+        }
+        if(ClosestPlayer.tag == "Player3")
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad4) && DrinkIndex > 1)
+            {
+                DrinkIndex--;
+                CookingState = 2;
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad6) && DrinkIndex < ListDrink.Count)
+            {
+                DrinkIndex++;
+                CookingState = 2;
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad9) && CookingState > 1)
+            {
+                IsCookingStartSelecting = false;
+                IsCooking = true;
+                MenuCanvas.SetActive(false);
+                HandleSelected();
+            }
+            else if (CookingState <= 1)
+            {
+                CookingState = 2;
+            }
         }
     }
     public void HandleSelected()

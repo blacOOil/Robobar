@@ -48,16 +48,16 @@ public class DrinkmakingMinigame : MonoBehaviour
     }
     public void ShakingCouting()
     {
-        
-        if(ShakingCoustiing > 5)
+
+        if (ShakingCoustiing > 5)
         {
-            
+
             IsShakingfin = true;
-        
+
         }
         else
         {
-            if(ClosetPlayer.tag == "Player1")
+            if (ClosetPlayer.tag == "Player1")
             {
                 if (!isapressing)
                 {
@@ -82,27 +82,48 @@ public class DrinkmakingMinigame : MonoBehaviour
             {
                 if (!isapressing)
                 {
-                if (Input.GetKeyDown(KeyCode.H))
-                {
-                    ShakingCoustiing++;
-                    isapressing = true;
-                    isdpressing = false;
+                    if (Input.GetKeyDown(KeyCode.H))
+                    {
+                        ShakingCoustiing++;
+                        isapressing = true;
+                        isdpressing = false;
+                    }
                 }
-                 }  
-            if (!isdpressing)
+                if (!isdpressing)
+                {
+                    if (Input.GetKeyDown(KeyCode.K))
+                    {
+                        ShakingCoustiing++;
+                        isapressing = false;
+                        isdpressing = true;
+                    }
+                }
+
+            }
+            if (ClosetPlayer.tag == "Player3")
             {
-                if (Input.GetKeyDown(KeyCode.K))
+                if (!isapressing)
                 {
-                    ShakingCoustiing++;
-                    isapressing = false;
-                    isdpressing = true;
+                    if (Input.GetKeyDown(KeyCode.Keypad4))
+                    {
+                        ShakingCoustiing++;
+                        isapressing = true;
+                        isdpressing = false;
+                    }
                 }
+                if (!isdpressing)
+                {
+                    if (Input.GetKeyDown(KeyCode.Keypad6))
+                    {
+                        ShakingCoustiing++;
+                        isapressing = false;
+                        isdpressing = true;
+                    }
+                }
+
             }
-           
-            }
-               
+
         }
-       
     }
 
     public void Shaking()
@@ -119,6 +140,7 @@ public class DrinkmakingMinigame : MonoBehaviour
     {
         GameObject[] player1Objects = GameObject.FindGameObjectsWithTag("Player1");
         GameObject[] player2Objects = GameObject.FindGameObjectsWithTag("Player2");
+        GameObject[] player3Objects = GameObject.FindGameObjectsWithTag("Player3");
 
         float closestDistance = Mathf.Infinity;
         GameObject tempClosest = null;
@@ -142,6 +164,15 @@ public class DrinkmakingMinigame : MonoBehaviour
             {
                 closestDistance = distance;
                 tempClosest = player2;
+            }
+        }
+        foreach (GameObject player3 in player3Objects)
+        {
+            float distance = Vector3.Distance(transform.position, player3.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                tempClosest = player3;
             }
         }
 

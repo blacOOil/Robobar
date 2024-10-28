@@ -32,6 +32,7 @@ TagManager:
   - CrossRoadSpawnPoint
   - PlayerNull
   - ServiceSpawner
+  - Player3
   layers:
   - Default
   - TransparentFX
