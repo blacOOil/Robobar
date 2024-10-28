@@ -11,7 +11,7 @@ public class cookingSystem : MonoBehaviour
     public List<GameObject> ListDrink, MinigameList;
     public List<Transform> ListMinigameTranformList;
     public bool IsCookingStarted,IsCookingStartSelecting = false;
-    public int DrinkIndex = 0;
+    public int DrinkIndex = 0, CookingState;
     void Start()
     {
         InitializeSystem();
@@ -26,6 +26,7 @@ public class cookingSystem : MonoBehaviour
         }
         HandlePlayerProximity();
         HandleCookingProcess();
+       
     }
     private void StopCookingDueToPlayerExit()
     {
@@ -43,6 +44,7 @@ public class cookingSystem : MonoBehaviour
         cookingCanvas.SetActive(false);
         MenuCanvas.SetActive(false);
         IsCookingStarted = false;
+        CookingState = 0;
     }
 
     // Handle logic when player is near or far
@@ -61,35 +63,11 @@ public class cookingSystem : MonoBehaviour
     // Handle cooking process (i.e., mini-game controls)
     private void HandleCookingProcess()
     {
-        if (IsCooking && IsCookingStartSelecting == false)
+        if (IsCookingStartSelecting)
         {
-                if (!IsCookingStarted)
-                {
-                    if (DrinkIndex == 1)
-                    {
-                        IsCookingStarted = true;
-                        PlayMinigameDrinkmaking(0);
-                    }
-                    else if (DrinkIndex == 2)
-                    {
-                        IsCookingStarted = true;
-                        PlayMinigameDrinkmaking(1);
-                    }
-                    else if (DrinkIndex == 3)
-                    {
-                        IsCookingStarted = true;
-                        PlayMinigameDrinkmaking(2);
-                    }
-                    else
-                    {
-                    StopCooking();
-                    }
-                }
-            if(IsCookingStartSelecting == true)
-            {
-                HandleCookingSelection();
-            }
+            HandleCookingSelection();
         }
+        
        
 
     }
@@ -157,6 +135,8 @@ public class cookingSystem : MonoBehaviour
                     StartCooking();
                     IsCookingStartSelecting = true;
                     DrinkIndex = 1;
+                    CookingState = 1;
+                   
                 }
             }
             
@@ -192,29 +172,68 @@ public class cookingSystem : MonoBehaviour
         MenuCanvas.SetActive(false);
         IsCooking = false;
         IsCookingStartSelecting = false;
+        
     }
     public void HandleCookingSelection()
     {
         botController.enabled = false;
         if (ClosestPlayer.tag == "Player1")
         {
-            if (Input.GetKeyDown(KeyCode.A)&& DrinkIndex > 0)
+            
+            if (Input.GetKeyDown(KeyCode.A)&& DrinkIndex > 1)
             {
                 DrinkIndex--;
+                CookingState = 2;
             }
-            if (Input.GetKeyDown(KeyCode.D)&& DrinkIndex <= ListDrink.Count)
+            if (Input.GetKeyDown(KeyCode.D)&& DrinkIndex < ListDrink.Count)
             {
                 DrinkIndex++;
+                CookingState = 2;
             }
-            if (Input.GetKeyDown(KeyCode.E)&& IsCookingStartSelecting == true)
+            if (Input.GetKeyDown(KeyCode.E) && CookingState >1 )
             {
-                if (!IsCooking)
+               
+                IsCookingStartSelecting = false;
+                IsCooking = true;
+                MenuCanvas.SetActive(false);
+                HandleSelected();
+
+
+            }
+            else if (CookingState <= 1)
+            {
+                CookingState = 2;
+            }
+
+        }
+    }
+    public void HandleSelected()
+    {
+        if (IsCooking )
+        {
+            if (!IsCookingStarted)
+            {
+                if (DrinkIndex == 1)
                 {
-                    IsCookingStartSelecting = false;
-                    MenuCanvas.SetActive(false);
-                    IsCooking = true;
+                    IsCookingStarted = true;
+                    PlayMinigameDrinkmaking(0);
+                }
+                else if (DrinkIndex == 2)
+                {
+                    IsCookingStarted = true;
+                    PlayMinigameDrinkmaking(1);
+                }
+                else if (DrinkIndex == 3)
+                {
+                    IsCookingStarted = true;
+                    PlayMinigameDrinkmaking(2);
+                }
+                else
+                {
+                    StopCooking();
                 }
             }
+
         }
     }
 
