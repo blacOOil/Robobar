@@ -103,13 +103,12 @@ public class CustomerSingle : MonoBehaviour
     // Handle receiving the drink order and player interaction
     private void HandleOrderReceived()
     {
-        if (IsplayerClose() && IsDrinkClose() && Input.GetKeyDown(KeyCode.E))
+        if ((IsplayerClose()|| Isplayer2Close()||Isplayer3Close()) && IsDrinkClose() && IsPlayerInput())
         {
-            SatifactorCanvas.SetActive(false);
             ReceiveOrder();
             if (Randomdrinkfloat == ServedDrink && IsorderRevied == false)
             {
-                
+                SatifactorCanvas.SetActive(false);
                 Destroy(OrderImage);
                 SpawnDrinkThatRecived();
                 StartCoroutine(DrinkingRoutine());
@@ -128,7 +127,7 @@ public class CustomerSingle : MonoBehaviour
     private void HandlePlayerInteraction()
     {
 
-        if (IsplayerClose() || Isplayer2Close())
+        if (IsplayerClose() || Isplayer2Close() || Isplayer3Close())
         {
             PlayerInteractMenu.SetActive(true);
             if (IsplayerClose() && !IsTagClose())
@@ -168,6 +167,26 @@ public class CustomerSingle : MonoBehaviour
                     Issited = true;
 
                 }
+
+            }
+            if (Isplayer3Close())
+            {
+                if (Input.GetKeyDown(KeyCode.Keypad9))
+                {
+                    Debug.Log("Go to table Ok");
+                    customertoTable.movetotable();
+                    if (!customertoTable.fixedTableset())
+                    {
+                        ExitStore();
+                    }
+                    else
+                    {
+                        Issited = true;
+                    }
+                    Issited = true;
+
+                }
+
             }
         }
         else
@@ -202,6 +221,10 @@ public class CustomerSingle : MonoBehaviour
     {
         return CheckProximity("Player2");
     }
+    private bool Isplayer3Close()
+    {
+        return CheckProximity("Player3");
+    }
 
     private bool IsDrinkClose()
     {
@@ -214,6 +237,35 @@ public class CustomerSingle : MonoBehaviour
     private bool IsTagClose()
     {
         return CheckProximity("tableTag");
+    }
+    private bool IsPlayerInput()
+    {
+        if (IsplayerClose())
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                return true;
+            }
+        }
+        else if (Isplayer2Close())
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                return true;
+            }
+        }
+        else if (Isplayer3Close())
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad9))
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        return false;
     }
 
 

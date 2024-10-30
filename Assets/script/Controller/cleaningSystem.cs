@@ -94,8 +94,28 @@ public class cleaningSystem : MonoBehaviour
     }
     public bool PlayerInput()
     {
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if(gameObject.tag == "Player1")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }else if(gameObject.tag == "Player2")
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad9))
         {
             return true;
         }
@@ -103,6 +123,7 @@ public class cleaningSystem : MonoBehaviour
         {
             return false;
         }
+
     }
     private bool IsTrashbinClose()
     {

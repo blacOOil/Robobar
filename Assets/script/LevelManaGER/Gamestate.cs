@@ -8,13 +8,14 @@ public class Gamestate : MonoBehaviour
     public List<GameObject> PlayerList;
     public List<Transform> PlayerServiceSpawnList;
     public bool IsplayerinList,IsplayerPositionseted,IstimerSeted;
-    public int gamestate_Number = 0, numbertorandom;
+    public int gamestate_Number , numbertorandom;
     public GameObject Player1, Player2,Player3;
     public TimerCode timerCode;
 
     // Start is called before the first frame update
     void Start()
     {
+        gamestate_Number = 0;
         IsplayerinList = false;
         IsplayerPositionseted = true;
         IstimerSeted = false;
@@ -67,24 +68,19 @@ public class Gamestate : MonoBehaviour
     // Placeholder for cleaning session logic
     public void StartCleaningSession()
     {
-        if (IsplayerinList == false)
-        {
-            AddPlayerToPlayerList();
-            Player1 = PlayerList[0];
-            Player2 = PlayerList[1];
-            Player3 = PlayerList[2];
-
-            Player1.GetComponent<ServiceSystem>().enabled = false;
-            Player2.GetComponent<ServiceSystem>().enabled = false;
-            Debug.Log("Cleaning session started");
-            // Implement cleaning session logic here
-        }
+       
+        Player1.GetComponent<ServiceSystem>().enabled = false;
+        Player2.GetComponent<ServiceSystem>().enabled = false;
+        Player3.GetComponent<ServiceSystem>().enabled = false;
+        Debug.Log("Cleaning session started");
     }
         // Placeholder for minigame session logic
         public void StartminigameSession()
         {
         IsplayerPositionseted = false;
-
+        Player1.GetComponent<ServiceSystem>().enabled = false;
+        Player2.GetComponent<ServiceSystem>().enabled = false;
+        Player3.GetComponent<ServiceSystem>().enabled = false;
         Debug.Log("Minigame session started");
         }
 
@@ -108,6 +104,7 @@ public class Gamestate : MonoBehaviour
         {
         Player1.GetComponent<ServiceSystem>().enabled = true;
         Player2.GetComponent<ServiceSystem>().enabled = true;
+        Player3.GetComponent<ServiceSystem>().enabled = true;
         Retiming();
 
         Debug.Log("Resume session started");
@@ -125,12 +122,18 @@ public class Gamestate : MonoBehaviour
             {
                 PlayerList.Add(player);
             }
-            IsplayerinList = true;
+            GameObject[] Player3= GameObject.FindGameObjectsWithTag("Player3");
+            foreach (GameObject player in Player3)
+            {
+            PlayerList.Add(player);
+            }
+        IsplayerinList = true;
         }
     public void SetPlayerPosition()
         {
         Player1.transform.position = PlayerServiceSpawnList[0].position;
         Player2.transform.position = PlayerServiceSpawnList[1].position;
+        Player3.transform.position = PlayerServiceSpawnList[2].position;
         IsplayerPositionseted = true;
     }
     public void Retiming()
@@ -145,6 +148,17 @@ public class Gamestate : MonoBehaviour
         {
 
         }
+    }
+    public void InditialePlaying()
+    {
+        if (IsplayerinList == false)
+        {
+            AddPlayerToPlayerList();
+            Player1 = PlayerList[0];
+            Player2 = PlayerList[1];
+            Player3 = PlayerList[2];
+        }
+        gamestate_Number = 4;
     }
 } 
 

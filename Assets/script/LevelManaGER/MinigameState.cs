@@ -22,10 +22,11 @@ public class MinigameState : MonoBehaviour
         if(gamestatenumber == 2)
         {
             
-            RandomMinigameMethod();
-            if(IsminigameStarted = true)
+            if(!IsminigameStarted)
             {
+                RandomMinigameMethod();
                 InnitializingMinigame();
+                
             }
             else
             {
@@ -35,6 +36,7 @@ public class MinigameState : MonoBehaviour
         else
         {
             ClearMinigame();
+            IsminigameStarted = false;
         }
     }
     public void ClearMinigame()
@@ -48,12 +50,30 @@ public class MinigameState : MonoBehaviour
     public void RandomMinigameMethod()
     {
         RandomMinigameint = Random.Range(0, MinigameList.Count - 1);
-        IsminigameStarted = true;
+      //  IsminigameStarted = false;
     }
     public void InnitializingMinigame()
     {
+      
         GameObject selectedMinigame = MinigameList[RandomMinigameint];
         selectedMinigame.SetActive(true);
+        if (RandomMinigameint == 0)
+        {
+           
+            CrossingRoadManager crossingRoadManager = MinigameList[RandomMinigameint].GetComponent<CrossingRoadManager>();
+            if (crossingRoadManager.PlayTime>=1 && !IsminigameStarted  )
+            {
+                crossingRoadManager.ResetPlayerPositions();
+                crossingRoadManager.IsPlayerReady = false;
+                crossingRoadManager.RestartGame();
+             
+            }
+
+        }
+
+        IsminigameStarted = true;
+
+
     }
     public void SetMinigamesInactive()
     {

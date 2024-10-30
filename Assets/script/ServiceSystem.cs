@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServiceSystem : MonoBehaviour
 {
     public MonneyLevelCode monneyLevelCode;
+    public Gamestate gamestate;
     public Transform Hand;
     public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
     private float CustomerCheckerRadius = 2f,SpawnerRadius = 100f;
@@ -58,6 +59,7 @@ public class ServiceSystem : MonoBehaviour
     void Start()
     {
         Spawner = GameObject.FindGameObjectWithTag("ServiceSpawner");
+        gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
         Objholding = null;
         holdedrink = false;
         IsreadytoServered = false;
@@ -70,13 +72,17 @@ public class ServiceSystem : MonoBehaviour
         {
             playernumber = 1;
         }
+        if (gameObject.tag == "Player3")
+        {
+            playernumber = 2;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (IsSpawnerClose())
+        if (IsSpawnerClose() && gamestate.gamestate_Number == 4 )
         {
           
         }
@@ -304,6 +310,13 @@ public class ServiceSystem : MonoBehaviour
         if(playernum == 1)
         {
             if (Input.GetKeyDown(KeyCode.I))
+            {
+                return true;
+            }
+        }
+        if (playernum == 2)
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad9))
             {
                 return true;
             }

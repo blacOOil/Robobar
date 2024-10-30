@@ -17,7 +17,7 @@ public class UpgradingSystemSingle : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, PlayerCheckerRadius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Player1") || hitCollider.CompareTag("Player2"))
+            if (hitCollider.CompareTag("Player1") || hitCollider.CompareTag("Player2")|| hitCollider.CompareTag("Player3"))
             {
                 return true;
             }
@@ -36,6 +36,10 @@ public class UpgradingSystemSingle : MonoBehaviour
                 return true;
             }
             else if (CloestPlayer.tag == "Player2" && Input.GetKey(KeyCode.U))
+            {
+                return true;
+            }
+            else if (CloestPlayer.tag == "Player3" && Input.GetKey(KeyCode.Keypad9))
             {
                 return true;
             }
@@ -79,7 +83,7 @@ public class UpgradingSystemSingle : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Player1") || hitCollider.CompareTag("Player2"))
+            if (hitCollider.CompareTag("Player1") || hitCollider.CompareTag("Player2") || hitCollider.CompareTag("Player3"))
             {
                 float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
                 if (distance < closestDistance)
@@ -117,6 +121,17 @@ public class UpgradingSystemSingle : MonoBehaviour
                 MaterialIndex--;
             }
             if (Input.GetKeyDown(KeyCode.K) && MaterialIndex < ChairMaterial.Count - 1)
+            {
+                MaterialIndex++;
+            }
+        }
+        else if (CloestPlayer.tag == "Player3")
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad4) && MaterialIndex > 0)
+            {
+                MaterialIndex--;
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad6) && MaterialIndex < ChairMaterial.Count - 1)
             {
                 MaterialIndex++;
             }
