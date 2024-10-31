@@ -159,12 +159,19 @@ public class CharacterSelection : MonoBehaviour
     {
         if (!IsplayerSpawned)
         {
-            CharacterList[selectorNumber].tag = "Player1";
-            CharacterList[selectorNumber].transform.position = PlayerSpawnPoint.position;
+            GameObject player = Instantiate(CharacterList[selectorNumber], PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
+            
+            player.tag = "Player1";
+
+            BotController botController = player.GetComponent<BotController>();
+            botController.enabled = true;
+            ServiceSystem service = player.GetComponent<ServiceSystem>();
+            service.enabled = true;
             IsplayerSpawned = true;
         }
+        
 
-        EnableBotControllers();
+         EnableBotControllers();
     }
 
     // Enable bot controllers for all characters
@@ -221,20 +228,29 @@ public class CharacterSelection : MonoBehaviour
     {
         if(PlayerNum == 2)
         {
-            CharacterList[Player2SelectedNumber].transform.position = Player2SpawnerTranform.position;
-            BotController botController = CharacterList[Player2SelectedNumber].GetComponent<BotController>();
+            GameObject player2 = Instantiate(CharacterList[Player2SelectedNumber], Player2SpawnerTranform.position, Player2SpawnerTranform.rotation);
+          
+            BotController botController = player2.GetComponent<BotController>();
+            botController.enabled = true;
             botController.inputNameHorizontal = "Horizontal2";
             botController.inputNameVertical = "Vertical2";
-            CharacterList[Player2SelectedNumber].tag = "Player2";
+            player2.tag = "Player2";
+            ServiceSystem service = player2.GetComponent<ServiceSystem>();
+            service.enabled = true;
+
             IsPlayer2Spawned = true;
         }
         if(PlayerNum == 3)
         {
-            CharacterList[Player3SelectedNumber].transform.position = Player3SpawnerTranform.position;
-            BotController botController = CharacterList[Player3SelectedNumber].GetComponent<BotController>();
+            GameObject player3 = Instantiate(CharacterList[Player3SelectedNumber], Player3SpawnerTranform.position, Player3SpawnerTranform.rotation);
+           
+            BotController botController = player3.GetComponent<BotController>();
+            botController.enabled = true;
             botController.inputNameHorizontal = "Horizontal3";
             botController.inputNameVertical = "Vertical3";
-            CharacterList[Player3SelectedNumber].tag = "Player3";
+            player3.tag = "Player3";
+            ServiceSystem service = player3.GetComponent<ServiceSystem>();
+            service.enabled = true;
             IsPlayer3Spawned = true;
         }
         
