@@ -9137,7 +9137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeText: {fileID: 282346510}
-  remainingTime: 10
+  remainingTime: 100
   startedRemainingtime: 0
   GameOverUI: {fileID: 660871994}
   IstimeCounting: 0
@@ -14332,7 +14332,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8359232d54b54124da4dc5a41867392f, type: 2}
+      objectReference: {fileID: 2100000, guid: 8bfa01b777ddd7f418aa92d1442ae065, type: 2}
     - target: {fileID: 4516772413186977072, guid: db79f979a2668d04eb7cef4c309935a8,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -17485,7 +17485,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.07
   m_Pitch: 1
@@ -17495,7 +17495,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 35.39548
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -19958,6 +19958,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: CrossRoadSpawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 996395254355325351, guid: ca9293b1adb86f243b0b840342449b68,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e82418d3bd6de904d8e2e2c387c9eabf, type: 2}
     - target: {fileID: 1038706809776965827, guid: ca9293b1adb86f243b0b840342449b68,
         type: 3}
       propertyPath: m_IsTrigger
@@ -20012,7 +20017,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3bc145a65f1434c42999f9326059e98a, type: 2}
+      objectReference: {fileID: 2100000, guid: e82418d3bd6de904d8e2e2c387c9eabf, type: 2}
     - target: {fileID: 5517302228698519998, guid: ca9293b1adb86f243b0b840342449b68,
         type: 3}
       propertyPath: m_Layer

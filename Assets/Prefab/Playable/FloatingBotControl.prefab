@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1655093341224942099}
   - component: {fileID: -925173118079251011}
   - component: {fileID: 3082699467551634250}
+  - component: {fileID: -4823799690087828877}
   m_Layer: 6
   m_Name: FloatingBotControl
   m_TagString: Player
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monneyLevelCode: {fileID: 0}
+  gamestate: {fileID: 0}
   Hand: {fileID: 6244769114226725332}
   holdedrink: 0
   IsreadytoServered: 0
@@ -181,6 +183,7 @@ MonoBehaviour:
   Hand: {fileID: 6244769114226725332}
   Ispawnset: 0
   Isholded: 0
+  Playernum: 0
   SpawnedLayer:
     serializedVersion: 2
     m_Bits: 65536
@@ -190,6 +193,21 @@ MonoBehaviour:
   Objholding: {fileID: 0}
   boxSingle: {fileID: 0}
   monneyLevelCode: {fileID: 0}
+--- !u!114 &-4823799690087828877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360980808647168757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e9ad33900b80c4faa8b523aa6a344b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botController: {fileID: 3420606111497681003}
+  additionSpeed: 5
+  Isadded: 0
 --- !u!1 &5803333516237270316
 GameObject:
   m_ObjectHideFlags: 0
