@@ -10,7 +10,7 @@ public class CustomerSingle : MonoBehaviour
     public List<Sprite> OrderMenu;
     public Image OrderImage;
     public bool Isordered,IsorderRevied;
-    public GameObject DrinkReceived, DrinktoDrinked;
+    public GameObject  DrinktoDrinked,ClosestPlayer;
     public LayerMask DrinkLayer;
     public Transform DrinkPlacement;
     public List<GameObject> DrinkPrefab;
@@ -23,10 +23,11 @@ public class CustomerSingle : MonoBehaviour
     public float changeTime = 2.98f;
     public Image SliderImage;
     public GameObject SatifactorCanvas;
+    public bool IsDanceAdded = false;
 
 
     [Header("SittingSession")]
-    public float PlayerCheckerRadius = 500f;
+    public float PlayerCheckerRadius = 999f;
     public bool Issited, Isfull;
     public GameObject Requested, PlayerInteractMenu, exitdoor;
     public LayerMask Player;
@@ -96,6 +97,7 @@ public class CustomerSingle : MonoBehaviour
         }
         else
         {
+            ReceiveOrder();
             HandleOrderReceived();
         }
     }
@@ -103,10 +105,11 @@ public class CustomerSingle : MonoBehaviour
     // Handle receiving the drink order and player interaction
     private void HandleOrderReceived()
     {
-        if ((IsplayerClose()|| Isplayer2Close()||Isplayer3Close()) && IsDrinkClose() && IsPlayerInput())
+       
+        if ((Isplayer1Close()|| Isplayer2Close()||Isplayer3Close()) && IsPlayerInput())
         {
-            ReceiveOrder();
-            if (Randomdrinkfloat == ServedDrink && IsorderRevied == false)
+           // ReceiveOrder();
+            if (Randomdrinkfloat == ServedDrink && IsorderRevied == false )
             {
                 SatifactorCanvas.SetActive(false);
                 Destroy(OrderImage);
@@ -127,10 +130,10 @@ public class CustomerSingle : MonoBehaviour
     private void HandlePlayerInteraction()
     {
 
-        if (IsplayerClose() || Isplayer2Close() || Isplayer3Close())
+        if (Isplayer1Close() || Isplayer2Close() || Isplayer3Close())
         {
             PlayerInteractMenu.SetActive(true);
-            if (IsplayerClose() && !IsTagClose())
+            if (Isplayer1Close() )
             {
 
                 if (Input.GetKeyDown(KeyCode.E))
@@ -212,18 +215,19 @@ public class CustomerSingle : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private bool IsplayerClose()
+    private bool Isplayer1Close()
     {
-        return CheckProximity("Player1");
+        return IsPlayerClose("Player1");
     }
 
     private bool Isplayer2Close()
     {
-        return CheckProximity("Player2");
+        return IsPlayerClose("Player2");
+
     }
     private bool Isplayer3Close()
     {
-        return CheckProximity("Player3");
+        return IsPlayerClose("Player3");
     }
 
     private bool IsDrinkClose()
@@ -240,7 +244,7 @@ public class CustomerSingle : MonoBehaviour
     }
     private bool IsPlayerInput()
     {
-        if (IsplayerClose())
+        if (Isplayer1Close())
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -278,11 +282,31 @@ public class CustomerSingle : MonoBehaviour
             if (hitCollider.CompareTag(tag))
             {
                 return true;
+
             }
         }
         return false;
     }
+    private bool IsPlayerClose(string playerTag)
+    {
+        if (ClosestPlayer == null)
+        {
+            if (CheckProximity(playerTag))
+            {
+                ClosestPlayer = GameObject.FindGameObjectWithTag(playerTag);
+                return true; // Player is close and now assigned
+            }
+            return false; // No player close enough
+        }
+        else if (ClosestPlayer.CompareTag(playerTag) && !CheckProximity(playerTag))
+        {
+            // If the assigned player moves away, reset ClosestPlayer
+            ClosestPlayer = null;
+            return false; // Player is not close anymore
+        }
 
+        return ClosestPlayer.CompareTag(playerTag); // ClosestPlayer is already assigned and still close
+    }
 
     public void OrderTheDrink()
     {
@@ -296,30 +320,33 @@ public class CustomerSingle : MonoBehaviour
 
     public void ReceiveOrder()
     {
-        float closestDistance = Mathf.Infinity;
-        GameObject ClosestDrinks = null;
+        if(ClosestPlayer!= null) { 
+            GameObject drink = ClosestPlayer.GetComponent<ServiceSystem>().Objholding;
 
-        GameObject[] drinkes = GameObject.FindGameObjectsWithTag("drink");
-        foreach (GameObject drink in drinkes)
-        {
-            DrinkSingle drinkSingle = drink.GetComponent<DrinkSingle>();
-            if (drinkSingle != null)
+            if (drink != null)
             {
-                float distance = Vector3.Distance(transform.position, drink.transform.position);
-                if (distance < closestDistance && distance <= PlayerCheckerRadius)
+                DrinkSingle drinkSingleComponent = drink.GetComponent<DrinkSingle>();
+
+
+                if (drinkSingleComponent != null && Isordered == true)
                 {
-                    closestDistance = distance;
-                    ClosestDrinks = drink;
-                    ServedDrink = drink.GetComponent<DrinkSingle>().DrinkId;
+                    ServedDrink = drinkSingleComponent.DrinkId;
+                   // Debug.Log("Drink is " + drinkSingleComponent.DrinkId);
+                }
+                else
+                {
+                 //   Debug.Log("Drink component not found on the held object.");
+                    ServedDrink = -1; // Fallback value for error
                 }
             }
-        }
-        DrinkReceived = ClosestDrinks;
+
     }
+
+}
 
     public void SpawnDrinkThatRecived()
     {
-        DrinktoDrinked = Instantiate(DrinkPrefab[ServedDrink], DrinkPlacement.position, DrinkPlacement.rotation);
+        DrinktoDrinked = Instantiate(DrinkPrefab[Randomdrinkfloat], DrinkPlacement.position, DrinkPlacement.rotation);
         Rigidbody drinkRigidbody = DrinktoDrinked.GetComponent<Rigidbody>();
         if (drinkRigidbody != null)
         {

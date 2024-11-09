@@ -13,7 +13,7 @@ public class ServiceSystem : MonoBehaviour
     public LayerMask CustomerLayer,TagLayer,SpawnerLayer;
     public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage,Spawner;
     public BoxSkill boxSkill;
-    public bool IshadBoxskill = false,IsNextDrinkSpawned = false;
+    public bool IshadBoxskill = false, IsNextDrinkSpawned = false, IscustmerDrinkReceived = false;
     public List<GameObject> ExtraHand,ExtraDrink;
 
    public bool IsSpawnerClose()
@@ -190,37 +190,53 @@ public class ServiceSystem : MonoBehaviour
     {
         monneyLevelCode.moneyAdd();
         findClosestCustomer();
-        if(holdedrink == true)
+
+        if (holdedrink)
         {
-            if (ClosestCustomer != null && ClosestCustomer.GetComponent<CustomerSingle>().Randomdrinkfloat == Objholding.GetComponent<DrinkSingle>().DrinkId && ClosestCustomer.GetComponent<CustomerSingle>().IsorderRevied == false)
-        {
-            Debug.Log("ServiceProceed");
-            Objholding.GetComponent<DrinkSingle>().selfDestruct();
-           // Destroy(Objholding);
-            holdedrink = false;
-            Ishandholded = false;
-            Objholding = null;
-            IsNextDrinkSpawned = false;
-                if (IshadBoxskill && ExtraDrink[0] != null)
+            if (ClosestCustomer != null)
+            {
+                CustomerSingle customer = ClosestCustomer.GetComponent<CustomerSingle>();
+                DrinkSingle drink = Objholding?.GetComponent<DrinkSingle>();
+
+                if (customer != null && drink != null &&
+                    customer.Randomdrinkfloat == drink.DrinkId &&
+                    !customer.IsorderRevied)
                 {
-                    Objholding = ExtraDrink[0];
-                    NextDrinkSpawned();
-                    holdedrink = true;
-                    Ishandholded = true;
+                    Debug.Log("ServiceProceed");
+
+                    // Destroy the drink and reset states
+                    drink.selfDestruct();
+                    holdedrink = false;
+                    Ishandholded = false;
+                    Objholding = null;
+                    IsNextDrinkSpawned = false;
+
+                    // Check if IshadBoxskill is true and ExtraDrink has at least one element
+                    if (IshadBoxskill && ExtraDrink != null && ExtraDrink.Count > 0 && ExtraDrink[0] != null)
+                    {
+                        Objholding = ExtraDrink[0];
+                        NextDrinkSpawned();
+                        holdedrink = true;
+                        Ishandholded = true;
+                    }
+                }
+                else
+                {
+                    ReleaseDrink();
                 }
             }
             else
             {
+                Debug.LogWarning("Closest customer not found.");
                 ReleaseDrink();
             }
-
         }
-        
         else
         {
-           
+            Debug.LogWarning("No drink is currently being held.");
         }
     }
+
     public void NextDrinkSpawned()
     {
         if(IsNextDrinkSpawned == false)

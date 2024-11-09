@@ -654,8 +654,8 @@ MonoBehaviour:
   OrderImage: {fileID: 1318268750588463684}
   Isordered: 0
   IsorderRevied: 0
-  DrinkReceived: {fileID: 0}
   DrinktoDrinked: {fileID: 0}
+  ClosestPlayer: {fileID: 0}
   DrinkLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -675,6 +675,7 @@ MonoBehaviour:
   changeTime: 2.98
   SliderImage: {fileID: 6636020913362087133}
   SatifactorCanvas: {fileID: 3609598787511272388}
+  IsDanceAdded: 0
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0
