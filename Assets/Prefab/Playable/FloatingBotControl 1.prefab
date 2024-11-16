@@ -111,6 +111,7 @@ MonoBehaviour:
   holdetable: 0
   IsTableTagnear: 0
   Ishandholded: 0
+  ExtraSpaceLimit: 3
   CustomerLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -128,8 +129,8 @@ MonoBehaviour:
   boxSkill: {fileID: 1679471044683484873}
   IshadBoxskill: 0
   IsNextDrinkSpawned: 0
-  ExtraHand: []
-  ExtraDrink: []
+  IscustmerDrinkReceived: 0
+  ExtraDrinkId: []
 --- !u!136 &1655093341224942099
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -213,11 +214,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serviceSystem: {fileID: 7409638701694022140}
-  CollectedItem:
-  - {fileID: 6799066269503335122}
-  - {fileID: 7766716970526360310}
-  - {fileID: 7275022447525294533}
+  CollectedItemSpace:
+  - {fileID: 1766725694417179271, guid: bab0e7ed33d84664aae91cc9c628a4dc, type: 3}
+  - {fileID: 1766725694417179271, guid: b96aa395ee042134696e531d6f1b297e, type: 3}
+  - {fileID: 1766725694417179271, guid: ca9ef0f43475b2b4a9a7b05a5654e85b, type: 3}
+  CollectedId: 
   CollecterArea: {fileID: 6244769114226725332}
+  drinkSingle: {fileID: 0}
 --- !u!1 &4290710782118637022
 GameObject:
   m_ObjectHideFlags: 0

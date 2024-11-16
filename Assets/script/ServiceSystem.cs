@@ -10,11 +10,12 @@ public class ServiceSystem : MonoBehaviour
     public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
     private float CustomerCheckerRadius = 2f,SpawnerRadius = 100f;
     private int playernumber = 0;
+    public int ExtraSpaceLimit;
     public LayerMask CustomerLayer,TagLayer,SpawnerLayer;
     public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage,Spawner;
     public BoxSkill boxSkill;
     public bool IshadBoxskill = false, IsNextDrinkSpawned = false, IscustmerDrinkReceived = false;
-    public List<GameObject> ExtraHand,ExtraDrink;
+    public List<GameObject> ExtraDrinkId;
 
    public bool IsSpawnerClose()
     {
@@ -88,6 +89,7 @@ public class ServiceSystem : MonoBehaviour
         if (IshadBoxskill)
         {
             InputMoreHand();
+            
         }
         
         if (IsSpawnerClose() && gamestate.gamestate_Number == 4 )
@@ -158,17 +160,7 @@ public class ServiceSystem : MonoBehaviour
     }
     public void InputMoreHand()
     {
-        GameObject[] ExtrahandArray = boxSkill.CollectedItem;
-        ExtraHand = new List<GameObject>();
-        
-        foreach(GameObject obj in ExtrahandArray)
-        {
-            if (obj != null)
-            {
-                ExtraHand.Add(obj);
-            }
-        }
-
+    
     }
     public void BoxSkillCheck()
     {
@@ -210,15 +202,12 @@ public class ServiceSystem : MonoBehaviour
                     Ishandholded = false;
                     Objholding = null;
                     IsNextDrinkSpawned = false;
-
-                    // Check if IshadBoxskill is true and ExtraDrink has at least one element
-                    if (IshadBoxskill && ExtraDrink != null && ExtraDrink.Count > 0 && ExtraDrink[0] != null)
+                    if (IshadBoxskill)
                     {
-                        Objholding = ExtraDrink[0];
-                        NextDrinkSpawned();
-                        holdedrink = true;
-                        Ishandholded = true;
+                        SpawnNextDrink();
                     }
+
+
                 }
                 else
                 {
@@ -241,15 +230,7 @@ public class ServiceSystem : MonoBehaviour
     {
         if(IsNextDrinkSpawned == false)
         {
-        GameObject firstDrink = ExtraDrink[0];
-        firstDrink.transform.SetParent(Hand); // Detach from parent if needed
-        firstDrink.transform.position = new Vector3(0, 1, 0); // Set the desired spawn position
-        firstDrink.transform.localScale = Vector3.one; // Reset size if necessary
-        firstDrink.GetComponent<MeshRenderer>().enabled = true; // Make it visible
-        firstDrink.GetComponent<Rigidbody>().isKinematic = false; // Restore physics if needed
-        firstDrink.GetComponent<Collider>().isTrigger = false; // Restore collider
-
-        ExtraDrink.RemoveAt(0);
+        ExtraDrinkId.RemoveAt(0);
         }
     }
     public void findClosestCustomer()
@@ -287,29 +268,23 @@ public class ServiceSystem : MonoBehaviour
     {
 
         // Check if the list already has 3 items
-        if (ExtraDrink.Count >= 2)
+        if (ExtraDrinkId.Count >= ExtraSpaceLimit)
         {
-            Debug.Log("Cannot store more than 3 drinks.");
-            return;
+
+        }
+        else
+        {
+
+            TranformDrinktoCollecter(Drink);
         }
 
-        // Add the drink to the ExtraHand list
-        ExtraDrink.Add(Drink);
-
-        TranformDrinktoCollecter(Drink);
+       
     }
     public void TranformDrinktoCollecter(GameObject Drink)
     {
-         int PlaceMent = ExtraDrink.Count ;
-        Drink.GetComponent<MeshRenderer>().enabled = false;
-      
-        Drink.transform.SetParent(ExtraHand[PlaceMent].transform);
-        Drink.transform.localPosition = Vector3.zero;
-        Drink.transform.localRotation = Quaternion.identity;
-        Drink.GetComponent<Rigidbody>().isKinematic = true;
-        Drink.GetComponent<Collider>().isTrigger = true;
-
-        Drink.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        int DrindNum = Drink.GetComponent<DrinkSingle>().DrinkId;
+        boxSkill.CollectedId.Add(DrindNum);
+        Destroy(Drink);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -318,11 +293,13 @@ public class ServiceSystem : MonoBehaviour
             if (Ishandholded == false)
             {
                 TransformObjToHand(collision.gameObject);
+               
             }
             else
             {
                 if (IshadBoxskill)
                 {
+                   
                     StorExtraDrink(collision.gameObject);
                 }
             }
@@ -387,6 +364,14 @@ public class ServiceSystem : MonoBehaviour
         {
             Objholding.transform.SetParent(null);
             Objholding.GetComponent<Collider>().isTrigger = false;
+            holdedrink = false;
+            Ishandholded = false;
+            Objholding = null;
+            if (IshadBoxskill)
+            {
+
+                SpawnNextDrink();
+            }
         }
         else if(Objholding.CompareTag("tableTag"))
         {
@@ -395,8 +380,24 @@ public class ServiceSystem : MonoBehaviour
             Objholding.transform.SetParent(tabletagPlace.transform);
             Objholding.GetComponent<Collider>().isTrigger = true;
         }
-        StartCoroutine(DropDelay());
+       
+        StartCoroutine(DropDelay()); 
+    }
+    public void SpawnNextDrink() 
+    {
         
+        if (boxSkill.CollectedId.Count > 0)
+        {
+            int NextDrinkId = boxSkill.CollectedId[0];
+            GameObject NextDrink = boxSkill.CollectedItemSpace[NextDrinkId];
+            Instantiate(NextDrink, Hand);
+            boxSkill.CollectedId.RemoveAt(0);
+
+        }
+        else
+        {
+
+        }
     }
     IEnumerator DropDelay()
     {

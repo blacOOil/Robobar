@@ -5,8 +5,10 @@ using UnityEngine;
 public class BoxSkill : MonoBehaviour
 {
     public ServiceSystem serviceSystem;
-    public GameObject[] CollectedItem;
+    public List<GameObject> CollectedItemSpace;
+    public List<int> CollectedId;
     public Transform CollecterArea;
+    public DrinkSingle drinkSingle;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,20 +22,7 @@ public class BoxSkill : MonoBehaviour
     }
     public void StorExtradrink(GameObject drink)
     {
-        // Check if there is an empty slot in the array
-        for (int i = 0; i < CollectedItem.Length; i++)
-        {
-            if (CollectedItem[i] == null)
-            {
-                CollectedItem[i] = drink;
-               
-                TranformDrinktoCollecter(drink);
-                Debug.Log("Drink stored at index " + i);
-                return;
-            }
-        }
-
-        Debug.Log("No empty slot available to store the drink.");
+    
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -45,9 +34,5 @@ public class BoxSkill : MonoBehaviour
             }
         }
     }
-    public void TranformDrinktoCollecter(GameObject drink)
-    {
-        drink.transform.position = CollecterArea.transform.position;
-        drink.GetComponent<MeshRenderer>().enabled = false;
-    }
+    
 }
