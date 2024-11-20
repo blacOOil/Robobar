@@ -75,29 +75,28 @@ public class Gamestate : MonoBehaviour
         Debug.Log("Cleaning session started");
     }
         // Placeholder for minigame session logic
-        public void StartminigameSession()
-        {
+    public void StartminigameSession()
+    {
         IsplayerPositionseted = false;
         Player1.GetComponent<ServiceSystem>().enabled = false;
         Player2.GetComponent<ServiceSystem>().enabled = false;
         Player3.GetComponent<ServiceSystem>().enabled = false;
         Debug.Log("Minigame session started");
-        }
+    }
 
         // Placeholder for upgrading session logic
-        public void UpgradingSession()
-        {
-            if(IsplayerPositionseted == false)
-        {
-            SetPlayerPosition();
-        }
-        else
-        {
-        }
-            
-            Debug.Log("Upgrading session started");
-            // Implement upgrading session logic here
-        }
+    public void UpgradingSession()
+    {
+        if(IsplayerPositionseted == false)
+    {
+        SetPlayerPosition();
+    }
+    else
+    {
+    }  
+        Debug.Log("Upgrading session started");
+        // Implement upgrading session logic here
+    }
 
         // Placeholder for resume session logic
         public void ResumeSession()
@@ -110,25 +109,25 @@ public class Gamestate : MonoBehaviour
         Debug.Log("Resume session started");
             // Implement resume session logic here
         }
-        public void AddPlayerToPlayerList()
+    public void AddPlayerToPlayerList()
+    {
+        GameObject[] Player1 = GameObject.FindGameObjectsWithTag("Player1");
+        foreach (GameObject player in Player1)
         {
-            GameObject[] Player1 = GameObject.FindGameObjectsWithTag("Player1");
-            foreach (GameObject player in Player1)
-            {
-                PlayerList.Add(player);
-            }
-            GameObject[] Player2 = GameObject.FindGameObjectsWithTag("Player2");
-            foreach (GameObject player in Player2)
-            {
-                PlayerList.Add(player);
-            }
-            GameObject[] Player3= GameObject.FindGameObjectsWithTag("Player3");
-            foreach (GameObject player in Player3)
-            {
             PlayerList.Add(player);
-            }
-        IsplayerinList = true;
+        }            
+        GameObject[] Player2 = GameObject.FindGameObjectsWithTag("Player2");
+        foreach (GameObject player in Player2)
+        {
+            PlayerList.Add(player);
         }
+        GameObject[] Player3= GameObject.FindGameObjectsWithTag("Player3");
+        foreach (GameObject player in Player3)
+        {
+        PlayerList.Add(player);
+        }
+        IsplayerinList = true;
+    }
     public void SetPlayerPosition()
         {
         Player1.transform.position = PlayerServiceSpawnList[0].position;
