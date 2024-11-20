@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae753921a3bc4b4985be5381b483798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 8
   JumpForce: 2.5
   GroundCheckDistance: 1
   GroundLayer:
@@ -101,12 +101,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monneyLevelCode: {fileID: 0}
+  gamestate: {fileID: 0}
   Hand: {fileID: 6244769114226725332}
   holdedrink: 0
   IsreadytoServered: 0
   holdetable: 0
   IsTableTagnear: 0
   Ishandholded: 0
+  IsreadytopickNext: 0
+  ExtraSpaceLimit: 0
   CustomerLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -120,6 +123,12 @@ MonoBehaviour:
   Objholding: {fileID: 0}
   ReadytoPickObj: {fileID: 0}
   ClosestTage: {fileID: 0}
+  Spawner: {fileID: 0}
+  boxSkill: {fileID: 0}
+  IshadBoxskill: 0
+  IsNextDrinkSpawned: 0
+  IscustmerDrinkReceived: 0
+  ExtraDrinkId: []
 --- !u!136 &1655093341224942099
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -180,10 +189,16 @@ MonoBehaviour:
   Hand: {fileID: 6244769114226725332}
   Ispawnset: 0
   Isholded: 0
+  Playernum: 0
   SpawnedLayer:
     serializedVersion: 2
     m_Bits: 65536
+  Boxlayer:
+    serializedVersion: 2
+    m_Bits: 0
   Objholding: {fileID: 0}
+  boxSingle: {fileID: 0}
+  monneyLevelCode: {fileID: 0}
 --- !u!1 &5803333516237270316
 GameObject:
   m_ObjectHideFlags: 0

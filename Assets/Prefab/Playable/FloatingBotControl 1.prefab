@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae753921a3bc4b4985be5381b483798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 8
   JumpForce: 2.5
   GroundCheckDistance: 1
   GroundLayer:
@@ -111,7 +111,8 @@ MonoBehaviour:
   holdetable: 0
   IsTableTagnear: 0
   Ishandholded: 0
-  ExtraSpaceLimit: 3
+  IsreadytopickNext: 0
+  ExtraSpaceLimit: 1
   CustomerLayer:
     serializedVersion: 2
     m_Bits: 4096

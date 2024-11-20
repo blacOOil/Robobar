@@ -282,7 +282,6 @@ public class CustomerSingle : MonoBehaviour
             if (hitCollider.CompareTag(tag))
             {
                 return true;
-
             }
         }
         return false;

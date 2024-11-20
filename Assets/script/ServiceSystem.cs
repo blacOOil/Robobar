@@ -7,7 +7,7 @@ public class ServiceSystem : MonoBehaviour
     public MonneyLevelCode monneyLevelCode;
     public Gamestate gamestate;
     public Transform Hand;
-    public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded;
+    public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded,IsreadytopickNext;
     private float CustomerCheckerRadius = 2f,SpawnerRadius = 100f;
     private int playernumber = 0;
     public int ExtraSpaceLimit;
@@ -62,6 +62,7 @@ public class ServiceSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    
         BoxSkillCheck();
         Spawner = GameObject.FindGameObjectWithTag("ServiceSpawner");
         gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
@@ -293,11 +294,11 @@ public class ServiceSystem : MonoBehaviour
             if (Ishandholded == false)
             {
                 TransformObjToHand(collision.gameObject);
-               
+                collision.gameObject.GetComponent<DrinkSingle>().IsHeld = true;
             }
             else
             {
-                if (IshadBoxskill)
+                if (IshadBoxskill && !collision.gameObject.GetComponent<DrinkSingle>().IsHeld)
                 {
                    
                     StorExtraDrink(collision.gameObject);
@@ -329,10 +330,12 @@ public class ServiceSystem : MonoBehaviour
         if (Obj.CompareTag("tableTag"))
         {
             holdetable = true;
+         
         }
         if (Obj.CompareTag("drink"))
         {
             holdedrink = true;
+            Obj.GetComponent<DrinkSingle>().IsHeld = true;
         }
         if (Obj == null)
         {
@@ -365,11 +368,10 @@ public class ServiceSystem : MonoBehaviour
             Objholding.transform.SetParent(null);
             Objholding.GetComponent<Collider>().isTrigger = false;
             holdedrink = false;
-            Ishandholded = false;
-            Objholding = null;
+            //  Objholding.GetComponent<DrinkSingle>().IsHeld = false;
+            IsNextDrinkSpawned = false;
             if (IshadBoxskill)
             {
-
                 SpawnNextDrink();
             }
         }
@@ -386,18 +388,24 @@ public class ServiceSystem : MonoBehaviour
     public void SpawnNextDrink() 
     {
         
-        if (boxSkill.CollectedId.Count > 0)
+       if(boxSkill.CollectedId.Count >= 0)
         {
+            Debug.Log("Spawned");
+            // StartCoroutine(DropDelay());
             int NextDrinkId = boxSkill.CollectedId[0];
             GameObject NextDrink = boxSkill.CollectedItemSpace[NextDrinkId];
             Instantiate(NextDrink, Hand);
+            NextDrink.GetComponent<Collider>().isTrigger = false;
             boxSkill.CollectedId.RemoveAt(0);
-
         }
         else
         {
 
         }
+          
+
+        
+        
     }
     IEnumerator DropDelay()
     {

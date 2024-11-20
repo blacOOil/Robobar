@@ -281,6 +281,7 @@ public class CharacterSelection : MonoBehaviour
             if (i == selectorNumber)
             {
                 CharacterList[i].transform.position = CharacterTranformList[0].transform.position;
+                CharacterList[i].transform.rotation = CharacterTranformList[0].transform.rotation;
             }
             else
             {
@@ -298,11 +299,13 @@ public class CharacterSelection : MonoBehaviour
             {
                 PlayerTwoSelecting = Instantiate(CharacterList[i], CharacterTranformList[1].transform.position, CharacterTranformList[1].transform.rotation);
                 PlayerTwoSelecting.transform.position = CharacterTranformList[1].transform.position;
+                PlayerTwoSelecting.transform.rotation = CharacterTranformList[1].transform.rotation;
                 Is2pawned = true;
             }
             else if (i == Player2SelectedNumber && Is2pawned)
             {
                 PlayerTwoSelecting.transform.position = CharacterTranformList[1].transform.position;
+                PlayerTwoSelecting.transform.rotation = CharacterTranformList[1].transform.rotation;
             }
         }
     
@@ -315,11 +318,13 @@ public class CharacterSelection : MonoBehaviour
             {
                 PlayerThreeSelecting = Instantiate(CharacterList[i], CharacterTranformList[2].transform.position, CharacterTranformList[2].transform.rotation);
                 PlayerThreeSelecting.transform.position = CharacterTranformList[2].transform.position;
+                PlayerThreeSelecting.transform.rotation = CharacterTranformList[2].transform.rotation;
                 Is3pawned = true;
             }
             else if (i == Player3SelectedNumber && Is3pawned)
             {
                 PlayerThreeSelecting.transform.position = CharacterTranformList[2].transform.position;
+                PlayerThreeSelecting.transform.rotation = CharacterTranformList[2].transform.rotation;
             }
         }
     }
