@@ -101,6 +101,7 @@ public class Gamestate : MonoBehaviour
         // Placeholder for resume session logic
         public void ResumeSession()
         {
+
         Player1.GetComponent<ServiceSystem>().enabled = true;
         Player2.GetComponent<ServiceSystem>().enabled = true;
         Player3.GetComponent<ServiceSystem>().enabled = true;
