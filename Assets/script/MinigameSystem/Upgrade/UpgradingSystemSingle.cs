@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpgradingSystemSingle : MonoBehaviour
 {
     public GameObject CanvasUpgrade, CloestPlayer;
+    public MonneyLevelCode
     public BotController botController;
     public List<GameObject> SeatInSider;
     public List<Material> ChairMaterial;
