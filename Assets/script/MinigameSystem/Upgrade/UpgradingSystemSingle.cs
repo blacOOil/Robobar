@@ -5,7 +5,7 @@ using UnityEngine;
 public class UpgradingSystemSingle : MonoBehaviour
 {
     public GameObject CanvasUpgrade, CloestPlayer;
-    public MonneyLevelCode
+    public MonneyLevelCode monneyLevelCode;
     public BotController botController;
     public List<GameObject> SeatInSider;
     public List<Material> ChairMaterial;
@@ -51,6 +51,7 @@ public class UpgradingSystemSingle : MonoBehaviour
 
     void Start()
     {
+        monneyLevelCode = GameObject.Find("LevelManager").GetComponent<MonneyLevelCode>();
     }
 
     void Update()
@@ -96,9 +97,10 @@ public class UpgradingSystemSingle : MonoBehaviour
 
     public void UpgradingProcess()
     {
-        if (MaterialIndex < ChairMaterial.Count - 1)
+        if ((MaterialIndex < ChairMaterial.Count - 1) && monneyLevelCode.MonneyAmount >0)
         {
             MaterialIndex++;
+            monneyLevelCode.MonneyAmount--;
         }
         // Apply material after updating the MaterialIndex
         ApplyMaterialToSeats();
