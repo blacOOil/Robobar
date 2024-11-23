@@ -388,7 +388,7 @@ public class ServiceSystem : MonoBehaviour
     public void SpawnNextDrink() 
     {
         
-       if(boxSkill.CollectedId.Count >= 0)
+       if(boxSkill.CollectedId.Count >= 1)
         {
             Debug.Log("Spawned");
             // StartCoroutine(DropDelay());

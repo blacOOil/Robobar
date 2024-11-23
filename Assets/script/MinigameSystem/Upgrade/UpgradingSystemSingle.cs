@@ -61,10 +61,6 @@ public class UpgradingSystemSingle : MonoBehaviour
             {
       
                 UpgradingProcess();
-            }else if(botController != null) 
-            {
-                botController.enabled = true;
-                botController = null;
             }
             
         }
@@ -99,57 +95,30 @@ public class UpgradingSystemSingle : MonoBehaviour
 
     public void UpgradingProcess()
     {
-        botController = CloestPlayer.GetComponent<BotController>();
-        botController.enabled = false;
-
-        if (CloestPlayer.tag == "Player1")
+        if (MaterialIndex < ChairMaterial.Count - 1)
         {
-            if (Input.GetKeyDown(KeyCode.A) && MaterialIndex > 0)
-            {
-                MaterialIndex--;
-            }
-            if (Input.GetKeyDown(KeyCode.D) && MaterialIndex < ChairMaterial.Count - 1)
-            {
-                MaterialIndex++;
-            }
-            botController = CloestPlayer.GetComponent<BotController>();
+            MaterialIndex++;
         }
-        else if (CloestPlayer.tag == "Player2")
-        {
-            if (Input.GetKeyDown(KeyCode.H) && MaterialIndex > 0)
-            {
-                MaterialIndex--;
-            }
-            if (Input.GetKeyDown(KeyCode.K) && MaterialIndex < ChairMaterial.Count - 1)
-            {
-                MaterialIndex++;
-            }
-        }
-        else if (CloestPlayer.tag == "Player3")
-        {
-            if (Input.GetKeyDown(KeyCode.Keypad4) && MaterialIndex > 0)
-            {
-                MaterialIndex--;
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad6) && MaterialIndex < ChairMaterial.Count - 1)
-            {
-                MaterialIndex++;
-            }
-        }
-
         // Apply material after updating the MaterialIndex
         ApplyMaterialToSeats();
     }
 
     private void ApplyMaterialToSeats()
     {
-        foreach (var seat in SeatInSider)
+        if (MaterialIndex >= 0 && MaterialIndex < ChairMaterial.Count)
         {
-            Renderer renderer = seat.GetComponent<Renderer>();
-            if (renderer != null)
+            foreach (var seat in SeatInSider)
             {
-                renderer.material = ChairMaterial[MaterialIndex];
+                Renderer renderer = seat.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.material = ChairMaterial[MaterialIndex];
+                }
             }
+        }
+        else
+        {
+            Debug.LogWarning("MaterialIndex is out of range. Check your ChairMaterial list.");
         }
     }
 }
