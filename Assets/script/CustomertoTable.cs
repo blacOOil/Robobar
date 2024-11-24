@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomertoTable : MonoBehaviour
@@ -11,6 +12,7 @@ public class CustomertoTable : MonoBehaviour
     public GameObject Table, TableTag, nearTabletag;
     public float Speed;
     public float searchRadius = 900000f;
+    Animator anim;
 
     [Header("CustomerSpawning")]
     private int Chairnum;
@@ -40,6 +42,8 @@ public class CustomertoTable : MonoBehaviour
             Self.transform.position = Table.transform.position;
             IsselfSitted = true;
 
+            anim = GetComponentInChildren<Animator>();
+            anim.GetComponent<Animator>().SetBool("IsSit", true);
         }
         else
         {
