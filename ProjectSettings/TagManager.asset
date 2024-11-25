@@ -33,6 +33,7 @@ TagManager:
   - PlayerNull
   - ServiceSpawner
   - Player3
+  - TableLooker
   layers:
   - Default
   - TransparentFX

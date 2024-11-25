@@ -90,16 +90,13 @@ public class CustomerSingle : MonoBehaviour
     {
         if (IsTagClose())
         {
-            GameObject tableTagObject = FindClosestObjectWithTag("tableTag");
+            GameObject tableTagObject = FindClosestObjectWithTag("TableLooker");
 
             if (tableTagObject != null)
             {
                 // Rotate to look at the table tag
-                Vector3 directionToTable = (tableTagObject.transform.position - transform.position).normalized;
-                Quaternion targetRotation = Quaternion.LookRotation(directionToTable);
-
-                // Smoothly rotate towards the target
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2f); // Adjust rotation speed as needed
+                transform.LookAt(tableTagObject.transform);
+                Debug.Log("Lookat");
             }
         }
     }
