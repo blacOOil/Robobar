@@ -32,6 +32,7 @@ public class CustomerSingle : MonoBehaviour
     public GameObject Requested, PlayerInteractMenu, exitdoor;
     public LayerMask Player;
     public CustomertoTable customertoTable;
+    public Transform TableFace;
 
     private void Start()
     {
@@ -77,6 +78,7 @@ public class CustomerSingle : MonoBehaviour
     {
         if (Issited)
         {
+            LookAtTable();
             ManageOrderProcess();
         }
         else
@@ -84,10 +86,46 @@ public class CustomerSingle : MonoBehaviour
             HandlePlayerInteraction();
         }
     }
+    private void LookAtTable()
+    {
+        if (IsTagClose())
+        {
+            GameObject tableTagObject = FindClosestObjectWithTag("tableTag");
+
+            if (tableTagObject != null)
+            {
+                // Rotate to look at the table tag
+                Vector3 directionToTable = (tableTagObject.transform.position - transform.position).normalized;
+                Quaternion targetRotation = Quaternion.LookRotation(directionToTable);
+
+                // Smoothly rotate towards the target
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2f); // Adjust rotation speed as needed
+            }
+        }
+    }
+    private GameObject FindClosestObjectWithTag(string tag)
+    {
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
+        GameObject closestObject = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject obj in objectsWithTag)
+        {
+            float distance = Vector3.Distance(transform.position, obj.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestObject = obj;
+            }
+        }
+
+        return closestObject;
+    }
 
     // Manage the drink order process when the customer is seated
     private void ManageOrderProcess()
     {
+        
         PlayerInteractMenu.SetActive(false);
         Requested.SetActive(true);
 

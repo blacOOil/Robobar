@@ -595,10 +595,7 @@ MonoBehaviour:
   searchRadius: 999
   ExtraChair: []
   ExtraCustomer:
-  - {fileID: 6162576104635231622, guid: f2015d8eca0a87a49a41286528e929e5, type: 3}
   - {fileID: 6162576104635231622}
-  - {fileID: 6162576104635231622, guid: 941092eb076c99b4596e6b95803d696e, type: 3}
-  - {fileID: 6162576104635231622, guid: bf5f89180af656142a1b5ecc6631b611, type: 3}
 --- !u!114 &5989789123077395522
 MonoBehaviour:
   m_ObjectHideFlags: 0
