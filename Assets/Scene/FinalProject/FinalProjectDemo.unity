@@ -5702,9 +5702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Customer:
-  - {fileID: 6162576104635231622, guid: bf5f89180af656142a1b5ecc6631b611, type: 3}
   - {fileID: 6162576104635231622, guid: 941092eb076c99b4596e6b95803d696e, type: 3}
-  - {fileID: 6162576104635231622, guid: 5f33ef940d7c2e7479b0f6a82ed7b649, type: 3}
   isCustomerhere: 0
   IsgameStarted: 0
   spawnPoint: {fileID: 611064608}

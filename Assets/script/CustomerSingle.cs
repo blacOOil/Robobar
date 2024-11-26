@@ -88,36 +88,44 @@ public class CustomerSingle : MonoBehaviour
     }
     private void LookAtTable()
     {
-        if (IsTagClose())
-        {
+      
             GameObject tableTagObject = FindClosestObjectWithTag("TableLooker");
 
             if (tableTagObject != null)
             {
-                // Rotate to look at the table tag
-                transform.LookAt(tableTagObject.transform);
-                Debug.Log("Lookat");
+                // Calculate the direction towards the table
+                Vector3 directionToTable = (tableTagObject.transform.position - transform.position).normalized;
+
+                // Calculate the new forward vector using RotateTowards
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, directionToTable, Time.deltaTime * 10000f, 0.0f);
+
+                // Apply the rotation
+                transform.rotation = Quaternion.LookRotation(newDirection);
             }
-        }
+        
     }
     private GameObject FindClosestObjectWithTag(string tag)
     {
-        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
         GameObject closestObject = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (GameObject obj in objectsWithTag)
+        // Check all layers to capture all objects tagged with the given tag
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1000f);
+        foreach (var hitCollider in hitColliders)
         {
-            float distance = Vector3.Distance(transform.position, obj.transform.position);
-            if (distance < closestDistance)
+            if (hitCollider.CompareTag(tag))
             {
-                closestDistance = distance;
-                closestObject = obj;
+                float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestObject = hitCollider.gameObject;
+                }
             }
         }
-
         return closestObject;
     }
+
 
     // Manage the drink order process when the customer is seated
     private void ManageOrderProcess()
