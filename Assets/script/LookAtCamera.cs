@@ -15,7 +15,14 @@ public class LookAtCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.LookAt(mainCamera.transform);
-      
+        //gameObject.transform.LookAt(mainCamera.transform);
+        Vector3 directionToTable = (mainCamera.transform.position - transform.position).normalized;
+
+        // Calculate the new forward vector using RotateTowards
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, directionToTable, Time.deltaTime * 10000f, 0.0f);
+
+        // Apply the rotation
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
     }
 }

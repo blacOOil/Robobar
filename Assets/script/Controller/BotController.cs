@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BotController : MonoBehaviour
 {
@@ -18,10 +19,14 @@ public class BotController : MonoBehaviour
     [SerializeField] public string inputNameHorizontal;
     [SerializeField] public string inputNameVertical;
 
+    public string PlayerName;
+    public GameObject NameObj;
+    public PlayerNameContainer playerNameContainer;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
+        NameObj.SetActive(true);
     }
 
     void Update() {
@@ -29,6 +34,7 @@ public class BotController : MonoBehaviour
         JumpInput();
         CheckGroundStatus();
         PlayerIndicator();
+        UpdatePlayerName();
     }
 
     void MovementInput()
@@ -97,6 +103,27 @@ public class BotController : MonoBehaviour
         else
         {
             Playerlight.color = Color.red;
+        }
+    }
+    public void UpdatePlayerName()
+    {
+        playerNameContainer = GameObject.Find("LevelManager").GetComponent<PlayerNameContainer>();
+        UpdatePlayerTag();
+       
+    }
+    public void UpdatePlayerTag()
+    {
+        if(gameObject.tag == "Player1")
+        {
+            PlayerName = playerNameContainer.PlayerNameList[0];
+        }
+        if (gameObject.tag == "Player2")
+        {
+            PlayerName = playerNameContainer.PlayerNameList[1];
+        }
+        if (gameObject.tag == "Player3")
+        {
+            PlayerName = playerNameContainer.PlayerNameList[2];
         }
     }
 }
