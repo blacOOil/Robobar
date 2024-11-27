@@ -33,6 +33,12 @@ public class CustomertoTable : MonoBehaviour
         if (IsselfSitted == true)
         {
             SpawnedExtraCustomer();
+           
+        }
+       if(gameObject.GetComponent<CustomerSingle>().Issited == true)
+        {
+            anim = GetComponentInChildren<Animator>();
+            anim.GetComponent<Animator>().SetBool("IsSit", true);
         }
     }
     public void movetotable()
@@ -42,8 +48,8 @@ public class CustomertoTable : MonoBehaviour
             Self.transform.position = Table.transform.position;
             IsselfSitted = true;
 
-            anim = GetComponentInChildren<Animator>();
-            anim.GetComponent<Animator>().SetBool("IsSit", true);
+           // anim = GetComponentInChildren<Animator>();
+           // anim.GetComponent<Animator>().SetBool("IsSit", true);
         }
         else
         {

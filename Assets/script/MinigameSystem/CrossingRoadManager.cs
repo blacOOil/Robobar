@@ -75,7 +75,6 @@ public class CrossingRoadManager : MonoBehaviour
     {
         PlayTime++;
         IscrossingRoadStarted = false;
-        timerCode.IstimeCounting = false;
         IsPlayerReady = false;
 
     }
@@ -116,7 +115,7 @@ public class CrossingRoadManager : MonoBehaviour
     {
         TranformPlayertoSetedPlace();
         IscrossingRoadStarted = true;
-        StartTimeCouting();
+      
     }
     public void ResetPlayerPositions()
     {
@@ -182,18 +181,6 @@ public class CrossingRoadManager : MonoBehaviour
             yield return null; // Wait for the next frame
         }
     }
-    public void StartTimeCouting()
-    {
-        if (timerCode.IstimeCounting != true)
-        {
-            timerCode.remainingTime = remainingTime;
-            timerCode.IstimeCounting = true;
-        }
-        else
-        {
-
-        }
-
-    }
+  
 }
 

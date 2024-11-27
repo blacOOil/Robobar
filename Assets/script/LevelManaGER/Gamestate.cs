@@ -7,10 +7,11 @@ public class Gamestate : MonoBehaviour
 {
     public List<GameObject> PlayerList;
     public List<Transform> PlayerServiceSpawnList;
-    public bool IsplayerinList,IsplayerPositionseted,IstimerSeted;
+    public bool IsplayerinList,IsplayerPositionseted,IstimerSeted,IsCleaningStateCounted,IsminigameStateCouted,IsResumeSessionCounted;
     public int gamestate_Number , numbertorandom;
     public GameObject Player1, Player2,Player3;
     public TimerCode timerCode;
+    public float remainingTime = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -68,11 +69,12 @@ public class Gamestate : MonoBehaviour
     // Placeholder for cleaning session logic
     public void StartCleaningSession()
     {
-       
+        
         Player1.GetComponent<ServiceSystem>().enabled = false;
         Player2.GetComponent<ServiceSystem>().enabled = false;
         Player3.GetComponent<ServiceSystem>().enabled = false;
         Debug.Log("Cleaning session started");
+        Retiming();
     }
         // Placeholder for minigame session logic
     public void StartminigameSession()
@@ -82,6 +84,7 @@ public class Gamestate : MonoBehaviour
         Player2.GetComponent<ServiceSystem>().enabled = false;
         Player3.GetComponent<ServiceSystem>().enabled = false;
         Debug.Log("Minigame session started");
+        Retiming();
     }
 
         // Placeholder for upgrading session logic
@@ -159,6 +162,30 @@ public class Gamestate : MonoBehaviour
             Player3 = PlayerList[2];
         }
         gamestate_Number = 4;
+    }
+    public void StartTimeCouting()
+    {
+        if (!timerCode.IstimeCounting) // Start countdown only if not already counting
+        {
+            timerCode.remainingTime = remainingTime;
+            timerCode.IstimeCounting = true;
+            StartCoroutine(CountdownToNextState());
+        }
+    }
+
+    // Coroutine to handle countdown and transition
+    private IEnumerator CountdownToNextState()
+    {
+        while (timerCode.remainingTime > 0)
+        {
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure time has stopped counting before transitioning
+        if (timerCode.remainingTime <= 0)
+        {
+            timerCode.IstimeCounting = false; // Stop the timer
+        }
     }
 } 
 

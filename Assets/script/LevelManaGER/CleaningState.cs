@@ -14,6 +14,7 @@ public class CleaningState : MonoBehaviour
     public float maxOffset = 2.0f;
     public bool Iscustomerblocked;
     public cookingSystem cookingSystem;
+    private List<GameObject> spawnedTrash = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,8 @@ public class CleaningState : MonoBehaviour
             cookingSystem.enabled = false;
 
         } else
-        { Iscleaningstarted = false;
+        {
+            Iscleaningstarted = false;
             trashAmount = 0;
            // cookingSystem.enabled = true;
 
@@ -88,6 +90,8 @@ public class CleaningState : MonoBehaviour
     public void ClearTrash()
     {
         Trashbin.SetActive(false);
+        DestroyAllTrash(); // Destroy all spawned trash
+       
     }
     public void SpawningTrash()
     {
@@ -111,9 +115,26 @@ public class CleaningState : MonoBehaviour
         Vector3 spawnPosition = basePosition + randomOffset;
 
         // Instantiate the random TrashGameObj at the new random position
-        Instantiate(TrashGameObj[randomObjectIndex], spawnPosition, Quaternion.identity);
-        trashAmount++;
+        GameObject spawned = Instantiate(TrashGameObj[randomObjectIndex], spawnPosition, Quaternion.identity);
 
+        // Add the spawned trash to the list
+        spawnedTrash.Add(spawned);
+
+        trashAmount++;
+    }
+    public void DestroyAllTrash()
+    {
+        foreach (GameObject trash in spawnedTrash)
+        {
+            if (trash != null) // Check if the object still exists
+            {
+                Destroy(trash);
+            }
+        }
+
+        // Clear the list after destroying all trash
+        spawnedTrash.Clear();
+        trashAmount = 0;
     }
     public void UpdateGamestate()
     {

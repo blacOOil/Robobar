@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 2760927162402751719}
   - component: {fileID: 5989789123077395522}
   - component: {fileID: 6640471250208950944}
-  - component: {fileID: 7133113750558895900}
+  - component: {fileID: 318525892456676777}
   m_Layer: 12
   m_Name: Customer_1
   m_TagString: Customer
@@ -675,8 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ac5d6b24d55114a812b4c087523a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &7133113750558895900
-BoxCollider:
+--- !u!136 &318525892456676777
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -693,9 +693,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.4581708
+  m_Height: 4.6715417
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.8945348, z: -0.07862213}
 --- !u!1 &7760499371338721347
 GameObject:
   m_ObjectHideFlags: 0
