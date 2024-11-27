@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Timemanager;
 
 public class CleaningState : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class CleaningState : MonoBehaviour
     public bool Iscustomerblocked;
     public cookingSystem cookingSystem;
     private List<GameObject> spawnedTrash = new List<GameObject>();
-
+    public TimerCode timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -196,6 +197,11 @@ public class CleaningState : MonoBehaviour
     {
         Setbackalltabletag();
         Iscleaningstarted = true;
-        gamestate.gamestate_Number = 2;
-        }
+        // gamestate.gamestate_Number = 2;
+        EndTime();
+    }
+    public void EndTime()
+    {
+        gameObject.GetComponent<TimerCode>().remainingTime = 0;
+    }
 }
