@@ -15,10 +15,7 @@ public class PlayerScoreSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerScoreText = "";
          gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
-
-     
     }
 
     // Update is called once per frame

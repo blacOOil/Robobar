@@ -388,8 +388,9 @@ MonoBehaviour:
   inputNameHorizontal: Horizontal1
   inputNameVertical: Vertical1
   PlayerName: 
-  nameInputfield: {fileID: 0}
   NameObj: {fileID: 2075344601916290011}
+  playerNameContainer: {fileID: 0}
+  NameText: {fileID: 3698203208992451096}
 --- !u!114 &7409638701694022140
 MonoBehaviour:
   m_ObjectHideFlags: 0

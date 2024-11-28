@@ -22,6 +22,7 @@ public class BotController : MonoBehaviour
     public string PlayerName;
     public GameObject NameObj;
     public PlayerNameContainer playerNameContainer;
+    public TMP_Text NameText;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -30,11 +31,12 @@ public class BotController : MonoBehaviour
     }
 
     void Update() {
+        UpdatePlayerName();
         MovementInput();
         JumpInput();
         CheckGroundStatus();
         PlayerIndicator();
-        UpdatePlayerName();
+       
     }
 
     void MovementInput()
@@ -116,14 +118,17 @@ public class BotController : MonoBehaviour
         if(gameObject.tag == "Player1")
         {
             PlayerName = playerNameContainer.PlayerNameList[0];
+            NameText.text = PlayerName;
         }
         if (gameObject.tag == "Player2")
         {
             PlayerName = playerNameContainer.PlayerNameList[1];
+            NameText.text = PlayerName;
         }
         if (gameObject.tag == "Player3")
         {
             PlayerName = playerNameContainer.PlayerNameList[2];
+            NameText.text = PlayerName;
         }
     }
 }

@@ -11155,7 +11155,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNameList: []
-  PlayerNameInputList: []
+  PlayerNameInputList:
+  - {fileID: 547431685}
+  - {fileID: 900804025}
+  - {fileID: 1644661957}
+  scoreManager: {fileID: 0}
 --- !u!1 &940476503
 GameObject:
   m_ObjectHideFlags: 0
@@ -12448,8 +12452,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019951543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0054355245, y: 0.8905067, z: -0.4548121, w: -0.010689464}
-  m_LocalPosition: {x: 758.1171, y: 45.23606, z: 46.00408}
+  m_LocalRotation: {x: -0.0010709642, y: -0.9887395, z: 0.1496409, w: -0.00092122616}
+  m_LocalPosition: {x: -0.480011, y: 10.329351, z: 22.802385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
