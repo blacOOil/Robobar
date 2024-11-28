@@ -13,6 +13,7 @@ public class CustomertoTable : MonoBehaviour
     public float Speed;
     public float searchRadius = 900000f;
     Animator anim;
+    public HumannoidCustomer humannoidCustomer;
 
     [Header("CustomerSpawning")]
     private int Chairnum;
@@ -23,6 +24,7 @@ public class CustomertoTable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        humannoidCustomer = gameObject.GetComponent<HumannoidCustomer>();
         IsselfSitted = false;
         IstableTagnear = false;
     }
@@ -47,7 +49,8 @@ public class CustomertoTable : MonoBehaviour
         {
             Self.transform.position = Table.transform.position;
 
-            if (gameObject.name == "Customer_1") {
+            if (humannoidCustomer != null) {
+                Debug.Log("In Site");
                 Vector3 newposition = Self.transform.position;
                 newposition.y = -0.32f;
                 Self.transform.position = newposition;
