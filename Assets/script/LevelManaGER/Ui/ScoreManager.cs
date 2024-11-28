@@ -57,7 +57,7 @@ public class ScoreManager : MonoBehaviour
         
             PlayerNameList[0].text = PlayerName1;
             PlayerNameList[1].text = PlayerName2;
-            PlayerNameList[2].text = PlayerName2;
+            PlayerNameList[2].text = PlayerName3;
          
     }
 }

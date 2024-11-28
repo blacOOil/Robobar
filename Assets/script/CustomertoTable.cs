@@ -46,6 +46,13 @@ public class CustomertoTable : MonoBehaviour
         if (fixedTableset())
         {
             Self.transform.position = Table.transform.position;
+
+            if (gameObject.name == "Customer_1") {
+                Vector3 newposition = Self.transform.position;
+                newposition.y = -0.32f;
+                Self.transform.position = newposition;
+            }
+
             IsselfSitted = true;
 
            // anim = GetComponentInChildren<Animator>();
