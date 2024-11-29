@@ -608,6 +608,8 @@ MonoBehaviour:
   nearTabletag: {fileID: 0}
   Speed: 100
   searchRadius: 999
+  humannoidCustomer: {fileID: 0}
+  chairSingle: {fileID: 0}
   ExtraChair: []
   ExtraCustomer:
   - {fileID: 6162576104635231622}

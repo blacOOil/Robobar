@@ -44,14 +44,18 @@ public class CustomertoTable : MonoBehaviour
             anim.GetComponent<Animator>().SetBool("IsSit", true);
         }
     }
-    public void movetotable()
+    public void AdjustPosition()
     {
-        if (fixedTableset())
+        Vector3 newposition = Self.transform.position;
+        if (humannoidCustomer != null)
         {
-            Self.transform.position = Table.transform.position;
-            Vector3 newposition = Self.transform.position;
-            if (humannoidCustomer != null) {
-                if(chairSingle.IsThisSofa == true)
+            if(chairSingle == null)
+            {
+                findClosestTable();
+            }
+            else
+            {
+                if (chairSingle.IsThisSofa == true)
                 {
                     newposition.y = -0.1f;
                     Self.transform.position = newposition;
@@ -61,8 +65,18 @@ public class CustomertoTable : MonoBehaviour
                     newposition.y = -0.32f;
                     Self.transform.position = newposition;
                 }
-              
             }
+            
+
+        }
+
+    }
+    public void movetotable()
+    {
+        if (fixedTableset())
+        {
+            Self.transform.position = Table.transform.position;
+            AdjustPosition();
 
             IsselfSitted = true;
 

@@ -78,6 +78,7 @@ public class CustomerSingle : MonoBehaviour
     {
         if (Issited)
         {
+            gameObject.GetComponent<CustomertoTable>().AdjustPosition();
             LookAtTable();
             ManageOrderProcess();
         }
