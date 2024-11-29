@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  IsThisSofa: 1
   CustomerCheckerRadius: 1
   CustomerLayer:
     serializedVersion: 2
@@ -253,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  IsThisSofa: 1
   CustomerCheckerRadius: 1
   CustomerLayer:
     serializedVersion: 2
@@ -459,6 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  IsThisSofa: 1
   CustomerCheckerRadius: 1
   CustomerLayer:
     serializedVersion: 2
@@ -560,6 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  IsThisSofa: 1
   CustomerCheckerRadius: 1
   CustomerLayer:
     serializedVersion: 2

@@ -17,6 +17,7 @@ public class CustomertoTable : MonoBehaviour
 
     [Header("CustomerSpawning")]
     private int Chairnum;
+    public ChairSingle chairSingle;
     public List<GameObject> ExtraChair, ExtraCustomer;
     private bool IsselfSitted;
 
@@ -48,12 +49,19 @@ public class CustomertoTable : MonoBehaviour
         if (fixedTableset())
         {
             Self.transform.position = Table.transform.position;
-
+            Vector3 newposition = Self.transform.position;
             if (humannoidCustomer != null) {
-                Debug.Log("In Site");
-                Vector3 newposition = Self.transform.position;
-                newposition.y = -0.32f;
-                Self.transform.position = newposition;
+                if(chairSingle.IsThisSofa == true)
+                {
+                    newposition.y = -0.1f;
+                    Self.transform.position = newposition;
+                }
+                else
+                {
+                    newposition.y = -0.32f;
+                    Self.transform.position = newposition;
+                }
+              
             }
 
             IsselfSitted = true;
@@ -80,6 +88,7 @@ public class CustomertoTable : MonoBehaviour
         }
         else
         {
+            chairSingle = Table.GetComponent<ChairSingle>();
             return true;
         }
     }

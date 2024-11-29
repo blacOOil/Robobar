@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChairSingle : MonoBehaviour
 {
-    public bool isSited;
+    public bool isSited,IsThisSofa;
     public float CustomerCheckerRadius = 1f;
     public LayerMask CustomerLayer;
 
