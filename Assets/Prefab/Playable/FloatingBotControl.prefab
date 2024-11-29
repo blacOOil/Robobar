@@ -136,6 +136,7 @@ MonoBehaviour:
   IsNextDrinkSpawned: 0
   IscustmerDrinkReceived: 0
   ExtraDrinkId: []
+  playerScoreSystem: {fileID: 0}
 --- !u!136 &1655093341224942099
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   PlayerScore: {fileID: 0}
   PlayerTag: 
   PlayerScoreText: 
+  PersonalScore: 0
   Time: 0
   timerCode: {fileID: 0}
 --- !u!1 &3367153950324771929

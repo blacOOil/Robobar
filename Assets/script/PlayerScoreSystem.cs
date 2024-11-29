@@ -9,12 +9,14 @@ public class PlayerScoreSystem : MonoBehaviour
     public Gamestate gamestate;
     public TMP_Text PlayerScore;
     public string PlayerTag,PlayerScoreText;
-    
+
+    public int PersonalScore;
     public float Time;
     public TimerCode timerCode;
     // Start is called before the first frame update
     void Start()
     {
+        PersonalScore = 0;
          gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
     }
 
@@ -31,21 +33,41 @@ public class PlayerScoreSystem : MonoBehaviour
         switch (gamestate.gamestate_Number)
         {
             case 1:
+                CleaningSessionScoring();
                 GettimerCode();
                 break;
             case 2:
+                MiniSessionScoring();
                 GettimerCode();
                 break;
             case 3:
+
                 GettimerCode();
                 break;
             case 4:
+                MainSessionScoring();
                 GettimerCode();
                 break;
             default:
                 // Optional: Handle an invalid state if needed
                 break;
         }
+    }
+    public void CleaningSessionScoring()
+    {
+        
+    }
+    public void MiniSessionScoring()
+    {
+
+    }
+    public void MainSessionScoring()
+    {
+
+    }
+    public void ScoreAdd()
+    {
+        PersonalScore += 1;
     }
     public void GettimerCode()
     {
@@ -64,16 +86,11 @@ public class PlayerScoreSystem : MonoBehaviour
 
             if (PlayerScorePlace != null)
             {
-               
+                PlayerScoreText = PersonalScore.ToString();
                 PlayerScorePlace.GetComponent<TMP_Text>().text = PlayerScoreText;
-
-
-
-
             }
             else
             {
-
             }
         }
         if (PlayerTag == "Player2")
@@ -82,6 +99,7 @@ public class PlayerScoreSystem : MonoBehaviour
 
             if (PlayerScorePlace != null)
             {
+                PlayerScoreText = PersonalScore.ToString();
                 PlayerScorePlace.GetComponent<TMP_Text>().text = PlayerScoreText;
             }
             else
@@ -94,7 +112,7 @@ public class PlayerScoreSystem : MonoBehaviour
 
             if (PlayerScorePlace != null)
             {
-               
+                PlayerScoreText = PersonalScore.ToString();
                 PlayerScorePlace.GetComponent<TMP_Text>().text = PlayerScoreText;
             }
             else

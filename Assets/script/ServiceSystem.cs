@@ -16,7 +16,7 @@ public class ServiceSystem : MonoBehaviour
     public BoxSkill boxSkill;
     public bool IshadBoxskill = false, IsNextDrinkSpawned = false, IscustmerDrinkReceived = false;
     public List<GameObject> ExtraDrinkId;
-
+    public PlayerScoreSystem playerScoreSystem;
    public bool IsSpawnerClose()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, SpawnerRadius, SpawnerLayer);
@@ -73,8 +73,9 @@ public class ServiceSystem : MonoBehaviour
         IsTableTagnear = false;
         Ishandholded = false;
         monneyLevelCode = FindObjectOfType<MonneyLevelCode>();
+        playerScoreSystem = gameObject.GetComponent<PlayerScoreSystem>();
 
-        if(gameObject.tag == "Player2")
+        if (gameObject.tag == "Player2")
         {
             playernumber = 1;
         }
@@ -181,7 +182,7 @@ public class ServiceSystem : MonoBehaviour
     }
     public void ServiceProceed()
     {
-        monneyLevelCode.moneyAdd();
+        
         findClosestCustomer();
 
         if (holdedrink)
@@ -203,6 +204,11 @@ public class ServiceSystem : MonoBehaviour
                     Ishandholded = false;
                     Objholding = null;
                     IsNextDrinkSpawned = false;
+                    monneyLevelCode.moneyAdd();
+                    if(playerScoreSystem != null)
+                    {
+                        playerScoreSystem.ScoreAdd();
+                    }
                     if (IshadBoxskill)
                     {
                         SpawnNextDrink();
