@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  IsThisSofa: 0
   CustomerCheckerRadius: 1
   CustomerLayer:
     serializedVersion: 2
@@ -181,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSited: 0
+  IsThisSofa: 0
   CustomerCheckerRadius: 1
   CustomerLayer:
     serializedVersion: 2
@@ -638,6 +640,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1212913569378889166, guid: 1cf9185ebf44c7f4e80a82c944caf3b5, type: 3}
+    - {fileID: 8886943049522240736, guid: 1cf9185ebf44c7f4e80a82c944caf3b5, type: 3}
+    - {fileID: 2243494327781954236, guid: 1cf9185ebf44c7f4e80a82c944caf3b5, type: 3}
+    - {fileID: 5815672074012176107, guid: 1cf9185ebf44c7f4e80a82c944caf3b5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cf9185ebf44c7f4e80a82c944caf3b5, type: 3}

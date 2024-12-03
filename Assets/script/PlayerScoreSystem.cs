@@ -13,11 +13,15 @@ public class PlayerScoreSystem : MonoBehaviour
     public int PersonalScore;
     public float Time;
     public TimerCode timerCode;
+
+    public CrossingRoadPlayer crossing;
     // Start is called before the first frame update
     void Start()
     {
+
         PersonalScore = 0;
          gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
+        crossing = gameObject.GetComponent<CrossingRoadPlayer>();
     }
 
     // Update is called once per frame
@@ -41,7 +45,8 @@ public class PlayerScoreSystem : MonoBehaviour
                 GettimerCode();
                 break;
             case 3:
-
+                gameObject.GetComponent<BotController>().enabled = true;
+                crossing.enabled = false;
                 GettimerCode();
                 break;
             case 4:
@@ -59,11 +64,11 @@ public class PlayerScoreSystem : MonoBehaviour
     }
     public void MiniSessionScoring()
     {
-
+        crossing.enabled = true;
     }
     public void MainSessionScoring()
     {
-
+        
     }
     public void ScoreAdd()
     {

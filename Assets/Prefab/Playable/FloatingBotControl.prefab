@@ -180,6 +180,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   TrashCheckerRadius: 1
+  gamestate: {fileID: 0}
 --- !u!114 &3082699467551634250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ MonoBehaviour:
   TempSpawner: {fileID: 0}
   Hand: {fileID: 6244769114226725332}
   Ispawnset: 0
-  Isholded: 0
+  IsReached: 0
   Playernum: 0
   SpawnedLayer:
     serializedVersion: 2
@@ -207,6 +208,7 @@ MonoBehaviour:
   Objholding: {fileID: 0}
   boxSingle: {fileID: 0}
   monneyLevelCode: {fileID: 0}
+  gamestate: {fileID: 0}
 --- !u!114 &-4823799690087828877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +243,7 @@ MonoBehaviour:
   PersonalScore: 0
   Time: 0
   timerCode: {fileID: 0}
+  crossing: {fileID: 0}
 --- !u!1 &3367153950324771929
 GameObject:
   m_ObjectHideFlags: 0
