@@ -9,9 +9,11 @@ public class cleaningSystem : MonoBehaviour
     public GameObject Objholding;
     public LayerMask TrashLayer;
     public float TrashCheckerRadius = 1f;
+    public Gamestate gamestate;
     // Start is called before the first frame update
     void Start()
     {
+        gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
         Objholding = null;
         Ishandholding = false;
         Isbusy = false;
@@ -20,6 +22,10 @@ public class cleaningSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gamestate.gamestate_Number != 1)
+        {
+            DestroyingTrash();
+        }
         if (Ishandholding && !IsTrashbinClose())
         {
             if (PlayerInput())
@@ -37,11 +43,16 @@ public class cleaningSystem : MonoBehaviour
     }
     public void DestroyingTrash()
     {
-        Objholding.GetComponent<Rigidbody>().isKinematic = false;
-        Objholding.transform.SetParent(null);
-        Objholding.GetComponent<Collider>().isTrigger = false;
+        
         Ishandholding = false;
-        Destroy(Objholding);
+        if(Objholding != null)
+        {
+            Objholding.GetComponent<Rigidbody>().isKinematic = false;
+            Objholding.transform.SetParent(null);
+            Objholding.GetComponent<Collider>().isTrigger = false;
+            Destroy(Objholding);
+        }
+        
         Objholding = null;
     }
     private void OnCollisionEnter(Collision collision)

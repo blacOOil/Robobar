@@ -804,6 +804,7 @@ GameObject:
   - component: {fileID: 5989789123077395522}
   - component: {fileID: 6640471250208950944}
   - component: {fileID: 283275341576985148}
+  - component: {fileID: 440804010317069177}
   m_Layer: 12
   m_Name: 'BornerSpiriteCustomer '
   m_TagString: Customer
@@ -895,12 +896,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.532507, z: 1}
+  m_Center: {x: 0, y: 0.26625347, z: 0}
 --- !u!54 &3253510056640008684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -926,7 +927,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 94
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &2760927162402751719
 MonoBehaviour:
@@ -948,6 +949,8 @@ MonoBehaviour:
   nearTabletag: {fileID: 0}
   Speed: 100
   searchRadius: 999
+  humannoidCustomer: {fileID: 0}
+  chairSingle: {fileID: 0}
   ExtraChair: []
   ExtraCustomer:
   - {fileID: 6162576104635231622}
@@ -1032,12 +1035,35 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.3222748, z: 1}
+  m_Center: {x: 0, y: 0.824292, z: 0}
+--- !u!136 &440804010317069177
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162576104635231622}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.8653843
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.6623417, z: 0}
 --- !u!1 &6986252296324800452
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ TagManager:
   - ServiceSpawner
   - Player3
   - TableLooker
+  - Trigger
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,8 @@ public class ServiceSystem : MonoBehaviour
     public bool IshadBoxskill = false, IsNextDrinkSpawned = false, IscustmerDrinkReceived = false;
     public List<GameObject> ExtraDrinkId;
     public PlayerScoreSystem playerScoreSystem;
+
+ 
    public bool IsSpawnerClose()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, SpawnerRadius, SpawnerLayer);
@@ -88,6 +90,10 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gamestate.gamestate_Number != 4)
+        {
+            ReleaseDrink();
+        }
         if (IshadBoxskill)
         {
             InputMoreHand();

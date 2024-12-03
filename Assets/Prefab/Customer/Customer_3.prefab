@@ -499,6 +499,7 @@ GameObject:
   - component: {fileID: 2760927162402751719}
   - component: {fileID: 5989789123077395522}
   - component: {fileID: 6640471250208950944}
+  - component: {fileID: 5319414449000888023}
   m_Layer: 12
   m_Name: Customer_3
   m_TagString: Customer
@@ -540,12 +541,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.8992674, z: 1}
+  m_Center: {x: 0, y: 1.4232279, z: 0}
 --- !u!54 &3253510056640008684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -571,7 +572,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 94
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &2760927162402751719
 MonoBehaviour:
@@ -593,6 +594,8 @@ MonoBehaviour:
   nearTabletag: {fileID: 0}
   Speed: 100
   searchRadius: 999
+  humannoidCustomer: {fileID: 0}
+  chairSingle: {fileID: 0}
   ExtraChair: []
   ExtraCustomer:
   - {fileID: 6162576104635231622}
@@ -662,6 +665,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ac5d6b24d55114a812b4c087523a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &5319414449000888023
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162576104635231622}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.78129816
+  m_Height: 4.240935
+  m_Direction: 1
+  m_Center: {x: -0.07478666, y: 2.5324876, z: 0}
 --- !u!1 &7760499371338721347
 GameObject:
   m_ObjectHideFlags: 0
