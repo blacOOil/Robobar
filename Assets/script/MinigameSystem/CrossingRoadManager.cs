@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Timemanager;
+using TMPro;
 
 public class CrossingRoadManager : MonoBehaviour
 {
     [Header("SetPlayerProperty")]
     public List<Transform> PlayerSpawnerposition;
-    public List<GameObject> PlayerList;
+    public List<GameObject> PlayerList,ScoreList;
     public bool IsplayerinList,IscrossingRoadStarted,IsPlayerReady,IsgameAlready;
     public GameObject Player1, Player2,Player3;
     public Gamestate gamestate;
@@ -18,12 +19,13 @@ public class CrossingRoadManager : MonoBehaviour
     public float SpawnDuration = 0.5f;
     public float CarLifetime = 100f;
     public float spawnTimer = 0f,PlayTime = 0f;
+    private List<string> lastKnownValues = new List<string>();
 
 
     [Header("SetManager")]
     public TimerCode timerCode;
     public float remainingTime = 10f;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,11 @@ public class CrossingRoadManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FindScore();
+       
+            UpdateScoreTexts();
+        
+        
         if (IsplayerinList == false)
         {
             FindPlayer();
@@ -69,6 +76,44 @@ public class CrossingRoadManager : MonoBehaviour
        
        
        
+    }
+    public void FindScore()
+    {
+        GameObject ScoreText0 = GameObject.Find("NumberText0");
+        if (ScoreText0 != null && !ScoreList.Contains(ScoreText0))
+        {
+            ScoreList.Add(ScoreText0);
+        }
+
+        GameObject ScoreText1 = GameObject.Find("NumberText1");
+        if (ScoreText1 != null && !ScoreList.Contains(ScoreText1))
+        {
+            ScoreList.Add(ScoreText1);
+        }
+
+        GameObject ScoreText2 = GameObject.Find("NumberText2");
+        if (ScoreText2 != null && !ScoreList.Contains(ScoreText2))
+        {
+            ScoreList.Add(ScoreText2);
+        }
+
+
+    }
+    private void UpdateScoreTexts()
+    {
+        if (ScoreList.Count >= 1)
+        {
+            ScoreList[0].GetComponent<TMP_Text>().text = "1";
+        }
+        if (ScoreList.Count >= 2)
+        {
+            ScoreList[1].GetComponent<TMP_Text>().text = "2";
+        }
+        if (ScoreList.Count >= 3)
+        {
+            ScoreList[2].GetComponent<TMP_Text>().text = "3";
+        }
+
     }
     
     public void GameOver()
@@ -131,7 +176,7 @@ public class CrossingRoadManager : MonoBehaviour
         {
             Player1.transform.position = PlayerSpawnerposition[0].position;
             Player2.transform.position = PlayerSpawnerposition[1].position;
-            Player3.transform.position = PlayerSpawnerposition[1].position;
+            Player3.transform.position = PlayerSpawnerposition[2].position;
             IsPlayerReady = true;
         }    
     }
