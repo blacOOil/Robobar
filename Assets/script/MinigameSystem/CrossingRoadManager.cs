@@ -40,10 +40,6 @@ public class CrossingRoadManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindScore();
-       
-            UpdateScoreTexts();
-        
         
         if (IsplayerinList == false)
         {
@@ -59,13 +55,18 @@ public class CrossingRoadManager : MonoBehaviour
         }
         if (IscrossingRoadStarted == true)
         {
-
+            FindScore();
+            UpdateScoreTexts();
             spawnTimer += Time.deltaTime;
             if (spawnTimer >= SpawnDuration) // Check if enough time has passed
             {
                 SpawnCar(); // Spawn the car
                 spawnTimer = 0f; // Reset the timer
             }
+        }
+        else
+        {
+            ScoreList.Clear();
         }
         if (timerCode.remainingTime <= 0 )
         {
@@ -96,8 +97,6 @@ public class CrossingRoadManager : MonoBehaviour
         {
             ScoreList.Add(ScoreText2);
         }
-
-
     }
     private void UpdateScoreTexts()
     {
