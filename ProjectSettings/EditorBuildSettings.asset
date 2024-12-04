@@ -26,4 +26,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/FinalProject/FinalProjectOnlineDemo.unity
     guid: 734aae620b903b542bc62434c6a0974e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: ff23ad19cad09b5478d43b24be40f381,
+      type: 2}

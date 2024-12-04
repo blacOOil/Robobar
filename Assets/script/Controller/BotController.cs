@@ -24,10 +24,12 @@ public class BotController : MonoBehaviour
     public PlayerNameContainer playerNameContainer;
     public TMP_Text NameText;
 
+    private List<string> assignedJoysticks = new List<string>();
     void Start() {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         NameObj.SetActive(true);
+        AssignJoystick();
     }
 
     void Update() {
@@ -36,11 +38,47 @@ public class BotController : MonoBehaviour
         JumpInput();
         CheckGroundStatus();
         PlayerIndicator();
+        UpdateJoyStickInput();
+    }
+    void AssignJoystick()
+    {
+     
+            string[] joysticks = Input.GetJoystickNames();
+
+            if (joysticks.Length > 0)
+            {
+                assignedJoysticks.Clear(); // Clear the list to avoid duplicate entries
+
+                for (int i = 0; i < joysticks.Length; i++)
+                {
+                    if (!string.IsNullOrEmpty(joysticks[i]))
+                    {
+                        string joystickName = "Joystick" + (i + 1);
+                        assignedJoysticks.Add(joystickName); // Add the joystick to the list
+                        Debug.Log($"Assigned {joysticks[i]} to {joystickName}");
+                    }
+                }
+
+                Debug.Log($"Total assigned joysticks: {assignedJoysticks.Count}");
+            }
+            else
+            {
+                Debug.LogWarning("No joystick connected!");
+            }
        
     }
+    void UpdateJoyStickInput()
+    {
+        if (assignedJoysticks.Count >= 1 && inputNameHorizontal == "Horizontal1")
+        {
 
+            inputNameHorizontal = "Joystick1Horizontal1";
+            inputNameVertical = "Joystick1Vertical1";
+        }
+    }
     void MovementInput()
     {
+        
         float horizontalInput = Input.GetAxis(inputNameHorizontal);
         float verticalInput = Input.GetAxis(inputNameVertical);
 
