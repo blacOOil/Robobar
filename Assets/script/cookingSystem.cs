@@ -130,7 +130,7 @@ public class cookingSystem : MonoBehaviour
         {  
             if(IsCookingStartSelecting == false)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Player1Action"))
                 {
                     StartCooking();
                     IsCookingStartSelecting = true;
