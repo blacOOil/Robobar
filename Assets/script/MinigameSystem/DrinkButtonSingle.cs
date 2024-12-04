@@ -21,6 +21,10 @@ public class DrinkButtonSingle : MonoBehaviour
         if(ButtonCode == DrinkIndex)
         {
             ButtonImage.color = Color.blue;
+            if(gameObject.name == "CancelButton")
+            {
+                ButtonImage.color = Color.red;
+            }
         }
         else
         {

@@ -195,8 +195,8 @@ public class cookingSystem : MonoBehaviour
         botController.enabled = false;
         if (ClosestPlayer.tag == "Player1")
         {
-            
-            if (Input.GetKeyDown(KeyCode.A)&& DrinkIndex > 1)
+          
+            if (Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.A) && DrinkIndex > 1)
             {
                 DrinkIndex--;
                 CookingState = 2;
