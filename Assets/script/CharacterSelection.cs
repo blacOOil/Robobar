@@ -17,10 +17,11 @@ public class CharacterSelection : MonoBehaviour
     public MonneyLevelCode monneyLevelCode;
 
     [Header("Spawning Logic")]
-    public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned;
+    public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned,IsP1ready;
     public GameObject CharSelectedZone, MainGameUi, SelectingUi;
     public List<GameObject> CharacterList;
     public Transform PlayerSpawnPoint, HidePlace;
+    public ReadyCoding readyCoding;
 
     [Header("Ui Session")]
     public List<GameObject> MultiplayerUIList;
@@ -34,8 +35,11 @@ public class CharacterSelection : MonoBehaviour
     [Header("button")]
     public List<GameObject> readybutton;
     public Transform UiTranformHide;
-    
+    public bool IsAllready;
 
+    public float dPadHorizontal;
+    private float inputCooldown = 0.2f; // Cooldown time in seconds
+    private float lastInputTime = 0f;   // Tracks the time of the last D-pad input
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +50,41 @@ public class CharacterSelection : MonoBehaviour
     void Update()
     {
         HandleCharacterSelection();
+        if(IsP1ready == false)
+        {
+            dPadHorizontal = Input.GetAxis("DPadHorizonal1");
+            if (Time.time - lastInputTime > inputCooldown)
+            {
+                if (dPadHorizontal == -1 && selectorNumber > 0)
+                {
+                    selectorNumber--;
+                    CharacterSelecting(0);
+                    lastInputTime = Time.time;
+                }
+                if (dPadHorizontal == 1 && (selectorNumber < CharacterList.Count - 1))
+                {
+                    selectorNumber++;
+                    CharacterSelecting(0);
+                    lastInputTime = Time.time;
+                }
+            }
+            if (IsAllready)
+            {
+                if (Input.GetButtonDown("Player1Action"))
+                {
+                    readyCoding.ReadyButt(0);
+                    readyCoding.HidSelector(0);
+                    HandleBootlePress(0);
+                    IsP1ready = true;
+
+                }
+            }
+        }
+        else
+        {
+
+        }
+       
     }
 
     // Initialize all game settings
@@ -53,6 +92,8 @@ public class CharacterSelection : MonoBehaviour
     {
         IsGamealreadyPlay = false;
         numberofPlayer = 1;
+
+        IsP1ready = false;
 
         IsPlayer2active = true;
         Isselector2Spawned = false;
@@ -330,7 +371,7 @@ public class CharacterSelection : MonoBehaviour
     }
     public void HandleSelectedSameCharacter()
     {
-        
+        IsAllready = false;
             readybutton[0].SetActive(false);
             readybutton[1].SetActive(false);
             readybutton[2].SetActive(false);
@@ -339,7 +380,7 @@ public class CharacterSelection : MonoBehaviour
     }
     public void HandleSelecteddifCharacter()
     {
-        
+         IsAllready = true;
             readybutton[0].SetActive(true);
             readybutton[1].SetActive(true);
             readybutton[2].SetActive(true);

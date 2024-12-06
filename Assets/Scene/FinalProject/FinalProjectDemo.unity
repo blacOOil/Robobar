@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1820,6 +1820,7 @@ MonoBehaviour:
   IsCookingStartSelecting: 0
   DrinkIndex: 0
   CookingState: 0
+  dPadHorizontal: 0
 --- !u!4 &212227716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7bd6abf8d59e42d44a88419d3b74f126,
@@ -10868,6 +10869,7 @@ MonoBehaviour:
   isCharacterSelected: 0
   IsReadyToPlay: 0
   IsplayerSpawned: 0
+  IsP1ready: 0
   CharSelectedZone: {fileID: 1721555967}
   MainGameUi: {fileID: 1052294}
   SelectingUi: {fileID: 584058286}
@@ -10878,6 +10880,7 @@ MonoBehaviour:
   - {fileID: 570008821}
   PlayerSpawnPoint: {fileID: 1017865871}
   HidePlace: {fileID: 441962761}
+  readyCoding: {fileID: 936674145}
   MultiplayerUIList:
   - {fileID: 290538960}
   - {fileID: 220932094}
@@ -10897,6 +10900,8 @@ MonoBehaviour:
   - {fileID: 1338880612}
   - {fileID: 824872575}
   UiTranformHide: {fileID: 691288901}
+  IsAllready: 0
+  dPadHorizontal: 0
 --- !u!114 &936674145
 MonoBehaviour:
   m_ObjectHideFlags: 0

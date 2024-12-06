@@ -29,7 +29,7 @@ public class Gamestate : MonoBehaviour
     {
         HandleGameLoop();
         HandleGameState();
-        if (timerCode.remainingTime <= 0) {
+        if (timerCode.remainingTime <= 0 && gamestate_Number != 0) {
             if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.I)) || (Input.GetKeyDown(KeyCode.Keypad9)) || Input.GetButton("Player1Action")) {
                 please_next();
                 timerCode.resettimer();
