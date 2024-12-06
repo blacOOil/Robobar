@@ -290,7 +290,7 @@ public class CustomerSingle : MonoBehaviour
     {
         if (Isplayer1Close())
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Player1Action"))
             {
                 return true;
             }
