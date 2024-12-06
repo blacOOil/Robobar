@@ -12,6 +12,11 @@ public class cookingSystem : MonoBehaviour
     public List<Transform> ListMinigameTranformList;
     public bool IsCookingStarted,IsCookingStartSelecting = false;
     public int DrinkIndex = 0, CookingState;
+
+    public float dPadHorizontal;
+    private float inputCooldown = 0.2f; // Cooldown time in seconds
+    private float lastInputTime = 0f;   // Tracks the time of the last D-pad input
+
     void Start()
     {
         InitializeSystem();
@@ -19,6 +24,7 @@ public class cookingSystem : MonoBehaviour
 
     void Update()
     {
+       
         if (ClosestPlayer == null)
         {
             StopCookingDueToPlayerExit();
@@ -192,21 +198,29 @@ public class cookingSystem : MonoBehaviour
     }
     public void HandleCookingSelection()
     {
+        dPadHorizontal = Input.GetAxis("DPadHorizonal1");
         botController.enabled = false;
+        
+
         if (ClosestPlayer.tag == "Player1")
         {
-          
-            if (Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.A) && DrinkIndex > 1)
+            if (Time.time - lastInputTime > inputCooldown)
+            {
+
+                if ((Input.GetKeyDown(KeyCode.A)|| dPadHorizontal == -1) && DrinkIndex > 1)
             {
                 DrinkIndex--;
                 CookingState = 2;
+                     lastInputTime = Time.time; 
             }
-            if (Input.GetKeyDown(KeyCode.D)&& DrinkIndex < ListDrink.Count)
+            if ((Input.GetKeyDown(KeyCode.D) || dPadHorizontal == 1) && DrinkIndex < ListDrink.Count)
             {
                 DrinkIndex++;
                 CookingState = 2;
+                    lastInputTime = Time.time;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.E) && CookingState >1 )
+            if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonUp("Player1Action")) && CookingState >1 )
             {
                
                 IsCookingStartSelecting = false;

@@ -12,6 +12,9 @@ public class DrinkmakingMinigame : MonoBehaviour
     public bool isapressing = false;
    public bool isdpressing = false;
     public float searchRadius = 900000f;
+
+    private float inputCooldown = 0.2f; // Time in seconds between inputs
+    private float lastInputTime = 0f;   // Tracks the time of the last input
     // Start is called before the first frame update
     void Start()
     {
@@ -59,22 +62,28 @@ public class DrinkmakingMinigame : MonoBehaviour
         {
             if (ClosetPlayer.tag == "Player1")
             {
-                if (!isapressing)
+                float dPadHorizontal = Input.GetAxisRaw("Joystick1Horizontal1");
+                if (Time.time - lastInputTime > inputCooldown)
                 {
-                    if (Input.GetKeyDown(KeyCode.A))
+                    if (!isapressing)
                     {
-                        ShakingCoustiing++;
-                        isapressing = true;
-                        isdpressing = false;
+                        if (Input.GetKeyDown(KeyCode.A) || dPadHorizontal == -1)
+                        {
+                            ShakingCoustiing++;
+                            isapressing = true;
+                            isdpressing = false;
+                            lastInputTime = Time.time;
+                        }
                     }
-                }
-                if (!isdpressing)
-                {
-                    if (Input.GetKeyDown(KeyCode.D))
+                    if (!isdpressing)
                     {
-                        ShakingCoustiing++;
-                        isapressing = false;
-                        isdpressing = true;
+                        if (Input.GetKeyDown(KeyCode.D) || dPadHorizontal == -1)
+                        {
+                            ShakingCoustiing++;
+                            isapressing = false;
+                            isdpressing = true;
+                            lastInputTime = Time.time;
+                        }
                     }
                 }
             }

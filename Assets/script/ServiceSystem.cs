@@ -429,7 +429,7 @@ public class ServiceSystem : MonoBehaviour
     {
         if(playernum == 0)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Player1Action"))
             {
                 return true;
             }
