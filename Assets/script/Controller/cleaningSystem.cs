@@ -107,7 +107,7 @@ public class cleaningSystem : MonoBehaviour
     {
         if(gameObject.tag == "Player1")
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Player1Action"))
             {
                 return true;
             }

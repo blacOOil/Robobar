@@ -374,28 +374,30 @@ public class ServiceSystem : MonoBehaviour
     }
     public void ReleaseDrink()
     {
-        Objholding.GetComponent<Rigidbody>().isKinematic = false;
-        if (Objholding.CompareTag("drink"))
-        {
-            Objholding.transform.SetParent(null);
-            Objholding.GetComponent<Collider>().isTrigger = false;
-            holdedrink = false;
-            //  Objholding.GetComponent<DrinkSingle>().IsHeld = false;
-            IsNextDrinkSpawned = false;
-            if (IshadBoxskill)
+        if (Objholding != null) {
+            Objholding.GetComponent<Rigidbody>().isKinematic = false;
+            if (Objholding.CompareTag("drink"))
             {
-                SpawnNextDrink();
+                Objholding.transform.SetParent(null);
+                Objholding.GetComponent<Collider>().isTrigger = false;
+                holdedrink = false;
+                //  Objholding.GetComponent<DrinkSingle>().IsHeld = false;
+                IsNextDrinkSpawned = false;
+                if (IshadBoxskill)
+                {
+                    SpawnNextDrink();
+                }
             }
+            else if(Objholding.CompareTag("tableTag"))
+            {
+                GameObject tabletagPlace = Objholding.GetComponent<SeatSetSingle>().TableTagTranform;
+                Objholding.transform.position = tabletagPlace.transform.position;
+                Objholding.transform.SetParent(tabletagPlace.transform);
+                Objholding.GetComponent<Collider>().isTrigger = true;
+            }
+
+            StartCoroutine(DropDelay()); 
         }
-        else if(Objholding.CompareTag("tableTag"))
-        {
-            GameObject tabletagPlace = Objholding.GetComponent<SeatSetSingle>().TableTagTranform;
-            Objholding.transform.position = tabletagPlace.transform.position;
-            Objholding.transform.SetParent(tabletagPlace.transform);
-            Objholding.GetComponent<Collider>().isTrigger = true;
-        }
-       
-        StartCoroutine(DropDelay()); 
     }
     public void SpawnNextDrink() 
     {
