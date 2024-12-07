@@ -8,7 +8,7 @@ public class CrossingRoadManager : MonoBehaviour
 {
     [Header("SetPlayerProperty")]
     public List<Transform> PlayerSpawnerposition;
-    public List<GameObject> PlayerList,ScoreList;
+    public List<GameObject> PlayerList;
     public bool IsplayerinList,IscrossingRoadStarted,IsPlayerReady,IsgameAlready;
     public GameObject Player1, Player2,Player3;
     public Gamestate gamestate;
@@ -20,27 +20,36 @@ public class CrossingRoadManager : MonoBehaviour
     public float CarLifetime = 100f;
     public float spawnTimer = 0f,PlayTime = 0f;
     private List<string> lastKnownValues = new List<string>();
+   
 
 
     [Header("SetManager")]
     public TimerCode timerCode;
     public float remainingTime = 10f;
-    
-
-    // Start is called before the first frame update
-    void Start()
+    public List<string> PlayerScore;
+    public List<int> PlayerScoreint;
+   // Start is called before the first frame update
+   void Start()
     {
         gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
         IsPlayerReady = false;
         IscrossingRoadStarted = false;
         IsplayerinList = false;
         IsgameAlready = false;
+         PlayerScoreint.Add(0);
+         PlayerScoreint.Add(0);
+         PlayerScoreint.Add(0);
+        PlayerScore.Add("0");
+        PlayerScore.Add("0");
+        PlayerScore.Add("0");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PlayerScore[0] = PlayerScoreint[0].ToString();
+        PlayerScore[1] = PlayerScoreint[1].ToString();
+        PlayerScore[2] = PlayerScoreint[2].ToString();
         if (IsplayerinList == false)
         {
             FindPlayer();
@@ -56,7 +65,7 @@ public class CrossingRoadManager : MonoBehaviour
         if (IscrossingRoadStarted == true)
         {
             FindScore();
-            UpdateScoreTexts();
+           
             spawnTimer += Time.deltaTime;
             if (spawnTimer >= SpawnDuration) // Check if enough time has passed
             {
@@ -66,7 +75,9 @@ public class CrossingRoadManager : MonoBehaviour
         }
         else
         {
-            ScoreList.Clear();
+            PlayerScoreint[0] = 0;
+            PlayerScoreint[1] = 0;
+            PlayerScoreint[2] = 0;
         }
         if (timerCode.remainingTime <= 0 )
         {
@@ -81,39 +92,24 @@ public class CrossingRoadManager : MonoBehaviour
     public void FindScore()
     {
         GameObject ScoreText0 = GameObject.Find("NumberText0");
-        if (ScoreText0 != null && !ScoreList.Contains(ScoreText0))
+        if (ScoreText0 != null)
         {
-            ScoreList.Add(ScoreText0);
+            ScoreText0.GetComponent<TMP_Text>().text = PlayerScore[0].ToString();
         }
 
         GameObject ScoreText1 = GameObject.Find("NumberText1");
-        if (ScoreText1 != null && !ScoreList.Contains(ScoreText1))
+        if (ScoreText1 != null)
         {
-            ScoreList.Add(ScoreText1);
+            ScoreText1.GetComponent<TMP_Text>().text = PlayerScore[1].ToString();
         }
 
         GameObject ScoreText2 = GameObject.Find("NumberText2");
-        if (ScoreText2 != null && !ScoreList.Contains(ScoreText2))
+        if (ScoreText2 != null)
         {
-            ScoreList.Add(ScoreText2);
+            ScoreText1.GetComponent<TMP_Text>().text = PlayerScore[2].ToString();
         }
     }
-    private void UpdateScoreTexts()
-    {
-        if (ScoreList.Count >= 1)
-        {
-            ScoreList[0].GetComponent<TMP_Text>().text = "1";
-        }
-        if (ScoreList.Count >= 2)
-        {
-            ScoreList[1].GetComponent<TMP_Text>().text = "2";
-        }
-        if (ScoreList.Count >= 3)
-        {
-            ScoreList[2].GetComponent<TMP_Text>().text = "3";
-        }
-
-    }
+   
     
     public void GameOver()
     {

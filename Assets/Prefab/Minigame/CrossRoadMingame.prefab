@@ -2263,7 +2263,6 @@ MonoBehaviour:
   - {fileID: 1372430860230103167}
   - {fileID: 6807799501834796184}
   PlayerList: []
-  ScoreList: []
   IsplayerinList: 0
   IscrossingRoadStarted: 0
   IsPlayerReady: 0
@@ -2290,6 +2289,8 @@ MonoBehaviour:
   PlayTime: 0
   timerCode: {fileID: 0}
   remainingTime: 10
+  PlayerScore: []
+  PlayerScoreint: 
 --- !u!1 &5640773638811378699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2682,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 7205704558722329106}
   CheckerRadius: 4
   PLacementCanvas: {fileID: 2858060272072222674}
+  crossingRoadManager: {fileID: 1852955762306548516}
 --- !u!1 &6383602798711275553
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,6 +3362,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 5529587795128548080}
   CheckerRadius: 4
   PLacementCanvas: {fileID: 7366564394220371268}
+  crossingRoadManager: {fileID: 1852955762306548516}
 --- !u!1 &7070081033424249302
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,6 +4084,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 9022171108503860718}
   CheckerRadius: 4
   PLacementCanvas: {fileID: 2760254919598216982}
+  crossingRoadManager: {fileID: 1852955762306548516}
 --- !u!1 &9064675976066168661
 GameObject:
   m_ObjectHideFlags: 0

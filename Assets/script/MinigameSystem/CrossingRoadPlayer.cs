@@ -41,7 +41,8 @@ public class CrossingRoadPlayer : MonoBehaviour
             }
             if (IsReached == true)
             {
-                gameObject.GetComponent<BotController>().enabled = false;
+                transform.position = Spawnpoint.position;
+                IsReached = false;
             }
             else
             {
