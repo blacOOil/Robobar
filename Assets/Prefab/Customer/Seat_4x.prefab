@@ -729,6 +729,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
+        type: 3}
+      propertyPath: SeatInSider.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
+        type: 3}
+      propertyPath: SeatInSider.Array.data[0]
+      value: 
+      objectReference: {fileID: 5919492679127064718}
+    - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
+        type: 3}
+      propertyPath: SeatInSider.Array.data[1]
+      value: 
+      objectReference: {fileID: 8189880337186709820}
+    - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
+        type: 3}
+      propertyPath: SeatInSider.Array.data[2]
+      value: 
+      objectReference: {fileID: 5902589363093497754}
     - target: {fileID: 5310567922088316673, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -886,6 +906,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7847061197605451856, guid: 6f08a1154b979ba498fce83337be7e34,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5282347364388506169, guid: 6f08a1154b979ba498fce83337be7e34,
         type: 3}
       propertyPath: m_Convex
@@ -914,6 +939,11 @@ PrefabInstance:
     - target: {fileID: -3096947266771826868, guid: 6f08a1154b979ba498fce83337be7e34,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2290681245087052629, guid: 6f08a1154b979ba498fce83337be7e34,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2019394454013293633, guid: 6f08a1154b979ba498fce83337be7e34,
@@ -1025,6 +1055,24 @@ MonoBehaviour:
   - {fileID: 4658746189841559344}
   ChairPlacement: 0
   IsAllnotfull: 0
+--- !u!1 &5902589363093497754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2019394454013293633, guid: 6f08a1154b979ba498fce83337be7e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 3608402213141687333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5919492679127064718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2290681245087052629, guid: 6f08a1154b979ba498fce83337be7e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 3608402213141687333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8189880337186709820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4342646004912009959, guid: 6f08a1154b979ba498fce83337be7e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 3608402213141687333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4727166002472750447
 PrefabInstance:
   m_ObjectHideFlags: 0

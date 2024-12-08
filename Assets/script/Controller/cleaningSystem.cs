@@ -10,6 +10,7 @@ public class cleaningSystem : MonoBehaviour
     public LayerMask TrashLayer;
     public float TrashCheckerRadius = 1f;
     public Gamestate gamestate;
+    public PlayerScoreSystem playerScoreSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class cleaningSystem : MonoBehaviour
         Objholding = null;
         Ishandholding = false;
         Isbusy = false;
+        playerScoreSystem = gameObject.GetComponent<PlayerScoreSystem>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,10 @@ public class cleaningSystem : MonoBehaviour
             if (PlayerInput())
             {
                 DestroyingTrash();
+                if(playerScoreSystem != null)
+                {
+                    playerScoreSystem.ScoreAdd();
+                }
             }
         }
     }

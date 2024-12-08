@@ -8,6 +8,7 @@ public class DrinkSingle : MonoBehaviour
     private float PlayerCheckerRadius = 1;
     public GameObject Self, ClosestPlayer;
     public bool IsHeld;
+    private float despawnTime = 5f;
 
     private bool CheckPlayer()
     {
@@ -23,6 +24,19 @@ public class DrinkSingle : MonoBehaviour
         return false;
     }
 
+    private bool Isground()
+    {
+        // Check all layers to capture all objects tagged with the given tag
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position,1f);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Ground"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +50,17 @@ public class DrinkSingle : MonoBehaviour
         if(IsHeld == true)
         {
             CheckPlayerClosed();
+            StopCoroutine(DespawnCountdown());
         }
+        if(!IsHeld && Isground())
+        {
+            StartCoroutine(DespawnCountdown());
+        }
+        else
+        {
+            StopCoroutine(DespawnCountdown());
+        }
+        
     }
     public void selfDestruct()
     {
@@ -53,5 +77,15 @@ public class DrinkSingle : MonoBehaviour
     IEnumerator DelayChecking()
     {
         yield return new WaitForSeconds(1f);
+    }
+    private IEnumerator DespawnCountdown()
+    {
+        Debug.Log("Countdown started!");
+        yield return new WaitForSeconds(despawnTime); // Wait for the specified time
+        if (!IsHeld)
+        {
+            Destroy(gameObject); // Destroy the object
+        }
+      
     }
 }
