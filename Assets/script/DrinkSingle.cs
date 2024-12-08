@@ -8,7 +8,7 @@ public class DrinkSingle : MonoBehaviour
     private float PlayerCheckerRadius = 1;
     public GameObject Self, ClosestPlayer;
     public bool IsHeld;
-    private float despawnTime = 5f;
+    private float despawnTime = 10500f;
 
     private bool CheckPlayer()
     {
