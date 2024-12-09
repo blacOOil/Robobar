@@ -10,6 +10,7 @@ public class TimerCode : MonoBehaviour {
     [SerializeField] public GameObject GameOverUI;
     public bool IstimeCounting;
     public Material material;
+    private float timePercentage;
 
     [Header("Rotation Settings")]
     [SerializeField] public List<RotationScript> rotationScripts; //Ref form RotationScript
@@ -21,6 +22,9 @@ public class TimerCode : MonoBehaviour {
     [Header("Light Settings")]
     [SerializeField] public float Parameter1; //flashing Speed 0.5
     [SerializeField] public float Parameter2; //flashing Speed 0.2
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioCode audioCode;
 
     void Start() {
         startedRemainingtime = remainingTime;
@@ -40,6 +44,10 @@ public class TimerCode : MonoBehaviour {
             script.SetRotationSpeed(0f); // Start with no rotation
         }
 
+        if (audioCode != null) {
+            audioCode.PlayNormalSound();
+        }
+
         StartCoroutine(SmoothlyUpdateRotationSpeeds());
     }
 
@@ -47,10 +55,14 @@ public class TimerCode : MonoBehaviour {
     void Update() {
         if(IstimeCounting == true) {
             CountingDown();
+            timePercentage = remainingTime / startedRemainingtime;
+
             UpdateRotationSpeed();
             UpdateEmissionColor();
-        } else {
 
+            if (audioCode != null) {
+                audioCode.CheckAndSwitchAudio(timePercentage, timerAllLessThan);
+            }
         }
 
         if (remainingTime <= 0) {
@@ -64,10 +76,12 @@ public class TimerCode : MonoBehaviour {
             }
         }
       
-    }  
+    }
+
     public void Pause() {
         Time.timeScale = 0;
     }
+
     public void resettimer() {
         IstimeCounting = false;
         remainingTime = startedRemainingtime;
@@ -86,9 +100,6 @@ public class TimerCode : MonoBehaviour {
     }
 
     private void UpdateRotationSpeed() {
-        // Calculate rotation speed based on remaining time
-        float timePercentage = Mathf.Clamp01(remainingTime / startedRemainingtime);
-
         if (timePercentage < timerAllLessThan) {
             foreach (var script in rotationScripts) {
                 // Calculate target speed based on initial speed and time percentage
@@ -114,9 +125,6 @@ public class TimerCode : MonoBehaviour {
     }
 
     private void UpdateEmissionColor() {
-        // Calculate the percentage of remaining time
-        float timePercentage = remainingTime / startedRemainingtime;
-
         // Determine the color based on the time percentage
         Color emissionColor;
 
