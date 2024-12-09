@@ -13,6 +13,7 @@ public class Gamestate : MonoBehaviour
     public GameObject Player1, Player2,Player3;
     public TimerCode timerCode;
     public float remainingTime = 10f;
+    public AudioCode audioCode;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +25,10 @@ public class Gamestate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-      
-    {
+    void Update() {
         HandleGameLoop();
         HandleGameState();
+
         if (timerCode.remainingTime <= 0 && gamestate_Number != 0) {
             if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.I)) || (Input.GetKeyDown(KeyCode.Keypad9)) || Input.GetButton("Player1Action")) {
                 please_next();
@@ -36,13 +36,14 @@ public class Gamestate : MonoBehaviour
             }
         }
     }
-    private void HandleGameLoop()
-    {
+
+    private void HandleGameLoop() {
         if(gamestate_Number >= 5)
         {
             gamestate_Number = 1;
         }
     }
+
     // Handle the game state based on gamestate_Number
     private void HandleGameState()
     {
@@ -71,21 +72,23 @@ public class Gamestate : MonoBehaviour
     {
         gamestate_Number++;
         IstimerSeted = false;
+
+        if (audioCode != null) {
+            audioCode.PlayAudioForState(gamestate_Number); // Delegate management to AudioCode
+        }
     }
 
     // Placeholder for cleaning session logic
-    public void StartCleaningSession()
-    {
-        
+    public void StartCleaningSession() {
         Player1.GetComponent<ServiceSystem>().enabled = false;
         Player2.GetComponent<ServiceSystem>().enabled = false;
         Player3.GetComponent<ServiceSystem>().enabled = false;
         Debug.Log("Cleaning session started");
         Retiming();
     }
-        // Placeholder for minigame session logic
-    public void StartminigameSession()
-    {
+    
+    // Placeholder for minigame session logic
+    public void StartminigameSession() {
         IsplayerPositionseted = false;
         Player1.GetComponent<ServiceSystem>().enabled = false;
         Player2.GetComponent<ServiceSystem>().enabled = false;
@@ -94,34 +97,30 @@ public class Gamestate : MonoBehaviour
         Retiming();
     }
 
-        // Placeholder for upgrading session logic
-    public void UpgradingSession()
-    {
-        if(IsplayerPositionseted == false)
-    {
-        SetPlayerPosition();
-    }
-    else
-    {
-    }  
+    // Placeholder for upgrading session logic
+    public void UpgradingSession() {
+        if(IsplayerPositionseted == false) {
+            SetPlayerPosition();
+        } else {
+        
+        }
+
         Debug.Log("Upgrading session started");
         // Implement upgrading session logic here
     }
 
-        // Placeholder for resume session logic
-        public void ResumeSession()
-        {
-
+    // Placeholder for resume session logic
+    public void ResumeSession() {
         Player1.GetComponent<ServiceSystem>().enabled = true;
         Player2.GetComponent<ServiceSystem>().enabled = true;
         Player3.GetComponent<ServiceSystem>().enabled = true;
         Retiming();
 
         Debug.Log("Resume session started");
-            // Implement resume session logic here
-        }
-    public void AddPlayerToPlayerList()
-    {
+        // Implement resume session logic here
+    }
+
+    public void AddPlayerToPlayerList() {
         GameObject[] Player1 = GameObject.FindGameObjectsWithTag("Player1");
         foreach (GameObject player in Player1)
         {
@@ -139,30 +138,27 @@ public class Gamestate : MonoBehaviour
         }
         IsplayerinList = true;
     }
-    public void SetPlayerPosition()
-        {
+
+    public void SetPlayerPosition() {
         Player1.transform.position = PlayerServiceSpawnList[0].position;
         Player2.transform.position = PlayerServiceSpawnList[1].position;
         Player3.transform.position = PlayerServiceSpawnList[2].position;
         IsplayerPositionseted = true;
     }
-    public void Retiming()
-    {
+
+    public void Retiming() {
         if(IstimerSeted == false)
         {
             timerCode.remainingTime = timerCode.startedRemainingtime;
             timerCode.IstimeCounting = true;
             IstimerSeted = true;
-        }
-        else
-        {
+        } else {
 
         }
     }
-    public void InditialePlaying()
-    {
-        if (IsplayerinList == false)
-        {
+
+    public void InditialePlaying() {
+        if (IsplayerinList == false) {
             AddPlayerToPlayerList();
             Player1 = PlayerList[0];
             Player2 = PlayerList[1];
@@ -170,8 +166,8 @@ public class Gamestate : MonoBehaviour
         }
         gamestate_Number = 4;
     }
-    public void StartTimeCouting()
-    {
+
+    public void StartTimeCouting() {
         if (!timerCode.IstimeCounting) // Start countdown only if not already counting
         {
             timerCode.remainingTime = remainingTime;
@@ -181,8 +177,7 @@ public class Gamestate : MonoBehaviour
     }
 
     // Coroutine to handle countdown and transition
-    private IEnumerator CountdownToNextState()
-    {
+    private IEnumerator CountdownToNextState() {
         while (timerCode.remainingTime > 0)
         {
             yield return null; // Wait for the next frame
