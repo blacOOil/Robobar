@@ -32,7 +32,7 @@ public class UpgradingSystemSingle : MonoBehaviour
 
         if (CloestPlayer != null)
         {
-            if (CloestPlayer.tag == "Player1" && Input.GetKey(KeyCode.E))
+            if (CloestPlayer.tag == "Player1" &&( Input.GetKey(KeyCode.E) || Input.GetButtonDown("Player1Action")))
             {
                 return true;
             }

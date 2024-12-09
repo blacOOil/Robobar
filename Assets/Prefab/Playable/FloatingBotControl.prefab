@@ -181,6 +181,7 @@ MonoBehaviour:
     m_Bits: 8192
   TrashCheckerRadius: 1
   gamestate: {fileID: 0}
+  playerScoreSystem: {fileID: 0}
 --- !u!114 &3082699467551634250
 MonoBehaviour:
   m_ObjectHideFlags: 0

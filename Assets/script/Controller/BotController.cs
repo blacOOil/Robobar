@@ -71,9 +71,20 @@ public class BotController : MonoBehaviour
     {
         if (assignedJoysticks.Count >= 1 && inputNameHorizontal == "Horizontal1")
         {
-
             inputNameHorizontal = "Joystick1Horizontal1";
             inputNameVertical = "Joystick1Vertical1";
+        }
+
+        if (assignedJoysticks.Count >= 2 && inputNameHorizontal == "Horizontal2")
+        {
+            inputNameHorizontal = "Joystick2Horizontal1";
+            inputNameVertical = "Joystick2Vertical1";
+        }
+
+        if (assignedJoysticks.Count >= 3 && inputNameHorizontal == "Horizontal3")
+        {
+            inputNameHorizontal = "Joystick3Horizontal1";
+            inputNameVertical = "Joystick3Vertical1";
         }
     }
     void MovementInput()
@@ -133,7 +144,7 @@ public class BotController : MonoBehaviour
         if(inputNameHorizontal == null)
         {
             Playerlight.color = Color.white;
-        }else if(inputNameHorizontal == "Horizontal2")
+        }else if(inputNameHorizontal == "Horizontal2" || inputNameHorizontal == "Joystick2Horizontal1")
         {
             Playerlight.color = Color.blue;
         }else if(inputNameHorizontal == "Horizontal3")
