@@ -1,53 +1,114 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReadyCoding : MonoBehaviour
 {
-   public List<GameObject> ReadyButton,Readyindicator,selectorbutt;
-    public int readyIndicatorCount;
-    private int ReadyNum;
-    public GameObject PlayButton;
-    public bool isreadytoplay;
+    public GameObject playButton;
+    public List<GameObject> readyButton, readyIndicator, selectorButton;
+    private int readyCount = 0;
+    private bool isReadyToPlay = false;
+    public List<int> selectedCharacters; // Track selected character IDs for each player
+
     // Start is called before the first frame update
     void Start()
     {
-        PlayButton.SetActive(false);
-        for (int i = 0; i < Readyindicator.Count; i++)
+        playButton.SetActive(false);
+        for (int i = 0; i < readyIndicator.Count; i++)
         {
-            Readyindicator[i].SetActive(false);
+            readyIndicator[i].SetActive(false);
         }
+
+        // Initialize the selectedCharacters list
+        selectedCharacters = new List<int> { -1, -1, -1 }; // Default -1 for unselected
+        UpdateReadyButtons();
     }
+
     // Update is called once per frame
     void Update()
     {
-        if(ReadyNum == Readyindicator.Count)
+        if (!isReadyToPlay && readyCount == readyIndicator.Count && AreCharactersUnique())
         {
-            PlayButton.SetActive(true);
-            isreadytoplay = true;
+            playButton.SetActive(true);
+            isReadyToPlay = true;
+            HandleReadyToPlay();
         }
-        if(isreadytoplay == true)
-        {
-            Handlereadytoplay();
-        }
-    }
-    public void ReadyButt(int Num)
-    {
-        ReadyNum++;
-        Readyindicator[Num].SetActive(true);
-        ReadyButton[Num].SetActive(false);
+
+        UpdateReadyButtons();
     }
 
-    public void Handlereadytoplay()
+    public void ReadyButt(int Num)
     {
-        foreach (GameObject obj in selectorbutt)
+        readyIndicator[Num].SetActive(true);
+        readyButton[Num].SetActive(false);
+    }
+
+    public void CharacterSelected(int playerNum, int characterID)
+    {
+        if (playerNum < 0 || playerNum >= selectedCharacters.Count)
         {
-            obj.SetActive(false);
+            Debug.LogError($"Invalid player number: {playerNum}");
+            return;
+        }
+
+        selectedCharacters[playerNum] = characterID;
+        Debug.Log($"Player {playerNum} selected character {characterID}");
+        UpdateReadyButtons();
+    }
+
+    public void ReadyButtonPressed(int playerNum)
+    {
+        if (!AreCharactersUnique())
+        {
+            Debug.Log("Characters must be unique.");
+            return;
+        }
+
+        readyCount++;
+        readyIndicator[playerNum].SetActive(true);
+        readyButton[playerNum].SetActive(false); // Make the button inactive
+
+        Debug.Log($"Player {playerNum} is ready. Total ready players: {readyCount}");
+    }
+
+    private void UpdateReadyButtons()
+    {
+        bool canReady = AreCharactersUnique();
+
+        for (int i = 0; i < readyButton.Count; i++)
+        {
+            // Keep the button visible but enable/disable based on conditions
+            readyButton[i].SetActive(true);
+            readyButton[i].GetComponent<UnityEngine.UI.Button>().interactable = canReady && !readyIndicator[i].activeSelf;
+        }
+
+
+    }
+
+    private bool AreCharactersUnique()
+    {
+        HashSet<int> uniqueSelections = new HashSet<int>();
+
+        foreach (int characterID in selectedCharacters)
+        {
+            if (characterID == -1) return false; // Ensure all characters are selected
+            if (!uniqueSelections.Add(characterID)) return false; // Ensure no duplicates
+        }
+
+        return true;
+    }
+
+    public void HandleReadyToPlay()
+    {
+        foreach (GameObject button in selectorButton)
+        {
+            button.SetActive(false);
         }
     }
     public void HidSelector(int num)
     {      
-      selectorbutt[num].SetActive(false);
-      selectorbutt[num+1].SetActive(false);
+      selectorButton[num].SetActive(false);
+      selectorButton[num+1].SetActive(false);
     }
 }

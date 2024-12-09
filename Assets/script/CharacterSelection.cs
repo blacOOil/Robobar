@@ -72,8 +72,8 @@ public class CharacterSelection : MonoBehaviour
             {
                 if (Input.GetButtonDown("Player1Action"))
                 {
-                    readyCoding.ReadyButt(0);
-                    readyCoding.HidSelector(0);
+                    // readyCoding.ReadyButt(0);
+                    // readyCoding.HidSelector(0);
                     HandleBootlePress(0);
                     IsP1ready = true;
 
@@ -86,6 +86,8 @@ public class CharacterSelection : MonoBehaviour
         }
        
     }
+
+    
 
     // Initialize all game settings
     private void InitializeSettings()
@@ -312,6 +314,19 @@ public class CharacterSelection : MonoBehaviour
         {
             Character3Selecting();
         }
+
+        // Inform ReadyCoding of the selected character
+        readyCoding.CharacterSelected(PlayerNum, GetSelectedCharacterID(PlayerNum));
+    }
+
+    private int GetSelectedCharacterID(int PlayerNum)
+    {
+        // Return the ID of the currently selected character for the given player
+        // Modify this based on your implementation for identifying character IDs
+        if (PlayerNum == 0) return selectorNumber;
+        if (PlayerNum == 1) return Player2SelectedNumber;
+        if (PlayerNum == 2) return Player3SelectedNumber;
+        return -1;
     }
 
     // Handle player 1 character selection

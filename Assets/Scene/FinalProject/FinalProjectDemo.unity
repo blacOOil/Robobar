@@ -2127,7 +2127,7 @@ GameObject:
   - component: {fileID: 235951826}
   - component: {fileID: 235951825}
   m_Layer: 5
-  m_Name: ReadyIndicator
+  m_Name: ReadyIndicator3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3126,7 +3126,7 @@ GameObject:
   - component: {fileID: 367035389}
   - component: {fileID: 367035388}
   m_Layer: 5
-  m_Name: ReadyIndicator
+  m_Name: ReadyIndicator2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9008,7 +9008,7 @@ GameObject:
   - component: {fileID: 824872577}
   - component: {fileID: 824872576}
   m_Layer: 5
-  m_Name: Player3 Ready
+  m_Name: P3 Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10807,24 +10807,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723b55b22240d7b4ea9164a840ae39a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReadyButton:
+  playButton: {fileID: 1871634369}
+  readyButton:
   - {fileID: 941195115}
   - {fileID: 1338880612}
   - {fileID: 824872575}
-  Readyindicator:
-  - {fileID: 2096290638}
-  - {fileID: 330048101}
-  - {fileID: 559985096}
-  selectorbutt:
+  readyIndicator:
+  - {fileID: 2069521981}
+  - {fileID: 367035386}
+  - {fileID: 235951823}
+  selectorButton:
   - {fileID: 1504507193}
   - {fileID: 1853251659}
   - {fileID: 948217004}
   - {fileID: 804486327}
   - {fileID: 1430768382}
   - {fileID: 757262748}
-  readyIndicatorCount: 0
-  PlayButton: {fileID: 1871634369}
-  isreadytoplay: 0
+  selectedCharacters: 
 --- !u!114 &936674146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11170,7 +11169,7 @@ GameObject:
   - component: {fileID: 941195118}
   - component: {fileID: 941195117}
   m_Layer: 5
-  m_Name: Player1 Ready
+  m_Name: P1 Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14733,7 +14732,7 @@ GameObject:
   - component: {fileID: 1338880614}
   - component: {fileID: 1338880613}
   m_Layer: 5
-  m_Name: Player2 Ready
+  m_Name: P2 Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21425,7 +21424,7 @@ GameObject:
   - component: {fileID: 2069521984}
   - component: {fileID: 2069521983}
   m_Layer: 5
-  m_Name: ReadyIndicator
+  m_Name: ReadyIndicator1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
