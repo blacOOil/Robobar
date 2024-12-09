@@ -33,7 +33,7 @@ public class CharacterSelection : MonoBehaviour
     public int selectorNumber = 0;
 
     [Header("button")]
-    public List<GameObject> readybutton;
+    // public List<GameObject> readybutton;
     public Transform UiTranformHide;
     public bool IsAllready;
 
@@ -86,8 +86,6 @@ public class CharacterSelection : MonoBehaviour
         }
        
     }
-
-    
 
     // Initialize all game settings
     private void InitializeSettings()
@@ -302,6 +300,11 @@ public class CharacterSelection : MonoBehaviour
     // Character selection for either player 1 or player 2
     public void CharacterSelecting(int PlayerNum)
     {
+        if (readyCoding.playerReadyStatus[PlayerNum])
+        {
+            Debug.Log($"Player {PlayerNum} is ready and cannot change character.");
+            return; // Skip character selection if the player is ready
+        }
         if (PlayerNum == 0)
         {
             Character1Selecting();
@@ -387,22 +390,22 @@ public class CharacterSelection : MonoBehaviour
     public void HandleSelectedSameCharacter()
     {
         IsAllready = false;
-            readybutton[0].SetActive(false);
-            readybutton[1].SetActive(false);
-            readybutton[2].SetActive(false);
+            readyCoding.readyButton[0].SetActive(false);
+            readyCoding.readyButton[1].SetActive(false);
+            readyCoding.readyButton[2].SetActive(false);
 
 
     }
     public void HandleSelecteddifCharacter()
     {
          IsAllready = true;
-            readybutton[0].SetActive(true);
-            readybutton[1].SetActive(true);
-            readybutton[2].SetActive(true);
+            readyCoding.readyButton[0].SetActive(true);
+            readyCoding.readyButton[1].SetActive(true);
+            readyCoding.readyButton[2].SetActive(true);
     }
     public void HandleBootlePress(int Num)
     {
-        readybutton[Num].transform.position = UiTranformHide.position;
+        readyCoding.readyButton[Num].transform.position = UiTranformHide.position;
        
     }
 }

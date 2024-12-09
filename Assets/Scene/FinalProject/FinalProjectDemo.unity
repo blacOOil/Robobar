@@ -9060,31 +9060,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936674145}
         m_TargetAssemblyTypeName: ReadyCoding, Assembly-CSharp
-        m_MethodName: ReadyButt
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 936674145}
-        m_TargetAssemblyTypeName: ReadyCoding, Assembly-CSharp
-        m_MethodName: HidSelector
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 936674144}
-        m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
-        m_MethodName: HandleBootlePress
+        m_MethodName: ReadyButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11241,31 +11217,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936674145}
         m_TargetAssemblyTypeName: ReadyCoding, Assembly-CSharp
-        m_MethodName: ReadyButt
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 936674145}
-        m_TargetAssemblyTypeName: ReadyCoding, Assembly-CSharp
-        m_MethodName: HidSelector
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 936674144}
-        m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
-        m_MethodName: HandleBootlePress
+        m_MethodName: ReadyButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13065,7 +13017,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ready
+  m_text: Unready
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc9930c7ea8cbbf4dbf619f370dfa60e, type: 2}
   m_sharedMaterial: {fileID: -595187267691063616, guid: cc9930c7ea8cbbf4dbf619f370dfa60e,
@@ -14784,31 +14736,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936674145}
         m_TargetAssemblyTypeName: ReadyCoding, Assembly-CSharp
-        m_MethodName: ReadyButt
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 936674145}
-        m_TargetAssemblyTypeName: ReadyCoding, Assembly-CSharp
-        m_MethodName: HidSelector
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 936674144}
-        m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
-        m_MethodName: HandleBootlePress
+        m_MethodName: ReadyButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16431,7 +16359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ready
+  m_text: Unready
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc9930c7ea8cbbf4dbf619f370dfa60e, type: 2}
   m_sharedMaterial: {fileID: -595187267691063616, guid: cc9930c7ea8cbbf4dbf619f370dfa60e,
@@ -20109,7 +20037,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ready
+  m_text: Unready
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc9930c7ea8cbbf4dbf619f370dfa60e, type: 2}
   m_sharedMaterial: {fileID: -595187267691063616, guid: cc9930c7ea8cbbf4dbf619f370dfa60e,
