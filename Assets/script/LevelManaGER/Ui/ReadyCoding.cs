@@ -43,7 +43,7 @@ public class ReadyCoding : MonoBehaviour
         {
             playButton.SetActive(true);
             isReadyToPlay = true;
-            HandleReadyToPlay();
+          
         }
 
         UpdateReadyButtons();
@@ -89,7 +89,7 @@ public class ReadyCoding : MonoBehaviour
             readyCount++;
             readyIndicator[playerNum].SetActive(true);
             buttonText.text = "Unready"; // Switch to "Unready"
-            playerReadyStatus[playerNum] = true;
+          //  playerReadyStatus[playerNum] = true;
             Debug.Log($"Player {playerNum} is ready.");
         }
 
@@ -146,20 +146,17 @@ public class ReadyCoding : MonoBehaviour
         return true;
     }
 
-    public void HandleReadyToPlay()
-    {
-        foreach (GameObject button in selectorButton)
-        {
-            button.SetActive(false);
-        }
-    }
+    
 
     private void DisableSelectorButtons(int playerNum)
     {
         // Disable left and right buttons for this player
         if (selectorButton[playerNum] != null)
         {
-            selectorButton[playerNum].GetComponent<Button>().interactable = false;
+            
+                selectorButton[playerNum*2].GetComponent<Button>().interactable = false;
+                selectorButton[playerNum*2 + 1].GetComponent<Button>().interactable = false;
+           
         }
     }
 
@@ -168,19 +165,11 @@ public class ReadyCoding : MonoBehaviour
         // Enable left and right buttons for this player
         if (selectorButton[playerNum] != null)
         {
-            selectorButton[playerNum].GetComponent<Button>().interactable = true;
+            selectorButton[playerNum * 2].GetComponent<Button>().interactable = true;
+            selectorButton[playerNum * 2 + 1].GetComponent<Button>().interactable = true;
         }
     }
 
-    public void HidSelector(int num)
-    {      
-      selectorButton[num].SetActive(false);
-      selectorButton[num+1].SetActive(false);
-    }
-    public void ReadyButt(int Num)
-    {
-        readyIndicator[Num].SetActive(true);
-        readyButton[Num].SetActive(false);
-    }
+ 
 
 }

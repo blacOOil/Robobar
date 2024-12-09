@@ -134,15 +134,7 @@ public class CharacterSelection : MonoBehaviour
                 CharacterSelecting(2);
             }
         }
-        if ((selectorNumber == Player2SelectedNumber)  || (Player2SelectedNumber == Player3SelectedNumber) || (selectorNumber == Player3SelectedNumber))
-        {
-          
-            HandleSelectedSameCharacter();
-        }
-        else
-        {
-            HandleSelecteddifCharacter();
-        }
+      
     }
 
     // Move selector left for a given player number
@@ -387,22 +379,7 @@ public class CharacterSelection : MonoBehaviour
             }
         }
     }
-    public void HandleSelectedSameCharacter()
-    {
-        IsAllready = false;
-            readyCoding.readyButton[0].SetActive(false);
-            readyCoding.readyButton[1].SetActive(false);
-            readyCoding.readyButton[2].SetActive(false);
-
-
-    }
-    public void HandleSelecteddifCharacter()
-    {
-         IsAllready = true;
-            readyCoding.readyButton[0].SetActive(true);
-            readyCoding.readyButton[1].SetActive(true);
-            readyCoding.readyButton[2].SetActive(true);
-    }
+  
     public void HandleBootlePress(int Num)
     {
         readyCoding.readyButton[Num].transform.position = UiTranformHide.position;
