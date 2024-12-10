@@ -357,9 +357,9 @@ public class CustomerSingle : MonoBehaviour
     {
         SatificationIncrease();
         int RandomIndex = Random.Range(0, OrderMenu.Count);
-        Debug.Log(RandomIndex);
-        Randomdrinkfloat = RandomIndex;
+       // Debug.Log(RandomIndex);
         OrderImage.sprite = OrderMenu[RandomIndex];
+        Randomdrinkfloat = RandomIndex;
         Isordered = true;
     }
 
