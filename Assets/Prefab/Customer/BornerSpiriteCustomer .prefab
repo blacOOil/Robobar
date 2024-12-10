@@ -997,6 +997,7 @@ MonoBehaviour:
   SliderImage: {fileID: 5492499450478548766}
   SatifactorCanvas: {fileID: 4793837362484213709}
   IsDanceAdded: 0
+  monneyLevelCode: {fileID: 0}
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0

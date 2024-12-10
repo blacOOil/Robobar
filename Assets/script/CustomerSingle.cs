@@ -24,7 +24,7 @@ public class CustomerSingle : MonoBehaviour
     public Image SliderImage;
     public GameObject SatifactorCanvas;
     public bool IsDanceAdded = false;
-
+    public MonneyLevelCode monneyLevelCode;
 
     [Header("SittingSession")]
     public float PlayerCheckerRadius = 999f;
@@ -42,6 +42,7 @@ public class CustomerSingle : MonoBehaviour
 
     private void Update()
     {
+        monneyLevelCode = FindObjectOfType<MonneyLevelCode>();
         SatificationDecressing();
         HandleCustomerSatification();
         if (Isfull == false)
@@ -158,6 +159,7 @@ public class CustomerSingle : MonoBehaviour
                 SatifactorCanvas.SetActive(false);
                 Destroy(OrderImage);
                 SpawnDrinkThatRecived();
+                monneyLevelCode.moneyAdd();
                 StartCoroutine(DrinkingRoutine());
                 SatificationIncrease();
                 IsorderRevied = true;
@@ -199,7 +201,7 @@ public class CustomerSingle : MonoBehaviour
             }
             if (Isplayer2Close())
             {
-                if (Input.GetKeyDown(KeyCode.I))
+                if (Input.GetKeyDown(KeyCode.I) || Input.GetButton("Player2Action"))
                 {
                     Debug.Log("Go to table Ok");
                     customertoTable.movetotable();
@@ -218,7 +220,7 @@ public class CustomerSingle : MonoBehaviour
             }
             if (Isplayer3Close())
             {
-                if (Input.GetKeyDown(KeyCode.Keypad9))
+                if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButton("Player3Action"))
                 {
                     Debug.Log("Go to table Ok");
                     customertoTable.movetotable();

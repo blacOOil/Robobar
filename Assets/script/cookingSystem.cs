@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class cookingSystem : MonoBehaviour
 {
-    public GameObject cookingCanvas, MenuCanvas, ClosestPlayer, Holdindicator;
+    public GameObject cookingCanvas, MenuCanvas, ClosestPlayer, Holdindicator,CurrentMinigame;
     bool IsPlayerClose = false, IsCooking = false;
+    public Gamestate gamestate;
     public BotController botController;
     public Transform ServiceSpawner;
     public List<GameObject> ListDrink, MinigameList;
@@ -13,7 +14,7 @@ public class cookingSystem : MonoBehaviour
     public bool IsCookingStarted,IsCookingStartSelecting = false;
     public int DrinkIndex = 0, CookingState;
 
-    public float dPadHorizontal;
+    public float dPadHorizontal, dPadHorizontal2, dPadHorizontal3;
     private float inputCooldown = 0.2f; // Cooldown time in seconds
     private float lastInputTime = 0f;   // Tracks the time of the last D-pad input
 
@@ -24,6 +25,9 @@ public class cookingSystem : MonoBehaviour
 
     void Update()
     {
+        gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
+
+
        
         if (ClosestPlayer == null)
         {
@@ -32,6 +36,11 @@ public class cookingSystem : MonoBehaviour
         }
         HandlePlayerProximity();
         HandleCookingProcess();
+        if(gamestate.gamestate_Number != 4)
+        {
+            InitializeSystem();
+            Destroy(CurrentMinigame);
+        }
        
     }
     private void StopCookingDueToPlayerExit()
@@ -327,7 +336,7 @@ public class cookingSystem : MonoBehaviour
         {
             GameObject minigametoSpawned = Instantiate(MinigameList[0], ListMinigameTranformList[0].position, ListMinigameTranformList[0].rotation);
             botController.enabled = false;
-
+            CurrentMinigame = minigametoSpawned;
             StartCoroutine(MonitorMinigame(minigametoSpawned, minigamenum, IsMakingadrinkfin));
         }
         
@@ -337,7 +346,7 @@ public class cookingSystem : MonoBehaviour
     private IEnumerator MonitorMinigame(GameObject minigame, int drinkIndex, bool IsMakingadrinkfin)
     {
         DrinkmakingMinigame minigameScript = minigame.GetComponent<DrinkmakingMinigame>();
-
+      
         while (!minigameScript.Isgamefin)
         {
             Holdindicator.SetActive(false);
@@ -346,7 +355,9 @@ public class cookingSystem : MonoBehaviour
 
         SpawnDrink(drinkIndex);
         botController.enabled = true;
+        CurrentMinigame = null;
         Destroy(minigame);
         IsCookingStarted = false;
+        
     }
 }

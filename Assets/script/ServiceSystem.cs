@@ -203,7 +203,7 @@ public class ServiceSystem : MonoBehaviour
                     !customer.IsorderRevied)
                 {
                     Debug.Log("ServiceProceed");
-                    monneyLevelCode.moneyAdd();
+                //    monneyLevelCode.moneyAdd();
                     // Destroy the drink and reset states
                     drink.selfDestruct();
                     holdedrink = false;
