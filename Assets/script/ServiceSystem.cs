@@ -18,6 +18,7 @@ public class ServiceSystem : MonoBehaviour
     public List<GameObject> ExtraDrinkId;
     public PlayerScoreSystem playerScoreSystem;
 
+    Animator anim;
  
    public bool IsSpawnerClose()
     {
@@ -64,7 +65,6 @@ public class ServiceSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
         BoxSkillCheck();
         Spawner = GameObject.FindGameObjectWithTag("ServiceSpawner");
         gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
@@ -90,6 +90,8 @@ public class ServiceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim = GetComponentInChildren<Animator>();
+
         if(gamestate.gamestate_Number != 4)
         {
             ReleaseDrink();
@@ -342,7 +344,6 @@ public class ServiceSystem : MonoBehaviour
         if (Obj.CompareTag("tableTag"))
         {
             holdetable = true;
-         
         }
         if (Obj.CompareTag("drink"))
         {
@@ -371,6 +372,8 @@ public class ServiceSystem : MonoBehaviour
             collider.isTrigger = true;
         }
         Ishandholded = true;
+
+        anim.GetComponent<Animator>().SetBool("IsPickup", true);
     }
     public void ReleaseDrink()
     {
@@ -396,7 +399,9 @@ public class ServiceSystem : MonoBehaviour
                 Objholding.GetComponent<Collider>().isTrigger = true;
             }
 
-            StartCoroutine(DropDelay()); 
+            StartCoroutine(DropDelay());
+            
+            anim.GetComponent<Animator>().SetBool("IsPickup", false);
         }
     }
     public void SpawnNextDrink() 

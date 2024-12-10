@@ -23,16 +23,18 @@ public class BotController : MonoBehaviour
     public GameObject NameObj;
     public PlayerNameContainer playerNameContainer;
     public TMP_Text NameText;
-
+    Animator anim;
     private List<string> assignedJoysticks = new List<string>();
     void Start() {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
         NameObj.SetActive(true);
         AssignJoystick();
     }
 
     void Update() {
+
         UpdatePlayerName();
         MovementInput();
         JumpInput();
@@ -119,6 +121,10 @@ public class BotController : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             }
+
+            anim.GetComponent<Animator>().SetBool("IsWalk", true);
+        } else {
+            anim.GetComponent<Animator>().SetBool("IsWalk", false);    
         }
     }
 
