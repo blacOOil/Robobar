@@ -38,7 +38,7 @@ public class CustomertoTable : MonoBehaviour
             SpawnedExtraCustomer();
            
         }
-       if(gameObject.GetComponent<CustomerSingle>().Issited == true)
+        if(gameObject.GetComponent<CustomerSingle>().Issited == true)
         {
             anim = GetComponentInChildren<Animator>();
             anim.GetComponent<Animator>().SetBool("IsSit", true);
