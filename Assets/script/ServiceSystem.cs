@@ -438,14 +438,14 @@ public class ServiceSystem : MonoBehaviour
         }
         if(playernum == 1)
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("Player2Action"))
             {
                 return true;
             }
         }
         if (playernum == 2)
         {
-            if (Input.GetKeyDown(KeyCode.Keypad9))
+            if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButtonDown("Player3Action"))
             {
                 return true;
             }
