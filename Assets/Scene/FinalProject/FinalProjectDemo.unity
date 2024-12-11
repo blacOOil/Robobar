@@ -10706,7 +10706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeText: {fileID: 282346510}
-  remainingTime: 1000
+  remainingTime: 10
   startedRemainingtime: 0
   GameOverUI: {fileID: 660871994}
   IstimeCounting: 0
@@ -10774,6 +10774,8 @@ MonoBehaviour:
   IsReadyToPlay: 0
   IsplayerSpawned: 0
   IsP1ready: 0
+  IsP2ready: 0
+  IsP3ready: 0
   CharSelectedZone: {fileID: 1721555967}
   MainGameUi: {fileID: 1052294}
   SelectingUi: {fileID: 584058286}
@@ -10802,6 +10804,8 @@ MonoBehaviour:
   UiTranformHide: {fileID: 691288901}
   IsAllready: 0
   dPadHorizontal: 0
+  dPad2Horizontal: 0
+  dPad3Horizontal: 0
 --- !u!114 &936674145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22979,6 +22983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.7000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565995292689456594, guid: ca9293b1adb86f243b0b840342449b68,
+        type: 3}
+      propertyPath: PlacementCanvas.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7812714881523792499, guid: ca9293b1adb86f243b0b840342449b68,
         type: 3}
