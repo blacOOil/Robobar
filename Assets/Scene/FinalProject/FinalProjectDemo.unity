@@ -1879,7 +1879,6 @@ MonoBehaviour:
   ClosestPlayer: {fileID: 0}
   Holdindicator: {fileID: 941145568}
   CurrentMinigame: {fileID: 0}
-  gamestate: {fileID: 0}
   botController: {fileID: 0}
   ServiceSpawner: {fileID: 941145569}
   ListDrink:
@@ -10675,7 +10674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeText: {fileID: 282346510}
-  remainingTime: 10
+  remainingTime: 20
   startedRemainingtime: 0
   GameOverUI: {fileID: 660871994}
   IstimeCounting: 0
@@ -22965,8 +22964,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7565995292689456594, guid: ca9293b1adb86f243b0b840342449b68,
         type: 3}
-      propertyPath: PlacementCanvas.Array.size
-      value: 3
+      propertyPath: CheckerRadius
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7812714881523792499, guid: ca9293b1adb86f243b0b840342449b68,
         type: 3}

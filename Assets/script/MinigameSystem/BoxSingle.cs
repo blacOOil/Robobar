@@ -6,11 +6,11 @@ using TMPro;
 public class BoxSingle : MonoBehaviour
 {
     public Transform spawnPoint;
-    public float CheckerRadius = 4f;
+    public float CheckerRadius = 10f;
     public List<GameObject> PlacementCanvas;
     public List<TMP_Text> PlacementText;
     public CrossingRoadManager crossingRoadManager;
-
+    public float scoreResetDelay = 2f;
     private bool isPlayerScored; // To prevent repeated score increments
     // Start is called before the first frame update
     void Start()
@@ -24,41 +24,51 @@ public class BoxSingle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckPlayerProximity();
         // Update each text element with the respective score
         for (int i = 0; i < PlacementText.Count; i++)
         {
             PlacementText[i].text = crossingRoadManager.PlayerScoreint[i].ToString();
         }
     }
-    public bool IsPlayerClose()
+    public void CheckPlayerProximity()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, CheckerRadius);
         foreach (var hitCollider in hitColliders)
         {
-            if (gameObject.CompareTag("Box1") && hitCollider.CompareTag("Player1"))
+            if ( hitCollider.CompareTag("Player1"))
             {
-                return HandlePlayerInteraction(0);
+                HandlePlayerInteraction(0);
             }
-            if (gameObject.CompareTag("Box2") && hitCollider.CompareTag("Player2"))
+            if ( hitCollider.CompareTag("Player2"))
             {
-                return HandlePlayerInteraction(1);
+                HandlePlayerInteraction(1);
             }
-            if (gameObject.CompareTag("Box3") && hitCollider.CompareTag("Player3"))
+             if ( hitCollider.CompareTag("Player3"))
             {
-                return HandlePlayerInteraction(2);
+                HandlePlayerInteraction(2);
             }
         }
-        return false;
     }
-    private bool HandlePlayerInteraction(int playerIndex)
+    private void HandlePlayerInteraction(int playerIndex)
     {
         if (!isPlayerScored)
         {
             PlacementCanvas[playerIndex].SetActive(true);
             crossingRoadManager.PlayerScoreint[playerIndex]++;
             isPlayerScored = true;
+
+            // Start the coroutine to reset the score flag
+            StartCoroutine(ResetScoreFlag());
         }
-        return true;
+    }
+    private IEnumerator ResetScoreFlag()
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(scoreResetDelay);
+
+        // Reset the score flag
+        isPlayerScored = false;
     }
 
 

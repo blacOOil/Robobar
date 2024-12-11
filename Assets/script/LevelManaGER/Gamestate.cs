@@ -27,11 +27,12 @@ public class Gamestate : MonoBehaviour
     // Update is called once per frame
     void Update() {
         HandleGameLoop();
+        HandleGameState();
 
         if (timerCode.remainingTime <= 0 && gamestate_Number != 0) {
             if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.I)) || (Input.GetKeyDown(KeyCode.Keypad9)) || Input.GetButton("Player1Action")) {
                 please_next();
-              HandleGameState();
+                 
                 timerCode.resettimer();
             }
         }

@@ -6,7 +6,7 @@ public class cookingSystem : MonoBehaviour
 {
     public GameObject cookingCanvas, MenuCanvas, ClosestPlayer, Holdindicator,CurrentMinigame;
     bool IsPlayerClose = false, IsCooking = false;
-    public Gamestate gamestate;
+   
     public BotController botController;
     public Transform ServiceSpawner;
     public List<GameObject> ListDrink, MinigameList;
@@ -25,7 +25,7 @@ public class cookingSystem : MonoBehaviour
 
     void Update()
     {
-        gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
+      
 
 
        
@@ -36,11 +36,7 @@ public class cookingSystem : MonoBehaviour
         }
         HandlePlayerProximity();
         HandleCookingProcess();
-        if(gamestate.gamestate_Number != 4)
-        {
-            InitializeSystem();
-            Destroy(CurrentMinigame);
-        }
+        
        
     }
     private void StopCookingDueToPlayerExit()

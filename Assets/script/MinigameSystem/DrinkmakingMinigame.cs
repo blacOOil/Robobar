@@ -7,6 +7,7 @@ public class DrinkmakingMinigame : MonoBehaviour
     public float Alimit, Dlitmit,PassCenterAmount,speed = 10f;
     public GameObject drink,shakingGroup,ClosetPlayer;
     public Transform CentPivot;
+    public Gamestate gamestate;
     public bool IsShakingfin, Isgamefin;
    public int ShakingCoustiing = 0;
     public bool isapressing = false;
@@ -18,6 +19,7 @@ public class DrinkmakingMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gamestate = GameObject.Find("LevelManager").GetComponent<Gamestate>();
         PassCenterAmount = 0;
         IsShakingfin = false;
         Isgamefin = false;
@@ -44,7 +46,11 @@ public class DrinkmakingMinigame : MonoBehaviour
         }
         else
         {
-            
+          
+        }
+        if(gamestate.gamestate_Number != 4)
+        {
+            Destroy(gameObject);
         }
 
         
