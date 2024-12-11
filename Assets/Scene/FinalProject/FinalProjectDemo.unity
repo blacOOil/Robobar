@@ -1686,11 +1686,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4671641344534802984, guid: 4d8643d37c757a04781ae5d66f9bd67a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 466649910}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8643d37c757a04781ae5d66f9bd67a, type: 3}
 --- !u!4 &163319033 stripped
 Transform:
@@ -4097,33 +4093,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &466649906 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4671641344534802984, guid: 4d8643d37c757a04781ae5d66f9bd67a,
-    type: 3}
-  m_PrefabInstance: {fileID: 163319032}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &466649910
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466649906}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ce5079685c8d7c548b47ad9472b9db3c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &480160084
 GameObject:
   m_ObjectHideFlags: 0
@@ -10774,6 +10743,8 @@ MonoBehaviour:
   IsReadyToPlay: 0
   IsplayerSpawned: 0
   IsP1ready: 0
+  IsP2ready: 0
+  IsP3ready: 0
   CharSelectedZone: {fileID: 1721555967}
   MainGameUi: {fileID: 1052294}
   SelectingUi: {fileID: 584058286}
@@ -10802,6 +10773,8 @@ MonoBehaviour:
   UiTranformHide: {fileID: 691288901}
   IsAllready: 0
   dPadHorizontal: 0
+  dPad2Horizontal: 0
+  dPad3Horizontal: 0
 --- !u!114 &936674145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13270,6 +13243,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 444068275}
     m_Modifications:
+    - target: {fileID: 2251591115862373987, guid: eadcb09830a72dd4495da4a7613328b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251591115862373987, guid: eadcb09830a72dd4495da4a7613328b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 7.838
+      objectReference: {fileID: 0}
     - target: {fileID: 2803266771643647463, guid: eadcb09830a72dd4495da4a7613328b3,
         type: 3}
       propertyPath: m_LocalPosition.x

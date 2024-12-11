@@ -342,10 +342,10 @@ MonoBehaviour:
   Playerlight: {fileID: 1931088775742133318}
   inputNameHorizontal: Horizontal1
   inputNameVertical: Vertical1
-  PlayerName: 
   NameObj: {fileID: 3064340486000033391}
   playerNameContainer: {fileID: 0}
   NameText: {fileID: 8853614330811342944}
+  animSpeedMultiplier: 3
 --- !u!114 &7409638701694022140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660f9ce6c300f7c4483ce46c35c0676a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monneyLevelCode: {fileID: 0}
   gamestate: {fileID: 0}
   Hand: {fileID: 6244769114226725332}
   holdedrink: 0
@@ -367,7 +366,14 @@ MonoBehaviour:
   IsTableTagnear: 0
   Ishandholded: 0
   IsreadytopickNext: 0
-  ExtraSpaceLimit: 1
+  IshadBoxskill: 0
+  IsNextDrinkSpawned: 0
+  IscustmerDrinkReceived: 0
+  ClosestCustomer: {fileID: 0}
+  Objholding: {fileID: 0}
+  ReadytoPickObj: {fileID: 0}
+  ClosestTage: {fileID: 0}
+  Spawner: {fileID: 0}
   CustomerLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -377,17 +383,12 @@ MonoBehaviour:
   SpawnerLayer:
     serializedVersion: 2
     m_Bits: 64
-  ClosestCustomer: {fileID: 0}
-  Objholding: {fileID: 0}
-  ReadytoPickObj: {fileID: 0}
-  ClosestTage: {fileID: 0}
-  Spawner: {fileID: 0}
-  boxSkill: {fileID: 1679471044683484873}
-  IshadBoxskill: 0
-  IsNextDrinkSpawned: 0
-  IscustmerDrinkReceived: 0
-  ExtraDrinkId: []
+  monneyLevelCode: {fileID: 0}
   playerScoreSystem: {fileID: 0}
+  boxSkill: {fileID: 1679471044683484873}
+  ExtraSpaceLimit: 1
+  ExtraDrinkId: []
+  animSkillSpeedMultiplier: 2
 --- !u!136 &1655093341224942099
 CapsuleCollider:
   m_ObjectHideFlags: 0

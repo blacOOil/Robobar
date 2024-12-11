@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8fc94deb78f236843b586f9ecc8debb0
+guid: 79f8054761c3bbd4f8d9b5e3a91996c8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Turby_Idle
-      takeName: Turby_Idle
-      internalID: -4579798171690535617
+      name: D1_Walk
+      takeName: D1_Walk
+      internalID: -1359803542987754333
       firstFrame: 0
-      lastFrame: 160
+      lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -124,7 +124,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 53d561aa324e30647b9aa3e6561cf71f,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 75b2a13612bbac64db9176ef846b2836,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2

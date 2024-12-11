@@ -61,4 +61,8 @@ public class MainMenuManager : MonoBehaviour {
 
         return value;
     }
+
+    public void Exit() {
+        Application.Quit();
+    }
 }

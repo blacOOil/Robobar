@@ -37,15 +37,7 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Ctrl/nurbsCircle1/nurbsCircle1/nurbsCircle2
     m_Weight: 1
-  - m_Path: Ctrl/nurbsCircle1/nurbsCircle1/nurbsCircle2/nurbsCircle1
-    m_Weight: 1
-  - m_Path: Ctrl/nurbsCircle1/nurbsCircle1/nurbsCircle2/nurbsCircle1/nurbsCircle1
-    m_Weight: 1
   - m_Path: Ctrl/nurbsCircle1/nurbsCircle1/nurbsCircle3
-    m_Weight: 1
-  - m_Path: Ctrl/nurbsCircle1/nurbsCircle1/nurbsCircle3/nurbsCircle1
-    m_Weight: 1
-  - m_Path: Ctrl/nurbsCircle1/nurbsCircle1/nurbsCircle3/nurbsCircle1/nurbsCircle1
     m_Weight: 1
   - m_Path: polySurface2
     m_Weight: 1

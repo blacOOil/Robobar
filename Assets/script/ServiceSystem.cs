@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class ServiceSystem : MonoBehaviour
 {
-    public MonneyLevelCode monneyLevelCode;
+    [Header("Logic System")]
     public Gamestate gamestate;
     public Transform Hand;
-    public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded,IsreadytopickNext;
     private float CustomerCheckerRadius = 2f,SpawnerRadius = 100f;
     private int playernumber = 0;
-    public int ExtraSpaceLimit;
-    public LayerMask CustomerLayer,TagLayer,SpawnerLayer;
-    public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage,Spawner;
-    public BoxSkill boxSkill;
+    public bool holdedrink, IsreadytoServered, holdetable, IsTableTagnear, Ishandholded,IsreadytopickNext;
     public bool IshadBoxskill = false, IsNextDrinkSpawned = false, IscustmerDrinkReceived = false;
-    public List<GameObject> ExtraDrinkId;
+    public GameObject ClosestCustomer, Objholding,ReadytoPickObj,ClosestTage,Spawner;
+    public LayerMask CustomerLayer,TagLayer,SpawnerLayer;
+    
+
+    [Header("Money&Score System")]
+    public MonneyLevelCode monneyLevelCode;
     public PlayerScoreSystem playerScoreSystem;
 
+    [Header("Skill System")]
+    public BoxSkill boxSkill;
+    public int ExtraSpaceLimit;
+    
+    public List<GameObject> ExtraDrinkId;
+
+    [Header("Animation Controller")]
+    public float animSkillSpeedMultiplier;
     Animator anim;
  
    public bool IsSpawnerClose()
@@ -374,6 +383,8 @@ public class ServiceSystem : MonoBehaviour
         Ishandholded = true;
 
         anim.GetComponent<Animator>().SetBool("IsPickup", true);
+        anim.SetFloat("Anim Speed", animSkillSpeedMultiplier);
+
     }
     public void ReleaseDrink()
     {

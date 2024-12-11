@@ -64,7 +64,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 12
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -119,12 +119,12 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 12
     rootMotionBoneName: Center_Joint
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0fff13ccb11edfb43aa7622d2e89f626,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 53d561aa324e30647b9aa3e6561cf71f,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2

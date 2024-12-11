@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: D1_AM
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Center_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Leg_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Leg_Joint/Left_Knee_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Leg_Joint/Left_Knee_Joint/Left_Knee_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Rotate_Shoulder_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Rotate_Shoulder_Joint/Left_Shoulder_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Rotate_Shoulder_Joint/Left_Shoulder_Joint/Left_Elbow_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Rotate_Shoulder_Joint/Left_Shoulder_Joint/Left_Elbow_Joint/Left_Wrist_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Rotate_Shoulder_Joint/Left_Shoulder_Joint/Left_Elbow_Joint/Left_Wrist_Joint/Left_Rotate_Wrist_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Rotate_Shoulder_Joint/Left_Shoulder_Joint/Left_Elbow_Joint/Left_Wrist_Joint/Left_Rotate_Wrist_Joint/Left_Down_Hand_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Left_Rotate_Shoulder_Joint/Left_Shoulder_Joint/Left_Elbow_Joint/Left_Wrist_Joint/Left_Rotate_Wrist_Joint/Left_Up_Hand_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Neck_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Leg_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Leg_Joint/Right_Knee_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Leg_Joint/Right_Knee_Joint/Right_Knee_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Rotate_Shoulder_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Rotate_Shoulder_Joint/Right_Shoulder_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Rotate_Shoulder_Joint/Right_Shoulder_Joint/Right_Elbow_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Rotate_Shoulder_Joint/Right_Shoulder_Joint/Right_Elbow_Joint/Right_Wrist_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Rotate_Shoulder_Joint/Right_Shoulder_Joint/Right_Elbow_Joint/Right_Wrist_Joint/Right_Rotate_Wrist_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Rotate_Shoulder_Joint/Right_Shoulder_Joint/Right_Elbow_Joint/Right_Wrist_Joint/Right_Rotate_Wrist_Joint/Right_Down_Hand_Joint
+    m_Weight: 1
+  - m_Path: Center_Joint/Right_Rotate_Shoulder_Joint/Right_Shoulder_Joint/Right_Elbow_Joint/Right_Wrist_Joint/Right_Rotate_Wrist_Joint/Right_Up_Hand_Joint
+    m_Weight: 1
+  - m_Path: Controller
+    m_Weight: 1
+  - m_Path: Controller/nurbsCircle1
+    m_Weight: 1
+  - m_Path: Controller/nurbsCircle1/nurbsCircle1
+    m_Weight: 1
+  - m_Path: Controller/nurbsCircle1/nurbsCircle1/nurbsCircle1
+    m_Weight: 1
+  - m_Path: Controller/nurbsCircle1/nurbsCircle1/nurbsCircle3
+    m_Weight: 1
+  - m_Path: Controller/nurbsCircle1/nurbsCircle1/nurbsCircle5
+    m_Weight: 1
+  - m_Path: Controller/nurbsCircle1/nurbsCircle1/nurbsCircle6
+    m_Weight: 1
+  - m_Path: Controller/nurbsCircle1/nurbsCircle1/nurbsCircle7
+    m_Weight: 1
+  - m_Path: D1
+    m_Weight: 1

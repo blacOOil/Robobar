@@ -5,25 +5,32 @@ using TMPro;
 
 public class BotController : MonoBehaviour
 {
+    [Header("Movement Controller")]
     public float Speed;
     public float JumpForce;
     public float GroundCheckDistance = 0.1f;
     public LayerMask GroundLayer;
+    public Light Playerlight;
 
     private Camera mainCamera;
     private Rigidbody rb;
     private bool isGrounded;
 
-    public Light Playerlight;
-
+    [Header("Name Indicator")]
     [SerializeField] public string inputNameHorizontal;
     [SerializeField] public string inputNameVertical;
 
-    public string PlayerName;
+    
+    private string PlayerName;
     public GameObject NameObj;
     public PlayerNameContainer playerNameContainer;
     public TMP_Text NameText;
+    
+
+    [Header("Animation Controller")]
+    public float animSpeedMultiplier;
     Animator anim;
+    
     private List<string> assignedJoysticks = new List<string>();
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -123,6 +130,7 @@ public class BotController : MonoBehaviour
             }
 
             anim.GetComponent<Animator>().SetBool("IsWalk", true);
+            anim.SetFloat("Anim Speed", animSpeedMultiplier);
         } else {
             anim.GetComponent<Animator>().SetBool("IsWalk", false);    
         }
