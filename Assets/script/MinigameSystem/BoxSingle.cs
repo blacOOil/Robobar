@@ -1,75 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BoxSingle : MonoBehaviour
 {
     public Transform spawnPoint;
     public float CheckerRadius = 4f;
-    public GameObject PLacementCanvas;
+    public List<GameObject> PlacementCanvas;
+    public List<TMP_Text> PlacementText;
     public CrossingRoadManager crossingRoadManager;
 
     private bool isPlayerScored; // To prevent repeated score increments
     // Start is called before the first frame update
     void Start()
     {
-        PLacementCanvas.SetActive(false);
-       
+        foreach (var canvas in PlacementCanvas)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsPlayerClose())
+        // Update each text element with the respective score
+        for (int i = 0; i < PlacementText.Count; i++)
         {
-            PLacementCanvas.SetActive(true);
+            PlacementText[i].text = crossingRoadManager.PlayerScoreint[i].ToString();
         }
-        else
-        {
-            isPlayerScored = false;
-            //  PLacementCanvas.SetActive(false);
-        }
-    }
-    public void ReturntoSpawnPoint()
-    {
-        gameObject.transform.position = spawnPoint.position;
     }
     public bool IsPlayerClose()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position,4f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, CheckerRadius);
         foreach (var hitCollider in hitColliders)
         {
-            if ((gameObject.tag == "Box1" && hitCollider.CompareTag("Player1")))
+            if (gameObject.CompareTag("Box1") && hitCollider.CompareTag("Player1"))
             {
-                if(isPlayerScored == false)
-                {
-                    crossingRoadManager.PlayerScoreint[0]++;
-                    isPlayerScored = true;
-                }
-                
-                return true;
+                return HandlePlayerInteraction(0);
             }
-            if ((gameObject.tag == "Box2" && hitCollider.CompareTag("Player2")))
+            if (gameObject.CompareTag("Box2") && hitCollider.CompareTag("Player2"))
             {
-                if (isPlayerScored == false)
-                {
-                    crossingRoadManager.PlayerScoreint[1]++;
-                    isPlayerScored = true;
-                }
-                return true;
+                return HandlePlayerInteraction(1);
             }
-            if ((gameObject.tag == "Box3" && hitCollider.CompareTag("Player3")))
+            if (gameObject.CompareTag("Box3") && hitCollider.CompareTag("Player3"))
             {
-                if (isPlayerScored == false)
-                {
-                    crossingRoadManager.PlayerScoreint[2]++;
-                    isPlayerScored = true;
-                }
-                return true;
+                return HandlePlayerInteraction(2);
             }
         }
         return false;
     }
-   
+    private bool HandlePlayerInteraction(int playerIndex)
+    {
+        if (!isPlayerScored)
+        {
+            PlacementCanvas[playerIndex].SetActive(true);
+            crossingRoadManager.PlayerScoreint[playerIndex]++;
+            isPlayerScored = true;
+        }
+        return true;
+    }
+
 
 }
