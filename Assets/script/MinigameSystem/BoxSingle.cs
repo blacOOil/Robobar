@@ -6,7 +6,7 @@ using TMPro;
 public class BoxSingle : MonoBehaviour
 {
     public Transform spawnPoint;
-    public float CheckerRadius = 10f;
+    public float CheckerRadius ;
     public List<GameObject> PlacementCanvas;
     public List<TMP_Text> PlacementText;
     public CrossingRoadManager crossingRoadManager;

@@ -3224,7 +3224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
-  CheckerRadius: 4
+  CheckerRadius: 5
   PlacementCanvas:
   - {fileID: 7366564394220371268}
   - {fileID: 2530573953484572394}
@@ -3234,6 +3234,7 @@ MonoBehaviour:
   - {fileID: 4096440316676205958}
   - {fileID: 5936248431185750329}
   crossingRoadManager: {fileID: 1852955762306548516}
+  scoreResetDelay: 2
 --- !u!1 &7070081033424249302
 GameObject:
   m_ObjectHideFlags: 0

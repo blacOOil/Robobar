@@ -10674,7 +10674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeText: {fileID: 282346510}
-  remainingTime: 20
+  remainingTime: 80
   startedRemainingtime: 0
   GameOverUI: {fileID: 660871994}
   IstimeCounting: 0
@@ -22947,6 +22947,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 5736798763439732865, guid: ca9293b1adb86f243b0b840342449b68,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13.341054
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736798763439732865, guid: ca9293b1adb86f243b0b840342449b68,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.071635
+      objectReference: {fileID: 0}
     - target: {fileID: 6826450589849033387, guid: ca9293b1adb86f243b0b840342449b68,
         type: 3}
       propertyPath: m_Layer
@@ -22961,11 +22971,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.7000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 7565995292689456594, guid: ca9293b1adb86f243b0b840342449b68,
-        type: 3}
-      propertyPath: CheckerRadius
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7812714881523792499, guid: ca9293b1adb86f243b0b840342449b68,
         type: 3}
