@@ -47,6 +47,18 @@ public class ReadyCoding : MonoBehaviour
         }
 
         UpdateReadyButtons();
+        if (Input.GetButtonDown("Player1Action"))
+        {
+            ReadyButtonPressed(0);
+        }
+        if (Input.GetButtonDown("Player2Action"))
+        {
+            ReadyButtonPressed(1);
+        }
+        if (Input.GetButtonDown("Player3Action"))
+        {
+            ReadyButtonPressed(2);
+        }
     }
 
     public void CharacterSelected(int playerNum, int characterID)

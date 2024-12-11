@@ -17,7 +17,7 @@ public class CharacterSelection : MonoBehaviour
     public MonneyLevelCode monneyLevelCode;
 
     [Header("Spawning Logic")]
-    public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned,IsP1ready;
+    public bool isCharacterSelected, IsReadyToPlay, IsplayerSpawned,IsP1ready, IsP2ready,IsP3ready;
     public GameObject CharSelectedZone, MainGameUi, SelectingUi;
     public List<GameObject> CharacterList;
     public Transform PlayerSpawnPoint, HidePlace;
@@ -37,9 +37,9 @@ public class CharacterSelection : MonoBehaviour
     public Transform UiTranformHide;
     public bool IsAllready;
 
-    public float dPadHorizontal;
+    public float dPadHorizontal, dPad2Horizontal, dPad3Horizontal;
     private float inputCooldown = 0.2f; // Cooldown time in seconds
-    private float lastInputTime = 0f;   // Tracks the time of the last D-pad input
+    private float lastInputTime = 0f, lastInputTime2 = 0f;   // Tracks the time of the last D-pad input
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +49,14 @@ public class CharacterSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(selectorNumber == Player2SelectedNumber && Player2SelectedNumber == Player3SelectedNumber)
+        {
+            IsAllready = false;
+        }
+        else
+        {
+            IsAllready = true;
+        }
         HandleCharacterSelection();
         if(IsP1ready == false)
         {
@@ -67,25 +75,119 @@ public class CharacterSelection : MonoBehaviour
                     CharacterSelecting(0);
                     lastInputTime = Time.time;
                 }
+                
             }
-            if (IsAllready)
+            if (Input.GetButtonDown("Player1Action")&& IsAllready)
             {
-                if (Input.GetButtonDown("Player1Action"))
-                {
-                    // readyCoding.ReadyButt(0);
-                    // readyCoding.HidSelector(0);
-                    HandleBootlePress(0);
-                    IsP1ready = true;
 
-                }
+                // readyCoding.ReadyButt(0);
+                // readyCoding.HidSelector(0);
+                // HandleBootlePress(0);
+                IsP1ready = true;
+
             }
+
+
         }
         else
         {
+            if (Input.GetButtonDown("Player1Action"))
+            {
+                // readyCoding.ReadyButt(0);
+                // readyCoding.HidSelector(0);
+                // HandleBootlePress(0);
+                IsP1ready = false;
+
+            }
 
         }
-       
+        if (IsP2ready == false)
+        {
+            dPad2Horizontal = Input.GetAxis("DPadHorizonal2");
+            if (Time.time - lastInputTime2 > inputCooldown)
+            {
+                if (dPad2Horizontal == -1 && Player2SelectedNumber > 0)
+                {
+                    SelectorMoveLeft(1);
+                    lastInputTime2 = Time.time;
+                }
+                if (dPad2Horizontal == 1 && (Player2SelectedNumber < CharacterList.Count - 1))
+                {
+                    SelectorMoveRight(1);
+                    lastInputTime2 = Time.time;
+                }
+
+            }
+            if (Input.GetButtonDown("Player2Action") && IsAllready)
+            {
+
+                // readyCoding.ReadyButt(0);
+                // readyCoding.HidSelector(0);
+                // HandleBootlePress(0);
+                IsP2ready = true;
+
+            }
+
+
+        }
+        else
+        {
+            if (Input.GetButtonDown("Player2Action"))
+            {
+                // readyCoding.ReadyButt(0);
+                // readyCoding.HidSelector(0);
+                // HandleBootlePress(0);
+                IsP2ready = false;
+
+            }
+
+        }
+        if (IsP2ready == false)
+        {
+            dPad3Horizontal = Input.GetAxis("DPadHorizonal3");
+            if (Time.time - lastInputTime2 > inputCooldown)
+            {
+                if (dPad3Horizontal == -1 && Player3SelectedNumber > 0)
+                {
+                    SelectorMoveLeft(2);
+                    lastInputTime2 = Time.time;
+                }
+                if (dPad3Horizontal == 1 && (Player3SelectedNumber < CharacterList.Count - 1))
+                {
+                    SelectorMoveRight(2);
+                    lastInputTime2 = Time.time;
+                }
+
+            }
+            if (Input.GetButtonDown("Player3Action") && IsAllready)
+            {
+
+                // readyCoding.ReadyButt(0);
+                // readyCoding.HidSelector(0);
+                // HandleBootlePress(0);
+                IsP3ready = true;
+
+            }
+
+
+        }
+        else
+        {
+            if (Input.GetButtonDown("Player3Action"))
+            {
+                // readyCoding.ReadyButt(0);
+                // readyCoding.HidSelector(0);
+                // HandleBootlePress(0);
+                IsP3ready = false;
+
+            }
+
+        }
     }
+       
+       
+    
+
 
     // Initialize all game settings
     private void InitializeSettings()
@@ -94,6 +196,8 @@ public class CharacterSelection : MonoBehaviour
         numberofPlayer = 1;
 
         IsP1ready = false;
+        IsP2ready = false;
+        IsP3ready = false;
 
         IsPlayer2active = true;
         Isselector2Spawned = false;
@@ -123,8 +227,7 @@ public class CharacterSelection : MonoBehaviour
             CharacterSelecting(0);
         }
 
-        if (IsntlocalCoopGame == false)
-        {
+       
             if (!Isplayer2Selected)
             {
                 CharacterSelecting(1);
@@ -133,7 +236,7 @@ public class CharacterSelection : MonoBehaviour
             {
                 CharacterSelecting(2);
             }
-        }
+        
       
     }
 
