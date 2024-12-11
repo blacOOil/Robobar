@@ -16,7 +16,7 @@ public class cookingSystem : MonoBehaviour
 
     public float dPadHorizontal, dPadHorizontal2, dPadHorizontal3;
     private float inputCooldown = 0.2f; // Cooldown time in seconds
-    private float lastInputTime = 0f;   // Tracks the time of the last D-pad input
+    private float lastInputTime = 0f, lastInputTime2 = 0f, lastInputTime3 = 0f;   // Tracks the time of the last D-pad input
 
     void Start()
     {
@@ -160,7 +160,7 @@ public class cookingSystem : MonoBehaviour
         {
             if (IsCookingStartSelecting == false)
             {
-                if (Input.GetKeyDown(KeyCode.I))
+                if (Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("Player2Action"))
                 {
                     StartCooking();
                     IsCookingStartSelecting = true;
@@ -174,7 +174,7 @@ public class cookingSystem : MonoBehaviour
         {
             if (IsCookingStartSelecting == false)
             {
-                if (Input.GetKeyDown(KeyCode.Keypad9))
+                if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButtonDown("Player3Action"))
                 {
                     StartCooking();
                     IsCookingStartSelecting = true;
@@ -208,6 +208,8 @@ public class cookingSystem : MonoBehaviour
     public void HandleCookingSelection()
     {
         dPadHorizontal = Input.GetAxis("DPadHorizonal1");
+        dPadHorizontal2 = Input.GetAxis("DPadHorizonal2");
+        dPadHorizontal3 = Input.GetAxis("DPadHorizonal3");
         botController.enabled = false;
         
 
@@ -217,11 +219,11 @@ public class cookingSystem : MonoBehaviour
             {
 
                 if ((Input.GetKeyDown(KeyCode.A)|| dPadHorizontal == -1) && DrinkIndex > 1)
-            {
+                {
                 DrinkIndex--;
                 CookingState = 2;
                      lastInputTime = Time.time; 
-            }
+                }
             if ((Input.GetKeyDown(KeyCode.D) || dPadHorizontal == 1) && DrinkIndex < ListDrink.Count)
             {
                 DrinkIndex++;
@@ -247,17 +249,22 @@ public class cookingSystem : MonoBehaviour
         }
         if(ClosestPlayer.tag == "Player2")
         {
-            if (Input.GetKeyDown(KeyCode.H) && DrinkIndex > 1)
+            if (Time.time - lastInputTime2 > inputCooldown)
             {
-                DrinkIndex--;
-                CookingState = 2;
+                if ((Input.GetKeyDown(KeyCode.H) || dPadHorizontal2 == -1) && DrinkIndex > 1)
+                {
+                    DrinkIndex--;
+                    CookingState = 2;
+                    lastInputTime2 = Time.time;
+                }
+                if ((Input.GetKeyDown(KeyCode.K) || dPadHorizontal2 == 1) && DrinkIndex < ListDrink.Count)
+                {
+                    DrinkIndex++;
+                    CookingState = 2;
+                    lastInputTime2 = Time.time;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.K) && DrinkIndex < ListDrink.Count)
-            {
-                DrinkIndex++;
-                CookingState = 2;
-            }
-            if (Input.GetKeyDown(KeyCode.I) && CookingState > 1)
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetButtonUp("Player2Action") && CookingState > 1)
             {
 
                 IsCookingStartSelecting = false;
@@ -274,17 +281,22 @@ public class cookingSystem : MonoBehaviour
         }
         if(ClosestPlayer.tag == "Player3")
         {
-            if (Input.GetKeyDown(KeyCode.Keypad4) && DrinkIndex > 1)
+            if (Time.time - lastInputTime3 > inputCooldown)
             {
-                DrinkIndex--;
-                CookingState = 2;
+                if ((Input.GetKeyDown(KeyCode.Keypad4) || dPadHorizontal3 == -1) && DrinkIndex > 1)
+                {
+                    DrinkIndex--;
+                    CookingState = 2;
+                    lastInputTime3 = Time.time;
+                }
+                if ((Input.GetKeyDown(KeyCode.Keypad6) || dPadHorizontal3 == 1) && DrinkIndex < ListDrink.Count)
+                {
+                    DrinkIndex++;
+                    CookingState = 2;
+                    lastInputTime3 = Time.time;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.Keypad6) && DrinkIndex < ListDrink.Count)
-            {
-                DrinkIndex++;
-                CookingState = 2;
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad9) && CookingState > 1)
+            if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButtonUp("Player3Action") && CookingState > 1)
             {
                 IsCookingStartSelecting = false;
                 IsCooking = true;

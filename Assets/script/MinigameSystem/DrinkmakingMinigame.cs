@@ -89,44 +89,52 @@ public class DrinkmakingMinigame : MonoBehaviour
             }
             if (ClosetPlayer.tag == "Player2")
             {
-                if (!isapressing)
+                float dPadHorizontal2 = Input.GetAxisRaw("Joystick2Horizontal1");
+                if (Time.time - lastInputTime > inputCooldown)
                 {
-                    if (Input.GetKeyDown(KeyCode.H))
+                    if (!isapressing)
                     {
-                        ShakingCoustiing++;
-                        isapressing = true;
-                        isdpressing = false;
+                        if (Input.GetKeyDown(KeyCode.H) || dPadHorizontal2 == -1)
+                        {
+                            ShakingCoustiing++;
+                            isapressing = true;
+                            isdpressing = false;
+                        }
                     }
-                }
-                if (!isdpressing)
-                {
-                    if (Input.GetKeyDown(KeyCode.K))
+                    if (!isdpressing)
                     {
-                        ShakingCoustiing++;
-                        isapressing = false;
-                        isdpressing = true;
+                        if (Input.GetKeyDown(KeyCode.K)|| dPadHorizontal2 == 1)
+                        {
+                            ShakingCoustiing++;
+                            isapressing = false;
+                            isdpressing = true;
+                        }
                     }
                 }
 
             }
             if (ClosetPlayer.tag == "Player3")
             {
-                if (!isapressing)
+                float dPadHorizontal3 = Input.GetAxisRaw("Joystick3Horizontal1");
+                if (Time.time - lastInputTime > inputCooldown)
                 {
-                    if (Input.GetKeyDown(KeyCode.Keypad4))
+                    if (!isapressing)
                     {
-                        ShakingCoustiing++;
-                        isapressing = true;
-                        isdpressing = false;
+                        if (Input.GetKeyDown(KeyCode.Keypad4) || dPadHorizontal3 == -1)
+                        {
+                            ShakingCoustiing++;
+                            isapressing = true;
+                            isdpressing = false;
+                        }
                     }
-                }
-                if (!isdpressing)
-                {
-                    if (Input.GetKeyDown(KeyCode.Keypad6))
+                    if (!isdpressing)
                     {
-                        ShakingCoustiing++;
-                        isapressing = false;
-                        isdpressing = true;
+                        if (Input.GetKeyDown(KeyCode.Keypad6) || dPadHorizontal3 == 1)
+                        {
+                            ShakingCoustiing++;
+                            isapressing = false;
+                            isdpressing = true;
+                        }
                     }
                 }
 
