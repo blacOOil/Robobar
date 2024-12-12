@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -157,12 +157,6 @@ Transform:
   - {fileID: 2087788709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &46338845 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99,
-    type: 3}
-  m_PrefabInstance: {fileID: 7901143807809080015}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &46338846 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4887933328357211505, guid: f8a92003b5750b34c8e5b967f2cddf99,
@@ -3252,7 +3246,7 @@ GameObject:
   - component: {fileID: 1218702470}
   - component: {fileID: 1218702469}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5507,12 +5501,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577320905}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 080c859326424894ebc20c259640b5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingPanel: {fileID: 46338845}
+  settingPanel: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99,
+    type: 3}
+  SettingCanvas: {fileID: 0}
 --- !u!1 &1592869371
 GameObject:
   m_ObjectHideFlags: 0
@@ -8207,6 +8203,10 @@ PrefabInstance:
     - target: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99, type: 3}
       propertyPath: m_Name
       value: 'SettingPanel '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4149345572686639829, guid: f8a92003b5750b34c8e5b967f2cddf99,
         type: 3}
