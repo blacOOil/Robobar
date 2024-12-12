@@ -36,11 +36,11 @@ public class UpgradingSystemSingle : MonoBehaviour
             {
                 return true;
             }
-            else if (CloestPlayer.tag == "Player2" && Input.GetKey(KeyCode.U))
+            else if (CloestPlayer.tag == "Player2" && Input.GetKey(KeyCode.U) || Input.GetButtonDown("Player2Action"))
             {
                 return true;
             }
-            else if (CloestPlayer.tag == "Player3" && Input.GetKey(KeyCode.Keypad9))
+            else if (CloestPlayer.tag == "Player3" && Input.GetKey(KeyCode.Keypad9) || Input.GetButtonDown("Player3Action"))
             {
                 return true;
             }

@@ -50,7 +50,7 @@ public class cookingSystem : MonoBehaviour
         botController = null; // Ensure the bot controller is reset
     }
     // Initialize system by disabling UI elements
-    private void InitializeSystem()
+    public void InitializeSystem()
     {
         cookingCanvas.SetActive(false);
         MenuCanvas.SetActive(false);

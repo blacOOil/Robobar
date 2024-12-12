@@ -299,14 +299,14 @@ public class CustomerSingle : MonoBehaviour
         }
         else if (Isplayer2Close())
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetButton("Player2Action"))
             {
                 return true;
             }
         }
         else if (Isplayer3Close())
         {
-            if (Input.GetKeyDown(KeyCode.Keypad9))
+            if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButton("Player3Action"))
             {
                 return true;
             }
