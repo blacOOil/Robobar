@@ -94,6 +94,7 @@ MonoBehaviour:
   playerNameContainer: {fileID: 0}
   NameText: {fileID: 6333028230582060844}
   animSpeedMultiplier: 2
+  IsAnimEnabled: 0
 --- !u!114 &7409638701694022140
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -346,6 +346,7 @@ MonoBehaviour:
   playerNameContainer: {fileID: 0}
   NameText: {fileID: 8853614330811342944}
   animSpeedMultiplier: 3
+  IsAnimEnabled: 0
 --- !u!114 &7409638701694022140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +390,7 @@ MonoBehaviour:
   ExtraSpaceLimit: 1
   ExtraDrinkId: []
   animSkillSpeedMultiplier: 2
+  IsAnimEnabled: 0
 --- !u!136 &1655093341224942099
 CapsuleCollider:
   m_ObjectHideFlags: 0

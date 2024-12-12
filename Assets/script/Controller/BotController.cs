@@ -35,10 +35,7 @@ public class BotController : MonoBehaviour
     private List<string> assignedJoysticks = new List<string>();
     void Start() {
         rb = GetComponent<Rigidbody>();
-        if (IsAnimEnabled = true)
-        {
-            anim = GetComponentInChildren<Animator>();
-        }
+        anim = GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
         NameObj.SetActive(true);
         AssignJoystick();
@@ -134,10 +131,18 @@ public class BotController : MonoBehaviour
                 rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             }
 
-            anim.GetComponent<Animator>().SetBool("IsWalk", true);
-            anim.SetFloat("Anim Speed", animSpeedMultiplier);
+            // Handle animation if enabled
+            if (IsAnimEnabled && anim != null)
+            {
+                anim.SetBool("IsWalk", true);
+                anim.SetFloat("Anim Speed", animSpeedMultiplier);
+            }
         } else {
-            anim.GetComponent<Animator>().SetBool("IsWalk", false);    
+            // Stop animation if enabled
+            if (IsAnimEnabled && anim != null)
+            {
+                anim.SetBool("IsWalk", false);
+            }  
         }
     }
 
