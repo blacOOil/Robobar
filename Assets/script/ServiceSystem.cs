@@ -28,6 +28,7 @@ public class ServiceSystem : MonoBehaviour
     [Header("Animation Controller")]
     public float animSkillSpeedMultiplier;
     Animator anim;
+    public bool IsAnimEnabled;
  
    public bool IsSpawnerClose()
     {
@@ -382,8 +383,12 @@ public class ServiceSystem : MonoBehaviour
         }
         Ishandholded = true;
 
-        anim.GetComponent<Animator>().SetBool("IsPickup", true);
-        anim.SetFloat("Anim Speed", animSkillSpeedMultiplier);
+        // Handle animation if enabled
+        if (IsAnimEnabled && anim != null)
+        {
+            anim.SetBool("IsPickup", true);
+            anim.SetFloat("Anim Speed", animSkillSpeedMultiplier);
+        }
 
     }
     public void ReleaseDrink()
@@ -412,7 +417,11 @@ public class ServiceSystem : MonoBehaviour
 
             StartCoroutine(DropDelay());
             
-            anim.GetComponent<Animator>().SetBool("IsPickup", false);
+            // Stop animation if enabled
+            if (IsAnimEnabled && anim != null)
+            {
+                anim.SetBool("IsPickup", false);
+            }  
         }
     }
     public void SpawnNextDrink() 
