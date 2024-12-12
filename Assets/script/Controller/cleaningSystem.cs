@@ -123,7 +123,7 @@ public class cleaningSystem : MonoBehaviour
             }
         }else if(gameObject.tag == "Player2")
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetButton("Player2Action"))
             {
                 return true;
             }
@@ -132,7 +132,7 @@ public class cleaningSystem : MonoBehaviour
                 return false;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad9))
+        else if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButton("Player3Action"))
         {
             return true;
         }

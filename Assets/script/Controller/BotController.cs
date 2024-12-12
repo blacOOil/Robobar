@@ -30,11 +30,15 @@ public class BotController : MonoBehaviour
     [Header("Animation Controller")]
     public float animSpeedMultiplier;
     Animator anim;
-    
+    public bool IsAnimEnabled;
+
     private List<string> assignedJoysticks = new List<string>();
     void Start() {
         rb = GetComponent<Rigidbody>();
-        anim = GetComponentInChildren<Animator>();
+        if (IsAnimEnabled = true)
+        {
+            anim = GetComponentInChildren<Animator>();
+        }
         mainCamera = Camera.main;
         NameObj.SetActive(true);
         AssignJoystick();
@@ -48,6 +52,7 @@ public class BotController : MonoBehaviour
         CheckGroundStatus();
         PlayerIndicator();
         UpdateJoyStickInput();
+
     }
     void AssignJoystick()
     {
@@ -161,7 +166,7 @@ public class BotController : MonoBehaviour
         }else if(inputNameHorizontal == "Horizontal2" || inputNameHorizontal == "Joystick2Horizontal1")
         {
             Playerlight.color = Color.blue;
-        }else if(inputNameHorizontal == "Horizontal3")
+        }else if(inputNameHorizontal == "Horizontal3" || inputNameHorizontal == "Joystick3Horizontal1")
         {
             Playerlight.color = Color.green;
         }

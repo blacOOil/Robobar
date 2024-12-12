@@ -66,9 +66,7 @@ public class CrossingRoadPlayer : MonoBehaviour
         }
 
         // Handle player-specific box pickup
-        if ((Playernum == 0 && other.CompareTag("Box1")) ||
-            (Playernum == 1 && other.CompareTag("Box2")) ||
-            (Playernum == 2 && other.CompareTag("Box3")))
+        if ( other.CompareTag("Box1"))
         {
             IsReached = true;
         }
