@@ -9,13 +9,32 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public Slider volumeSlider;
 
-    private float MusicVolume = 0;
-    public AudioSource
-    public void SetVolume(float volume) {
+    private float musicVolume = 0;
+
+    // Initialize settings on start
+    private void Start()
+    {
+        // Set the slider's value based on the current volume in the AudioMixer
+        if (audioMixer.GetFloat("Volume", out float currentVolume))
+        {
+            musicVolume = currentVolume;
+            volumeSlider.value = musicVolume;
+        }
+
+        // Add listener to slider
+        volumeSlider.onValueChanged.AddListener(SetVolume);
+    }
+
+    // Method to set volume
+    public void SetVolume(float volume)
+    {
+        musicVolume = volume;
         audioMixer.SetFloat("Volume", volume);
     }
 
-    public void SetFullscreen(bool isFullscreen) {
+    // Method to toggle fullscreen
+    public void SetFullscreen(bool isFullscreen)
+    {
         Screen.fullScreen = isFullscreen;
     }
 }
