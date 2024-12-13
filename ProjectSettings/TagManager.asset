@@ -35,6 +35,7 @@ TagManager:
   - Player3
   - TableLooker
   - Trigger
+  - GameMusic
   layers:
   - Default
   - TransparentFX

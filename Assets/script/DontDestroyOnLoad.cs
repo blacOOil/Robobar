@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class noDestroyOnLoad : MonoBehaviour
+public class DontDestroyOnLoad : MonoBehaviour
 {
-    public GameObject settingPanel,SettingCanvas;
-    public static noDestroyOnLoad instance;
+    public GameObject settingPanel, 
+                      settingCanvas;
+    public GameObject[] musicObj;
+    public static DontDestroyOnLoad instance;
     
     void Start() 
     {
-       
         // Set this instance as the singleton
         instance = this;
 
@@ -18,18 +19,12 @@ public class noDestroyOnLoad : MonoBehaviour
         // Check if an instance already exists
         Debug.Log("DontDestroyOnLoad: Object marked as persistent.");
       
-
-     
-
-        
     }
 
-
-
     void Update() {
-        if (SettingCanvas == null)
+        if (settingCanvas == null)
         {
-            SettingCanvas = GameObject.Find("MainCanvas");
+            settingCanvas = GameObject.Find("MainCanvas");
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -37,7 +32,7 @@ public class noDestroyOnLoad : MonoBehaviour
             {
 
                     GameObject newObject = Instantiate(settingPanel, Vector3.zero, Quaternion.identity);
-                    newObject.transform.SetParent(SettingCanvas.transform);
+                    newObject.transform.SetParent(settingCanvas.transform);
                 newObject.transform.localPosition = new Vector3(100, 50, 0); // Example position
                 newObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f); // Example scale
 
@@ -48,4 +43,18 @@ public class noDestroyOnLoad : MonoBehaviour
             }
         }
     }
+
+    private void Awake() {
+        musicObj = GameObject.FindGameObjectsWithTag("GameMusic");
+        if(musicObj.Length > 1) {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    // void SetupMusic() {
+    //     if(FindObjectOfType(GetType()).Length > 1) {
+
+    //     }
+    // }
 }

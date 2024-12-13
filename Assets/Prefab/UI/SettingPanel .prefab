@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: c8284e2cb34904248aa00703eacfbe4d, type: 2}
+  audioCode: {fileID: 0}
+  volumeSlider: {fileID: 1322626230657071014}
 --- !u!1 &421706127088384275
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +989,7 @@ MonoBehaviour:
   m_MinValue: -80
   m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
