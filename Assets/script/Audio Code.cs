@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioCode : MonoBehaviour {
     [Header("Audio Settings")]
     [SerializeField] public AudioSource audioSource;
+    [SerializeField] public AudioClip mainMenuAudio;
     [SerializeField] public AudioClip cleaningAudio; //1
     [SerializeField] public AudioClip minigameAudio; //2
     [SerializeField] public AudioClip upgradingAudio; //3
@@ -70,6 +71,14 @@ public class AudioCode : MonoBehaviour {
         else if (timePercentage >= value && hasSwitchedToIntenseSound)
         {
             PlayNormalSound();
+        }
+    }
+
+    public void MainMenuSound() {
+        if (audioSource != null && mainMenuAudio != null)
+        {
+            audioSource.clip = mainMenuAudio;
+            audioSource.Play();
         }
     }
 }
