@@ -14,11 +14,12 @@ public class SettingsMenu : MonoBehaviour
     // Initialize settings on start
     private void Start()
     {
+        float currentVolume;
+        
         // Set the slider's value based on the current volume in the AudioMixer
-        if (audioMixer.GetFloat("Volume", out float currentVolume))
+        if (audioMixer.GetFloat("Volume", out currentVolume))
         {
-            musicVolume = currentVolume;
-            volumeSlider.value = musicVolume;
+            volumeSlider.value = Mathf.Pow(10, currentVolume / 20);
         }
 
         // Add listener to slider
@@ -26,10 +27,16 @@ public class SettingsMenu : MonoBehaviour
     }
 
     // Method to set volume
-    public void SetVolume(float volume)
+    public void SetVolume(float sliderValue)
     {
-        musicVolume = volume;
-        audioMixer.SetFloat("Volume", volume);
+        // Convert slider value (0–1) to decibels (-80 to 0 dB)
+        float volumeInDecibels = Mathf.Log10(Mathf.Clamp(sliderValue, 0.0001f, 1f)) * 20f;
+
+        // Set the volume on the AudioMixer
+        audioMixer.SetFloat("Volume", volumeInDecibels);
+
+        // Debugging for verification
+        Debug.Log($"Slider Value: {sliderValue}, Volume in dB: {volumeInDecibels}");
     }
 
     // Method to toggle fullscreen
