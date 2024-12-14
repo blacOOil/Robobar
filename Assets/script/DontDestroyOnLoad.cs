@@ -6,13 +6,13 @@ public class DontDestroyOnLoad : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // Toggle settings panel using AudioManager
-            if (AudioManager.instance != null)
-            {
-                AudioManager.instance.ToggleSettingsPanel();
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     // Toggle settings panel using AudioManager
+        //     if (AudioManager.instance != null)
+        //     {
+        //         AudioManager.instance.ToggleSettingsPanel(true);
+        //     }
+        // }
     }
 }

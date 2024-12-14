@@ -23,8 +23,8 @@ public class TimerCode : MonoBehaviour {
     [SerializeField] public float Parameter1; //flashing Speed 0.5
     [SerializeField] public float Parameter2; //flashing Speed 0.2
 
-    [Header("Audio Settings")]
-    [SerializeField] private AudioCode audioCode;
+    //[Header("Audio Settings")]
+    //[SerializeField] private AudioCode audioCode;
 
     void Start() {
         startedRemainingtime = remainingTime;
@@ -44,9 +44,9 @@ public class TimerCode : MonoBehaviour {
             script.SetRotationSpeed(0f); // Start with no rotation
         }
 
-        if (audioCode != null) {
-            audioCode.PlayNormalSound();
-        }
+        // if (audioCode != null) {
+        //     audioCode.PlayNormalSound();
+        // }
 
         StartCoroutine(SmoothlyUpdateRotationSpeeds());
     }
@@ -60,9 +60,9 @@ public class TimerCode : MonoBehaviour {
             UpdateRotationSpeed();
             UpdateEmissionColor();
 
-            if (audioCode != null) {
-                audioCode.CheckAndSwitchAudio(timePercentage, timerAllLessThan);
-            }
+            // if (audioCode != null) {
+            //     audioCode.CheckAndSwitchAudio(timePercentage, timerAllLessThan);
+            // }
         }
 
         if (remainingTime <= 0) {

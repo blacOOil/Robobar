@@ -10626,7 +10626,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 936674141}
-  - component: {fileID: 936674153}
   - component: {fileID: 936674142}
   - component: {fileID: 936674143}
   - component: {fileID: 936674144}
@@ -10692,7 +10691,7 @@ MonoBehaviour:
   maximunRotationSpeed: 100
   Parameter1: 0.5
   Parameter2: 0.2
-  audioCode: {fileID: 936674153}
+  audioCode: {fileID: 0}
 --- !u!114 &936674143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10863,7 +10862,7 @@ MonoBehaviour:
   Player3: {fileID: 0}
   timerCode: {fileID: 936674142}
   remainingTime: 10
-  audioCode: {fileID: 936674153}
+  audioCode: {fileID: 0}
 --- !u!114 &936674148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10981,26 +10980,6 @@ MonoBehaviour:
   - {fileID: 900804025}
   - {fileID: 1644661957}
   scoreManager: {fileID: 936674151}
---- !u!114 &936674153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936674140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eeef5a05ea535d49a4a97566f01f4df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  mainMenuAudio: {fileID: 0}
-  cleaningAudio: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
-  minigameAudio: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
-  upgradingAudio: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
-  resumeAudio: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
-  normalSound: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
-  intenseSound: {fileID: 8300000, guid: bfe50e1cfbef44340b8ce842185a5d94, type: 3}
 --- !u!1 &940476503
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class Gamestate : MonoBehaviour
     public GameObject Player1, Player2,Player3;
     public TimerCode timerCode;
     public float remainingTime = 10f;
-    public AudioCode audioCode;
+    //public AudioCode audioCode;
 
     // Start is called before the first frame update
     void Start()
@@ -74,9 +74,9 @@ public class Gamestate : MonoBehaviour
         gamestate_Number++;
         IstimerSeted = false;
 
-        if (audioCode != null) {
-            audioCode.PlayAudioForState(gamestate_Number); // Delegate management to AudioCode
-        }
+        // if (audioCode != null) {
+        //     audioCode.PlayAudioForState(gamestate_Number); // Delegate management to AudioCode
+        // }
     }
 
     // Placeholder for cleaning session logic

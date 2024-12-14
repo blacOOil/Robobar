@@ -23,12 +23,15 @@ public class AudioManager : MonoBehaviour
     private bool hasSwitchedToIntenseSound = false;
 
     [Header("Settings Panel Management")]
-    [SerializeField] private GameObject settingsPanelPrefab;
-    [SerializeField] private GameObject settingsCanvas;
-    // public GameObject settingPanelPrefab;
-    // private GameObject currentSettingPanel;
+    [SerializeField] private GameObject settingsPanelPrefab; // The Settings Panel Prefab
+    [SerializeField] private GameObject settingsCanvas; // The Canvas to spawn the panel into
+    private GameObject currentSettingsPanel; // To keep currently instantiated panel
+
+    private const string VOLUME_PARAMETER_NAME = "Volume"; // Name of the volume parameter in AudioMixer
     
     public static AudioManager instance;
+
+    private float currentVolume = 1.0f; // Default volume
 
     private void Awake()
     {
@@ -48,7 +51,6 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
@@ -63,10 +65,20 @@ public class AudioManager : MonoBehaviour
             settingsCanvas = GameObject.Find("MainCanvas");
         }
 
-        // Instantiate Settings Panel when pressing ESC
+        // Detect when the player presses the Escape key
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToggleSettingsPanel();
+            // Toggle the settings panel visibility
+            if (currentSettingsPanel == null)
+            {
+                // Settings panel not active, instantiate and show it
+                ToggleSettingsPanel(true);
+            }
+            else
+            {
+                // Settings panel is active, hide it
+                ToggleSettingsPanel(false);
+            }
         }
     }
 
@@ -145,59 +157,60 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void ToggleSettingsPanel()
+    public void ToggleSettingsPanel(bool show)
     {
-        // if (currentSettingPanel == null)
-        // {
-        //     // Spawn settings panel
-        //     if (settingPanelPrefab != null && settingCanvas != null)
-        //     {
-        //         currentSettingPanel = Instantiate(settingPanelPrefab, Vector3.zero, Quaternion.identity);
-        //         currentSettingPanel.transform.SetParent(settingCanvas.transform, false);
-        //         Debug.Log("Settings panel instantiated.");
-        //     }
-        //     else
-        //     {
-        //         Debug.LogWarning("Settings Panel Prefab or Canvas is not assigned!");
-        //     }
-        // }
-        // else
-        // {
-        //     // Destroy settings panel if it already exists
-        //     Destroy(currentSettingPanel);
-        //     currentSettingPanel = null;
-        //     Debug.Log("Settings panel destroyed.");
-        // }
-
-        if (settingsPanelPrefab == null || settingsCanvas == null)
+        // If settingsCanvas is not assigned, try to find it dynamically
+        if (settingsCanvas == null)
         {
-            Debug.LogWarning("Settings Panel Prefab or Canvas is not assigned!");
-            return; // Exit early to avoid further issues
+            settingsCanvas = GameObject.Find("MainCanvas");
+
+            // Check again if it's still null
+            if (settingsCanvas == null)
+            {
+                Debug.LogWarning("MainCanvas could not be found! Make sure a GameObject named 'MainCanvas' exists.");
+                return;
+            }
         }
 
-        // Instantiate the Settings Panel if everything is assigned
-        GameObject newPanel = Instantiate(settingsPanelPrefab, settingsCanvas.transform);
-        newPanel.transform.localPosition = Vector3.zero; // Center the panel
-        Debug.Log("Settings Panel instantiated successfully.");
-    }
+        // If settingsPanelPrefab is not assigned, throw a warning and exit
+        if (settingsPanelPrefab == null)
+        {
+            settingsPanelPrefab = Resources.Load<GameObject>("SettingPanel");
 
-    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    // {
-    //     // Ensure the panel prefab persists across scenes
-    //     if (settingPanelInstance == null)
-    //     {
-    //         GameObject canvas = GameObject.Find("MainCanvas");
-    //         if (canvas != null && settingPanelPrefab != null)
-    //         {
-    //             settingPanelInstance = Instantiate(settingPanelPrefab, canvas.transform);
-    //             settingPanelInstance.SetActive(false);
-    //         }
-    //         else
-    //         {
-    //             Debug.LogWarning("MainCanvas or SettingPanelPrefab not found in the scene.");
-    //         }
-    //     }
-    // }
+            if (settingsPanelPrefab == null)
+            {
+                Debug.LogWarning("Settings Panel Prefab is not assigned and could not be loaded! " +
+                                 "Make sure the prefab is placed in a 'Resources' folder and named 'SettingPanel'.");
+                return;
+            }
+        }
+
+        if (show)
+        {
+            if (currentSettingsPanel == null)
+            {
+                currentSettingsPanel = Instantiate(settingsPanelPrefab, settingsCanvas.transform);
+                currentSettingsPanel.transform.localPosition = Vector3.zero;  // Center the panel
+                currentSettingsPanel.SetActive(true);
+
+                // Flip the panel (mirror effect)
+                Vector3 flippedScale = currentSettingsPanel.transform.localScale;
+                flippedScale.x = -flippedScale.x;  // Negate the X axis to flip horizontally
+                currentSettingsPanel.transform.localScale = flippedScale;
+                Debug.Log("Settings Panel instantiated successfully.");
+            }
+        }
+        else
+        {
+            if (currentSettingsPanel != null)
+            {
+                Destroy(currentSettingsPanel);  // Destroy the settings panel GameObject
+
+                currentSettingsPanel = null;  // Remove reference to the panel when it's hidden
+                Debug.Log("Settings Panel hidden.");
+            }
+        }
+    }
 
     // Play main menu audio
     public void PlayMainMenuAudio()
@@ -210,15 +223,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // public void SetVolume(float volume)
-    // {
-    //     audioMixer.SetFloat("Volume", volume);
-    // }
+    public void SetVolume(float volume)
+    {
+        // Set the volume both in the AudioMixer and in the current volume variable
+        audioMixer.SetFloat("Volume", volume);
+        currentVolume = volume;  // Keep track of the current volume
+    }
 
-    // public void ToggleSettingsPanel()
-    // {
-    //     if (settingPanelInstance != null)
-    //         settingPanelInstance.SetActive(!settingPanelInstance.activeSelf);
-    // }
+    public float GetVolume()
+    {
+        return currentVolume;  // Return the current volume
+    }
 
 }

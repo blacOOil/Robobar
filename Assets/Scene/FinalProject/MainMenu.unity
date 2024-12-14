@@ -4448,7 +4448,8 @@ MonoBehaviour:
   resumeAudio: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
   normalSound: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
   intenseSound: {fileID: 8300000, guid: bfe50e1cfbef44340b8ce842185a5d94, type: 3}
-  settingsPanelPrefab: {fileID: 7901143807809080016}
+  settingsPanelPrefab: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99,
+    type: 3}
   settingsCanvas: {fileID: 1218702468}
 --- !u!4 &1420486173
 Transform:
@@ -8509,12 +8510,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a92003b5750b34c8e5b967f2cddf99, type: 3}
---- !u!1 &7901143807809080016 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99,
-    type: 3}
-  m_PrefabInstance: {fileID: 7901143807809080015}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
