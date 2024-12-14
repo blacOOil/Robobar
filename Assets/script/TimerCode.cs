@@ -23,8 +23,8 @@ public class TimerCode : MonoBehaviour {
     [SerializeField] public float Parameter1; //flashing Speed 0.5
     [SerializeField] public float Parameter2; //flashing Speed 0.2
 
-    //[Header("Audio Settings")]
-    //[SerializeField] private AudioCode audioCode;
+    // [Header("Audio Settings")]
+    // [SerializeField] private AudioCode audioCode;
 
     void Start() {
         startedRemainingtime = remainingTime;
@@ -48,6 +48,12 @@ public class TimerCode : MonoBehaviour {
         //     audioCode.PlayNormalSound();
         // }
 
+        // Check and switch between normal and intense sounds
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayNormalSound();
+        }
+
         StartCoroutine(SmoothlyUpdateRotationSpeeds());
     }
 
@@ -60,9 +66,11 @@ public class TimerCode : MonoBehaviour {
             UpdateRotationSpeed();
             UpdateEmissionColor();
 
-            // if (audioCode != null) {
-            //     audioCode.CheckAndSwitchAudio(timePercentage, timerAllLessThan);
-            // }
+            // Check and switch between normal and intense sounds
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.CheckAndSwitchAudio(timePercentage, timerAllLessThan);
+            }
         }
 
         if (remainingTime <= 0) {

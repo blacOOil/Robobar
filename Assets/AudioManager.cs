@@ -32,6 +32,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     private float currentVolume = 1.0f; // Default volume
+    public delegate void VolumeChanged(float newVolume);
+    public event VolumeChanged onVolumeChanged;
 
     private void Awake()
     {
@@ -152,6 +154,7 @@ public class AudioManager : MonoBehaviour
         if (audioSource != null && intenseSound != null)
         {
             audioSource.clip = intenseSound;
+            audioSource.pitch = 1.2f;
             audioSource.Play();
             hasSwitchedToIntenseSound = true;
         }
@@ -172,17 +175,15 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        // If settingsPanelPrefab is not assigned, throw a warning and exit
-        if (settingsPanelPrefab == null)
+        // Use existing settings panel reference instead of instantiating
+        if (settingsPanelPrefab != null)
         {
-            settingsPanelPrefab = Resources.Load<GameObject>("SettingPanel");
-
-            if (settingsPanelPrefab == null)
-            {
-                Debug.LogWarning("Settings Panel Prefab is not assigned and could not be loaded! " +
-                                 "Make sure the prefab is placed in a 'Resources' folder and named 'SettingPanel'.");
-                return;
-            }
+            settingsPanelPrefab.SetActive(show);
+            Debug.Log($"Settings Panel is now {(show ? "visible" : "hidden")}.");
+        }
+        else
+        {
+            Debug.LogWarning("Settings Panel Prefab is not assigned in the inspector!");
         }
 
         if (show)
@@ -225,9 +226,11 @@ public class AudioManager : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        // Set the volume both in the AudioMixer and in the current volume variable
-        audioMixer.SetFloat("Volume", volume);
-        currentVolume = volume;  // Keep track of the current volume
+        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20); // Convert to decibels
+        currentVolume = volume;
+
+        // Notify all listeners about the volume change
+        onVolumeChanged?.Invoke(volume);
     }
 
     public float GetVolume()

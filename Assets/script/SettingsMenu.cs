@@ -8,12 +8,18 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public Slider volumeSlider;
+    public GameObject settingPanelInGameScene;
 
     private float musicVolume = 0;
 
     // Initialize settings on start
     private void Start()
     {
+        if (settingPanelInGameScene != null) {
+            settingPanelInGameScene.SetActive(false);
+        }
+        
+
         float currentVolume;
         
         // Set the slider's value based on the current volume in the AudioMixer
@@ -43,5 +49,14 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+
+        // Save fullscreen preference
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+        PlayerPrefs.Save();
+        Debug.Log("Fullscreen mode set to: " + isFullscreen);
+    }
+
+    public void WhenPressBackInGameScene() {
+        settingPanelInGameScene.SetActive(true);
     }
 }
