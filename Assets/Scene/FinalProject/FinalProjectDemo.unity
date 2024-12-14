@@ -12809,6 +12809,7 @@ GameObject:
   - component: {fileID: 1022149273}
   - component: {fileID: 1022149272}
   - component: {fileID: 1022149271}
+  - component: {fileID: 1022149274}
   m_Layer: 5
   m_Name: 'BackButt '
   m_TagString: Untagged
@@ -12879,7 +12880,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1022149272}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1022149274}
+        m_TargetAssemblyTypeName: ScneChanger, Assembly-CSharp
+        m_MethodName: ToMainMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1022149272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12918,6 +12931,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022149269}
   m_CullTransparentMesh: 1
+--- !u!114 &1022149274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022149269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942ac85110dc72549b2e1c05e1593a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1028824583
 GameObject:
   m_ObjectHideFlags: 0
@@ -22069,60 +22094,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7258012008102156897, guid: c21d039f43bbd344583c80c2e0d1dadb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1019096037929848773}
-    - targetCorrespondingSourceObject: {fileID: 7258012008102156897, guid: c21d039f43bbd344583c80c2e0d1dadb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1019096037929848772}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c21d039f43bbd344583c80c2e0d1dadb, type: 3}
---- !u!1 &1019096037929848771 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7258012008102156897, guid: c21d039f43bbd344583c80c2e0d1dadb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1019096037929848770}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1019096037929848772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019096037929848771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1019096037929848773
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019096037929848771}
-  m_CullTransparentMesh: 1
 --- !u!33 &1214851058348458473
 MeshFilter:
   m_ObjectHideFlags: 0

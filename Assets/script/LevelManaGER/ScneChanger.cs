@@ -20,6 +20,10 @@ public class ScneChanger : MonoBehaviour
     public void ToMainMenu(string MainMenu)
     {
         SceneManager.LoadScene(MainMenu);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMainMenuSound();
+        }
     }
     public void ExitGame()
     {
