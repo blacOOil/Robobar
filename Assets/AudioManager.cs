@@ -65,23 +65,22 @@ public class AudioManager : MonoBehaviour
         if (settingsCanvas == null)
         {
             settingsCanvas = GameObject.Find("MainCanvas");
+            if (settingsPanelPrefab == null)
+            {
+                settingsPanelPrefab = GameObject.Find("SettingPanel");
+            }
         }
 
-        // Detect when the player presses the Escape key
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Toggle the settings panel visibility
-            if (currentSettingsPanel == null)
+            if (settingsPanelPrefab != null)
             {
-                // Settings panel not active, instantiate and show it
-                ToggleSettingsPanel(true);
-            }
-            else
-            {
-                // Settings panel is active, hide it
-                ToggleSettingsPanel(false);
+                // Toggle the active state of the settings panel
+                bool isActive = settingsPanelPrefab.activeSelf;
+                settingsPanelPrefab.SetActive(!isActive);  // Set to the opposite of current state
             }
         }
+
     }
 
     public void PlayAudioForState(int gameStateNumber)
@@ -160,58 +159,58 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void ToggleSettingsPanel(bool show)
-    {
-        // If settingsCanvas is not assigned, try to find it dynamically
-        if (settingsCanvas == null)
-        {
-            settingsCanvas = GameObject.Find("MainCanvas");
+    // public void ToggleSettingsPanel(bool show)
+    // {
+    //     // If settingsCanvas is not assigned, try to find it dynamically
+    //     if (settingsCanvas == null)
+    //     {
+    //         settingsCanvas = GameObject.Find("MainCanvas");
 
-            // Check again if it's still null
-            if (settingsCanvas == null)
-            {
-                Debug.LogWarning("MainCanvas could not be found! Make sure a GameObject named 'MainCanvas' exists.");
-                return;
-            }
-        }
+    //         // Check again if it's still null
+    //         if (settingsCanvas == null)
+    //         {
+    //             Debug.LogWarning("MainCanvas could not be found! Make sure a GameObject named 'MainCanvas' exists.");
+    //             return;
+    //         }
+    //     }
 
-        // Use existing settings panel reference instead of instantiating
-        if (settingsPanelPrefab != null)
-        {
-            settingsPanelPrefab.SetActive(show);
-            Debug.Log($"Settings Panel is now {(show ? "visible" : "hidden")}.");
-        }
-        else
-        {
-            Debug.LogWarning("Settings Panel Prefab is not assigned in the inspector!");
-        }
+    //     // Use existing settings panel reference instead of instantiating
+    //     if (settingsPanelPrefab != null)
+    //     {
+    //         settingsPanelPrefab.SetActive(show);
+    //         Debug.Log($"Settings Panel is now {(show ? "visible" : "hidden")}.");
+    //     }
+    //     else
+    //     {
+    //         Debug.LogWarning("Settings Panel Prefab is not assigned in the inspector!");
+    //     }
 
-        if (show)
-        {
-            if (currentSettingsPanel == null)
-            {
-                currentSettingsPanel = Instantiate(settingsPanelPrefab, settingsCanvas.transform);
-                currentSettingsPanel.transform.localPosition = Vector3.zero;  // Center the panel
-                currentSettingsPanel.SetActive(true);
+    //     if (show)
+    //     {
+    //         if (currentSettingsPanel == null)
+    //         {
+    //             currentSettingsPanel = Instantiate(settingsPanelPrefab, settingsCanvas.transform);
+    //             currentSettingsPanel.transform.localPosition = Vector3.zero;  // Center the panel
+    //             currentSettingsPanel.SetActive(true);
 
-                // Flip the panel (mirror effect)
-                Vector3 flippedScale = currentSettingsPanel.transform.localScale;
-                flippedScale.x = -flippedScale.x;  // Negate the X axis to flip horizontally
-                currentSettingsPanel.transform.localScale = flippedScale;
-                Debug.Log("Settings Panel instantiated successfully.");
-            }
-        }
-        else
-        {
-            if (currentSettingsPanel != null)
-            {
-                Destroy(currentSettingsPanel);  // Destroy the settings panel GameObject
+    //             // Flip the panel (mirror effect)
+    //             Vector3 flippedScale = currentSettingsPanel.transform.localScale;
+    //             flippedScale.x = -flippedScale.x;  // Negate the X axis to flip horizontally
+    //             currentSettingsPanel.transform.localScale = flippedScale;
+    //             Debug.Log("Settings Panel instantiated successfully.");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         if (currentSettingsPanel != null)
+    //         {
+    //             Destroy(currentSettingsPanel);  // Destroy the settings panel GameObject
 
-                currentSettingsPanel = null;  // Remove reference to the panel when it's hidden
-                Debug.Log("Settings Panel hidden.");
-            }
-        }
-    }
+    //             currentSettingsPanel = null;  // Remove reference to the panel when it's hidden
+    //             Debug.Log("Settings Panel hidden.");
+    //         }
+    //     }
+    // }
 
     // Play main menu audio
     public void PlayMainMenuAudio()

@@ -4448,8 +4448,7 @@ MonoBehaviour:
   resumeAudio: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
   normalSound: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
   intenseSound: {fileID: 8300000, guid: bfe50e1cfbef44340b8ce842185a5d94, type: 3}
-  settingsPanelPrefab: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99,
-    type: 3}
+  settingsPanelPrefab: {fileID: 0}
   settingsCanvas: {fileID: 1218702468}
 --- !u!4 &1420486173
 Transform:
@@ -8354,11 +8353,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99, type: 3}
       propertyPath: m_Name
-      value: 'SettingPanel '
-      objectReference: {fileID: 0}
-    - target: {fileID: 7897369415330749, guid: f8a92003b5750b34c8e5b967f2cddf99, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: SettingPanel
       objectReference: {fileID: 0}
     - target: {fileID: 1322626230657071014, guid: f8a92003b5750b34c8e5b967f2cddf99,
         type: 3}
