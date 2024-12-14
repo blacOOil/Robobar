@@ -16,7 +16,7 @@ public class SettingsMenu : MonoBehaviour
     private void Start()
     {
         if (settingPanelInGameScene != null) {
-            settingPanelInGameScene.SetActive(false);
+            settingPanelInGameScene.SetActive(true);
         }
         
 

@@ -21936,6 +21936,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackButt
       objectReference: {fileID: 0}
+    - target: {fileID: 2337663858060082028, guid: c21d039f43bbd344583c80c2e0d1dadb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3938428367513824691, guid: c21d039f43bbd344583c80c2e0d1dadb,
         type: 3}
       propertyPath: m_Pivot.x
@@ -21999,17 +22004,17 @@ PrefabInstance:
     - target: {fileID: 3938428367513824691, guid: c21d039f43bbd344583c80c2e0d1dadb,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3938428367513824691, guid: c21d039f43bbd344583c80c2e0d1dadb,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3938428367513824691, guid: c21d039f43bbd344583c80c2e0d1dadb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3938428367513824691, guid: c21d039f43bbd344583c80c2e0d1dadb,
         type: 3}
@@ -22041,6 +22046,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7217542239031218509, guid: c21d039f43bbd344583c80c2e0d1dadb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258012008102156897, guid: c21d039f43bbd344583c80c2e0d1dadb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8892968316248825805, guid: c21d039f43bbd344583c80c2e0d1dadb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -22054,8 +22069,60 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7258012008102156897, guid: c21d039f43bbd344583c80c2e0d1dadb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019096037929848773}
+    - targetCorrespondingSourceObject: {fileID: 7258012008102156897, guid: c21d039f43bbd344583c80c2e0d1dadb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019096037929848772}
   m_SourcePrefab: {fileID: 100100000, guid: c21d039f43bbd344583c80c2e0d1dadb, type: 3}
+--- !u!1 &1019096037929848771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7258012008102156897, guid: c21d039f43bbd344583c80c2e0d1dadb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1019096037929848770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1019096037929848772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019096037929848771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1019096037929848773
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019096037929848771}
+  m_CullTransparentMesh: 1
 --- !u!33 &1214851058348458473
 MeshFilter:
   m_ObjectHideFlags: 0
