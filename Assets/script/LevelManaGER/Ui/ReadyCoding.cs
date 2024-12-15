@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ReadyCoding : MonoBehaviour
 {
     public GameObject playButton;
-    public List<GameObject> readyButton, readyIndicator, selectorButton;
+    public List<GameObject> readyButton, readyIndicator, selectorButton, notReadyIndicator;
     private int readyCount = 0;
     private bool isReadyToPlay = false;
     public List<int> selectedCharacters; // Track selected character IDs for each player
@@ -140,6 +140,24 @@ public class ReadyCoding : MonoBehaviour
             {
                 EnableSelectorButtons(i);
             }
+
+            // Change text color based on button interactability
+            if (!buttonComponent.interactable)
+            {
+                buttonText.color = new Color32(96, 96, 118, 255); // #606076
+                if (notReadyIndicator[i] != null)
+                {
+                    notReadyIndicator[i].SetActive(true); // Show warning image
+                }
+            }
+            else
+            {
+                buttonText.color = Color.white; // Reset to default color
+                if (notReadyIndicator[i] != null)
+                {
+                    notReadyIndicator[i].SetActive(false); // Show warning image
+                }
+            }
         }
 
 
@@ -166,8 +184,8 @@ public class ReadyCoding : MonoBehaviour
         if (selectorButton[playerNum] != null)
         {
             
-                selectorButton[playerNum*2].GetComponent<Button>().interactable = false;
-                selectorButton[playerNum*2 + 1].GetComponent<Button>().interactable = false;
+            selectorButton[playerNum*2].GetComponent<Button>().interactable = false;
+            selectorButton[playerNum*2 + 1].GetComponent<Button>().interactable = false;
            
         }
     }
