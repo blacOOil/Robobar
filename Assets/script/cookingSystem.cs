@@ -343,6 +343,17 @@ public class cookingSystem : MonoBehaviour
         if (!IsMakingadrinkfin)
         {
             GameObject minigametoSpawned = Instantiate(MinigameList[0], ListMinigameTranformList[0].position, ListMinigameTranformList[0].rotation);
+
+            RectTransform rectTransform = minigametoSpawned.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                rectTransform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                minigametoSpawned.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+
             botController.enabled = false;
             CurrentMinigame = minigametoSpawned;
             StartCoroutine(MonitorMinigame(minigametoSpawned, minigamenum, IsMakingadrinkfin));
