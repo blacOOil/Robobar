@@ -59,4 +59,8 @@ public class SettingsMenu : MonoBehaviour
     public void WhenPressBackInGameScene() {
         settingPanelInGameScene.SetActive(false);
     }
+
+    public void WhenPressESCInGameScene() {
+        settingPanelInGameScene.SetActive(true);
+    }
 }
