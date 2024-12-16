@@ -917,8 +917,8 @@ Transform:
   m_GameObject: {fileID: 3148139902625998631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -12.66, y: 0.38, z: -0.83}
-  m_LocalScale: {x: 42.451595, y: 0.8108328, z: 0.8108328}
+  m_LocalPosition: {x: -12.905441, y: -0.094583124, z: -0.0000024437904}
+  m_LocalScale: {x: 40, y: 0.8108328, z: 0.8108328}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7812714881523792499}
@@ -1782,8 +1782,8 @@ Transform:
   m_GameObject: {fileID: 4948001787833748767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 0.38, z: -20.39}
-  m_LocalScale: {x: 26.293701, y: 0.8108328, z: 0.8108328}
+  m_LocalPosition: {x: -0.00000423193, y: -0.094583124, z: -20.405416}
+  m_LocalScale: {x: 25, y: 0.8108328, z: 0.8108328}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7812714881523792499}
@@ -2286,9 +2286,6 @@ MonoBehaviour:
   gamestate: {fileID: 0}
   CarsObjList:
   - {fileID: 6415541842082574583, guid: 8c947755a4450a947a7d17be784a5399, type: 3}
-  - {fileID: 919132149155446097, guid: 9b180baa13ef27145b21799ef626e177, type: 3}
-  - {fileID: 919132149155446097, guid: ad5ebe0c5c92d1840948fcf13ed7f02b, type: 3}
-  - {fileID: 919132149155446097, guid: 95f185e7c9b74ac42b61c14cd128284a, type: 3}
   CarSpawnpoint:
   - {fileID: 4586084867785441172}
   - {fileID: 7425519928682259603}
@@ -2366,8 +2363,8 @@ Transform:
   m_GameObject: {fileID: 5641704159608353961}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 0.38, z: 20.46}
-  m_LocalScale: {x: 26.293701, y: 0.8108328, z: 0.8108328}
+  m_LocalPosition: {x: -0.00000423193, y: -0.094583124, z: 20.405415}
+  m_LocalScale: {x: 25, y: 0.8108328, z: 0.8108328}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7812714881523792499}
@@ -3588,8 +3585,8 @@ Transform:
   m_GameObject: {fileID: 8730930319067632724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 12.48, y: 0.38, z: -0.83}
-  m_LocalScale: {x: 42.451595, y: 0.8108328, z: 0.8108328}
+  m_LocalPosition: {x: 12.90539, y: -0.0945833, z: 0.0000014901161}
+  m_LocalScale: {x: 40, y: 0.8108328, z: 0.8108328}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7812714881523792499}

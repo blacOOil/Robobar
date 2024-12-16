@@ -44,12 +44,46 @@ public class ScoreManager : MonoBehaviour
     public void StartScoring()
     {
         IsgameStart = true; 
-        PlayerName1 = PlayerNameInput1.text;
-        PlayerPrefs.SetString("Player1", PlayerNameInput1.text);
-        PlayerName2 = PlayerNameInput2.text;
-        PlayerPrefs.SetString("Player2", PlayerNameInput2.text);
-        PlayerName3 = PlayerNameInput3.text;
-        PlayerPrefs.SetString("Player3", PlayerNameInput3.text);
+        // PlayerName1 = PlayerNameInput1.text;
+        // PlayerPrefs.SetString("Player1", PlayerNameInput1.text);
+        // PlayerName2 = PlayerNameInput2.text;
+        // PlayerPrefs.SetString("Player2", PlayerNameInput2.text);
+        // PlayerName3 = PlayerNameInput3.text;
+        // PlayerPrefs.SetString("Player3", PlayerNameInput3.text);
+
+        // Check for Player 1 input
+        if (string.IsNullOrWhiteSpace(PlayerNameInput1.text))
+        {
+            PlayerName1 = "P1"; // Default name
+        }
+        else
+        {
+            PlayerName1 = PlayerNameInput1.text;
+        }
+        PlayerPrefs.SetString("Player1", PlayerName1);
+
+        // Check for Player 2 input
+        if (string.IsNullOrWhiteSpace(PlayerNameInput2.text))
+        {
+            PlayerName2 = "P2";
+        }
+        else
+        {
+            PlayerName2 = PlayerNameInput2.text;
+        }
+        PlayerPrefs.SetString("Player2", PlayerName2);
+
+        // Check for Player 3 input
+        if (string.IsNullOrWhiteSpace(PlayerNameInput3.text))
+        {
+            PlayerName3 = "P3";
+        }
+        else
+        {
+            PlayerName3 = PlayerNameInput3.text;
+        }
+        PlayerPrefs.SetString("Player3", PlayerName3);
+
         PlayerPrefs.Save();
     }
     public void InputPlayerShowname()
