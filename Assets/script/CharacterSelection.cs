@@ -63,13 +63,13 @@ public class CharacterSelection : MonoBehaviour
             dPadHorizontal = Input.GetAxis("DPadHorizonal1");
             if (Time.time - lastInputTime > inputCooldown)
             {
-                if (dPadHorizontal == -1 && selectorNumber > 0)
+                if ((Input.GetKeyDown(KeyCode.A) || dPadHorizontal == -1 )&& selectorNumber > 0)
                 {
                     selectorNumber--;
                     CharacterSelecting(0);
                     lastInputTime = Time.time;
                 }
-                if (dPadHorizontal == 1 && (selectorNumber < CharacterList.Count - 1))
+                if ((Input.GetKeyDown(KeyCode.D) || dPadHorizontal == 1 )&& (selectorNumber < CharacterList.Count - 1))
                 {
                     selectorNumber++;
                     CharacterSelecting(0);
@@ -77,7 +77,7 @@ public class CharacterSelection : MonoBehaviour
                 }
                 
             }
-            if (Input.GetButtonDown("Player1Action")&& IsAllready)
+            if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Player1Action"))&& IsAllready)
             {
 
                 // readyCoding.ReadyButt(0);
@@ -91,7 +91,7 @@ public class CharacterSelection : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Player1Action"))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Player1Action"))
             {
                 // readyCoding.ReadyButt(0);
                 // readyCoding.HidSelector(0);
@@ -106,19 +106,19 @@ public class CharacterSelection : MonoBehaviour
             dPad2Horizontal = Input.GetAxis("DPadHorizonal2");
             if (Time.time - lastInputTime2 > inputCooldown)
             {
-                if (dPad2Horizontal == -1 && Player2SelectedNumber > 0)
+                if ((Input.GetKeyDown(KeyCode.H)||dPad2Horizontal == -1 && Player2SelectedNumber > 0))
                 {
                     SelectorMoveLeft(1);
                     lastInputTime2 = Time.time;
                 }
-                if (dPad2Horizontal == 1 && (Player2SelectedNumber < CharacterList.Count - 1))
+                if ((Input.GetKeyDown(KeyCode.K) || dPad2Horizontal == 1 && (Player2SelectedNumber < CharacterList.Count - 1)))
                 {
                     SelectorMoveRight(1);
                     lastInputTime2 = Time.time;
                 }
 
             }
-            if (Input.GetButtonDown("Player2Action") && IsAllready)
+            if ((Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("Player2Action") && IsAllready))
             {
 
                 // readyCoding.ReadyButt(0);
@@ -132,7 +132,7 @@ public class CharacterSelection : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Player2Action"))
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetButtonDown("Player2Action"))
             {
                 // readyCoding.ReadyButt(0);
                 // readyCoding.HidSelector(0);
@@ -147,19 +147,19 @@ public class CharacterSelection : MonoBehaviour
             dPad3Horizontal = Input.GetAxis("DPadHorizonal3");
             if (Time.time - lastInputTime2 > inputCooldown)
             {
-                if (dPad3Horizontal == -1 && Player3SelectedNumber > 0)
+                if ((Input.GetKeyDown(KeyCode.Keypad4) || dPad3Horizontal == -1 && Player3SelectedNumber > 0))
                 {
                     SelectorMoveLeft(2);
                     lastInputTime2 = Time.time;
                 }
-                if (dPad3Horizontal == 1 && (Player3SelectedNumber < CharacterList.Count - 1))
+                if ((Input.GetKeyDown(KeyCode.Keypad6) || dPad3Horizontal == 1 && (Player3SelectedNumber < CharacterList.Count - 1)))
                 {
                     SelectorMoveRight(2);
                     lastInputTime2 = Time.time;
                 }
 
             }
-            if (Input.GetButtonDown("Player3Action") && IsAllready)
+            if ((Input.GetKeyDown(KeyCode.Keypad9)||Input.GetButtonDown("Player3Action") && IsAllready))
             {
 
                 // readyCoding.ReadyButt(0);
@@ -173,7 +173,7 @@ public class CharacterSelection : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Player3Action"))
+            if ((Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButtonDown("Player3Action")))
             {
                 // readyCoding.ReadyButt(0);
                 // readyCoding.HidSelector(0);

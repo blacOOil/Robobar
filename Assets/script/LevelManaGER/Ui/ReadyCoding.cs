@@ -47,15 +47,15 @@ public class ReadyCoding : MonoBehaviour
         }
 
         UpdateReadyButtons();
-        if (Input.GetButtonDown("Player1Action"))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Player1Action"))
         {
             ReadyButtonPressed(0);
         }
-        if (Input.GetButtonDown("Player2Action"))
+        if (Input.GetKeyDown(KeyCode.I)|| Input.GetButtonDown("Player2Action"))
         {
             ReadyButtonPressed(1);
         }
-        if (Input.GetButtonDown("Player3Action"))
+        if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButtonDown("Player3Action"))
         {
             ReadyButtonPressed(2);
         }
