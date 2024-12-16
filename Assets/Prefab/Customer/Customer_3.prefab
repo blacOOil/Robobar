@@ -614,9 +614,9 @@ MonoBehaviour:
   Randomdrinkfloat: 0
   ServedDrink: 0
   OrderMenu:
-  - {fileID: 21300000, guid: e28ede0157814af4087f597889d5a9f3, type: 3}
-  - {fileID: 21300000, guid: a1c037d802028ab47b5688213bb412f7, type: 3}
-  - {fileID: 21300000, guid: c1e8e1e0e01f1af48a13133a7ceff266, type: 3}
+  - {fileID: 21300000, guid: 58f52272e4bad6d42ac51cac724eea35, type: 3}
+  - {fileID: 21300000, guid: ec39e789b420e9841999e74124dff0c8, type: 3}
+  - {fileID: 21300000, guid: 77443778542d0674cad5ed231f50703c, type: 3}
   OrderImage: {fileID: 1318268750588463684}
   Isordered: 0
   IsorderRevied: 0
@@ -642,6 +642,7 @@ MonoBehaviour:
   SliderImage: {fileID: 6636020913362087133}
   SatifactorCanvas: {fileID: 3609598787511272388}
   IsDanceAdded: 0
+  monneyLevelCode: {fileID: 0}
   PlayerCheckerRadius: 2
   Issited: 0
   Isfull: 0

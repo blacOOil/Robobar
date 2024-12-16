@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Timemanager;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class Gamestate : MonoBehaviour
 {
@@ -189,6 +190,11 @@ public class Gamestate : MonoBehaviour
         {
             timerCode.IstimeCounting = false; // Stop the timer
         }
+    }
+
+    public void ReScene() {
+        SceneManager.LoadScene(1);
+        //Application.LoadLevel(Application.loadedLevel);
     }
 } 
 

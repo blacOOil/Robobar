@@ -8,27 +8,36 @@ public class DrinkButtonSingle : MonoBehaviour
     public cookingSystem cookingSystem;
     public Image ButtonImage;
     public int ButtonCode,DrinkIndex;
+
+    public Sprite normalSprite;         // Default sprite (not selected)
+    public Sprite selectedSprite;       // Sprite when selected
+    public Sprite cancelSprite;
+
     // Start is called before the first frame update
     void Start()
     {
         cookingSystem = GameObject.Find("BarCollider").GetComponent<cookingSystem>();
+
+        ButtonImage.sprite = normalSprite;
     }
 
     // Update is called once per frame
     void Update()
     {
         DrinkIndex = cookingSystem.DrinkIndex;
+
         if(ButtonCode == DrinkIndex)
         {
-            ButtonImage.color = Color.blue;
+            ButtonImage.sprite = selectedSprite; // Use the selected sprite
+
             if(gameObject.name == "CancelButton")
             {
-                ButtonImage.color = Color.red;
+                ButtonImage.sprite = cancelSprite; // Use the cancel sprite
             }
         }
         else
         {
-            ButtonImage.color = Color.white;
+            ButtonImage.sprite = normalSprite;
         }
     }
    

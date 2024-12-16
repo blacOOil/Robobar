@@ -216,14 +216,14 @@ public class cookingSystem : MonoBehaviour
 
                 if ((Input.GetKeyDown(KeyCode.A)|| dPadHorizontal == -1) && DrinkIndex > 1)
                 {
-                DrinkIndex--;
-                CookingState = 2;
+                    DrinkIndex--;
+                    CookingState = 2;
                      lastInputTime = Time.time; 
                 }
-            if ((Input.GetKeyDown(KeyCode.D) || dPadHorizontal == 1) && DrinkIndex < ListDrink.Count)
-            {
-                DrinkIndex++;
-                CookingState = 2;
+                if ((Input.GetKeyDown(KeyCode.D) || dPadHorizontal == 1) && DrinkIndex < ListDrink.Count)
+                {   
+                    DrinkIndex++;
+                    CookingState = 2;
                     lastInputTime = Time.time;
                 }
             }
