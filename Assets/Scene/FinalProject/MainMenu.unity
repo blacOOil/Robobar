@@ -2853,11 +2853,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8131568104680046844, guid: f9fdf1637afcab845a78b567aad5c461,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f6d98e7d4aa88a048a726b738f4fbb99, type: 2}
     - target: {fileID: 919132149155446097, guid: f9fdf1637afcab845a78b567aad5c461,
         type: 3}
       propertyPath: m_Name
       value: BGModel_Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 1131600733953100696, guid: f9fdf1637afcab845a78b567aad5c461,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 612d1e77cae64ad47b971a22adb57c41, type: 2}
+    - target: {fileID: 1194170160304719304, guid: f9fdf1637afcab845a78b567aad5c461,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 13f76fb252cd6234b81498e616459d46, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
