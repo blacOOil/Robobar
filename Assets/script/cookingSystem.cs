@@ -260,7 +260,7 @@ public class cookingSystem : MonoBehaviour
                     lastInputTime2 = Time.time;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.I) || Input.GetButtonUp("Player2Action") && CookingState > 1)
+            if (Input.GetKeyDown(KeyCode.I)  && CookingState > 1)
             {
 
                 IsCookingStartSelecting = false;
@@ -292,7 +292,7 @@ public class cookingSystem : MonoBehaviour
                     lastInputTime3 = Time.time;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetButtonUp("Player3Action") && CookingState > 1)
+            if (Input.GetKeyDown(KeyCode.Keypad9)  && CookingState > 1)
             {
                 IsCookingStartSelecting = false;
                 IsCooking = true;
