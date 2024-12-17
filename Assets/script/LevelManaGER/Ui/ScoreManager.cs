@@ -54,7 +54,7 @@ public class ScoreManager : MonoBehaviour
         // Check for Player 1 input
         if (string.IsNullOrWhiteSpace(PlayerNameInput1.text))
         {
-            PlayerName1 = "P1"; // Default name
+            PlayerName1 = "Player1"; // Default name
         }
         else
         {
@@ -65,7 +65,7 @@ public class ScoreManager : MonoBehaviour
         // Check for Player 2 input
         if (string.IsNullOrWhiteSpace(PlayerNameInput2.text))
         {
-            PlayerName2 = "P2";
+            PlayerName2 = "Player2";
         }
         else
         {
@@ -76,7 +76,7 @@ public class ScoreManager : MonoBehaviour
         // Check for Player 3 input
         if (string.IsNullOrWhiteSpace(PlayerNameInput3.text))
         {
-            PlayerName3 = "P3";
+            PlayerName3 = "Player3";
         }
         else
         {
