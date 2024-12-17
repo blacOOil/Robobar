@@ -488,7 +488,7 @@ PrefabInstance:
     - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: SeatInSider.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
@@ -504,7 +504,7 @@ PrefabInstance:
         type: 3}
       propertyPath: SeatInSider.Array.data[0]
       value: 
-      objectReference: {fileID: 2643608362954294871}
+      objectReference: {fileID: 5098566438259596964}
     - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: SeatInSider.Array.data[1]
@@ -519,24 +519,22 @@ PrefabInstance:
         type: 3}
       propertyPath: ChairMaterial.Array.data[0]
       value: 
-      objectReference: {fileID: -826069652050624713, guid: a9dc88e5759df6041b5c59528dacb08f,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 14d4f2023ed9d3e488eb674138ec4f72, type: 2}
     - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: ChairMaterial.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 4cc38377724f1a245910d7e458d29eb5, type: 2}
+      objectReference: {fileID: 2100000, guid: 7d2864eec8fb6cb4fac42bda506fc421, type: 2}
     - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: TableMaterial.Array.data[0]
       value: 
-      objectReference: {fileID: -826069652050624713, guid: a9dc88e5759df6041b5c59528dacb08f,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 14d4f2023ed9d3e488eb674138ec4f72, type: 2}
     - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: TableMaterial.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 4cc38377724f1a245910d7e458d29eb5, type: 2}
+      objectReference: {fileID: 2100000, guid: 7d2864eec8fb6cb4fac42bda506fc421, type: 2}
     - target: {fileID: 5310567922088316673, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1086,12 +1084,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8229377075527828228}
   m_SourcePrefab: {fileID: 100100000, guid: a9dc88e5759df6041b5c59528dacb08f, type: 3}
---- !u!1 &2643608362954294871 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4076389308614793704, guid: a9dc88e5759df6041b5c59528dacb08f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7188372043848753231}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3371549032046912562 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3672650642611780483, guid: a9dc88e5759df6041b5c59528dacb08f,

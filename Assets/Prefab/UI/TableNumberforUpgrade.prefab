@@ -156,12 +156,13 @@ MonoBehaviour:
   SeatInSider:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   ChairMaterial:
-  - {fileID: 2100000, guid: 3bc145a65f1434c42999f9326059e98a, type: 2}
-  - {fileID: 2100000, guid: 4cc38377724f1a245910d7e458d29eb5, type: 2}
+  - {fileID: 2100000, guid: 00862580636a1e7439d46b77530fe65c, type: 2}
+  - {fileID: 2100000, guid: d73c64ae3a21d1e4ca0e6481e8e647c5, type: 2}
   TableMaterial:
-  - {fileID: 2100000, guid: 3bc145a65f1434c42999f9326059e98a, type: 2}
-  - {fileID: 2100000, guid: 4cc38377724f1a245910d7e458d29eb5, type: 2}
+  - {fileID: 2100000, guid: e4a2f75340d7d77459d7a2d7b161c87a, type: 2}
+  - {fileID: 2100000, guid: 97ea80c5aea272a438f71016999df462, type: 2}
 --- !u!1 &1459935942192432837
 GameObject:
   m_ObjectHideFlags: 0

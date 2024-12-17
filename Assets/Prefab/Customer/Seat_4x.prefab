@@ -729,6 +729,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2293277553042683957}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2170345984116723485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 129977550234810152, guid: 92d35df3079b8414699a63ccf89d8d73,
+    type: 3}
+  m_PrefabInstance: {fileID: 2293277553042683957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4989055874546584023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2670647589584457246, guid: 92d35df3079b8414699a63ccf89d8d73,
+    type: 3}
+  m_PrefabInstance: {fileID: 2293277553042683957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6259478015118931247 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3959374494627558118, guid: 92d35df3079b8414699a63ccf89d8d73,
@@ -839,6 +851,21 @@ PrefabInstance:
       propertyPath: SeatInSider.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
+        type: 3}
+      propertyPath: SeatInSider.Array.data[0]
+      value: 
+      objectReference: {fileID: 6259478015118931247}
+    - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
+        type: 3}
+      propertyPath: SeatInSider.Array.data[1]
+      value: 
+      objectReference: {fileID: 4989055874546584023}
+    - target: {fileID: 5278547957370732501, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
+        type: 3}
+      propertyPath: SeatInSider.Array.data[2]
+      value: 
+      objectReference: {fileID: 2170345984116723485}
     - target: {fileID: 5310567922088316673, guid: 1cf9185ebf44c7f4e80a82c944caf3b5,
         type: 3}
       propertyPath: m_AnchorMax.y
