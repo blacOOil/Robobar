@@ -54,7 +54,7 @@ public class Gamestate : MonoBehaviour
                 StartCleaningSession();
                 break;
             case 2:
-                gamestate_Number++;
+              //  gamestate_Number++;
                 StartminigameSession();
                 break;
             case 3:
