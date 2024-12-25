@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Settings")]
     public AudioSource audioSource; // Audio Source for playing clips
+    public AudioSource soundEffect; // Audio Source for playing clips
     public AudioMixer audioMixer; // Audio Mixer to control volume
 
     [Header("Game State Audio Clips")]
@@ -53,6 +54,8 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        soundEffect.mute = true;
     }
 
     private void Start()
@@ -81,6 +84,7 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+        soundEffect.mute = false;
     }
 
     public void PlayAudioForState(int gameStateNumber)
