@@ -414,7 +414,15 @@ public class CustomerSingle : MonoBehaviour
 
     public void ExitStore()
     {
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
+        if(exitdoor != null)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, exitdoor.transform.position, 4f);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     IEnumerator DrinkingRoutine()
