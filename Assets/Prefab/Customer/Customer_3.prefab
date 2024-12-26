@@ -654,6 +654,7 @@ MonoBehaviour:
     m_Bits: 64
   customertoTable: {fileID: 2760927162402751719}
   TableFace: {fileID: 0}
+  recivedDrinkSound: {fileID: 8300000, guid: 557adb07d4496014c8913539f668dd4f, type: 3}
 --- !u!114 &6640471250208950944
 MonoBehaviour:
   m_ObjectHideFlags: 0

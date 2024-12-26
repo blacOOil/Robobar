@@ -29,6 +29,10 @@ public class ServiceSystem : MonoBehaviour
     public float animSkillSpeedMultiplier;
     Animator anim;
     public bool IsAnimEnabled;
+
+    [Header("Sound effect Controller")]
+    //public AudioSource audioSource;
+    public AudioClip releaseDrinkSound;
  
    public bool IsSpawnerClose()
     {
@@ -95,6 +99,11 @@ public class ServiceSystem : MonoBehaviour
         {
             playernumber = 2;
         }
+
+        // if (audioSource == null)
+        // {
+        //     audioSource = GetComponent<AudioSource>();
+        // }
     }
 
     // Update is called once per frame
@@ -289,7 +298,7 @@ public class ServiceSystem : MonoBehaviour
             Debug.Log("No close customer found.");
         }
     }
-    public void StorExtraDrink(GameObject Drink)
+    public void StoreExtraDrink(GameObject Drink)
     {
 
         // Check if the list already has 3 items
@@ -325,7 +334,7 @@ public class ServiceSystem : MonoBehaviour
                 if (IshadBoxskill && !collision.gameObject.GetComponent<DrinkSingle>().IsHeld)
                 {
                    
-                    StorExtraDrink(collision.gameObject);
+                    StoreExtraDrink(collision.gameObject);
                 }
             }
 
@@ -422,8 +431,37 @@ public class ServiceSystem : MonoBehaviour
             {
                 anim.SetBool("IsPickup", false);
             }  
+
+            // if (audioSource != null && releaseDrinkSound != null)
+            // {
+            //     audioSource.PlayOneShot(releaseDrinkSound);
+            // }
+
+            if (AudioManager.instance.soundEffect != null)
+            {
+                AudioManager.instance.soundEffect.clip = releaseDrinkSound;
+                AudioManager.instance.soundEffect.PlayOneShot(releaseDrinkSound);
+            }
+            else
+            {
+                Debug.LogError("AudioManager or AudioSource is not set up correctly.");
+            }
         }
     }
+
+    // void PlayAudioClip(AudioClip clip)
+    // {
+    //     if (AudioManager.instance != null && AudioManager.instance.audioSource != null)
+    //     {
+    //         AudioManager.instance.audioSource.clip = clip;
+    //         AudioManager.instance.audioSource.Play();
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("AudioManager or AudioSource is not set up correctly.");
+    //     }
+    // }
+
     public void SpawnNextDrink() 
     {
         

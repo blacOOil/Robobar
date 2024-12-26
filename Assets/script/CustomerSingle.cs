@@ -34,6 +34,10 @@ public class CustomerSingle : MonoBehaviour
     public CustomertoTable customertoTable;
     public Transform TableFace;
 
+    [Header("Sound effect Controller")]
+    //public AudioSource audioSource;
+    public AudioClip recivedDrinkSound;
+
     private void Start()
     {
         InitializeSession();
@@ -410,6 +414,16 @@ public class CustomerSingle : MonoBehaviour
             drinkCollider.isTrigger = true;
         }
         SatificationIncrease();
+
+        if (AudioManager.instance.soundEffect != null)
+        {
+            AudioManager.instance.soundEffect.clip = recivedDrinkSound;
+            AudioManager.instance.soundEffect.PlayOneShot(recivedDrinkSound);
+        }
+        else
+        {
+            Debug.LogError("AudioManager or AudioSource is not set up correctly.");
+        }
     }
 
     public void ExitStore()
