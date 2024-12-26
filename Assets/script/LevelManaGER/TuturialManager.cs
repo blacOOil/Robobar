@@ -9,6 +9,7 @@ public class TuturialManager : MonoBehaviour
     public Gamestate gamestate;
     public int Tutorial_Stage = 0;
     public List<GameObject> TutorialPanelist;
+    public List<GameObject> GameObjTurtorial;
     private bool isConditionMet = false;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class TuturialManager : MonoBehaviour
     void Update()
     {
         CheckConditionsForCurrentStage();
-        gamestate.gamestate_Number = 4;
+       
     }
   
     public void UpdateTutorialStage()
@@ -51,6 +52,7 @@ public class TuturialManager : MonoBehaviour
         switch (Tutorial_Stage)
         {
             case 0:
+                gamestate.gamestate_Number = 4;
                 isConditionMet = Input.GetKeyDown(KeyCode.W);
                 break;
 
@@ -68,7 +70,15 @@ public class TuturialManager : MonoBehaviour
                 isConditionMet = Input.GetKeyDown(KeyCode.D);
                 break;
             case 4:
-               
+                ChairSingle chairsingle = GameObjTurtorial[0].GetComponent<ChairSingle>();
+                isConditionMet = chairsingle.isSited;
+                break;
+            case 5:
+                CheckCustomerPlacement();
+                break;
+            case 6:
+                gamestate.gamestate_Number = 1;
+                CheckTrashPlacement();
                 break;
             default:
                 isConditionMet = true; 
@@ -79,5 +89,28 @@ public class TuturialManager : MonoBehaviour
             NextStage();
         }
 
+    }
+    public void CheckCustomerPlacement()
+    {
+        GameObject[] customers = GameObject.FindGameObjectsWithTag("Customer");
+
+        if (customers.Length == 0)
+        {
+            Debug.Log("No customers found.");
+            isConditionMet = true;
+            return;
+        }
+    }
+
+    public void CheckTrashPlacement()
+    {
+        GameObject[] Trashs = GameObject.FindGameObjectsWithTag("TrashTag");
+
+        if (Trashs.Length == 0)
+        {
+            Debug.Log("No Trash found.");
+            isConditionMet = true;
+            return;
+        }
     }
 }

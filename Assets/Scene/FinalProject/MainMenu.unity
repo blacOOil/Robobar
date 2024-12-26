@@ -4812,6 +4812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 252329825}
+  soundEffect: {fileID: 1746069785}
   audioMixer: {fileID: 24100000, guid: c8284e2cb34904248aa00703eacfbe4d, type: 2}
   mainMenuAudio: {fileID: 8300000, guid: 44dec0dd7ad96a44a8e6806674280b60, type: 3}
   cleaningAudio: {fileID: 8300000, guid: c36e7884f9bd0d443b2d92ca4373327f, type: 3}
