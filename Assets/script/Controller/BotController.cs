@@ -118,8 +118,8 @@ public class BotController : MonoBehaviour
         if (movementDirection.magnitude >= 0.1f)
         {
             // Apply movement using Rigidbody
-            Vector3 newVelocity = new Vector3(movementDirection.x * Speed, rb.velocity.y, movementDirection.z * Speed);
-            rb.velocity = Vector3.Lerp(rb.velocity, newVelocity, Time.deltaTime * 10f); // Smooth interpolation
+            Vector3 newVelocity = new Vector3(movementDirection.x * Speed, rb.linearVelocity.y, movementDirection.z * Speed);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, newVelocity, Time.deltaTime * 10f); // Smooth interpolation
 
             // Calculate the rotation to face the movement direction
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);

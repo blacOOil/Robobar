@@ -33,7 +33,7 @@ public class FiringCode : MonoBehaviour
     public void FireBullet()
     {
         GameObject bullet = Instantiate(Bullet, Barel.position, Barel.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = Barel.forward * fireForce;
+        bullet.GetComponent<Rigidbody>().linearVelocity = Barel.forward * fireForce;
     }
 
     public void FreeFire()

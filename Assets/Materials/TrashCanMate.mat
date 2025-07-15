@@ -75,11 +75,13 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
+    - _DstBlend2: 10
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
     - _FreshPower: -0.5
     - _OpaqueCullMode: 2
+    - _PerPixelSorting: 0
     - _RenderQueueType: 4
     - _SrcBlend: 1
     - _StencilRef: 0
@@ -107,3 +109,4 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FreshColor: {r: 0.03002719, g: 0.20842718, b: 0, a: 0.5568628}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
